@@ -1,0 +1,71 @@
+#class {bot} {open}
+
+#var botting 1;
+#var foundmob 0;
+#var foundplayer 0;
+
+#var mobname 0;
+#var dontAttack 0; #nop if just trying to run through an area;
+#var pickupAll 0;
+
+#alias {.pause} {
+	#var halt 1;
+	#class {xbot} {kill};
+	#alias {.onPrompt} {.pause};
+};
+
+#alias {.stop} {
+	.pause;
+	#unalias {..};
+	#unalias {.onPrompt};
+	#unact {^>$};
+	#class {bot} {kill};
+};
+
+#alias {.onPrompt} {#nop empty;};
+
+#alias {..} {
+	#class {xbot} {open};
+	#var halt 0;
+
+	#nop at room entrance, enable trigger waiting for prompt, mobs will be detected by specific area script;
+	#act {{^-R-_}} {xx};
+
+	#alias {xx} {
+		#unvar foundplayer;
+		#nop area script will detect mob, if any, and yy will be called, overwriting this prompt action;
+		#act {^>$} {#path walk;zz} {1};
+	};
+	#alias {.onPrompt} {
+		#act {^>$} {
+			#if {$foundItems} {#if {$pickupAll} {#nop get all};};
+			#if {$foundplayer} {zz;#path walk} {
+				#if {$dontAttack} {
+					#path walk;
+				} {
+					zz;.pause;k $mobname;#var foundmob 1;
+				}
+			}
+		}
+	};
+	#alias {zz} {#unact {^>$}};
+
+	glance;	
+
+	#class {xbot} {close};
+}
+
+#alias {.bot} {#if {$halt == 0} {..}};
+
+#act {^-P-} {#var foundplayer 1} {6};
+
+#act {#END OF PATH} {
+	#if {$no_loop | !$foundmob} {.stop} {
+		zz;#path load botpath;.bot;#var foundmob 0;
+	}
+}
+
+#path load botpath;
+#var halt 0;
+
+#class {bot} {close}

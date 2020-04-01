@@ -1,0 +1,106 @@
+#class {reforge} {open}
+
+#nop REFORGING;
+
+#alias {rfk} {
+	buy knife;
+	reforge knife little edged critical;
+	dispose knife;
+};
+
+#alias {rf} {
+	reforge %1 lots %3 %2;
+	reforge %1 some %3 %2;
+};
+
+#alias {rf2} {
+	reforge %1 lots %3 %2;
+	reforge %1 some %3 %2;
+	reforge %1 little %3 %2;
+};
+
+#alias {rf3} {
+	reforge %1 lots poison %2;
+	reforge %1 lots electric %2;
+	reforge %1 lots acid %2;
+	reforge %1 lots energy %2;
+	reforge %1 lots radiation %2;
+	reforge %1 lots mind %2;
+	reforge %1 lots ice %2;
+	reforge %1 lots fire %2;
+	reforge %1 some poison %2;
+    reforge %1 some electric %2;
+    reforge %1 some acid %2;
+    reforge %1 some energy %2;
+    reforge %1 some radiation %2;
+    reforge %1 some mind %2;
+    reforge %1 some ice %2;
+    reforge %1 some fire %2;
+	reforge %1 little poison %2;
+    reforge %1 little electric %2;
+    reforge %1 little acid %2;
+    reforge %1 little energy %2;
+    reforge %1 little radiation %2;
+    reforge %1 little mind %2;
+    reforge %1 little ice %2;
+    reforge %1 little fire %2;
+};
+
+#alias {rfall} {
+	rf3 helmet defense;
+	rf3 amulet defense;
+	rf3 armour defense;
+	rf3 greaves defense;
+	rf3 cloak defense;
+	rf3 gloves defense;
+	rf3 boots defense;
+	rf3 ring defense;
+	rf3 other defense;
+	rf3 shield defense;
+    drop ring 2;
+    get ring;
+    rf3 ring defense;
+    wear ring;
+    drop ring 3;
+    get ring;
+    rf3 ring defense;
+    drop ring 4;
+    get ring;
+    rf3 ring defense;
+    drop ring 5;
+    get ring;
+    rf3 ring defense;
+    wear all;
+    pp;
+};
+
+
+
+#alias {rftrain} {
+    enter;
+    get helmet from box;
+    get amulet from box;
+    get armour from box;
+    get cloak from box;
+    get gloves from box;
+    get boots from box;
+    get shield from box;
+    get other from box;
+    get ring from box;
+    get ring from box;
+    out;
+    mk;
+    go reforge;
+    rfall;
+    go kn;
+    enter;
+    pp;
+};
+
+
+register_module {reforge};
+register_module_info {reforge} {
+    #show Module info for reforge todo.;
+};
+
+#class {reforge} {close}

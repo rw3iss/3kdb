@@ -1,0 +1,9 @@
+
+#nop Misc shared gags;
+#nop spork lane:;
+#gag {^{The Spork Lance SLICES into (.*)\!}};
+#gag {^{The Spork Lance tingles and you feel refreshed\.}};
+#gag {{^A spork tine breaks off into (.*)\!}};
+#gag {{^The Spork Lance GASHES (.*)\!}};
+#gag {{^The spork tine falls out of (.*)\.}};
+#gag {{^(.*) bleeds from where the spork tine is embedded in (.*)\!}};

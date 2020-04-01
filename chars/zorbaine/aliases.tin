@@ -1,0 +1,266 @@
+#ALIAS {brun}
+{
+	w;
+	home;
+	guild;
+	enter;
+	n;
+	n;
+	n;
+	quickbuy;
+	e;
+	quickbuy;
+	w;
+	s;
+	buy boost;
+	s;
+	out;
+	mk;
+	go gh1;
+	k drow;
+	wear all;
+	pp;
+	hone lance;
+	wield lance;
+	mmc;
+}
+{5};
+
+
+#alias {ex} {examine %0;search %0;};
+
+#nop Get coffin from morgue and fill it;
+#alias {coffin} {acquire;#5 buy 2;#5 wrap corpse;};
+
+#alias {mw} {mywho};
+#alias {mem} {members};
+#alias {r} {reply};
+#alias {rco} {rcost};
+#alias {skq} {skillquests};
+#alias {mxp} {massxp};
+
+#alias {us} {unkeep %0;smuggle %0};
+
+#alias {dd} {drink %0;dispose %0};
+
+#alias {wp} {wear all;pp};
+
+#nop bury a corpse when in need (ie. out of inventory or coffin, etc);
+#alias {buryCorpseForRegen} {
+    #if {$corpses[inventory] ==  0} {
+        #if {$corpses[smuggling] > 0} {
+            smuggle remove corpse;
+            bury corpse;
+        } {
+            #if {$corpses[coffin] > 0} {
+                unwrap;
+                bury corpse;
+            } {
+                #show NO CORPSES;
+            }
+        }
+    } {
+        bury corpse;
+    };
+    #delay {1} {#ungag {There is no corpse here.}};
+};
+#alias buryCorpseKilltrigger {
+    bury corpse;
+};
+
+#alias {burycorpse} {
+    #show BURYCORPSE;
+    #gag {There is no corpse here.};
+    #if {$corpses[inventory] ==  0} {
+        #if {$corpses[smuggling] > 0} {
+            smuggle remove corpse;
+            bury corpse;
+            get corpse;
+        } {
+            #if {$corpses[coffin] > 0} {
+                unwrap;
+                bury corpse;
+                get corpse;
+            } {
+                bury corpse;
+                get corpse;
+            }
+        }
+    } {
+        bury corpse;
+        get corpse;
+    };
+    #delay {1} {#ungag {There is no corpse here.}};
+};
+
+
+#nop /* repeat commands every round */;
+#alias {rpc} {
+    #if {"%0" != ""} {
+        #show Repeating in combat: %0;
+        #var repeatInCombat %0;
+    } {
+        #show Repeat currently set to: $repeatInCombat;
+    }
+}
+
+#var delayRepeat 0;
+#var delayRepeatDelay 0;
+#alias {dr} { 
+    #if {"%0" != ""} {
+        #show Repeating '%2' with a delay of %1;
+        #var delayRepeat %2;
+        #var delayRepeatDelay %1;
+        _doDr;
+        #alias {doRepeatDelay};
+    } {
+        #show Repeat currently set to: $delayRepeat;
+    }
+};
+#alias {_doDr} {
+    #if {"$delayRepeat" != "0"} {
+        $delayRepeat;
+        #delay {$delayRepeatDelay} {_doDr};
+    };
+};
+#alias {dro} {#var delayRepeat 0;#var delayRepeatDelay 0;#show Delay repeat cleared.};
+
+#alias {dr1} {
+    #var delayRepeat {che;map chess;-cb};
+    #var delayRepeatDelay 2500;
+    #show Chess bot delay repeat at 2500s set.;
+};
+
+
+#CLASS {ZORBAINE_ALIASES} OPEN
+
+#ALIAS {.s}
+{
+	.stop;
+	soff;
+	aoff
+}
+{5}
+
+#ALIAS {aa}
+{
+	#showme adding alias %1 %2;
+	;
+	#class {ZORBAINE_ALIASES} {open};
+	#alias {%1} {%2};
+	#class {ZORBAINE_ALIASES} {close};
+	sa
+}
+{5}
+
+#ALIAS {ar}
+{
+	arepair all
+}
+{5}
+
+#ALIAS {bew}
+{
+	break east wall
+}
+{5}
+
+#ALIAS {bnw}
+{
+	break north wall
+}
+{5}
+
+#ALIAS {fc}
+{
+	ce;
+	esq goshop tack carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot;
+	#delay {3} {ge;#12 give carrot to almodo;send away}
+}
+{5}
+
+#ALIAS {fcc}
+{
+	ce;
+	esq goshop tack carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot;
+	#delay {2} {ge;#15 give carrot to almodo;send away}
+}
+{5}
+
+#ALIAS {gh}
+{
+	ce;
+	esq fetch horse;
+	horse follow;
+	mount;
+	mch;
+	send away
+}
+{5}
+
+#ALIAS {is}
+{
+	impale head on stake
+}
+{5}
+
+#ALIAS {mmc}
+{
+	method charge
+}
+{5}
+
+#ALIAS {ms}
+{
+	mountstats
+}
+{5}
+
+#ALIAS {ph}
+{
+	#200 pet horse
+}
+{5}
+
+#ALIAS {pl}
+{
+	push
+}
+{5}
+
+#ALIAS {rcb}
+{
+	#delay {4000} {-cb;rcb}
+}
+{5}
+
+#ALIAS {rp}
+{
+	#25 rescue puppy
+}
+{5}
+
+#ALIAS {rr}
+{
+	#delay 4800 {-cb;rr;efm;sb}
+}
+{5}
+
+#ALIAS {sb}
+{
+	keep bag;
+	get bag from horse;
+	dispose bag;
+	unkeep bag;
+	give bag to horse
+}
+{5}
+
+#ALIAS {skn}
+{
+	sknights
+}
+{5}
+
+
+#CLASS {ZORBAINE_ALIASES} CLOSE

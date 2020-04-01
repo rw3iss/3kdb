@@ -1,0 +1,23 @@
+
+#nop Dog corpse auto-feeding script;
+#var hascoffincorpse 1;
+#var hascorpse 1;
+
+#act {^Thread, Zorbaine\'s Komondor looks around for something to eat but finds nothing\.} {
+	#if {$hascoffincorpse} {
+		udf;
+	} {
+		#if {$hascorpse} {
+			drop corpse;dog feed;
+		};
+	};
+};
+
+#act {^There are no corpses in the coffin} {
+	#var hascoffincorpse 0;
+};
+
+#act {^You have no corpse\.}{
+	#var hascorpse 0;
+};
+

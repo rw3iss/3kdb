@@ -1,0 +1,136 @@
+#nop parses corpse amount in inventory, coffin, and smuggling;
+
+#class {corpse_manager} {open};
+    
+#var hasCoffin @hasInventory{"coffin"};
+
+#var corpses[inventory] 0;
+#var corpses[coffin] 0;
+#var corpses[smuggling] 0;
+#var hasCoffin 0;
+#var coffinFull 0;
+
+#alias {ci} {
+	#nop check inventory;
+	#var corpses[inventory] 0;
+	#action {{^[ ]?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} { 
+		#math {corpses[inventory]} {$corpses[inventory] + %%2};
+	};
+
+	#nop check coffin;
+	#var corpses[coffin] 0;
+	#action {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}} {
+		#var hasCoffin 1;
+		#var corpses[coffin] %%3;
+		#unact {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}};
+	};
+
+	#nop check smuggling;
+	#alias {countSmuggle} {
+		#var corpses[smuggling] 0;
+		#action {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} {
+			#math corpses[smuggling] {$corpses[smuggling] + 1};
+		};
+
+		#nop this stops the smuggling action;
+		#action {{^>$}} {
+			#unact {{^>$}};
+			#unact {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
+			#unact {{^>$}};
+			#ungag {{(.*)}};
+
+			#math {corpses[total]} {$corpses[inventory] + $corpses[coffin] + $corpses[smuggling]};
+			
+			#show @showCorpses{};
+			#unalias {countSmuggle};
+		};
+
+		#delay {.2} {smuggle};
+	};
+
+	#nop this stops the inventory+coffin actions, and start smuggling action;
+	#action {{^>$}} {
+		#unact {{^[ ]?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
+		#unact {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}};
+
+		countSmuggle;
+	};
+ 
+	#gag {{(.*)}};
+	#send i2;
+};
+
+#function {showCorpses} {
+	#if {$hasCoffin == 0} {#var coffinMsg You don't have a coffin.;} {#var coffinMsg Coffin: $corpses[coffin];};
+
+	#format {result} {%s\n%s\n%s\n%s\n%s\n}
+		{TOTAL CORPSES:} 
+		{Inventory: $corpses[inventory]} 
+		{$coffinMsg}
+		{Smuggling: $corpses[smuggling]}
+		{Total: $corpses[total]};
+
+	#delay {.2} {hp};
+};
+
+#nop fill corpse inventory;
+#alias {recorpse} {
+	#var gettingCoins 0;
+
+	#act {{^You don't have enough money\!}} {
+		#show no money;
+
+		#act {{Pinnacle Morgue \(n\)}} {
+			#unact {{Pinnacle Morgue \(n\)}};
+			recorpse;
+		};
+
+		#delay {.2} {
+			#if {$gettingCoins == 0} {
+				#show getting coins;
+				n;w;n;withdraw 35000;s;e;s;
+			};
+			#var gettingCoins 1;
+		};
+	};
+
+	#delay {.2} {
+		#5 buy 7;
+		wrap all;
+		#10 buy 7;
+		#10 smuggle corpse;
+		#30 buy 7;
+		#delay {.2} {ci};
+		#delay {1} {#unact {{^You don't have enough money\!}}};
+		sortcorpse;
+	};
+};
+
+#alias {sortcorpse} {
+	wrap all;
+	#20 smuggle corpse;
+	#delay {.2} {ci};
+};
+#alias {sco} {sortcorpse};
+
+#alias {unwrap} {
+	#if {$corpses[coffin] > 0} {
+		#send unwrap;
+		#math {$corpses[coffin]} {$corpse[coffin]  - 1};
+	} { #show No corpses in coffin. };
+};
+
+#action {There are no corpses in the coffin!} {#var coffinFull 0};
+#action {The coffin is full!} {#var coffinFull 1};
+
+#nop Get initial count on load;
+#nop #delay {2} {ci};
+
+
+register_module {corpse_manager};
+register_module_info {corpse_manager} {
+    #show info for corpse_manager;
+    #nop Commands: ci - see corpse info\nrecorpse - refill corpse\nsortcorpse/sco - reorganize corpses;
+};
+
+#class {corpse_manager} {close};

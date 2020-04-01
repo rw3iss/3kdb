@@ -1,0 +1,21 @@
+#class {inventorymanager} {open};
+
+#nop Inventory manager;
+
+#variable {inventory};
+
+#function {hasInventory} {
+    	#if {&inventory[%1]} {
+        #return 1;
+    } { 
+        #return 0;
+    }
+};
+
+register_module {inventorymanager};
+register_module_info {inventorymanager} {
+    #show info for inventory_managers;
+    #nop Commands: ...;
+};a
+
+#class {inventorymanager} {close};

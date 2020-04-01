@@ -1,0 +1,106 @@
+#class {gent_triggers} {kill}
+#class {gent_triggers} {open}
+
+#NOP --- GENTECH POWERS
+#var timeslide_available 0;
+#var timeslide_able 0;
+#act {^Owie. That hurt!} {unwrap;deslab;smuggle remove corpse;drop corpse;=drop corpse;reclaim};
+#act {^The bright sphere of energy around you distorts momentarily.$} {#ECHO {-----+++++   ENERGY LEAK   +++++------}};
+#act {Your cloning was a success!} {=call;=afollow on;=akill on};
+#act {^Timescan %*[Likelihood of Flux: &1\%]$} {#var reset_time %1;#math time {reset_time * 40}say Time until reset: $time};
+
+#act {%s[[ Energy Field Collapse Imminent. ]]%s} {efield;efield};
+
+
+#alias {set_xp_tracker} {
+	#action {^You have %* total xp.$} {
+		#var new_xp_total %%1;
+		#var old_xp_total %%1;
+	};
+	xp;
+	#delay 1 {#unaction {^You have %* total xp.$}};
+};
+
+#alias {update_xp} {
+	#action {^You have %* total xp.$} {
+                #var new_xp_total %%1;
+                #math xp_gained {$new_xp_total - $old_xp_total};
+		#math xp_per_rnd {$xp_gained / $kill_rounds[rounds]};
+		#var old_xp_total $new_xp_total;
+	        #delay 1 {#unaction {^You have %* total xp.$}};
+        };
+        xp;
+};
+
+#alias {kill_rounds_calc} {
+	#action {^Last Combat Rounds : %d} {
+		#unvar kill_rounds[rounds];
+		#var kill_rounds[rounds] %%1;
+		#delay 1 {#unaction {^Last Combat Rounds : %d}};
+	};
+	#action {^Last Enemy Killed  : %*  [Class %d]$} {
+		#unvar kill_rounds[class];
+		#unvar kill_rounds[name];
+		#var kill_rounds[name] %%1;
+		#var kill_rounds[class] %%2;
+		#delay 1 {#unaction {^Last Enemy Killed  : %*  [Class %d]$}};
+	};
+	cs;
+	update_xp;
+	#format stats_mob_killed {Mob: %s  Rounds: %s   Class: %s   XP Gained: %s (%s / rnd)} {$kill_rounds[name]} {$kill_rounds[rounds]} {$kill_rounds[class]} {$xp_gained} {$xp_per_rnd};
+	#list kill_tracker add $stats_mob_killed;
+	#delay 0.1 {#showme {Killed: $stats_mob_killed}};
+};
+
+#act {dealt the killing blow to}{
+	#if $mask {wrap;wrap;share gold;} {wrap;share gold};
+	kill_rounds_calc;
+};
+
+#NOP --- ETERNAL POWERS
+#action {A shimmering ball of energy appears magically when you snap your fingers.} {
+	#var ewell 0;
+	#ticker {ewell} {tell byron ENERGY WELL RESET;#var ewell 1;#unticker ewell} {1700}
+};
+
+#action {^You tear apart %d defenses!} {#var shred 0;#ticker {shred} {3648} {tell byron SHRED RESET;#unticker shred;#var shred 1}};
+
+
+#NOP --- GENERAL MISC
+#action {^The daemon hisses: Dost thou choose to graft with me Martyr?} {say yes};
+#action {^You notice that the %* has come into view.$} {-cl;#send {ct %1 just reset.}};        
+#action {^You notice that {%w} has come into view.} {tell martyr {%1} has reset};
+#action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin} {#delay 6 {cult join}}};
+
+
+#NOP -------------------------------- ACTIONS TO SUPPORT OTHER PLAYERS ---------------------------------------		
+
+#function check_slide {
+	#if {$my[hp][current] > 300} {#var timeslide_able 1} {#var timeslide_able 0};
+	#if {$my[sp][current] > 200} {#var timeslide_able 1} {#var timeslide_able 0};
+	#if {$my[cpc][current] > 1000} {#var timeslide_able 1} {#var timeslide_able 0};
+	#if {$my[pu][current] > 1600} {#var timeslide_able 1} {#var timeslide_able 0};
+}
+
+#ACTION {^Nix pokes you with a cattle prod.} {timeslide emergency} {5}
+#ACTION {^Nix gives you a low-five!} {timeslide} {5}
+#ACTION {[[ Timeslide circuits overpowered.  Recovery time needed. ]]} {say timeslide (personal) on cooldown.} {5}
+#ACTION {%1 offers to guard} {accept} {5}
+#ACTION {^Nix taps you on the shoulder.$} {follow nix} {5};
+
+
+#NOP ------------------------------ STATISTICS AND VARIABLE SETTINGS ----------------------------------------
+
+#NOP --- CORPSE COUNTING
+#ACTION {^There are no corpses in the coffin!$} {#variable corpse_count 0} {5}
+#ACTION {^You pick up } {#math {corpse_count} {$corpse_count + 1}} {5}
+#ACTION {^You shake the frame and out drops } {#math {corpse_count} {$corpse_count - 1}} {5}
+#ACTION {^The coffin expels a corpse onto the ground!} {#math {corpse_count} {$corpse_count - 1}} {5}
+
+
+
+
+
+
+
+#class {gent_triggers} {close}

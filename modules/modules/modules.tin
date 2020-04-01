@@ -1,0 +1,37 @@
+#class {modules} {open};
+
+#list _modules {};
+#var _moduleInfo {};
+
+
+#alias {register_module} {
+    #list {_modules} {add} {%1};
+    #show <169>%1<109> registered.;
+}
+
+#alias {register_module_info} {
+    #var _moduleInfo[%1] {%2};
+};
+
+
+#nop Public methods: ------------;
+
+#alias {modules} {
+    #show \nRegistered modules:;
+    #foreach {$_modules[%*]} {_m} {#show $_m};
+    #show \n;
+};
+
+#alias {minfo} {
+    #show Module info for %1:\n;
+    ${_moduleInfo[%1]};
+    #show \n;
+};
+
+#alias {mreload} {
+    #show Reloading module: %2;
+    #class {%2} {kill};
+    #read modules/%2/%2.tin;
+};
+
+#class {modules} {close};

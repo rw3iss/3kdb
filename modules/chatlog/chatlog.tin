@@ -1,0 +1,95 @@
+#class {chatlog} {kill}
+#class {chatlog} {open}
+
+#alias {-cl} {
+	#format {datestamp} {%t} {%Y-%m-%d.log};
+	#format {timestamp} {%t} {[%H:%M] };
+	#line log logs/$datestamp {$timestamp\};
+	#line log logs/$datestamp;
+	-xchatlog;
+	beep
+	};
+
+#alias {-clnobeep} {
+	#format {datestamp} {%t} {%Y-%m-%d.log};
+	#format {timestamp} {%t} {[%H:%M] };
+	#line log logs/$datestamp {$timestamp\};
+	#line log logs/$datestamp;
+	-xchatlog;
+	};
+
+#alias {-xchatlog} 
+	{
+	#class {xchatlog} {open};
+	#act {^{\S}} {#class {xchatlog} {kill}} {99};
+	#act {{^(\s)*$}} {#class {xchatlog} {kill}} {99};
+	#act {^{\s{1,40}\S}} {-cl};
+	#class {xchatlog} {close}
+	};
+
+}
+
+#act {{^[A-z ] shouts:}} {-clnobeep}
+
+/* TELLS LINKTELLS AUCTION HM SHOUTS GSHOUTS CLAN PROFESSIONS CRAFTING */
+#act {{^((A ghostly form of )?[A-z0-9@]+ (<HM-[A-z]+>:|-=\(OMP\)=-|LTs? \([\[\]0-9A-z\[\], ]+\)|tells?( you)? \(?[A-z0-9,@]+\)?:)|\[(Clan|PARTY|Auction)\] [A-z\(\) ]+:)}} {-cl}
+#act {{^[A-z ]+(<Craft>|\{Professions\}):}} {-clnobeep}
+#act {{^[A-z ]+<C-Trade>:}} {-clnobeep}
+#act {{^[A-z ]+<cgame>:}} {-clnobeep}
+
+/* cult game */
+#act {{^Gargoyle whispers:}} {-clnobeep}
+
+#act {{^[A-z ] g?shouts:}} {-clnobeep}
+#act {{^[A-z ] says?:}} {-clnobeep}
+#act {{^[A-z ] says?:}} {-clnobeep}
+
+/* souls */
+#act {{^-S-_(.*)}} {-clnobeep}
+#act {{^From afar, [A-z ]}} {-cl}
+
+/* PARTY (Until they add timestamps) */
+#act {~^\e[0m\e[33;1m[PARTY]\e[0m} {-cl} {4}
+#act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop;} {3}
+#act {~^\e[0m[PARTY]} {#nop;} {3}
+
+/* flap */
+#act {{^[A-z]+ flaps :}} {-clnobeep}
+
+/* GUILD SPECIFIC */
+/* BARD */
+#act {{^[A-z]+ \[(HighBard|Fifty|Seventy|Gallant|[0-9]+)\]: }} {-cl}
+#act {{^(You send a message to \w+ on a whispering wind:|A slight breeze floats by and in it you hear \w+'s voice say:)$}} {-cl}
+
+/* BREED */
+#act {{^[A-z]+ projects? to [A-z]+:|^<(Breed( OOC)?|Watcher|Scholar|Announce|HighBreed)> [A-z]+:}} {-cl}
+
+/* KNIGHT */
+#act {{^\((Vassal|Retainer|Page|Squire|Knight|Cavalier|Companion|Paladin|Defender|Guardian|Vindicator|Champion+) ([0-9]+)\) ([A-z]+):}} {-cl}
+#act {{^[A-z]+ \(Strategy\):}} {-clnobeep};
+
+/* NECRO */
+#act {{^[A-z] \[(.*)\]\:}} {-cl};
+
+/* PROFESSIONS */
+
+/* NEWBIE */
+#nop #act {{^newb [A-z]}} {-cl};
+#nop #act {{^[A-z] \[HELPER\]}} {-cl};
+
+#nop Ignore certain tells;
+#act {{^(Jim)( tells you:)?}} {#nop;} {4}
+
+/* Ignore auction and tells from Benny (3s) and Robert (3k) */
+#act {{^(\[Auction\] )?(Benny|Robert)( tells you:)?}} {#nop;} {4}
+#act {{^(\[Auction\] )?(Robert : Up for bids:)}} {-cl;} {3}
+#act {{^(\[Auction\] )?(Robert : Sold to)}} {-clnobeep;} {3}
+
+/* ignore capturing of mob says */
+#act {{(Mircarla|Sumaren|Alaren|Brainy|Smelly|Crafty|Tracker|Eater|Gargamel|Rex|Ayla|Guardswoman|Bess|Child|Bodyguard|Graktah|Candi|Bertolo|Netta|Waldo|Zachary)( says:)}} {#nop} {-5}
+
+#act {Solaris tells} {#nop;} {0}
+
+#class {chatlog} {close}
+
+

@@ -1,0 +1,85 @@
+#NOP - GAGGED LINES
+
+
+#NOP -- Gentech Gags
+
+#gag {^[[ Vital Signs Reading At Maximum. Aborting Adrenaline Surge. ]]$};
+#gag {^[[[ **WARNING**   PANIC HEAL ACTIVATED   **WARNING** ]]]$};
+#gag {^An adrenaline surge flows through you.$};
+#gag {^Your body is still filled with adrenaline!$};
+#gag {^[> Power Unit Recharge Complete. <]$};
+#gag {^[[ Vital Signs Reading At Maximum. Aborting Adrenaline Surge. ]]$};
+#gag {^Your genetic arm strikes %* with %*.$};
+#gag {^Your genetic arm strike misses.$};
+#gag {^[> Meditation Field Activated. <]$};
+#gag {^You may not activate repairs while in combat.$};
+#gag {^You activate a remote transfer conduit and transfer %d PU to CPC.$};
+#gag {^[[ The Central Power Core is reaching its maximum capacity. ]]$};
+
+#gag {^The sky opens up, expressing its distaste in an acid shower for};
+#gag {^The sticky cocoon absorbs part of the attack!};
+#gag {^In a panic, you attempt a calculated action:cast cure.};
+#gag {^You've already cast a spell this round!};
+#gag {^The cocoon is as strong as it'll ever be!};
+#gag {^You do your best to bandage your wounds.};
+#gag {^Chanting an arcane spell, you draw upon magical energies to heal yourself.};
+#gag {^Your ambition overflows as you try to bring down the big game with a spell!};
+#gag {^With swiftness unmatched, you tumble in the nick of time to avoid the brunt of the attack.};
+#gag {^You sacrifice some of your health to make the cocoon stronger!};
+#gag {^**THWACK** You critically hit %*!};
+#gag {^Your shield blocks %* attack!};
+#gag {^You slice, and a flow of blood falls from %*!};
+#gag {^The blood from the wound flows into your soul through the Axe.};
+#gag {^%* quickly dodges your assault!};
+#gag {^You nimbly dodge %* attack!};
+#gag {^%* is burning in acid!};
+#gag {^Your wild ambition drives you ever onward!};
+#gag {^Chopping violently, the axe draws crimson from the %*!};
+#gag {^The power of your spell nearly destroys %*!};
+#gag {^Perhaps bandaging is not required afterall.};
+#gag {^You slice, and a flow of rancor falls from %*!};
+#gag {^Your attack glanced off of %*.};
+#gag {^You drive your attack past %* resistances!};
+#gag {^You are not in need of aid.};
+#gag {^***THAWHACK*** You critically hit %*!};
+#gag {^With swiftness unmatched, you tumble in the nick of time to avoid the brunt};
+#gag {^of the attack.};
+#gag {^Your insidious inspiration flows through you as you make the most of each attack!};
+#gag {^You sing: I work all night and I sleep all day!};
+#gag {^Chopping violently, the axe draws rancor from the %*!};
+#gag {^The cook grunts and glares, suddenly a sharp knife flies towards you!};
+#gag {^The cocoon fuses with the attack and grows stronger!};
+#gag {^Your insidious inspiration fades.};
+#gag {^The pitch black armour turns you into a shadow for a moment!};
+#gag {^A flare of light from your ring puts %* off its attack.};
+#gag {^A flash of insidious insight strikes you!};
+#gag {^You outfox your opponent and take advantage of it!};
+#gag {^It appears the feeble showing of your spell had no effect on %*.};
+#gag {^%* makes a gurgling noise, a blast shoots towards you!};
+#gag {^You press your advantage on your outsmarted foe!};
+#gag {^Employing your great skills, you strike true!};
+#gag {^%* drops to its knees momentarily, unable to stand against the};
+#gag {^%* drops to his knees momentarily, unable to stand against the};
+#gag {^%* drops to her knees momentarily, unable to stand against the};
+#gag {^devastation of your spell!};
+#gag {^There is no corpse here to wrap!};
+#gag {^You are not performing any song...?};
+#gag {^You remove your %*.};
+#gag {^Hmm... There does not appear to be a corpse here.};
+#gag {^%*'s body shudders in agony as the destructive force of your};
+#gag {^spell tears through %*.};
+#gag {^The exotic crocodile snaps down on you with bone shattering force.};
+#gag {^You blink out just as the attack strikes!};
+#gag {^Zelligar's Headband warms you with a radiant glow.};
+#gag {^Unable to move, Furtive is struck.  In pain, he screams.};
+#gag {^Stuck in his own trap, Furtive squeals.};
+#gag {^Furtive darts behind his web, protected by the silk.};
+
+
+
+
+
+
+
+
+

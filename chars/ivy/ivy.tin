@@ -1,0 +1,24 @@
+#var USERNAME ivy;
+#var PASSWORD monage;
+#ses {3k - Ivy} {3k.org} {3000}
+$USERNAME;$PASSWORD;
+
+#conf pack 1;
+#conf color on;
+
+#var guild gentech;
+#var world 3k;
+
+#read common/index.tin;
+
+#read common/guilds/gentech/index.tin;
+
+#read chars/ivy/actions.tin;
+#read chars/ivy/aliases.tin;
+#read chars/ivy/gags.tin;
+#read chars/ivy/global.tin;
+
+#nop create space for static hpbar at bottom;
+#split {0} {4};
+
+#alias {reload} {#kill all;#show \n;#read i.tin;};

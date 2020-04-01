@@ -1,0 +1,28 @@
+#var USERNAME zorbaine;
+#var PASSWORD qazokm;
+#session {3k - Zorbaine} {3k.org} {3000};
+$USERNAME;$PASSWORD;
+
+#conf pack 1;
+#conf color on;
+
+#var guild knights;
+#var world 3k;
+
+#read common/index.tin;
+
+#read common/guilds/knights/index.tin;
+
+#read chars/zorbaine/actions.tin;
+#read chars/zorbaine/aliases.tin;
+#read chars/zorbaine/gags.tin;
+#read chars/zorbaine/global.tin;
+#read chars/zorbaine/misc_clean.tin;
+
+#read common/eq/armour_of_elements.tin;
+#read common/eq/spork_lance.tin;
+
+#nop create space for static hpbar at bottom;
+#split 0 3;
+
+#alias {reload} {#kill all;#show \n;#read z.tin;};

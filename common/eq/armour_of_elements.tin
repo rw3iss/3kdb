@@ -1,0 +1,26 @@
+#var aoe_enabled 0;
+
+#alias {aoeon} {
+    #var aoe_enabled 1;
+    #show Armour of Elements corpse immolation enabled.;
+};
+#alias {aoeoff} {
+    #var aoe_enabled 0;
+    #show Armour of Elements corpse immolate disabled.;
+};
+
+#nop Add killing blow corpse immolation....
+
+
+
+#alias aoeimmolate {
+    immolate corpse;
+};
+
+@addcorpsetrigger{0;aeoimmolate};
+
+#function addcorpsetrigger {
+    #show adding corpse trigger...
+    #show Priority: %1;
+    #show Action: %2;
+};

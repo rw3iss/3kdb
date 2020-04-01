@@ -1,0 +1,22 @@
+#class {drawmap} {open};
+
+#alias {_draw_map} {
+	#split {0} {4} {0} {-100};
+	#map offset {5} {102} {-6} {-2};
+};
+
+#nop intialize visual map ----;
+#delay {1} {
+    _draw_map;
+    #map flag static on;
+    #map flag UnicodeGraphics on;
+};
+
+#nop updates drawm map every change event fired in mapper.tin ---- ;
+#alias {mapupdate_draw} {
+	#draw {tile} -3 -45 -3 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+	#draw {tile} -4 -45 -4 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>};
+};
+
+
+#class {drawmap} {close};

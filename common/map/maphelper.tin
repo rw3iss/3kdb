@@ -1,0 +1,82 @@
+#class {maphelper} {open}
+
+#nop map helpers;
+#alias {mh} {maphelp}
+#alias {maphelp} {
+	#show mapsave/mapload - save/load from map/3k_map.tin;
+	#show map <roomname> - set map at roomname;
+	#show mi - get current room info;
+	#show mapundo - restores the last save point, when 'mapbackup' was called.;
+	#show mapexit <exit> <command> - tell the exit dir to execute command;
+	#show mapname <name> - rename current room;
+	#show mapnote <note> - set current room note;
+	#show mapsym <char> - set the current rooms symbol;
+	#show mapgo <num> - Move the map to room #;
+	#show mapdig <dir> [new]- makes an exit in dir, new argument leads to new room;
+	#show mapdelete <exit> - deletes the exit (unlinks and deletes the room);
+	#show mapunlink <exit> - unlinks the exit from the room it points to;
+	#show maplink <exit> <room#> - link exit to a room;
+	#show mapinsert <room#> - insert a room?;
+	#show mapm <dir> - move the map in dir;
+	#show maparea <name> - set area name for the current room;
+	#show areamapped <area> - show which rooms are mapped in this area;
+}
+
+#nop /* Saves an alternate backup manually, to create manual restore points */;
+
+#alias {go} {
+        #map find {roomname} {%0%*};
+        #path run;
+};
+
+#alias {mapbackup} {#map write common/map/3k_map_AUTOSAVE.tin;};
+#alias {maprestore} {#map read common/map/3k_map_AUTOSAVE.tin;};
+#alias {mapundo} {maprestore};
+
+#alias {mapgo} {#map goto %0};
+#alias {mapsave} { #map write common/map/3k_map.tin force;#show Map saved.;};
+#alias {mapload} { #map read common/map/3k_map.tin;#show Map loaded.;};
+#alias {map} {#map goto %1;};
+#alias {mi} {#map info;};
+#alias {mapexit} {#map exit {%1} {COMMAND} {%2};#show Map exit created. %2 will lead %1.;mapsave;};
+#alias {mapname} {#map name %1;#show Map room named: %1;mapsave;};
+#alias {mapdig} {
+	#map get roomvnum mapCurrentVnum;
+	#map dig {%1} new;
+	#show New exit and room created: %1;
+	%1;
+	#show Reverse dir: %1;
+	#map link {%2} {$mapCurrentVnum};
+	mapsave;
+};
+#alias {mapsym} {#map set roomsymbol %1;#show Map symbol set to: %1;mapsave;};
+#alias {mapnote} {#map set roomnote %0;#show Room note set to: %0;mapsave;};
+#alias {mapdelete} {#map delete {%1};#show Exit deleted: %1;mapsave;};
+#alias {mapunlink} {#map unlink {%0};#show Exit unlinked: %0;mapsave};
+#alias {maplink} {#map link {%1} {%2};#show Map linked: %1 will lead to %2;mapsave};
+#alias {mapinsert} {#map insert {%1};#show Room inserted: %1;,mapsave};
+#alias {mapm} {#map move %0};
+#alias {maparea} {#map set areaname %0;mapsave};
+#alias {areamapmapped %1} {
+	#map list {} {} {} {%1} {variable} {area_mapped};
+	#showme {&area_mapped[] rooms mapped.};
+};
+
+#alias {mapfind} {
+	#show <129>Desc matches<088>;
+	#map list {roomdesc} {%i%*%0%*};
+	#show \n;
+	#show <129>Name matches:<088>;
+	#map list {roomname} {%i%*%0%*};
+	#show \n;
+	#show <129>Note matches:<088>;
+	#map list {roomnote} {%i%*%0%*};
+};
+
+#alias {mappath} {
+	#map find %0;
+	#path show;
+};
+
+
+#class {maphelper} {close}

@@ -1,0 +1,410 @@
+#read 3k/zorbaine/knight_hpbar.tin;
+
+#var my[method][desired] charge;
+#var my[stam][safetycheck] 400;
+#var my[stam][emergency] 250;
+#var my[settings][killfollow] 0;
+
+#var FORCE_WIMPY_ON_LOW_STAMINA 0;
+
+#var incombat 0;
+#var truced 0;
+#var resting 0;
+#var killing -;
+#var party 0;
+#var partyLeader "zorbaine";
+#var getcorpses 1;
+#var feedingHorse 0;
+#var botting 0;
+#var hasspork 0;
+#var cassisting 0;
+#var embalmcorpses 0;
+#var killCountAll 0;
+#var wielded lance;
+#var repeatInCombat "";
+#var WILL_WITH_SPORK_WITH_SP 500;
+#var STAMINA_EMERGENCY_CHECK 500;
+
+#alias {truceTrigger} {
+	tr;
+	#delay {1} {
+		tr;
+		#delay {1} {tr};
+	}
+	#var truced 1;
+};
+
+#nop /* This stuff gets checked every tick */;
+#alias {_heartbeat} {
+	#if {$my[hp][diff] > 150} {st;};
+	#if {$my[hp][diff] > 250} {st;};
+	#if {$my[hp][diff] > 350} {st;};
+	#if {$my[hp][diff] > 450} {st;};
+	#if {$my[hp][diff] > 550} {st;};
+
+	#nop will when spork enabled;
+	#if {$incombat == 1} {
+		#if {$hasspork == 1 && $my[stam][current] < STAMINA_EMERGENCY_CHECK && $my[sp][current] > WILL_WITH_SPORK_WITH_SP} { 
+			will;
+		};
+
+		#if {"$repeatInCombat" != ""} {
+			$repeatInCombat;
+		};
+
+		#if {$my[stam][current] < 1000 && $my[sp][current] > $my[sp][max]} { 
+			will;
+			#if {$my[stam][current] < 700} { 
+				will;
+			}
+		};
+		
+		#if {$my[stam][current] < $my[stam][safetycheck] || $my[stam][current] < $my[stam][emergency]} {
+			#if {$my[secondwind][current] >= 50} {
+				secondwind;
+			} {
+				#if {$corpses[total] > 0} {
+					buryCorpseForRegen;
+				} {
+					#if {FORCE_WIMPY_ON_LOW_STAMINA == 1} {
+						#if {$wimpystratenabled == 1} {
+							wimpystrat;
+						} {
+							truceTrigger;
+						}
+					} {
+						#show  ----- <119>EMERGENCY STAMINA! <099> -----;
+						truceTrigger;
+						#if {$wimpystratenabled == 1} {
+							wimpystrat;
+						};
+					};
+				};
+			};
+		};
+
+		#if {$my[strain][current] > 150} {
+			#nop use chalice for -strain if we have it, otherwise truce;
+			#if {$chalice == 1 && $my[strain][current] < 170} {
+				quaff chalice;
+			} {
+				#if {$my[secondwind][current] > 50} {
+					secondwind;
+				} {
+					#show ----- <119>STRAIN TOO HIGH, TRUCING <088> -----;
+					truceTrigger
+				};
+			};
+		};
+
+		#if {$my[sp][current] < 100} {
+			#if {$my[stam][current] > 500} {
+				peace;
+			} {
+				#show ----- <119>LOW SP<088> -----;
+				#if {$my[secondwind][current] < 50} {
+					#show ----- SP too low, trucing -----;
+					truceTrigger
+					#delay {2} {rest};
+				};
+			};
+		};
+	};
+
+	#if {"$my[method][current]" == "Standard"} {
+		#show IN STANDARD;
+		method $my[method][desired];
+	};
+
+	#if {"$my[prepared]" == "n"} {prepare on};
+	#if {"$my[battlecry]" == "n" && $incombat == 1} {battlecry Battlecrymenow.;};
+
+	#if {$my[hp][current] < 700} {
+		beep;#delay {.5} {beep;#delay {.5} {beep};};
+	};
+
+	#if {$my[hp][current] < 500} {
+		#if {$botting == 1} {
+			#show BAILING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n;
+			.stop;
+			go kn;
+			ld;
+		};
+	};
+
+	#nop /* pet dog every round if necessary (your dog should always be 100% happy) */;
+	#if {$hasdog == 1} {
+		#if {$dog[happy][current] < 95} {
+			dog pet;
+		};
+	};
+};
+
+
+#action {{(\w+) dealt the killing blow to}} {
+	killTriggerAlways;
+	#if {%2 == "Zorbaine" && $party == 0} { 
+		killtrigger; 
+	};
+	rest;
+	#var incombat 0;
+	#var truced 0;
+	#if {$botting == 1} {..};
+} {1}; #nop highest priority kill trigger;
+
+
+#alias {killTriggerAlways} {
+	#math killCountAll {$killCountAll + 1};
+	_guild_killTriggerAlways;	
+}
+
+#alias {killtrigger} {
+	#show killtrigger...;
+	_guild_killTrigger;
+
+	#if {$party == 1} {
+		#if {"$partyLeader" == "zorbaine"} {
+			docorpsetrig;
+		} {
+			divvy coins;
+		};
+	} {
+		docorpsetrig;
+	};
+
+	#if {$party ==1 && $showreport == 1} {
+		ptell \[Report:  STAM: $my[stam][current]/$my[stam][max] 2W: $my[secondwind][current]%/100%\];
+	};
+	
+	#var killing -;
+};
+
+
+
+#nop /* Sets kill target */;
+#alias {k} {
+	#var killing %0;
+	#var incombat 1;
+	#var truced 0;
+	#var resting 0;
+	#if {$my[settings][killfollow] == 1} { follow $killing; };
+	hp;
+	#if {"$my[battlecry]" == "n"} {bcc};
+	#act {There is no $killing here} {
+		#if {$botting} {..};
+	};
+	kill $killing;
+	#delay {.25} {#unact {There is no $killing here}}
+} {0};
+
+
+
+
+
+
+
+
+#alias {tr} {
+	#if {$party == 1} {
+		#if {"$partyLeader" == "zorbaine"} {
+			#show ----------- LOW, NEED TO TRUCE!!! =============;
+			ptell Need to truce, please wimpy/leave!
+			#delay {2} {truce;truce}
+		} {
+			cassist +clear;
+			truce;
+			truce;
+		};
+	} {
+		truce;
+		truce;
+	};
+};
+
+#alias {cassist2} {\cassist %1;#var cassisting %1;#var Cassisting: %1;#if {"%1" == "+clear"} {#var cassisting 0}};
+
+#alias {killing} {#var killing %1;#show Set target to: <119>%1<088>;hp;};
+
+#act {There is nothing to quaff - the Chalice of Tarin is empty.} {#show{CHALICE EMPTY};tr};
+
+
+#function dobury {
+	#if {$embalmcorpses == 1} {
+		embalm remains;
+		get corpse;
+	} {
+		buryCorpseKilltrigger;
+	};
+	#return;
+};
+
+#alias {killtrigger} {
+	rest;
+	immolate corpse;
+	get ring;
+
+	#if {$party == 1} {
+		#if {"$partyLeader" == "zorbaine"} {
+			docorpsetrig;
+		} {
+			divvy coins;
+		};
+	} {
+		docorpsetrig;
+	};
+
+	#if {$party ==1 && $showreport == 1} {
+		ptell \[Report:  STAM: $my[stam][current]/$my[stam][max] 2W: $my[secondwind][current]%/100%\];
+	};
+	
+	#var killing -;
+};
+
+#alias {docorpsetrig} {
+	#if {$hasdog == 1 && $dogfeed == 1} {
+		#if {$dog[hungry][current] > 50} { dog feed; } { 
+			#if {$getcorpses == 1} {@dobury{}};
+		};
+	} { 
+		#if {$getcorpses == 1} {@dobury{}};
+	};
+
+	#if {$party == 1} {
+		divvy gold;
+	} {
+		get coins;
+	};
+};
+
+#nop /* Actions to help us determine if we're still in combat */;
+#action {{You wheel past}} {
+	#var incombat 1;
+	#var resting 0;
+	#var truced 0;
+};
+#action {You spur your Root Wyrm forward,} {
+	#var incombat 1;
+	#var resting 0;
+	#var truced 0;
+};
+
+#action {You hit} {
+	#var incombat 1;
+	#var resting 0;
+	#var truced 0;
+	#if {"$my[battlecry]" == "n"} {bcc};
+} {4};
+
+#high {You hit} {light yellow};
+
+#nop /* Guesses what our target is if we entered a room with an auto-attacking mob and don't have a target currently */;
+#action {{^-M-_(.*) (\[(.*)\])? attacking you!\.}} { 
+	#nop show MOB ATTACKING: %2;
+	#var incombat 1; #var resting 0; #var truced 0; 
+	#var targetName %2;
+	
+	#replace targetName { } {;};
+	#list targetNameList create $targetName;
+	#format guessTarget {%l} {$targetNameList[&targetNameList[]]};
+
+	#if {"$killing" == "-"} { #var killing $guessTarget; };
+} {3};
+
+#nop /* Hamstring success notification */;
+#action {{completely crippling (her|him)!}} { #show  +++++ <119>HAMSTRUNG<099> +++++;};
+
+#nop /* Auto-truce again when truce fails */;
+#action {{Your powers of persuasion fail to bring about peace\.}} {truce;};	
+
+#nop /* Rest after trucing */;
+#action {{Through the force of your convictions you convince (.*) to stop fighting\.}} {rest;#var incombat 0;#var truced 1;#show +++++ <139>TRUCED<099> +++++;};
+
+#nop /* Continue combat when stamina is maxed, if we're still fighting but truced */;
+#action {{^STAMINA AT MAX:}} {
+	#if {$truced == 1} {
+		k $killing;
+		cassist sock;
+		#if {$party == 1} {cassist $partyLeader};
+	};
+
+	#if {$readystratenabled == 1 && "$readystrat" != 0} {
+		#show Executing ready strategy: ${readystrat};
+		${readystrat};
+	};
+	
+	#var resting 0;
+} {1};
+
+#nop /* Ensure we're out of combat */;
+#action {{You will now begin recuperating from battle\.}} { #var incombat 0;#var resting 1; };
+
+#nop /* Warning when trying to secondwind without secondwind */;
+#action {{Your body must be at least 50\% ready in order to utilize its 'second wind'\.}} { 
+	#show  ----- <119>WARNING: OUT OF SECONDWIND<099> -----;
+	#if {$wimpystratenabled == 1} {
+		wimpystrat;
+	};
+ };
+
+#nop /* Rest after wimpying */;
+#action {{Your legs run away with you}} { rest; #var incombat 0; };
+
+#nop /* Setting to enable following mobs when killing */;
+#alias killfollow { #var my[settings][killfollow] %1;#if {%1 == 1} {#show Will follow target when attacking\.;} {#show Will no longer follow target when attacking\.;}};
+ 
+#action {{is uninterested in peacefully ending the fight\.}} {
+	#show \n------- NO TRUCE -------;
+	#if {$wimpystratenabled == 1} {
+		#show ------ <119>Exceuting wimpy strategy!<088> ------;
+		wimpystrat;
+	} {
+		#15 hamstring;
+	};
+};
+
+
+#alias {reporton} {#var showreport 1;#show Reporting on.};
+#alias {reportoff} {#var showreport 0;#show Reporting on.};
+
+
+#action {{^You feel your stamina returning as you rest your battle\-weary bones\.}} { #var incombat 0;#var resting 1;hp; };
+
+#nop /* gags */;
+#gag {{^Your wounds are not so severe as to require staunching\.}};
+#gag {{^You feel your stamina returning as you rest your battle-weary bones\.}};
+
+#nop /* smart-wimpy */;
+#function {reversedir} { 
+   #if {"%1"=="n"} {#var lastreversedir s;};
+   #if {"%1"=="s"} {#var lastreversedir n;};
+   #if {"%1"=="e"} {#var lastreversedir w;};
+   #if {"%1"=="w"} {#var lastreversedir e;};
+   #if {"%1"=="ne"} {#var lastreversedir sw;};
+   #if {"%1"=="se"} {#var lastreversedir nw;};
+   #if {"%1"=="nw"} {#var lastreversedir se;};
+   #if {"%1"=="sw"} {#var lastreversedir ne;};
+   #if {"%1"=="enter"} {#var lastreversedir out;};
+   #return;
+};
+
+#nop extra staunches for getting ass kicked;
+#act { massacred you into tiny fragments.} {st};
+#act { absolutely massacred you.} {st};
+#act { utterly annihilated you.} {st};
+#act { destroyed you.} {st;st};
+#act { completely devastated you} {st;st};
+#act { eradicated you.} {st;st};
+#act { thrashed you completely.} {st;st;st;};
+
+#act {embedding painfully into your flesh!} {st;st};
+
+#nop Tries to wield a lance if i dont have an edged weapon to hamstring mob with;
+#var _hamstringCheck 0;
+#act {Your weapon does not have an edge to hamstring your opponent with.} {
+	#if {$_hamstringCheck == 0} {
+		#nop unwield $wielded;wield lance;wield $wielded;mf;
+		#nop #15 hamstring;
+		#nop #var _hamstringCheck 1;
+		#nop #delay {2} {#var _hamstringCheck 0};
+	};
+};

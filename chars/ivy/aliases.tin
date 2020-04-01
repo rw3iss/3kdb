@@ -1,0 +1,3 @@
+#alias {reload} {#kill all;#read i.tin;};
+
+#alias {bc} {worship byron;#delay {1} {rc}};

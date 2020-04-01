@@ -1,0 +1,4 @@
+#act {Ivy dealt the killing blow} {
+    reclaim;
+    get coins;
+};

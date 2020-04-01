@@ -1,0 +1,23 @@
+
+#nop Script to drop cursed rings trying to put them in a box;
+#act {{^The (.*) is banned from the box\.}} {drop %2;};
+
+#alias {ringcheck} {
+	#var ringchecks 0;
+	#var maxringchecks 10;
+
+	#function {checkring}
+	{
+		pb ring;
+		#math ringchecks $ringchecks + 1;
+
+		#if {$ringchecks != $maxringchecks} {
+			#delay {.25} { @checkring{}; };
+		} {
+			#var $ringchecks 0;
+		}
+		#return;
+	};
+
+	@checkring{};
+};

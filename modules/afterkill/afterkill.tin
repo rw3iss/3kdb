@@ -1,0 +1,41 @@
+#class {afterkill} {open};
+
+#nop Allows ability to register multiple actions after a killing blow ---------------;
+
+
+_set {afterkill_enabled} {0};
+_set {afterkill} {};
+
+#alias {afterkill} {
+        _set afterkill_enabled 1;
+        _set afterkill {%0};
+        #show Now doing after each kill: %0;
+};
+
+#alias {afterkilloff} {
+        _set afterkill_enabled 0;
+        _set afterkill 0;
+        #show After kill disabled.;
+};
+
+#act {^{$characterName} dealt the killing blow to} {
+        #show Dead.;
+        #if {@_get{afterkill_enabled} == 1} {
+                #show doing afterkill: @_get{afterkill};
+                ${@_get{afterkill}};
+        };
+} {5};
+
+#nop Shortcuts ----;
+#alias {ak} {afterkill};
+#alias {akoff} {afterkilloff};
+
+
+register_module {afterkill};
+register_module_info {afterkill} {
+    #show Afterkill module usage:;
+    #show ak {command1;command2;...};
+};
+
+
+#class {afterkill} {close};

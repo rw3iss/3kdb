@@ -1,0 +1,34 @@
+#alias {idlebot} {
+	#var idlechecking 1;
+	@idlecheck{};
+};
+
+#alias {idlebotoff} {
+	#var idlechecking 0;
+};
+
+#function {idlecheck} {
+	#if {$lastkilltime == 0} {
+		#return;
+	};
+
+	#format {currenttime} {%T};
+	#math difference { $currenttime - $lastkilltime };
+
+	#show IDLE CHECK: $difference;
+
+	#if {$botting == 1} {
+		..;
+	} {
+		#nop do area-specific stuff here;
+		cw;
+		#nop idlebotoff;
+	};
+
+	#nop run idle check every 20 minutes;
+	#delay {1200} {
+		#if {$idlechecking == 1} {
+			@idlecheck{};
+		};
+	};
+};

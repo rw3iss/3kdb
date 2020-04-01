@@ -1,0 +1,30 @@
+
+#function {listjoin} { 
+	#var temp {%0}; 
+	#var delimeter {}; 
+	#var output {}; 
+	#show List: $temp; 
+
+	#foreach {$temp[%*]} {val} { 
+	#show v: $val; 
+	#format {output} {%s %s} {$output} {$val}; 
+}; 
+
+#function {show} {
+	#show <114>%0<088>;
+	#return;
+};
+
+/* General time function */
+#function {time}
+{
+	#if {"%0" == ""}
+	{
+		#format {epoch} {%T}
+	};
+	#else
+	{
+		#var epoch %0
+	};
+	#format {result} {%t} {{%T}{$epoch}}
+};
