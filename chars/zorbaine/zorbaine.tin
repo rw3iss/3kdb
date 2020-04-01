@@ -25,4 +25,4 @@ $username;$password;
 #nop create space for static hpbar at bottom;
 #split 0 3;
 
-#alias {reload} {#kill all;#show \n;#read z.tin;};
+#alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};

@@ -21,4 +21,4 @@ $username;$password;
 #nop create space for static hpbar at bottom;
 #split {0} {4};
 
-#alias {reload} {#kill all;#show \n;#read i.tin;};
+#alias {reload} {#kill all;#show \n;#read chars/ivy/ivy.tin;};

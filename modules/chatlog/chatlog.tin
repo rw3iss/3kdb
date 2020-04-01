@@ -30,7 +30,7 @@
 #act {{^[A-z ] shouts:}} {-clnobeep};
 
 /* TELLS LINKTELLS AUCTION HM SHOUTS GSHOUTS CLAN PROFESSIONS CRAFTING */
-#act {{^((A ghostly form of )?[A-z0-9@]+ (<HM-[A-z]+>:|-=\(OMP\)=-|LTs? \([\[\]0-9A-z\[\], ]+\)|tells?( you)? \(?[A-z0-9,@]+\)?:)|\[(Clan|PARTY|Auction)\] [A-z\(\) ]+:)}} {-cl}
+#act {{^((A ghostly form of )?[A-z0-9@]+ (<HM-[A-z]+>:|-=\(OMP\)=-|LTs? \([\[\]0-9A-z\[\], ]+\)|tells?( you)? \(?[A-z0-9,@]+\)?:)|\[(Clan|Auction)\] [A-z\(\) ]+:)}} {-cl}
 #act {{^[A-z ]+(<Craft>|\{Professions\}):}} {-clnobeep}
 #act {{^[A-z ]+<C-Trade>:}} {-clnobeep}
 #act {{^[A-z ]+<cgame>:}} {-clnobeep}
@@ -47,17 +47,24 @@
 #act {{^From afar, [A-z ]}} {-cl}
 
 /* PARTY (Until they add timestamps) */
-#act {~^\e[0m\e[33;1m[PARTY]\e[0m} {-cl} {4}
+#act {{^(.*)?\[PARTY\] ([A-z]+):}} {-cl};
 #act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop;} {3}
-#act {~^\e[0m[PARTY]} {#nop;} {3}
+#alias {p -h} {
+    #unact {{^(.*)?\[PARTY\] ([A-z]+):}};
+    #send p -h;
+    #delay {1} {
+        #act {{^(.*)?\[PARTY\] ([A-z]+):}} {-cl};
+    };
+};
 
 /* flap */
 #act {{^[A-z]+ flaps :}} {-clnobeep}
 
 /* GUILD SPECIFIC */
+
 /* BARD */
 #act {{^[A-z]+ \[(HighBard|Fifty|Seventy|Gallant|[0-9]+)\]: }} {-cl}
-#act {{^(You send a message to \w+ on a whispering wind:|A slight breeze floats by and in it you hear \w+'s voice say:)$}} {-cl}
+#act {{^(You send a message to \w+ on a whispering wind:|A slight breeze floats by and in it you hear (\w+)'s voice say:)$}} {-cl}
 
 /* BREED */
 #act {{^[A-z]+ projects? to [A-z]+:|^<(Breed( OOC)?|Watcher|Scholar|Announce|HighBreed)> [A-z]+:}} {-cl}
@@ -66,10 +73,21 @@
 #act {{^\((Vassal|Retainer|Page|Squire|Knight|Cavalier|Companion|Paladin|Defender|Guardian|Vindicator|Champion+) ([0-9]+)\) ([A-z]+):}} {-cl}
 #act {{^[A-z]+ \(Strategy\):}} {-clnobeep};
 
+/* GENTECH */
+#act {{^(.*) ([A-z]+) \[Gen-(Alpha)\]:}} {-cl}
+#alias {com -h} {
+    #unact {{^(.*) ([A-z]+) \[Gen-(Alpha)\]:}};
+    #send comm -h;
+    #delay {1} {
+        #act {{^(.*) ([A-z]+) \[Gen-(Alpha)\]:}} {-cl}
+    };
+};
+
 /* NECRO */
 #act {{^[A-z] \[(.*)\]\:}} {-cl};
 
-/* PROFESSIONS */
+
+/* -- PROFESSIONS -- */
 
 /* NEWBIE */
 #nop #act {{^newb [A-z]}} {-cl};

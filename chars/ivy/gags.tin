@@ -1,8 +1,4 @@
-#NOP - GAGGED LINES
-
-
-#NOP -- Gentech Gags
-
+/* ---- Gentech Gags -- */
 #gag {^[[ Vital Signs Reading At Maximum. Aborting Adrenaline Surge. ]]$};
 #gag {^[[[ **WARNING**   PANIC HEAL ACTIVATED   **WARNING** ]]]$};
 #gag {^An adrenaline surge flows through you.$};
