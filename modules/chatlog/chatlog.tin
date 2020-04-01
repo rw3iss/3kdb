@@ -7,8 +7,8 @@
 	#line log logs/$datestamp {$timestamp\};
 	#line log logs/$datestamp;
 	-xchatlog;
-	beep
-	};
+	beep;
+};
 
 #alias {-clnobeep} {
 	#format {datestamp} {%t} {%Y-%m-%d.log};
@@ -16,20 +16,18 @@
 	#line log logs/$datestamp {$timestamp\};
 	#line log logs/$datestamp;
 	-xchatlog;
-	};
+};
 
-#alias {-xchatlog} 
-	{
+#alias {-xchatlog} {
 	#class {xchatlog} {open};
 	#act {^{\S}} {#class {xchatlog} {kill}} {99};
 	#act {{^(\s)*$}} {#class {xchatlog} {kill}} {99};
 	#act {^{\s{1,40}\S}} {-cl};
-	#class {xchatlog} {close}
-	};
+	#class {xchatlog} {close};
+};
 
-}
-
-#act {{^[A-z ] shouts:}} {-clnobeep}
+/* Regular shouts */
+#act {{^[A-z ] shouts:}} {-clnobeep};
 
 /* TELLS LINKTELLS AUCTION HM SHOUTS GSHOUTS CLAN PROFESSIONS CRAFTING */
 #act {{^((A ghostly form of )?[A-z0-9@]+ (<HM-[A-z]+>:|-=\(OMP\)=-|LTs? \([\[\]0-9A-z\[\], ]+\)|tells?( you)? \(?[A-z0-9,@]+\)?:)|\[(Clan|PARTY|Auction)\] [A-z\(\) ]+:)}} {-cl}
