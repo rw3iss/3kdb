@@ -2,7 +2,8 @@
 
 
 #alias {re} {recharge};
-#alias {rc} {reclaim;recharge;reclaim;recharge;reclaim;recharge};
+#alias {rc} {reclaim;recharge};
+#alias {bc} {unwrap;rc};
 
 #alias {rp} {ratepowers};
 #alias {rpc} {ratepowers complete};

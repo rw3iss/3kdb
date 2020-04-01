@@ -1,7 +1,7 @@
-#var USERNAME zorbaine;
-#var PASSWORD qazokm;
 #session {3k - Zorbaine} {3k.org} {3000};
-$USERNAME;$PASSWORD;
+
+#read chars/zorbaine/password.tin;
+$username;$password;
 
 #conf pack 1;
 #conf color on;

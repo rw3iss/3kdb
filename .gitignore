@@ -5,3 +5,6 @@
 *.swp
 
 logs/
+
+# don't commit any password files
+password.tin

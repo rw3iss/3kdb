@@ -27,8 +27,6 @@
 
 /* ---- Cleanup ---- */
 
-#show HERE1;
-
 #var beepon 1;
 #alias {beep} {
 	#if {$beepon == 1} {
@@ -49,9 +47,6 @@
 #alias {.=} {#var repeatCommand %0;#show Repeat command set to: %0};
 #alias {.} {#if{"$repeatCommand" != "0"} {$repeatCommand};};
 
-
-#show HERE2;
-
 #alias {ww} {who wiz};
 
 #alias {r} {reply %0};
@@ -70,8 +65,6 @@
 #alias {gb} {get %0 from box};
 
 #alias {id} {identify %0};
-
-#show HERE;
 
 #alias {msk} {mskills};
 #alias {rco} {rcost};

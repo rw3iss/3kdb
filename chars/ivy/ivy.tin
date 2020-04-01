@@ -1,7 +1,7 @@
-#var USERNAME ivy;
-#var PASSWORD monage;
 #ses {3k - Ivy} {3k.org} {3000}
-$USERNAME;$PASSWORD;
+
+#read chars/ivy/password.tin;
+$username;$password;
 
 #conf pack 1;
 #conf color on;
