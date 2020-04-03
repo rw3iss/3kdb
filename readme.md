@@ -1,5 +1,6 @@
 Work in progress....
 
+
 **ESSENTIAL STRUCTURE:**
 * chars: individual character settings
 * common: settings shared across all characters/global stuff
@@ -11,8 +12,13 @@ Work in progress....
 * use /* COMMENT */ for comments, not "#nop COMMENT;"
 
 
+**CONNECTING TO 3K / BASIC PLAYING **
+* Just run './tmux.sh' in your home directory, and it will start a 2-pane tmux session, with mud output on the left, and chatlogs on the right. You should be presented with a list of characters from the local directory, and can choose one, and your settings in mud/chars/<char>.tin will be loaded. You can load the map with 'loadmap' (and unload with 'killmap' if you notice things getting slow), then 'showmap' to see the map, or 'hidemap' to hide it. 
+        
+
 **COMMITTING / ADDING STUFF:**
 * if you want to add new things, it should assume that you would generally be working within a custom module you might be building, over time, or contributing to an existing one. So work within only that /modules/\<module\> folder. Otherwise, you are also free to add to the common guild-, eq-, an area-specific scripts in the /common/\<type\>/\<script\>.tin file. That's all fine, but please make some of your changes known or at least make sense for use as a global, non-conflicting thing. Will try to put together a more custom forum for changes, but for now can also open an Issue / Feature Request or Pull request if you want, before adding global changes. 
+
 
 **TIPS:**
 * If you want to edit code locally and auto-send to server on saving, use VSCode and install "SFTP" plugin, then CTRL+SHIFT+P > SFTP: Config, and enter this, replacing with your server login info (ask rw3iss@gmail.com for an account if you don't have one):
@@ -36,6 +42,7 @@ Work in progress....
         }
 
 Then you can sync and edit the mud tintin scripts from your local VSCode, and it will upload on save. C++ language syntax for highlighting in VSCode, works decently, until someone writes a tintin highlighter for vscode. Also note if you have an account on the server, tintin highlighting should be enabled by default when editing tintin files with vi or vim.
+
 
 **TODO**:
 * *Module System:*
