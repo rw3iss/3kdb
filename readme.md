@@ -8,7 +8,7 @@ Work in progress....
 
 **RULES FOR REPO:**
 * put your character-specific stuff in /chars/\<charname\>
-* use /* COMMENT */ for comments, not "#nop COMMENT;", fuck
+* use /* COMMENT */ for comments, not "#nop COMMENT;"
 
 
 **COMMITTING / ADDING STUFF:**
