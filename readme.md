@@ -17,23 +17,23 @@ Work in progress....
 **TIPS:**
 * If you want to edit code locally and auto-send to server on saving, use VSCode and install "SFTP" plugin, then CTRL+SHIFT+P > SFTP: Config, and enter this, replacing with your server login info (ask rw3iss@gmail.com for an account if you don't have one):
 
-    {
-        "name": "3kdb",
-        "host": "3kdb.org",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "YOUR_USERNAME",
-        "password": "YOUR_PASSWORD",
-        "remotePath": "/home/YOUR_USERNAME/mud",
-        "uploadOnSave": true,
-        "ignore": [
-            ".vscode",
-            ".git",
-            ".DS_Store",
-            "logs",
-            "*.swp"
-        ]
-    }
+        {
+            "name": "3kdb",
+            "host": "3kdb.org",
+            "protocol": "sftp",
+            "port": 22,
+            "username": "YOUR_USERNAME",
+            "password": "YOUR_PASSWORD",
+            "remotePath": "/home/YOUR_USERNAME/mud",
+            "uploadOnSave": true,
+            "ignore": [
+                ".vscode",
+                ".git",
+                ".DS_Store",
+                "logs",
+                "*.swp"
+            ]
+        }
 
 Then you can sync and edit the mud tintin scripts from your local VSCode, and it will upload on save. C++ language syntax for highlighting in VSCode, works decently, until someone writes a tintin highlighter for vscode. Also note if you have an account on the server, tintin highlighting should be enabled by default when editing tintin files with vi or vim.
 
