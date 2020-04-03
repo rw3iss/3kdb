@@ -12,7 +12,7 @@ Work in progress....
 * use /* COMMENT */ for comments, not "#nop COMMENT;"
 
 
-**CONNECTING TO 3K / BASIC PLAYING **
+**CONNECTING TO 3K / BASIC PLAYING**
 * Just run './tmux.sh' in your home directory, and it will start a 2-pane tmux session, with mud output on the left, and chatlogs on the right. You should be presented with a list of characters from the local directory, and can choose one, and your settings in mud/chars/<char>.tin will be loaded. You can load the map with 'loadmap' (and unload with 'killmap' if you notice things getting slow), then 'showmap' to see the map, or 'hidemap' to hide it. 
         
 
