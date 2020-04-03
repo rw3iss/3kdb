@@ -1,0 +1,13 @@
+#class {3kdb} {kill};
+#class {3kdb} {open};
+
+#alias {3kdb} { #system {node /web/sites/3kdb/api/getinfo.js}; };
+
+
+
+register_module {3kdb};
+register_module_info {3kdb} {
+    #show Module info for 3kdb...;s
+};
+
+#class {3kdb} {close};

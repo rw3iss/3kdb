@@ -11,30 +11,27 @@
 
 
 
-
-
-#nop load common modules ----;
+/* -- load common modules -- */;
 #read modules/modules/modules.tin;
 #read modules/chatlog/chatlog.tin;
 #read modules/reforge/reforge.tin;
 #read modules/settings/settings.tin;
 #read modules/deadman/deadman.tin;
 #read modules/reforge/reforge.tin;
+#read modules/playcult/playcult.tin;
+
+#read modules/3kdb/3kdb.tin;
 
 
-
-
-#nop Do common stuff/init ----;
+/* -- Do common stuff/init -- */;
 loadmap;
 deadman 30;
+hp;
 
 
 
-
-
-#nop TO CLEANUP: ----;
+/* -- TO CLEANUP: -- */;
 #nop #read modules/afterkill/afterkill.tin;
-#nop #read modules/playcult/playcult.tin;
 #nop #read misc/inventorymanager/inventorymanager.tin;
 #nop #read misc/mobname.tin;
 #nop #read misc/reforge.tin;

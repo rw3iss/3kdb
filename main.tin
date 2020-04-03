@@ -12,10 +12,10 @@
 
 #macro {1} {#read chars/zorbaine/zorbaine.tin;@setcharacter{zorbaine};um}
 #macro {2} {#read chars/ivy/ivy.tin;@setcharacter{ivy};um}
-#macro {3} {#read /home/rweiss/mud/chars/ro/ro.tin;#var character ro;um}
-#macro {4} {#read ~/mud/chars/fug/fug.tin;#var character fug;um}
-#macro {5} {#read ~/mud/chars/zorbaine_ascended/zorbaine.tin;#var character zorbaine;um}
-#macro {6} {#read ~/mud/chars/zorbaine_necro/zorbaine.tin;#var character zorbaine;um}
+#macro {3} {#read chars/ro/ro.tin;#var character ro;um}
+#macro {4} {#read chars/fug/fug.tin;#var character fug;um}
+#macro {5} {#read chars/zorbaine_ascended/zorbaine.tin;#var character zorbaine;um}
+#macro {6} {#read chars/zorbaine_necro/zorbaine.tin;#var character zorbaine;um}
 
 #event {SESSION DEACTIVATED} {
 	#showme {1) Zorbaine}

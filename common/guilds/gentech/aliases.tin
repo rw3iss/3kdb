@@ -4,7 +4,7 @@
 #alias {re} {recharge};
 #alias {rc} {reclaim;recharge};
 #alias {bc} {unwrap;rc};
-
+#alias {src} {smuggle remove corpse;drop corpse;rc};
 #alias {rp} {ratepowers};
 #alias {rpc} {ratepowers complete};
 
@@ -27,7 +27,7 @@
 #action {^You feel completely healed and repaired.} {go $go_back};
 
 #NOP --- GENTECH DEFENSE SHIELDS
-#alias {check_shields} {
+#alias {shields} {
 	#var edna 0;
 	#var efield 0;
 	#var lsupp 0;
@@ -40,7 +40,8 @@
 		#if {!$efield} {efield};
 		#if {!$lsupp} {efield enhanced};
 	};
-}
+};
+#alias {sh} {shields};
 
 
 #NOP --- Generic quick run/actions
@@ -86,3 +87,10 @@
 
 #NOP - CORPSE ALIASES
 #alias {corpsetrig} {#if {$coffin} {wrap;share gold} {wrap;share gold}};
+
+
+#alias corpse_select {
+        i;
+        #if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]} {smuggle remove corpse;drop corpse;};
+        #if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {unkeep corpse;drop corpse;}}
+};

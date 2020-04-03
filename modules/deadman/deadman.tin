@@ -23,7 +23,7 @@
     #show DEADMAN DISCONNECTING.;
     ld;
 };
-
+   
 #event {RECEIVED INPUT} {
     #var idle 0;
     #delay {deadmanSwitch} {deadmanLogout} {$deadmanIdleTimeout};

@@ -9,14 +9,20 @@ $username;$password;
 #var guild gentech;
 #var world 3k;
 
+/* Load common */
 #read common/index.tin;
 
+/* Load guild */
 #read common/guilds/gentech/index.tin;
 
+/* Load player-specific */
 #read chars/ivy/actions.tin;
 #read chars/ivy/aliases.tin;
 #read chars/ivy/gags.tin;
 #read chars/ivy/global.tin;
+
+/* Load modules */
+#read modules/corpsemanager/corpsemanager.tin;
 
 #nop create space for static hpbar at bottom;
 #split {0} {4};

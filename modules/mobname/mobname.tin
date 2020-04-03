@@ -1,8 +1,8 @@
 #class {mobname} {open}
 
-#nop // This module reacts to and handle mobs as the are shown in the mud output.;
+#nop // This module reacts to and handle mobs as they are shown in the mud output room description.;
 #nop // It also gives the ability to select shown mobs by an index number, or "best-guessed" alias.;
-#nop // It also registers a best-guessed mob as the default kill target, and can just type 'kk' to kill the default.
+#nop // It also registers a best-guessed mob as the default kill target, and can just type 'kk' to kill the default, or 'kk #' to try to kill that mob.
 
 #VARIABLE {globalMobs}  {{Almodo, Zorbaine's Golden Dun Akhal-Teke}{{aliases}{zorbaine horse}{extra}{This is extras info}{ignore}{true}}};  
 

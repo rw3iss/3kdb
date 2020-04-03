@@ -1,6 +1,3 @@
-
-#nop Misc shared gags;
-#nop spork lane:;
 #gag {^{The Spork Lance SLICES into (.*)\!}};
 #gag {^{The Spork Lance tingles and you feel refreshed\.}};
 #gag {{^A spork tine breaks off into (.*)\!}};

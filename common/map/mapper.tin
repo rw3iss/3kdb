@@ -108,7 +108,7 @@
 			#unvar long;
 			#act {%%1} {
 				#if {@cartcheck{%%1}} {
-						#nop
+						#nop;
 					} {
 						#var long {${long}%%1 }
 				}
@@ -134,7 +134,7 @@
 			#unvar long;
 			#act {%%1} {
 				#if {@cartcheck{%%1}} {
-						#nop
+						#nop;
 					} {
 						#var long {${long}%%1 }
 				}

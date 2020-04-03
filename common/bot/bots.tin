@@ -2,7 +2,7 @@
 
 #alias {-kayosbot} {scaler 125;#read common/bot/bots/kayosbot.tin;ak ..}
 #alias {-chessbot} {scaler 140;#read common/bot/bots/chessboard.tin;ak ..}
-#alias {-smurfbot} {scaler 111;#read common/bot/bots/smurfbot.tin;ak ..}
+#alias {-smurfbot} {scaler 75;#read common/bot/bots/smurfbot.tin;ak ..}
 #alias {-letterbot} {scaler 145;#read common/bot/bots/letterbot.tin;ak ..}
 #alias {-carnbot} {scaler 120;#read common/bot/bots/carnegie.tin;ak ..}
 #alias {-hotelbot} {scaler 124;#read common/bot/bots/hotelbot.tin;setk k;ak ..}
@@ -46,12 +46,12 @@
 
 #nop Shortcuts: ---------------- ;
 
-#alias {-ftb} {#class mapper kill;map chaos;-findtruckbot};
+#alias {-ftb} {map chaos;-findtruckbot};
 #alias {-tb} {-truckbot;..};
 
-#alias {-hb} {-hotelbot;..};
-#alias {-rb} {#class mapper kill;-rimalkinbot;..;#read common/maphelper.tin};
-#alias {-kb} {-kayosbot;..}
+#alias {-hb} {-hotelbot;scaler 128;..};
+#alias {-rb} {-rimalkinbot;scaler 150};
+#alias {-kb} {-kayosbot;scaler 150;..}
 #alias {-cb} {map chess;-chessbot;..}
 #alias {-knb} {-knivurbot}
 #alias {-mb} {-mahjbot}

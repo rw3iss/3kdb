@@ -7,3 +7,9 @@
 #sub {-A-_} {<add>};
 #sub {-O-_} {<add>};
 #sub {-I-_} {<adc>};
+
+
+/* tell tintin to repeat last command on enter */
+#config {repeat enter} on;
+
+#config {packet patch} {0.1};

@@ -1,5 +1,3 @@
-#read 3k/zorbaine/knight_hpbar.tin;
-
 #var my[method][desired] charge;
 #var my[stam][safetycheck] 400;
 #var my[stam][emergency] 250;

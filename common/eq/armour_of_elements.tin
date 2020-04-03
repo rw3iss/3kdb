@@ -17,10 +17,12 @@
     immolate corpse;
 };
 
-@addcorpsetrigger{0;aeoimmolate};
 
+/* todo... */
 #function addcorpsetrigger {
-    #show adding corpse trigger...
+    #show adding AOE corpse trigger...
     #show Priority: %1;
     #show Action: %2;
 };
+
+@addcorpsetrigger{0;aeoimmolate};

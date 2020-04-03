@@ -1,4 +1,4 @@
-#act {{(\w+) taps you\.}} { 
+#act {{(\w+) taps you on the shoulder\.}} { 
     #format followtarget {%l} {%2}; 
     follow $followtarget;
 };

@@ -1,4 +1,3 @@
-
 /* fix weapon at smithy */
 #alias {fw} {unwield %1;fix %1; wield %1;}
 
@@ -19,7 +18,7 @@
 #alias {ss} {shine on};
 #alias {gq} {guildquests};
 #alias {eft} {ce;esq goshop avrin tinder;#delay {2} {ge;sa}};
-#aklias {rs} {resist};
+#alias {rs} {resist};
 
 #alias {lantern} {ce;esq goshop avrin lantern;#delay {2}{ge;light lantern}};
 #alias {fire} {ce;esq goshop avrin tinder/pail;#delay {2} {ge;campfire}};

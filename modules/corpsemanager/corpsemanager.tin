@@ -1,4 +1,4 @@
-#nop parses corpse amount in inventory, coffin, and smuggling;
+#nop parses corpse amount in inventory, coffin, and smuggle;
 
 #class {corpse_manager} {open};
     
@@ -6,10 +6,12 @@
 
 #var corpses[inventory] 0;
 #var corpses[coffin] 0;
-#var corpses[smuggling] 0;
+#var corpses[smuggle] 0;
+#var corpses[freezer] 0;
 #var hasCoffin 0;
 #var coffinFull 0;
 
+/* recalculate corpse inventory */
 #alias {ci} {
 	#nop check inventory;
 	#var corpses[inventory] 0;
@@ -25,22 +27,22 @@
 		#unact {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}};
 	};
 
-	#nop check smuggling;
+	#nop check smuggle;
 	#alias {countSmuggle} {
-		#var corpses[smuggling] 0;
+		#var corpses[smuggle] 0;
 		#action {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} {
-			#math corpses[smuggling] {$corpses[smuggling] + 1};
+			#math corpses[smuggle] {$corpses[smuggle] + 1};
 		};
 
-		#nop this stops the smuggling action;
+		#nop this stops the smuggle action;
 		#action {{^>$}} {
 			#unact {{^>$}};
 			#unact {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
 			#unact {{^>$}};
 			#ungag {{(.*)}};
 
-			#math {corpses[total]} {$corpses[inventory] + $corpses[coffin] + $corpses[smuggling]};
-			
+			#math {corpses[total]} {$corpses[inventory] + $corpses[coffin] + $corpses[smuggle]};
+
 			#show @showCorpses{};
 			#unalias {countSmuggle};
 		};
@@ -48,7 +50,7 @@
 		#delay {.2} {smuggle};
 	};
 
-	#nop this stops the inventory+coffin actions, and start smuggling action;
+	#nop this stops the inventory+coffin actions, and start smuggle action;
 	#action {{^>$}} {
 		#unact {{^[ ]?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
 		#unact {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}};
@@ -57,7 +59,7 @@
 	};
  
 	#gag {{(.*)}};
-	#send i2;
+	#send i;
 };
 
 #function {showCorpses} {
@@ -67,10 +69,10 @@
 		{TOTAL CORPSES:} 
 		{Inventory: $corpses[inventory]} 
 		{$coffinMsg}
-		{Smuggling: $corpses[smuggling]}
+		{smuggle: $corpses[smuggle]}
 		{Total: $corpses[total]};
 
-	#delay {.2} {hp};
+	#delay {.5} {hp};
 };
 
 #nop fill corpse inventory;
@@ -95,7 +97,7 @@
 	};
 
 	#delay {.2} {
-		#5 buy 7;
+		#7 buy 7;
 		wrap all;
 		#10 buy 7;
 		#10 smuggle corpse;
@@ -123,14 +125,15 @@
 #action {There are no corpses in the coffin!} {#var coffinFull 0};
 #action {The coffin is full!} {#var coffinFull 1};
 
-#nop Get initial count on load;
-#nop #delay {2} {ci};
-
+/* Get initial count on load */;
+#delay {1} {ci};
 
 register_module {corpse_manager};
 register_module_info {corpse_manager} {
-    #show info for corpse_manager;
-    #nop Commands: ci - see corpse info\nrecorpse - refill corpse\nsortcorpse/sco - reorganize corpses;
+    #show How to use corpse manager:
+    #show ci - recalcuate corpse inventory;
+    #show recorpse - refill corpse\n;
+    #show sortcorpse/sco - reorganize corpses;
 };
 
-#class {corpse_manager} {close};
+#class {corpse_manager} {close}

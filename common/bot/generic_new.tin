@@ -8,6 +8,17 @@
 #var dontAttack 0; #nop if just trying to run through an area;
 #var pickupAll 0;
 
+
+#var foundmob 0;
+#var foundplayer 0;
+#var prevMobName 0;
+#var justItems 0;
+#var doafterbot 0;
+#var afterbot 0;
+
+
+#var playerWhitelist {Ser;Nix;Zam};
+
 #alias {.pause} {
 	#var halt 1;
 	#class {xbot} {kill};
@@ -16,16 +27,19 @@
 
 #alias {.stop} {
 	.pause;
+    #unvar botpath
 	#unalias {..};
 	#unalias {.onPrompt};
 	#unact {^>$};
 	#class {bot} {kill};
 };
+#alias {.s} {.stop};
 
-#alias {.onPrompt} {#nop empty;};
+#alias {.onPrompt} {#nop;};
 
 #alias {..} {
 	#class {xbot} {open};
+
 	#var halt 0;
 
 	#nop at room entrance, enable trigger waiting for prompt, mobs will be detected by specific area script;
@@ -36,6 +50,9 @@
 		#nop area script will detect mob, if any, and yy will be called, overwriting this prompt action;
 		#act {^>$} {#path walk;zz} {1};
 	};
+
+    #alias {yy} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;#var foundmob 1}}};
+
 	#alias {.onPrompt} {
 		#act {^>$} {
 			#if {$foundItems} {#if {$pickupAll} {#nop get all};};
@@ -48,6 +65,7 @@
 			}
 		}
 	};
+
 	#alias {zz} {#unact {^>$}};
 
 	glance;	
@@ -55,17 +73,61 @@
 	#class {xbot} {close};
 }
 
+#alias {yy} {#nop;};
+
 #alias {.bot} {#if {$halt == 0} {..}};
 
-#act {^-P-} {#var foundplayer 1} {6};
+#var attackAction {k};
+#alias {setk} {#var attackAction {%1};#show Kill action set to: %1;}
+
+#function {setMobName} {
+	#var prevMobName $mobname;
+	#var mobname %0;
+	#return;
+};
+
+#act {{^-P-_(.*)}} {
+	#foreach {$playerWhitelist} {name} {
+		#if {"%0" == "%*$name%*"} {#nop is friend;} {#var foundplayer 1};
+	};
+} {6};
+#nop #act {^-P-} {#var foundplayer 1} {6};
 
 #act {#END OF PATH} {
-	#if {$no_loop | !$foundmob} {.stop} {
-		zz;#path load botpath;.bot;#var foundmob 0;
+	#if {${doafterbot} == 1} {
+		#show doing after...;
+    	${afterbot};
+	} {
+		#if {$no_loop | !$foundmob} {
+			killbot;
+		} {
+			#path load botpath;.bot;#var foundmob 0;
+		};
 	}
-}
+};
+
+#alias {afterbot} {
+	#show Doing after bot finishes: %0;
+	#var doafterbot 1;
+	#var afterbot %0;
+};
+#alias {afterbotoff} {
+	#show After bot cleared.
+	#var doafterbot 0;
+	#var afterbot 0;
+};
+#alias {aboff} {afterbotoff};
+
+#act {{^There is no (\w+) here}} {
+	#if {$botting == 1} {
+		#if {"%2" == "$mobname" || "%2" == "$prevMobName"} {
+			l;..;
+		};
+	};
+};
+
 
 #path load botpath;
-#var halt 0;
+#nop #var halt 0;
 
 #class {bot} {close}

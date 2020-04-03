@@ -40,28 +40,28 @@
         #format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
 	
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
+    
 	#showme {$hpbar[slidemsg]  $hpbar[enemymsg]  Idle: $idle_cap} {-5}; 
 
 	#showme {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])  GXP: $gxp_curr_round (Avg: $gxp_avg)} {-4};
 
 }
 
-
 #TICKER {idle} {
         #math {idle} {$idle + 1};
         #if {$idle > $IdleTimeout} {
-		.stop;
-		#var IDLE 1;
-		#unticker cs
+            .stop;
+            #var is_idle 1;
+            #unticker cs;
         };
-        update_caption
+        update_caption;
 } {1}
 
-#event {RECEIVED INPUT} {
-	#var idle 0;
-	#var IDLE 0;
+#alias pu {
+    #show Last: $my[pu][last];
+    #show Current: $my[pu][current];
+    #show Delta: $my[pu][delta];
 }
-
 
 #act {^HP:%1/%2 SP:%3/%4 PU:%5/%6(%7) CPC:%8 T:%9/%10/%11/%12 [G2N:%13]E:%14 GXP:%15} {
         #var my[hp][color] @colscale{%1;%2};
@@ -71,52 +71,61 @@
         
         #var my[hp][current] %1;
         #var my[hp][max] %2;
+
         #var my[sp][current] %3;
         #var my[sp][max] %4;
+
+        #var my[pu][last] $my[pu][current];
         #var my[pu][current] %5;
         #var my[pu][max] %6;
         #var my[pu][reserve] %7;
+	    #math my[pu][delta] {$my[pu][current] - $my[pu][last]};
+
         #var my[cpc][current] %8;
         #var my[cpc][max] 1000;
-	#var my[slide][personal] %9;
-	#var my[slide][max] %10;
-	#var my[slide][reset] %11;
-	#var my[slide][emergency] %12;
+        
+        #var my[slide][personal] %9;
+        #var my[slide][max] %10;
+        #var my[slide][reset] %11;
+        #var my[slide][emergency] %12;
+
         #var my[g2n] %13;
-	#var my[enemy] %14;
-	#var my[gxp] %15;
+        #var my[enemy] %14;
+        #var my[gxp] %15;
 
         #format {hpbar[hpmsg]} {%sHP:%s%s%s/%s%s}
 	        {$hpbar[label]} {$my[hp][color]} {$my[hp][current]}
-		{$hpbar[label]} {$hpbar[points_full]} {$my[hp][max]};
+		    {$hpbar[label]} {$hpbar[points_full]} {$my[hp][max]};
 
-	#format {hpbar[spmsg]} {%sSP:%s%s%s/%s%s%s} 
-		{$hpbar[label]}	{$my[sp][color]} {$my[sp][current]}
-		{$hpbar[label]} {$hpbar[points_full]} {$my[sp][max]} {$hpbar[label]};
+	    #format {hpbar[spmsg]} {%sSP:%s%s%s/%s%s%s} 
+            {$hpbar[label]}	{$my[sp][color]} {$my[sp][current]}
+            {$hpbar[label]} {$hpbar[points_full]} {$my[sp][max]} {$hpbar[label]};
 
-	#format {hpbar[pumsg]} {%sPU:%s%s%s/%s%s%s(%s%s%s)}
+	    #format {hpbar[pumsg]} {%sPU:%s%s%s/%s%s%s(%s%s%s)[Δ%s%s%s]}
 	        {$hpbar[label]} {$my[pu][color]} {$my[pu][current]}
-	        {$hpbar[label]} {$hpbar[points_full]} {$my[pu][max]}
-		{$hpbar[label]} {$hpbar[points_reserve]} {$my[pu][reserve]} {$hpbar[label]};
+            {$hpbar[label]} {$hpbar[points_full]} {$my[pu][max]}
+		    {$hpbar[label]} {$hpbar[points_reserve]} {$my[pu][reserve]} {$hpbar[label]}
+		    {$hpbar[label]} {$my[pu][delta]} {$hpbar[label]};
 
         #format {hpbar[cpcmsg]} {%sCPC:%s%s%s} 
-		{$hpbar[label]} {$my[cpc][color]} {$my[cpc][current]}
-		{$hpbar[label]} {$hpbar[points_full]} {$my[cpc][max]};
+            {$hpbar[label]} {$my[cpc][color]} {$my[cpc][current]}
+            {$hpbar[label]} {$hpbar[points_full]} {$my[cpc][max]};
 
         #format {hpbar[g2nmsg]} {%sG2N:%s%s} 
-		{$hpbar[label]} {$my[g2n][color]} {$my[g2n]} {$hpbar[label]};
+		    {$hpbar[label]} {$my[g2n][color]} {$my[g2n]} {$hpbar[label]};
 
-	#format {hpbar[enemymsg]} {Enemy:%s}
-		{$my[enemy]};
+	    #format {hpbar[enemymsg]} {Enemy:%s}
+		    {$my[enemy]};
 
-	#format {hpbar[slidemsg]} {Timeslide: %s/%s/%s} {$my[slide][personal]} {$my[slide][reset]} {$my[slide][emergency]};
+	    #format {hpbar[slidemsg]} {Timeslide: %s/%s/%s} {$my[slide][personal]} {$my[slide][reset]} {$my[slide][emergency]};
 
         #format {prompt_1} {%s %s %s %s %s} 
-		{$hpbar[hpmsg]}
-		{$hpbar[spmsg]} 
-		{$hpbar[pumsg]} 
-		{$hpbar[cpcmsg]} 
-		{$hpbar[g2nmsg]};
+            {$hpbar[hpmsg]}
+            {$hpbar[spmsg]} 
+            {$hpbar[pumsg]} 
+            {$hpbar[cpcmsg]} 
+            {$hpbar[g2nmsg]};
+
         _heartbeat;
 }
 

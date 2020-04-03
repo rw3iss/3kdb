@@ -26,7 +26,6 @@
 }
 {5};
 
-
 #alias {ex} {examine %0;search %0;};
 
 #nop Get coffin from morgue and fill it;
@@ -48,7 +47,7 @@
 #nop bury a corpse when in need (ie. out of inventory or coffin, etc);
 #alias {buryCorpseForRegen} {
     #if {$corpses[inventory] ==  0} {
-        #if {$corpses[smuggling] > 0} {
+        #if {$corpses[smuggle] > 0} {
             smuggle remove corpse;
             bury corpse;
         } {
@@ -72,7 +71,7 @@
     #show BURYCORPSE;
     #gag {There is no corpse here.};
     #if {$corpses[inventory] ==  0} {
-        #if {$corpses[smuggling] > 0} {
+        #if {$corpses[smuggle] > 0} {
             smuggle remove corpse;
             bury corpse;
             get corpse;

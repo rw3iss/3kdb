@@ -56,7 +56,7 @@
 /* re-wield weapon in tacos */
 #act {{^The melting cheese finally evaporates from Zorbaine\.}} {wield $wielded;mf;};
 
-#nopAuto-truce members when entering room in carnegie hall;
+#nop Auto-truce members when entering room in carnegie hall;
 #act {{An angry audience member attacking you!}} {tr};
 
 /* equipment */

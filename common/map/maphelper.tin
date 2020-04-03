@@ -22,12 +22,20 @@
 	#show areamapped <area> - show which rooms are mapped in this area;
 }
 
-#nop /* Saves an alternate backup manually, to create manual restore points */;
 
 #alias {go} {
         #map find {roomname} {%0%*};
         #path run;
 };
+
+
+#alias {mk} {#map goto knight};
+#alias {mg} {#map goto gentech};
+#alias {mc} {#map goto cot};
+#alias {mch} {#map goto chaos};
+#alias {mm} {#map goto magic};
+
+
 
 #alias {mapbackup} {#map write common/map/3k_map_AUTOSAVE.tin;};
 #alias {maprestore} {#map read common/map/3k_map_AUTOSAVE.tin;};

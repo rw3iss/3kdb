@@ -15,7 +15,7 @@ $username;$password;
 
 #read chars/zorbaine/actions.tin;
 #read chars/zorbaine/aliases.tin;
-#read chars/zorbaine/gags.tin;
+/* #read chars/zorbaine/gags.tin; */
 #read chars/zorbaine/global.tin;
 #read chars/zorbaine/misc_clean.tin;
 
