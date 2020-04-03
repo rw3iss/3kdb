@@ -39,6 +39,7 @@ Then you can sync and edit the mud tintin scripts from your local VSCode, and it
 
 **TODO**:
 * *Module System:*
-    -add function helper to check if module is defined, so code can utilize other modules only if the player has them loaded, without it breaking things.
+    - add function helper to check if module is defined, so code can utilize other modules only if the player has them loaded, without it breaking things.
+    
 * *3kdb:*
-    -add interface to local 3k mysql area/item/mob database, for use in-game (ooh, aah).
+    - add interface to local 3k mysql area/item/mob database, for use in-game (ooh, aah).
