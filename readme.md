@@ -18,6 +18,7 @@ Work in progress....
 
 **COMMITTING / ADDING STUFF:**
 * if you want to add new things, it should assume that you would generally be working within a custom module you might be building, over time, or contributing to an existing one. So work within only that /modules/\<module\> folder. Otherwise, you are also free to add to the common guild-, eq-, an area-specific scripts in the /common/\<type\>/\<script\>.tin file. That's all fine, but please make some of your changes known or at least make sense for use as a global, non-conflicting thing. Will try to put together a more custom forum for changes, but for now can also open an Issue / Feature Request or Pull request if you want, before adding global changes. 
+* If you want to help with more formal architectures or really dive in, ask Zorbaine (rw3iss@gmail.com), help is gladly accepted. There are about 3 of us wrangling the beast that is the 3k bot.
 
 
 **TIPS:**
