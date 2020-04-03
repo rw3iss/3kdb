@@ -1,0 +1,31 @@
+#class {bot_new} {open};
+
+/* Bot management module */
+
+#alias {bot} {
+    #show Bot stuff...;
+    #nop if param.. run bot...;
+};
+
+#alias {bots} {
+    #show List bots...;
+};
+
+#alias {botconfig} {
+    #show bot configuration optons...;
+};
+
+
+
+register_module {bot_new};
+register_module_info {bot_new} {
+    #show bot module usage:;
+    #show bot - show current bot settings / stats;
+    #show bots - list all available bots to run;
+    #show bot <name> - run a bot;
+    #show botconfig - show bot configuration options;
+    #show botconfig <param> <val> - configure a bot setting
+};
+
+
+#class {bot_new} {close};

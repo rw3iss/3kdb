@@ -1,0 +1,27 @@
+#class {bot} {open}
+
+#var {areaname} {Death Taco}
+#var {botpath} {e;e;e;e;e;s;w;w;w;w}
+#var {tacoTarget} {shell};
+
+#act {-M-_%*{Shell|Lettuce|Soggy Diced Tomatoes|Cheese|Meat|Guacamole|Sauce}%*} 
+{
+	#if {"%2" == "Shell"} {#var mobname shell};
+	#if {"%2" == "Lettuce"} {#var mobname lettuce};
+	#if {"%2" == "spider"} {#var mobname spider};
+	#if {"%2" == "zreal"} {#var mobname azreal};
+	#if {"%2" == "argamel"} {#var mobname gargamel};
+	#if {"%2" == "quirrel"} {#var mobname squirrel};
+	#if {"%2" == "Smurf-Eater"} {#var mobname eater};
+	yy;
+ } {1};
+
+ak {grab $tacoTarget}
+
+#act {You try to grab} {
+    ..;
+}
+
+#class {bot} {close}
+
+#read common/bot/generic.tin

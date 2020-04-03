@@ -1,0 +1,33 @@
+#class {bot} {open}
+#var foundmob 0;
+#var foundplayer 0;
+#var mobname 0;
+#var IdleTimeout 1800;
+#event {RECEIVED INPUT} {
+	#undelay {deadmanSwitch};
+	#delay {deadmanSwitch} {kcyc;#delay {2} {..};#act {dealt the killing blow} {corpsetrig;go home;#delay {2} {ld}}} {$IdleTimeout};
+	};
+
+#alias {.pause} {#class {xbot} {kill};#alias {yy} {.pause}};
+#alias {.stop} {#var halt 1;.pause}
+#alias {yy} {#nop}
+#alias {..} {#var halt 0;
+	#class {xbot} {open};
+	#act {{^-R-_}} {xx};
+	#alias {xx} {#unvar foundplayer;#act {^>$} {#path walk;zz} {1}};
+	#alias {yy} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;#var foundmob 1}}};
+	#alias {zz} {#unact {^>$}};
+	glance;
+	#class {xbot} {close}
+	}
+
+#alias {killbot} {zz;.pause;#class xbot kill;#class bot kill;#path run;#undelay {deadmanSwitch}}
+
+#alias {.bot} {#if {$halt == 0} {..}}
+
+#act {dealt the killing blow to} {corpsetrig;.bot}
+#act {^-P-} {#var foundplayer 1} {6}
+#act {#END OF PATH} {#if {$no_loop | !$foundmob} {killbot} {zz;#path load botpath;.bot;#var foundmob 0}}
+
+.cbot;#path load botpath;#var halt 0
+#class {bot} {close}

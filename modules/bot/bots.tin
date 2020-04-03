@@ -1,0 +1,66 @@
+#class {botlist} {open}
+
+#alias {-kayosbot} {scaler 125;#read common/bot/bots/kayosbot.tin;ak ..}
+#alias {-chessbot} {scaler 140;#read common/bot/bots/chessboard.tin;ak ..}
+#alias {-smurfbot} {scaler 75;#read common/bot/bots/smurfbot.tin;ak ..}
+#alias {-letterbot} {scaler 145;#read common/bot/bots/letterbot.tin;ak ..}
+#alias {-carnbot} {scaler 120;#read common/bot/bots/carnegie.tin;ak ..}
+#alias {-hotelbot} {scaler 124;#read common/bot/bots/hotelbot.tin;setk k;ak ..}
+#alias {-anchorbot} {scaler 145;#read common/bot/bots/anchorman.tin;ak ..}
+#alias {-tacobot} {scaler 91;#read common/bot/bots/tacos.tin};
+#alias {-zellbot} {scaler 91;#read common/bot/bots/zelligar.tin;..};
+
+#alias {-polbot} {#read common/bot/bots/polbot.tin;..;afterbot {go mahj;mb;afterbot {go chin2;cb;afterbot {go pol;portal;-polbot}}}}
+#alias {-grocbot} {#read common/bot/bots/groceries.tin}
+#alias {-chessbot2} {#read common/bot/bots/chessboard2.tin}
+#alias {-icybluebot} {#read common/bot/bots/icyblue.tin};
+#alias {-rimalkinbot} {#read common/bot/bots/rimalkins.tin;map rimalkin;setk k;ak ..}
+#alias {-chinbot} {#read common/bot/bots/chinchilla.tin;..}
+#alias {-muggerbot} {#read common/bot/bots/muggers.tin;}
+#alias {-knivurbot} {#read common/bot/bots/knivur.tin}
+
+#alias {-xanthbot} {#read common/bot/bots/xanth.tin}
+#alias {-mahjbot} {#read common/bot/bots/mahjbot.tin;..}
+#alias {-smurfcastlebot} {#read common/bot/bots/smurfcastlebot.tin;ak ..}
+#alias {-spiderbot} {#read common/bot/bots/spiderbot.tin;ak ..}
+#alias {-sewerbot} {#read common/bot/bots/sewerbot.tin}
+#alias {-aegisbot} {#read common/bot/bots/aegis1.tin}
+#alias {-aegis4bot} {#read common/bot/bots/aegis4.tin}
+#alias {-aegis5bot} {#read common/bot/bots/aegis5.tin}
+#alias {-aegis6bot} {#read common/bot/bots/aegis6.tin}
+#alias {-crystalbot} {#read common/bot/bots/crystals.tin;ak ..}
+#alias {-whorebot} {#read common/bot/bots/whorebot.tin;map whore;ak ..}
+#alias {-truckbot} {#read common/bot/bots/truck.tin;ak {get wrapper;..};..};
+#alias {-findtruckbot} {#read common/bot/bots/findtruck.tin;..}
+#alias {-minebot} {#read common/crafting/miner.tin}
+#alias {-puppybot} {#read common/bot/bots/puppybot.tin;ak ..}
+#alias {-tombbot} {#read common/bot/bots/tombbot.tin;ak ..}
+#alias {-dragonbot} {#read common/bot/bots/dragonbot.tin;ak ..}
+#alias {-wsewerbot} {#read common/bot/bots/westersea_sewers.tin}
+#alias {-arbot} {#read common/bot/bots/arbitrary.tin};
+
+#alias {-polbotitems} {#read common/bot/bots/polbotitems.tin}
+
+
+
+
+#nop Shortcuts: ---------------- ;
+
+#alias {-ftb} {map chaos;-findtruckbot};
+#alias {-tb} {-truckbot;..};
+
+#alias {-hb} {-hotelbot;scaler 128;..};
+#alias {-rb} {-rimalkinbot;scaler 150};
+#alias {-kb} {-kayosbot;scaler 150;..}
+#alias {-cb} {map chess;-chessbot;..}
+#alias {-knb} {-knivurbot}
+#alias {-mb} {-mahjbot}
+#alias {-pb} {map pol3;-polbot;..};
+#alias {-ibb} {-icybluebot;ak {get ring;..};..}
+#alias {-scb} {-smurfcastlebot}
+
+#alias {-hr} {out;out;w;s;e;e;n;w;w;n;n;w;w;w;mch};
+#alias {-cr} {#8 w;#8 n;#4 s;#3 e;climb pipe;w;mch};
+
+
+#class {botlist} {close}

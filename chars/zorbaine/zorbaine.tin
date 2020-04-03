@@ -9,18 +9,27 @@ $username;$password;
 #var guild knights;
 #var world 3k;
 
+
+/* load common */
 #read common/index.tin;
 
+/* load guild */
 #read common/guilds/knights/index.tin;
 
+/* load character-specific */
 #read chars/zorbaine/actions.tin;
 #read chars/zorbaine/aliases.tin;
 /* #read chars/zorbaine/gags.tin; */
 #read chars/zorbaine/global.tin;
 #read chars/zorbaine/misc_clean.tin;
 
+/* load eq character likes */
 #read common/eq/armour_of_elements.tin;
 #read common/eq/spork_lance.tin;
+
+/* load specific modules for this character */
+#read modules/bot/bot.tin;
+
 
 #nop create space for static hpbar at bottom;
 #split 0 3;

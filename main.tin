@@ -26,6 +26,9 @@
 	#showme {6) Zorbaine - Necro}
 };
 
+#act {{^\<Entering 3Kingdoms.  Enter your character name or press enter to continue\>}} {#show ENTER CHARACTER;};
+#act {{^Password\:}} {#show password...;};                                                                    │
+
 
 /* Helpers ---- */
 
