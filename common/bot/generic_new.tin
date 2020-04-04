@@ -13,6 +13,7 @@
 #var foundItems 0;
 #var doafterbot 0;
 #var afterbot 0;
+#var loop 1;
 
 #var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void};
 
@@ -41,6 +42,7 @@
     #act {{^-R-_}} {.onRoom} {0};
 
 	#alias {.onRoom} {
+        #show --ROOM--;
 		#var foundplayer 0;
 		#var foundmob 0;
         .prompt;
@@ -49,27 +51,34 @@
     #alias {.prompt} {
         #act {^>$} {.onPrompt};
     };
+    
+    #alias {yy} {.prompt;#var foundmob 1;};
 
 	#alias {.onPrompt} {
-        #show > ...;
+        #show ...;
         
         #if {$foundItems} {
             #if {$pickupAll} {#nop get all;}
         };
 
         #if {$foundplayer} {
+            #show mob? $foundmob  player? $foundplayer;
             .snooze;
+            #show PATH WALK 1;
             #path walk;
         } {
+            #show ok? mob? $foundmob  player? $foundplayer;
             #if {$dontAttack} {
+                #show PATH WALK 2;
                 #path walk;
             } {
                 #if {$foundmob} {
-                    #show found mob.  player? $foundplayer;
-                    k $mobname;
+                    #show mob? $foundmob  player? $foundplayer;
                     .snooze;
                     .pause;
+                    k $mobname;
                 } {
+                    #show PATH WALK 3;
                     #path walk;
                 }
             }
@@ -93,13 +102,13 @@
 
 
 #act {#END OF PATH} {
-    #if {$no_loop | !$foundmob} {
+    #if {!$loop || !$foundmob} {
         .stop;
     } {
         #show Looping bot...;
         #path load botpath;
-        .bot;
         #var foundmob 0;
+        .bot;
     };
 };
 
@@ -120,6 +129,8 @@
 #function {botSetMobName} {
 	#var botPrevMobName $mobname;
 	#var mobname %0;
+    #var foundmob 1;
+    #return;
 };
 
 

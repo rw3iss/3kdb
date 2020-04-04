@@ -5,8 +5,7 @@
 
 #act {-M-_A {small|large|very large} Rimalkin} {
 	@botSetMobName{rimalkin};
-    #var foundmob 1;
-	.prompt;
+	yy;
 } {1};
 
 #class {bot} {close}
