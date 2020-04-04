@@ -6,7 +6,7 @@
 
 #alias {register_module} {
     #list {_modules} {add} {%1};
-    #show <169>%1<109> registered.;
+    #show <169>%1<109> module registered.;
 }
 
 #alias {register_module_info} {
@@ -24,7 +24,7 @@
 
 #alias {minfo} {
     #show Module info for %1:\n;
-    ${_moduleInfo[%1]};
+    *_moduleInfo[%1];
     #show \n;
 };
 

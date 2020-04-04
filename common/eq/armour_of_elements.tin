@@ -20,7 +20,7 @@
 
 /* todo... */
 #function addcorpsetrigger {
-    #return 0;
+    #return;
 };
 
 @addcorpsetrigger{0;aeoimmolate};

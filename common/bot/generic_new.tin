@@ -41,8 +41,8 @@
     #act {{^-R-_}} {.onRoom} {0};
 
 	#alias {.onRoom} {
-		#unvar foundplayer;
-		#unvar foundmob;
+		#var foundplayer 0;
+		#var foundmob 0;
         .prompt;
 	};
 
@@ -51,35 +51,32 @@
     };
 
 	#alias {.onPrompt} {
-        #show > mob? $foundmob player? $foundplayer;
-
+        #show > ...;
+        
         #if {$foundItems} {
             #if {$pickupAll} {#nop get all;}
         };
 
         #if {$foundplayer} {
-            #show Found player... walking;
             .snooze;
             #path walk;
         } {
             #if {$dontAttack} {
-                #show dontAttack=1, continue.;
                 #path walk;
             } {
                 #if {$foundmob} {
-                    #show foundmob=$mobname;
+                    #show found mob.  player? $foundplayer;
+                    k $mobname;
                     .snooze;
                     .pause;
-                    k $mobname;
                 } {
-                    #show no mob, continue..;
                     #path walk;
                 }
             }
         };
     };
 
-	#alias {.snooze} {#show snooze.;#unact {^>$}};
+	#alias {.snooze} {#unact {^>$}};
     
 	glance;
 
@@ -108,7 +105,7 @@
 
 
 #act {{^There is no (\w+) here}} {
-	#if {$botting == 1} {
+	#if {$botting == 1 && $halt == 0} {
 		#if {"%2" == "$mobname" || "%2" == "$prevMobName"} {
 			l;..;
 		};
@@ -117,18 +114,13 @@
 
 
 #path load botpath;
-#nop #var halt 0;
-
 
 
 /* helpers */
 #function {botSetMobName} {
 	#var botPrevMobName $mobname;
 	#var mobname %0;
-	#return;
 };
 
-
-#show bot generic_new loaded! ..;
 
 #class {bot} {close}

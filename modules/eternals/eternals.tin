@@ -1,0 +1,9 @@
+#NOP --- ETERNAL POWERS
+
+#action {A shimmering ball of energy appears magically when you snap your fingers.} {
+	#var ewell 0;
+	#ticker {ewell} {tell $user ENERGY WELL RESET;#var ewell 1;#unticker ewell} {1700}
+};
+
+#action {^You tear apart %d defenses!} {#var shred 0;#ticker {shred} {3648} {tell $user SHRED RESET;#unticker shred;#var shred 1}};
+#action {^You notice that %1 has come into view.} {#if {!$IDLE} {tell $user %1 has reset;ctell %1 has reset.}};

@@ -30,7 +30,7 @@ $username;$password;
 
 /* load specific modules for this character */
 
-#nop create space for static hpbar at bottom;
+/* create space for static hpbar at bottom */
 #split 0 3;
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};

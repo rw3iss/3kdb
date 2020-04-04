@@ -18,6 +18,7 @@
 #var cassisting 0;
 #var embalmcorpses 0;
 #var killCountAll 0;
+#var hasdog 0;
 #var wielded lance;
 #var repeatInCombat "";
 #var WILL_WITH_SPORK_WITH_SP 500;
@@ -46,7 +47,7 @@
 			will;
 		};
 
-		#if {"$repeatInCombat" != ""} {
+		#if {$repeatInCombat != ""} {
 			$repeatInCombat;
 		};
 
@@ -130,7 +131,6 @@
 		};
 	};
 
-	#nop /* pet dog every round if necessary (your dog should always be 100% happy) */;
 	#if {$hasdog == 1} {
 		#if {$dog[happy][current] < 95} {
 			dog pet;

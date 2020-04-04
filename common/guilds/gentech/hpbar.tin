@@ -57,7 +57,7 @@
         update_caption;
 } {1}
 
-#alias pu {
+#alias {pu} {
     #show Last: $my[pu][last];
     #show Current: $my[pu][current];
     #show Delta: $my[pu][delta];
