@@ -84,7 +84,7 @@
 			}
 			#else
 			{
-				#nop #show (addm <alias> to sa      ve <129>$lastMobName<088> to <140>$currentAreaName<088>);
+				#nop #show (addm <alias> to save <129>$lastMobName<088> to <140>$currentAreaName<088>);
 			};
 		};
 		#else
