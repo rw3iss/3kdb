@@ -29,8 +29,6 @@ $username;$password;
 #read common/eq/spork_lance.tin;
 
 /* load specific modules for this character */
-#read modules/bot/bot.tin;
-
 
 #nop create space for static hpbar at bottom;
 #split 0 3;

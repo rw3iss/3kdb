@@ -1,6 +1,12 @@
 #class {playcult} {open};
 
-#act {Gargoyle \<cgame\>: One more minute left for role players to enter night actions\.} {
+#act {{Gargoyle \<cgame\>: One more minute left for role players to enter night actions\.}} {
+    #show One minute left.;
+    #delay {50} {#show CULT: 10 SECONDS};
+    #delay {55} {#show CULT: 4 SECONDS};
+};
+
+#act {{Gargoyle \<cgame\>: One more minute left to finish voting\.}} {
     #show One minute left.;
     #delay {50} {#show CULT: 10 SECONDS};
     #delay {55} {#show CULT: 4 SECONDS};
@@ -31,6 +37,9 @@
 #alias {ct} {cult takeout};
 #alias {cu} {cult unvote};
 
-#show Playcult registered.;
+register_module {playcult};
+register_module_info {playcult} {
+    #show Playcult info...;
+};
 
 #class {playcult} {close};

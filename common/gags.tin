@@ -1,3 +1,2 @@
-/* gag empty lines and prompt lines */
-#gag {^$};
-#gag {^>$};
+#gag {^$} {1};
+#gag {^>$} {1};

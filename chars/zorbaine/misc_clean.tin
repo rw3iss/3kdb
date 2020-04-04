@@ -1,7 +1,5 @@
 #act {Your victory leaves you wiser in the ways of honourable combat.} {out;efh;mount};
 
-##nop This file is reserved for settings specific to individual area, items, etc.;
-
 #alias {bu2} {mc;go kn;enter;n;quickbuy;n;quickbuy;e;quickbuy;w;s;buy boost;s;out;go whore;fork over 10000;enter;go savon};
 
 #alias {esquire_act_on} {
@@ -65,32 +63,12 @@
 #gag {^Greaves     :  None};
 
 #nop Auto-loading item gags;
-#gag {^(o)A golden knightly badge with a plume of eighteen Raven feathers Brunatre};
-#gag {^(o)A ring of house keys};
-#gag {^(o)Royal Seal of Keyloncia};
-#gag {^(o)A hand in the game of Euchre};
-#gag {^(o)A scavenger hunt item list (item list)};
-#gag {^(o)Worn leather book};
-#gag {^(o)A Crafter's Satchel};
-#gag {^(o)Tactician's Manual};
-#gag {^(o)3K Vote Reminder};
-#gag {^(a)*a sexy black apron (almost lacy) (worn)};
 
 #nop Misc knight gags;
-#gag {^There is no corpse here for you to bury\.};
 #gag {{^(\w+) munches contentedly on the oats in the feed bag\.}};
 #gag {{^(\w+) is fully rested, and stops grazing\.}};
 #gag {{^(\w+) grows bored and begins to munch on the oats in the feed bag\.}};
 #gag {^Your esquire returns from his errand\.};
-
-#nop Knight battlecry;
-#gag {{^You impale (.*) with your lance\!}};
-#gag {^You summon up all your courage and scream your battle-cry\.};
-#gag {^The battle-cry echoes through the room, leaving};
-#gag {^terror\.}; #nop how to gag multiple lines?;
-#gag {Battlecrymenow\.};
-#gag {^The battle-cry echoes through the room before slowly fading away\.};
-#gag {^You are not bleeding from any wounds\.};
 
 #nop Skills/professions gags;
 #gag {^You burp\.};
@@ -114,16 +92,6 @@
 #nop Buckler of Eternia;
 #gag {^The star on your buckler flashes like a};
 #gag {^The star on your buckler begins to glow with a};
-
-#nop Profession and mskill emotes;
-#nop gag {{^You drive your attack past (.*) resistances\!}};
-#nop gag {{^(.*) is frozen in place by the frosted armor\!}};
-#nop gag {{^\*\*THWACK\*\* You critically hit (.*)\!}};
-#nop gag {{^You nimbly dodge (.*) attack\!}};
-
-#nop MISC GAGS:;
-#nop Mircarla re-attack in Arovia tomb;
-#act {Her meal completed, she clambers off you licking her now ruby} {k priestess};
 
 #nop Valyn's Maul;
 #gag {^The {radiant|energized|bright|azure|electric|comet-like} {trailing|tracing|ghosting|shadow|shade|image} of the {hammer|war mace|mace|warhammer|maul} {strikes|effects|makes|works|exacts|earns|gains|causes} {another|an extra|an additional|a second|a surprise} {hit|attack|wound|blow}!};

@@ -27,7 +27,7 @@
 };
 
 #act {{^\<Entering 3Kingdoms.  Enter your character name or press enter to continue\>}} {#show ENTER CHARACTER;};
-#act {{^Password\:}} {#show password...;};                                                                    │
+#act {{^Password\:}} {#show password...;};
 
 
 /* Helpers ---- */
@@ -39,7 +39,6 @@
 };
 
 #function setcharacter {
-	#show Setting character: %0;
 	#var character %0;
 	#format characterName {%n} {$character};
 };

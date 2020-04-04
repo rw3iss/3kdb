@@ -1,4 +1,3 @@
-/* map-related ---- */
 #alias {loadmap} {
     #read common/map/mapper.tin;
     #read common/map/maphelper.tin;
@@ -20,12 +19,12 @@
     #alias {mapupdate_draw} { #nop; };
     #unsplit;
 };
+/* ------------------ */
 
 
+#alias {debug} {#debug all on};
+#alias {debugoff} {#debug all off};
 
-
-
-/* ---- Cleanup ---- */
 
 #var beepon 1;
 #alias {beep} {
@@ -36,16 +35,16 @@
 #alias {beepon} {#var beepon 1;#show Beep on.;};
 #alias {beepoff} {#var beepon 0;#show Beep off.;};
 
-#alias {clearlog} {
+
+#alias {clearlogs} {
 	#show Clearing log;
-	#system mv ~/mud/logs/* ~/mud/_archive/logs; #nop */;
-	#system rm ~/mud/logs/*; #nop */;
+	#system rm ~/mud/logs;
 	#system tmux send -t parimd ls ENTER
 }
 
-#var repeatCommand 0;
 
 #alias {cell} {#sys tmux select-layout even-vertical;#split 0 4}
 #alias {lappy} {#sys tmux select-layout main-vertical;#split 0 4}
+
 
 #alias {grep} {#grep {{%1}}}

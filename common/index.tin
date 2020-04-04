@@ -16,7 +16,6 @@
 #read modules/reforge/reforge.tin;
 #read modules/settings/settings.tin;
 #read modules/deadman/deadman.tin;
-#read modules/reforge/reforge.tin;
 #read modules/playcult/playcult.tin;
 #read modules/3kdb/3kdb.tin;
 

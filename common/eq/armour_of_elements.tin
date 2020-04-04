@@ -20,9 +20,7 @@
 
 /* todo... */
 #function addcorpsetrigger {
-    #show adding AOE corpse trigger...
-    #show Priority: %1;
-    #show Action: %2;
+    #return 0;
 };
 
 @addcorpsetrigger{0;aeoimmolate};

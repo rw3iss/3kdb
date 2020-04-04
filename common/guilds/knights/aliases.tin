@@ -1,7 +1,5 @@
-/* fix weapon at smithy */
 #alias {fw} {unwield %1;fix %1; wield %1;}
 
-/* always prepare/keep eq after equpping */
 #alias {wa} {#send {wear all};pp};
 #alias {ua} {unkeep all;pp};
 

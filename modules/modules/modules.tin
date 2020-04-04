@@ -1,6 +1,6 @@
 #class {modules} {open};
 
-#list _modules {};
+#list _modules {create} {};
 #var _moduleInfo {};
 
 

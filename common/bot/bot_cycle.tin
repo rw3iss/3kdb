@@ -45,8 +45,3 @@
 #alias {kcyc} {.stop;#class {area_cycle} {kill}}
 
 #class {area_cycle} {close}
-
-/*
-	#if {"$cycle[current]" == "1"} 
-		{go Chaos;enter;e;s;s;-smurfbot;#del {2} {..}};
-*/

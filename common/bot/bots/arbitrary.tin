@@ -221,6 +221,8 @@
 @random_exit{};
 */
 
+#SHOW OLD BOT LOADED. USE generic_new.tin;
+
 
 #show Arbitrary loaded;
 
