@@ -42,7 +42,6 @@
     #act {{^-R-_}} {.onRoom} {0};
 
 	#alias {.onRoom} {
-        #show --ROOM--;
 		#var foundplayer 0;
 		#var foundmob 0;
         .prompt;
@@ -55,37 +54,33 @@
     #alias {yy} {.prompt;#var foundmob 1;};
 
 	#alias {.onPrompt} {
-        #show ...;
-        
-        #if {$foundItems} {
-            #if {$pickupAll} {#nop get all;}
-        };
+        #nop #show mob? $foundmob  player? $foundplayer;
 
         #if {$foundplayer} {
-            #show mob? $foundmob  player? $foundplayer;
-            .snooze;
-            #show PATH WALK 1;
+            .skip;
             #path walk;
         } {
-            #show ok? mob? $foundmob  player? $foundplayer;
             #if {$dontAttack} {
-                #show PATH WALK 2;
                 #path walk;
             } {
                 #if {$foundmob} {
-                    #show mob? $foundmob  player? $foundplayer;
-                    .snooze;
+                    .skip;
                     .pause;
                     k $mobname;
                 } {
-                    #show PATH WALK 3;
+                    .skip;
                     #path walk;
                 }
             }
         };
+
+        #if {$foundItems} {
+            #if {$pickupAll} {#nop get all;}
+        };
+
     };
 
-	#alias {.snooze} {#unact {^>$}};
+	#alias {.skip} {#unact {^>$}};
     
 	glance;
 
@@ -93,11 +88,26 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
+/*
+#alias {l} {
+	#var halt 1;
+    #act {^>$} {
+        #var halt 0;
+        #alias {yy} {.prompt;#var foundmob 1;};
+    };
+    #alias {yy} {#nop;};
+    #send l;
+}
+*/
 
 #act {{^-P-_(.*)}} {
+    #var foundfriend 0;
 	#foreach {$playerWhitelist} {name} {
-		#if {"%0" == "%*$name%*"} {#nop is friend;} {#var foundplayer 1};
+		#if {"%0" == "%*$name%*"} {
+            #var foundfriend 1;
+        };
 	};
+    #if {!$foundfriend} {#var foundplayer 1;};
 } {1};
 
 

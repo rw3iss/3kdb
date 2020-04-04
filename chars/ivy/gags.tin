@@ -22,7 +22,7 @@
 #gag {^Your ambition overflows as you try to bring down the big game with a spell!};
 #gag {^With swiftness unmatched, you tumble in the nick of time to avoid the brunt of the attack.};
 #gag {^You sacrifice some of your health to make the cocoon stronger!};
-#gag {^**THWACK** You critically hit %*!};
+
 #gag {^Your shield blocks %* attack!};
 #gag {^You slice, and a flow of blood falls from %*!};
 #gag {^The blood from the wound flows into your soul through the Axe.};
@@ -37,6 +37,7 @@
 #gag {^Your attack glanced off of %*.};
 #gag {^You drive your attack past %* resistances!};
 #gag {^You are not in need of aid.};
+#gag {^**THWACK** You critically hit %*!};
 #gag {^***THAWHACK*** You critically hit %*!};
 #gag {^With swiftness unmatched, you tumble in the nick of time to avoid the brunt};
 #gag {^of the attack.};

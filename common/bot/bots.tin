@@ -13,8 +13,8 @@
 #alias {-polbot} {#read common/bot/bots/polbot.tin;..;afterbot {go mahj;mb;afterbot {go chin2;cb;afterbot {go pol;portal;-polbot}}}}
 #alias {-grocbot} {#read common/bot/bots/groceries.tin}
 #alias {-chessbot2} {#read common/bot/bots/chessboard2.tin}
-#alias {-icybluebot} {#read common/bot/bots/icyblue.tin};
-#alias {-rimalkinbot} {#read common/bot/bots/rimalkins_new.tin;map rimalkin;#show RIMALKINS.;}
+#alias {-icybluebot} {map icyblueportal;#read common/bot/bots/icyblue.tin};
+#alias {-rimalkinbot} {#read common/bot/bots/rimalkins.tin;map rimalkin;#show RIMALKINS.;}
 #alias {-chinbot} {#read common/bot/bots/chinchilla.tin;..}
 #alias {-muggerbot} {#read common/bot/bots/muggers.tin;}
 #alias {-knivurbot} {#read common/bot/bots/knivur.tin}

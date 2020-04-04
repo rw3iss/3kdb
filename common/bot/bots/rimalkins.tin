@@ -5,9 +5,8 @@
 
 #act {-M-_A {small|large|very large} Rimalkin} {
 	@botSetMobName{rimalkin};
-    #show see mob...;
-    #var mobname rimalkin;
-	yy} {1};
+	yy;
+} {1};
 
 #class {bot} {close}
 

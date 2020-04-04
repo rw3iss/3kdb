@@ -1,32 +1,41 @@
 #class {afterkill} {open};
 
-#nop Allows ability to register multiple actions after a killing blow ---------------;
-
+/* -- Allows ability to register multiple actions after a killing blow, maintained through a list -- */
 
 _set {afterkill_enabled} {0};
-_set {afterkill} {};
+
+#var afterkillList {
+	{1}{say after kill 1;say another 1;}
+	{2}{say after kill 2;say another 2;}
+};
 
 #alias {afterkill} {
-        _set afterkill_enabled 1;
-        _set afterkill {%0};
-        #show Now doing after each kill: %0;
+    _set afterkill_enabled 1;
+    #list afterkillList {add} {%0};
+    #show Added to afterkill: %0;
+};
+
+#alias {akrem} {
+    #show Remove after @ index: %1;
 };
 
 #alias {afterkilloff} {
         _set afterkill_enabled 0;
-        _set afterkill 0;
+        #nop #var afterkillList {};
         #show After kill disabled.;
 };
 
 #act {^{$characterName} dealt the killing blow to} {
-        #show Dead.;
+        #show Dead. Executing afterkill list...;
         #if {@_get{afterkill_enabled} == 1} {
-                #show doing afterkill: @_get{afterkill};
-                ${@_get{afterkill}};
+            #foreach {$afterkillList} {action} {
+                #show ACTION: $action;
+            };
         };
 } {5};
 
-#nop Shortcuts ----;
+
+/* -- Shortcuts -- */
 #alias {ak} {afterkill};
 #alias {akoff} {afterkilloff};
 
