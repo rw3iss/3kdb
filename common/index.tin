@@ -10,7 +10,6 @@
 #read common/eq/world_drops.tin;
 
 
-
 /* -- load common modules -- */;
 #read modules/modules/modules.tin;
 #read modules/chatlog/chatlog.tin;
@@ -19,7 +18,6 @@
 #read modules/deadman/deadman.tin;
 #read modules/reforge/reforge.tin;
 #read modules/playcult/playcult.tin;
-
 #read modules/3kdb/3kdb.tin;
 
 
@@ -28,11 +26,3 @@ loadmap;
 deadman 30;
 hp;
 
-
-
-/* -- TO CLEANUP: -- */;
-#nop #read modules/afterkill/afterkill.tin;
-#nop #read misc/inventorymanager/inventorymanager.tin;
-#nop #read misc/mobname.tin;
-#nop #read misc/reforge.tin;
-#nop #read misc/areas/index.tin;

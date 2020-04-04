@@ -1,4 +1,5 @@
 #class {bot} {open}
+
 #var botting 1;
 #var foundmob 0;
 #var foundplayer 0;
@@ -14,38 +15,38 @@
 #alias {setk} {#var attackAction {%1};#show Kill action set to: %1;}
 
 #function {setMobName} {
-	#var prevMobName $mobname;
-	#var mobname %0;
-	#return;
+        #var prevMobName $mobname;
+        #var mobname %0;
+        #return;
 };
 
 #alias {.pause} {#class {xbot} {kill};#alias {yy} {.pause}};
-#alias {.stop} {#var halt 1;.pause;aoff;#unvar botpath;#unalias {..};#class {xbot} {kill}};
+#alias {.stop} {#var halt 1;#var botting 0;.pause;aoff;#unvar botpath;#unalias {..};#class {xbot} {kill}};
 #alias {.s} {.stop};
 #alias {yy} {#nop;};
 #alias {..} {
-	#var halt 0;
-	#class {xbot} {open};
+        #var halt 0;
+        #class {xbot} {open};
 
-	#nop at room entrance, enable trigger waiting for prompt, mobs will be detected;
-	#act {{^-R-_}} {xx};
-	#alias {xx} {#unvar foundplayer;#act {^>$} {#path walk;zz} {1}};
-	#alias {yy} {
-		#act {^>$} {
-			#if {$foundplayer} {zz;#path walk} {
-				#if {$justItems} {
-					#show getting items;
-					get all;
-					#path walk;
-				} {
-					zz;.pause;${attackAction} $mobname;#var foundmob 1;
-				}
-			}
-		}
-	};
-	#alias {zz} {#unact {^>$}};
-	glance;	
-	#class {xbot} {close}
+        #nop at room entrance, enable trigger waiting for prompt, mobs will be detected;
+        #act {{^-R-_}} {xx};
+        #alias {xx} {#unvar foundplayer;#act {^>$} {#path walk;zz} {1}};
+        #alias {yy} {
+                #act {^>$} {
+                        #if {$foundplayer} {zz;#path walk} {
+                                #if {$justItems} {
+                                        #show getting items;
+                                        get all;
+                                        #path walk;
+                                } {
+                                        zz;.pause;${attackAction} $mobname;#var foundmob 1;
+                                }
+                        }
+                }
+        };
+        #alias {zz} {#unact {^>$}};
+        glance;
+        #class {xbot} {close}
 }
 
 #alias {killbot} {zz;#show END BOT.;.pause;#unalias {..};#class xbot kill;#class bot kill;#path run;}
@@ -70,26 +71,6 @@
 			#path load botpath;.bot;#var foundmob 0;
 		};
 	}
-};
-
-#alias {afterbot} {
-	#show Doing after bot finishes: %0;
-	#var doafterbot 1;
-	#var afterbot %0;
-};
-#alias {afterbotoff} {
-	#show After bot cleared.
-	#var doafterbot 0;
-	#var afterbot 0;
-};
-#alias {aboff} {afterbotoff};
-
-#act {{^There is no (\w+) here}} {
-	#if {$botting == 1} {
-		#if {"%2" == "$mobname" || "%2" == "$prevMobName"} {
-			l;..;
-		};
-	};
 };
 
 #path load botpath;

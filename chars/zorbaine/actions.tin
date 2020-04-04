@@ -1,1 +1,30 @@
-#act {none} {#show nothing;};
+#act {{(\w+) taps you on the shoulder\.}} { 
+    #format followtarget {%l} {%2}; 
+    follow $followtarget;
+};
+
+#act {{(\w+) begs you\.}} { 
+    #format defendtarget {%l} {%2}; 
+    defend $defendtarget;
+};
+
+#act {{(\w+) moos at you\.}} { 
+    unwrap corpse;
+};
+
+
+
+#act {^\[PARTY\] Sock: go %1} {%1};
+#act {^\[PARTY\] Ser: go %1} {%1};
+#act {^\[PARTY\] Martyr: go %1} {%1};
+#act {^\[PARTY\] Byron: go %1} {%1};
+
+
+
+
+/* Auto-hold talisman for +alignment when it recharges */
+#act {Your talisman grows warm} {#10 hold talisman};
+
+
+/* auto-accept priest res */
+#act {"accept" or "refuse" this chance quickly, for pressing matters} {accept};

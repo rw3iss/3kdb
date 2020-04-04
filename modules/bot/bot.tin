@@ -2,9 +2,19 @@
 
 /* Bot management module */
 
+#var botCurrentName "";
+#var botNumLoops 0;
+$
+
 #alias {bot} {
     #show Bot stuff...;
     #nop if param.. run bot...;
+
+    #show Bot running: $botCurrentName;
+    #show Loop count: $botNumLoops;
+    
+    #show Doing after bot finished: $botAfterAction;
+
 };
 
 #alias {bots} {
@@ -14,7 +24,6 @@
 #alias {botconfig} {
     #show bot configuration optons...;
 };
-
 
 
 register_module {bot_new};
@@ -28,4 +37,4 @@ register_module_info {bot_new} {
 };
 
 
-#class {bot_new} {close};
+#class {bot_new} {close};p

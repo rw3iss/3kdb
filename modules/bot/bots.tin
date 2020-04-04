@@ -14,7 +14,7 @@
 #alias {-grocbot} {#read common/bot/bots/groceries.tin}
 #alias {-chessbot2} {#read common/bot/bots/chessboard2.tin}
 #alias {-icybluebot} {#read common/bot/bots/icyblue.tin};
-#alias {-rimalkinbot} {#read common/bot/bots/rimalkins.tin;map rimalkin;setk k;ak ..}
+#alias {-rimalkinbot} {#read modules/bot/bots/rimalkins_new.tin;map rimalkin}
 #alias {-chinbot} {#read common/bot/bots/chinchilla.tin;..}
 #alias {-muggerbot} {#read common/bot/bots/muggers.tin;}
 #alias {-knivurbot} {#read common/bot/bots/knivur.tin}
@@ -44,7 +44,7 @@
 
 
 
-#nop Shortcuts: ---------------- ;
+/* -- Shorter Shortcuts: -- */
 
 #alias {-ftb} {map chaos;-findtruckbot};
 #alias {-tb} {-truckbot;..};
@@ -61,6 +61,8 @@
 
 #alias {-hr} {out;out;w;s;e;e;n;w;w;n;n;w;w;w;mch};
 #alias {-cr} {#8 w;#8 n;#4 s;#3 e;climb pipe;w;mch};
+
+
 
 
 #class {botlist} {close}

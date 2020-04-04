@@ -1,5 +1,7 @@
 #class {bot} {open}
 
+#read modules/bot/lib/helpers.tin;
+
 #var botting 1;
 #var foundmob 0;
 #var foundplayer 0;
@@ -13,7 +15,7 @@
 #var doafterbot 0;
 #var afterbot 0;
 
-#var playerWhitelist {Ser;Nix;Zam};
+#var playerWhitelist {};
 
 #alias {.pause} {
 	#var halt 1;
@@ -38,12 +40,12 @@
 
 	#var halt 0;
 
-	#nop at room entrance, enable trigger waiting for prompt, mobs will be detected by specific area script;
+	/* at room entrance, enable trigger waiting for prompt, mobs will be detected by specific area script */
 	#act {{^-R-_}} {xx};
 
 	#alias {xx} {
 		#unvar foundplayer;
-		#nop area script will detect mob, if any, and yy will be called, overwriting this prompt action;
+		/* area script will detect mob, if any, and yy will be called, overwriting this prompt action */
 		#act {^>$} {#path walk;zz} {1};
 	};
 
@@ -67,29 +69,12 @@
 	glance;	
 
 	#class {xbot} {close};
-}
-
-#alias {zz} {#nop;};
-#alias {yy} {#nop;};
+};
 
 #alias {.bot} {#if {$halt == 0} {..}};
 
 
 
-
-
-
-
-
-
-#var attackAction {k};
-#alias {setk} {#var attackAction {%1};#show Kill action set to: %1;}
-
-#function {setMobName} {
-	#var prevMobName $mobname;
-	#var mobname %0;
-	#return;
-};
 
 #act {{^-P-_(.*)}} {
 	#foreach {$playerWhitelist} {name} {
@@ -99,29 +84,14 @@
 #nop #act {^-P-} {#var foundplayer 1} {6};
 
 #act {#END OF PATH} {
-	#if {${doafterbot} == 1} {
-		#show doing after...;
-    	${afterbot};
-	} {
-		#if {$no_loop | !$foundmob} {
-			killbot;
-		} {
-			#path load botpath;.bot;#var foundmob 0;
-		};
-	}
+    #if {$no_loop | !$foundmob} {
+        .stop;
+    } {
+        #path load botpath;
+        .bot;
+        #var foundmob 0;
+    };
 };
-
-#alias {afterbot} {
-	#show Doing after bot finishes: %0;
-	#var doafterbot 1;
-	#var afterbot %0;
-};
-#alias {afterbotoff} {
-	#show After bot cleared.
-	#var doafterbot 0;
-	#var afterbot 0;
-};
-#alias {aboff} {afterbotoff};
 
 #act {{^There is no (\w+) here}} {
 	#if {$botting == 1} {
@@ -134,5 +104,6 @@
 
 #path load botpath;
 #nop #var halt 0;
+
 
 #class {bot} {close}
