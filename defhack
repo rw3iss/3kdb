@@ -1,0 +1,93 @@
+[0m#LOG: LOGGING OUTPUT TO 'defhack' FILESIZE: 0[0m
+sc
+[32;1mNorbs of Zorbaine  (pure)
+[0m[32mStr: [0m[36m130 (130)[0m[32m  Level    : [0m[36mChampion (133)      [0m[32m  Exp    : [0m[36m273,264,503,552[0m[32m
+Dex: [0m[36m275 (275)[0m[32m  Age      : [0m[36m387 d 9 h 26 m      [0m[32m  Money  : [0m[36m26,693[0m[32m
+Wis: [0m[32;1m171[0m[36m (160)[0m[32m  Guild    : [0m[36mKnight (189)        [0m[32m  Bank   : [0m[36m13,304,440[0m[32m
+Int: [0m[32;1m135[0m[36m (130)[0m[32m  Status   : [0m[36mLance               [0m[32m  Quests : [0m[36m805(750/55/0)[0m[32m
+Con: [0m[32;1m250[0m[36m (241)[0m[32m  Arch foe : [0m[36mHuge Terran Firebat -{beyon.. (class: 2,000,000,000)[0m[32m
+Cha: [0m[32;1m 25[0m[36m (20) [0m[32m  Best kill: [0m[36mPaul McCartney (class: 1,709,032,522)[0m[32m
+Hps  : [0m[36m 3783 / 3653 [0m[32m Deaths   : [0m[36m758             [0m[32m You are: [0m[33;1mExtremely drunk[0m[32m
+Sps  : [0m[36m 1202 / 1125 [0m[32m Kills    : [0m[36m434237          [0m[32m You are: [0m[31;1mAble to drink tons[0m[32m
+Gps  : [0m[36m 2590 / 2590 [0m[32m Hunted by: [0m[36mNo-one          [0m[32m You are: [0m[31;1mAble to eat tons[0m[32m
+Wimpy: [0m[36m 1278 ( 35%) [0m[32m Defense  :[0m[36m Good            [0m[32m Align  : [0m[36mPure[0m [36m[[0m[32;1m:::[0m[36m|[0m[31;1m:[0m[36m][0m
+[32mResistances: [0m[36m   677[0m[37;1m   639[0m[31;1m   437[0m[34;1m   336[0m[32;1m   175[0m[33;1m   282[0m[35m   272[0m[35;1m   318[0m[32m   250[0m[36;1m   283[0m
+hp
+HP:[35;1m3783[0m/3653 | SP:[35;1m1202[0m/1125 | STM:[32;1m2590[0m/2590 | STN:[35;1m0[0m%([35;1m1[0m) | SW:[32;1m100.0[0m% | [35;1mOff[0m [35;1mCharge[0m 
+PPD([33;1mY[0m) Stud([33;1mY[0m) Batt([31m-[0m) Braw([36;1mn[0m) Dodg([33;1mY[0m) Defl([36;1mn[0m) Shie([33;1mY[0m) Endu([33;1mY[0m) Parr([33;1mY[0m) | 
+[WPN:[35;1mSuperb[0m] [LIGHT:[36;1mn[0m([31m0[0m%)] [LF:[36m97[0m] [MOB:[31m-[0m]
+md
+[31mTurning your thoughts inward, you shift your stance to a defensive
+position, and prepare to withstand the onslaught of your foes.
+Changing your stance has affected your armour configuration.  You should
+prepare it once again.
+[31mSwearing upon your honour, you prepare to engage your foes in melee.       [0m
+You'll now attempt to use shieldblock in combat.
+You'll now attempt to use parry in combat.
+hp
+HP:[35;1m3783[0m/3653 | SP:[35;1m1202[0m/1125 | STM:[32;1m2590[0m/2590 | STN:[35;1m0[0m%([35;1m1[0m) | SW:[32;1m100.0[0m% | [35;1mDef[0m [35;1mMelee[0m 
+PPD([36;1mn[0m) Stud([33;1mY[0m) Batt([31m-[0m) Braw([36;1mn[0m) Dodg([33;1mY[0m) Defl([36;1mn[0m) Shie([33;1mY[0m) Endu([33;1mY[0m) Parr([33;1mY[0m) | 
+[WPN:[35;1mSuperb[0m] [LIGHT:[36;1mn[0m([31m0[0m%)] [LF:[36m97[0m] [MOB:[31m-[0m]
+#K%15491109FFFI~Stance: defensive | Method: melee | Sec Wind: 100.00% | Guild Level: 189 | Class: Vindicator | Morale: 6
+sc
+[32;1mNorbs of Zorbaine  (pure)
+[0m[32mStr: [0m[36m130 (130)[0m[32m  Level    : [0m[36mChampion (133)      [0m[32m  Exp    : [0m[36m273,264,503,552[0m[32m
+Dex: [0m[36m275 (275)[0m[32m  Age      : [0m[36m387 d 9 h 26 m      [0m[32m  Money  : [0m[36m26,693[0m[32m
+Wis: [0m[32;1m171[0m[36m (160)[0m[32m  Guild    : [0m[36mKnight (189)        [0m[32m  Bank   : [0m[36m13,304,440[0m[32m
+Int: [0m[32;1m135[0m[36m (130)[0m[32m  Status   : [0m[36mLance               [0m[32m  Quests : [0m[36m805(750/55/0)[0m[32m
+Con: [0m[32;1m250[0m[36m (241)[0m[32m  Arch foe : [0m[36mHuge Terran Firebat -{beyon.. (class: 2,000,000,000)[0m[32m
+Cha: [0m[32;1m 25[0m[36m (20) [0m[32m  Best kill: [0m[36mPaul McCartney (class: 1,709,032,522)[0m[32m
+Hps  : [0m[36m 3783 / 3653 [0m[32m Deaths   : [0m[36m758             [0m[32m You are: [0m[33;1mExtremely drunk[0m[32m
+Sps  : [0m[36m 1202 / 1125 [0m[32m Kills    : [0m[36m434237          [0m[32m You are: [0m[31;1mAble to drink tons[0m[32m
+Gps  : [0m[36m 2590 / 2590 [0m[32m Hunted by: [0m[36mNo-one          [0m[32m You are: [0m[31;1mAble to eat tons[0m[32m
+Wimpy: [0m[36m 1278 ( 35%) [0m[32m Defense  :[0m[36m Good            [0m[32m Align  : [0m[36mPure[0m [36m[[0m[32;1m:::[0m[36m|[0m[31;1m:[0m[36m][0m
+[32mResistances: [0m[36m   415[0m[37;1m   388[0m[31;1m   263[0m[34;1m   185[0m[32;1m    67[0m[33;1m   158[0m[35m   136[0m[35;1m   185[0m[32m   122[0m[36;1m   159[0m
+pp
+You spend a few moments to prepare yourself and your armour for battle.
+[34mYou feel almost invincible in your suit of armour.[0m
+sc
+[32;1mNorbs of Zorbaine  (pure)
+[0m[32mStr: [0m[36m130 (130)[0m[32m  Level    : [0m[36mChampion (133)      [0m[32m  Exp    : [0m[36m273,264,503,552[0m[32m
+Dex: [0m[36m275 (275)[0m[32m  Age      : [0m[36m387 d 9 h 26 m      [0m[32m  Money  : [0m[36m26,693[0m[32m
+Wis: [0m[32;1m171[0m[36m (160)[0m[32m  Guild    : [0m[36mKnight (189)        [0m[32m  Bank   : [0m[36m13,304,440[0m[32m
+Int: [0m[32;1m135[0m[36m (130)[0m[32m  Status   : [0m[36mLance               [0m[32m  Quests : [0m[36m805(750/55/0)[0m[32m
+Con: [0m[32;1m250[0m[36m (241)[0m[32m  Arch foe : [0m[36mHuge Terran Firebat -{beyon.. (class: 2,000,000,000)[0m[32m
+Cha: [0m[32;1m 25[0m[36m (20) [0m[32m  Best kill: [0m[36mPaul McCartney (class: 1,709,032,522)[0m[32m
+Hps  : [0m[36m 3783 / 3653 [0m[32m Deaths   : [0m[36m758             [0m[32m You are: [0m[33;1mExtremely drunk[0m[32m
+Sps  : [0m[36m 1202 / 1125 [0m[32m Kills    : [0m[36m434237          [0m[32m You are: [0m[31;1mAble to drink tons[0m[32m
+Gps  : [0m[36m 2590 / 2590 [0m[32m Hunted by: [0m[36mNo-one          [0m[32m You are: [0m[31;1mAble to eat tons[0m[32m
+Wimpy: [0m[36m 1278 ( 35%) [0m[32m Defense  :[0m[36m Good            [0m[32m Align  : [0m[36mPure[0m [36m[[0m[32;1m:::[0m[36m|[0m[31;1m:[0m[36m][0m
+[32mResistances: [0m[36m   677[0m[37;1m   639[0m[31;1m   437[0m[34;1m   336[0m[32;1m   175[0m[33;1m   282[0m[35m   272[0m[35;1m   318[0m[32m   250[0m[36;1m   283[0m
+hp
+HP:[35;1m3783[0m/3653 | SP:[35;1m1202[0m/1125 | STM:[32;1m2590[0m/2590 | STN:[35;1m0[0m%([35;1m1[0m) | SW:[32;1m100.0[0m% | [35;1mDef[0m [35;1mMelee[0m 
+PPD([33;1mY[0m) Stud([33;1mY[0m) Batt([31m-[0m) Braw([36;1mn[0m) Dodg([33;1mY[0m) Defl([36;1mn[0m) Shie([33;1mY[0m) Endu([33;1mY[0m) Parr([33;1mY[0m) | 
+[WPN:[35;1mSuperb[0m] [LIGHT:[36;1mn[0m([31m0[0m%)] [LF:[36m97[0m] [MOB:[31m-[0m]
+mmc
+[31mShifting into a more offensive stance, you swear upon your honour to engage
+your foes in charge.                                                       [0m
+hp
+HP:[35;1m3783[0m/3653 | SP:[35;1m1202[0m/1125 | STM:[32;1m2590[0m/2590 | STN:[35;1m0[0m%([35;1m1[0m) | SW:[32;1m100.0[0m% | [35;1mOff[0m [35;1mCharge[0m 
+PPD([33;1mY[0m) Stud([33;1mY[0m) Batt([31m-[0m) Braw([36;1mn[0m) Dodg([33;1mY[0m) Defl([36;1mn[0m) Shie([33;1mY[0m) Endu([33;1mY[0m) Parr([33;1mY[0m) | 
+[WPN:[35;1mSuperb[0m] [LIGHT:[36;1mn[0m([31m0[0m%)] [LF:[36m97[0m] [MOB:[31m-[0m]
+#K%15491110FFFI~Stance: offensive | Method: charge | Sec Wind: 100.00% | Guild Level: 189 | Class: Vindicator | Morale: 6
+#K%15491007BAE0.00
+sc
+[32;1mNorbs of Zorbaine  (pure)
+[0m[32mStr: [0m[36m130 (130)[0m[32m  Level    : [0m[36mChampion (133)      [0m[32m  Exp    : [0m[36m273,264,503,552[0m[32m
+Dex: [0m[36m275 (275)[0m[32m  Age      : [0m[36m387 d 9 h 26 m      [0m[32m  Money  : [0m[36m26,693[0m[32m
+Wis: [0m[32;1m171[0m[36m (160)[0m[32m  Guild    : [0m[36mKnight (189)        [0m[32m  Bank   : [0m[36m13,304,440[0m[32m
+Int: [0m[32;1m135[0m[36m (130)[0m[32m  Status   : [0m[36mLance               [0m[32m  Quests : [0m[36m805(750/55/0)[0m[32m
+Con: [0m[32;1m250[0m[36m (241)[0m[32m  Arch foe : [0m[36mHuge Terran Firebat -{beyon.. (class: 2,000,000,000)[0m[32m
+Cha: [0m[32;1m 25[0m[36m (20) [0m[32m  Best kill: [0m[36mPaul McCartney (class: 1,709,032,522)[0m[32m
+Hps  : [0m[36m 3783 / 3653 [0m[32m Deaths   : [0m[36m758             [0m[32m You are: [0m[36mDrunk[0m[32m
+Sps  : [0m[36m 1202 / 1125 [0m[32m Kills    : [0m[36m434237          [0m[32m You are: [0m[31;1mAble to drink tons[0m[32m
+Gps  : [0m[36m 2590 / 2590 [0m[32m Hunted by: [0m[36mNo-one          [0m[32m You are: [0m[31;1mAble to eat tons[0m[32m
+Wimpy: [0m[36m 1278 ( 35%) [0m[32m Defense  :[0m[36m Good            [0m[32m Align  : [0m[36mPure[0m [36m[[0m[32;1m:::[0m[36m|[0m[31;1m:[0m[36m][0m
+[32mResistances: [0m[36m   677[0m[37;1m   639[0m[31;1m   437[0m[34;1m   336[0m[32;1m   175[0m[33;1m   282[0m[35m   272[0m[35;1m   318[0m[32m   250[0m[36;1m   283[0m
+hp
+HP:[35;1m3783[0m/3653 | SP:[35;1m1202[0m/1125 | STM:[32;1m2590[0m/2590 | STN:[35;1m0[0m%([35;1m1[0m) | SW:[32;1m100.0[0m% | [35;1mOff[0m [35;1mCharge[0m 
+PPD([33;1mY[0m) Stud([33;1mY[0m) Batt([31m-[0m) Braw([36;1mn[0m) Dodg([33;1mY[0m) Defl([36;1mn[0m) Shie([33;1mY[0m) Endu([33;1mY[0m) Parr([33;1mY[0m) | 
+[WPN:[35;1mSuperb[0m] [LIGHT:[36;1mn[0m([31m0[0m%)] [LF:[36m97[0m] [MOB:[31m-[0m]
+smile
+[34mYou smile happily.[0m
+#log off

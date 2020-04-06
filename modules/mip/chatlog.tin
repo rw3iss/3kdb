@@ -23,7 +23,7 @@
 			#case {"Auction"}	    {#var {commcol} {<cba>}};
 			#case {"Bear"}		    {#var {commcol} {<168>}};
 			#case {"Bloodname"}	    {#var {commcol} {<138>}};
-			#case {"Clan Spol"}	    {#var {commcol} {<ABF><fff>}};
+			#case {"Clan Spol"}	    {#var {commcol} {<ABF><eee>}};
 			#case {"Com"}		    {#var {commcol} {<128>}};
 			#case {"Council"}	    {#var {commcol} {<108>}};
 			#case {"Eternal Main"}	{#var {commcol} {<168>}};
@@ -36,7 +36,7 @@
 			#case {"Cult Game"}	    {#var {commcol} {<ade>}};
 			#case {"Main"}		    {#var {commcol} {<118>}};
 			#case {"Newbie"}	    {#var {commcol} {<aca>}};
-			#case {"Party"}		    {#var {commcol} {<AEF><fff>}};
+			#case {"Party"}		    {#var {commcol} {<ADA><fff>}};
 			#case {"Shout"}		    {#var {commcol} {<bbb>}};
 			#case {"Whine"}		    {#var {commcol} {<118>}};
 			#case {"Wolf"}		    {#var {commcol} {<228>}};
