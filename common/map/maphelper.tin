@@ -42,8 +42,8 @@
 #alias {mapundo} {maprestore};
 
 #alias {mapgo} {#map goto %0};
-#alias {mapsave} { #map write common/map/3k_map.tin force;#show Map saved.;};
-#alias {mapload} { #map read common/map/3k_map.tin;#show Map loaded.;};
+#alias {mapsave} { #map write common/map/3k_shared.map force;#show Map saved.;};
+#alias {mapload} { #map read common/map/3k_shared.map;#show Map loaded.;};
 #alias {map} {#map goto %1;};
 #alias {mi} {#map info;};
 #alias {mapexit} {#map exit {%1} {COMMAND} {%2};#show Map exit created. %2 will lead %1.;mapsave;};

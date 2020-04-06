@@ -78,7 +78,7 @@
 
 #gag {{^You grit your teeth and use mind over matter to overcome fatigue\.$}};
 #gag {{^Your wounds are not so severe as to require staunching\.$}};
-#gag {{^You staunch the flow of blood from some of your more serious injuries\.$}};
+#nop gag {{^You staunch the flow of blood from some of your more serious injuries\.$}};
 #gag {{^You pour all of your strength and training into the block but only manage to deflect part of the strike\.$}};
 #gag {{^You grit your teeth and endure}};
 #gag {{^You grit your teeth and use mind over matter to overcome fatigue\.}};

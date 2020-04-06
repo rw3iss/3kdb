@@ -1,4 +1,6 @@
-## Room Info Display Module (using MIP variables): ##
+## MIP Modules ##
+
+#### Room Info Display Module ####
 
 Takes captured room names, nouns, and exits (in capture.tin) of the current room, and displays in a #draw box on the lower-right side of screen, updated every two seconds with current variables.
 
@@ -8,3 +10,9 @@ Takes captured room names, nouns, and exits (in capture.tin) of the current room
 
 
 ![MIP Room Module](https://i.imgur.com/Ws1UirS.png)
+
+
+
+#### Chatlog Display Module ####
+
+Shows chatlogs for all lines sent via MIP. Colors can be changed in modules/mil/chatlog.tin;

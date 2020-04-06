@@ -5,12 +5,24 @@
     #read modules/mip/capture.tin;
     #read modules/mip/miphp.tin;
     #read modules/mip/room.tin;
+    #read modules/mip/chatlog.tin;
+    #read modules/mip/stats.tin;
 };
 
 #alias {mipoff} {
     #class {miphp} {kill};
     #class {mipcapture} {kill};
     #class {miproom} {kill};
+    #class {mipchatlog} {kill};
+    #class {mipstats} {kill};
 };
+
+#var mipdebug 0;
+#alias mipdebug {
+    #var mipdebug 1;
+}
+#alias mipdebugoff {
+    #var mipdebug 0;
+}
 
 #CLASS {mip} {close}

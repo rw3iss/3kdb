@@ -329,9 +329,11 @@
 #alias {lh} {list helmet};
 #alias {la} {list amulet};
 #alias {lar} {list armour};
+#alias {lbp} {list breastplate};
 #alias {lc} {list cloak};
 #alias {lg} {list gloves};
-#alias {lg} {list greaves};
+#alias {lg} {list gloves};
+#alias {lgr} {list greaves};
 #alias {lb} {list boots};
 #alias {lr} {list ring};
 #alias {lo} {list other};
@@ -349,7 +351,7 @@
 #alias {smr} {smuggle remove %0};
 
 /* cheat: get +ac from defense mode, preparing, then back to offense without re-preparing */
-#alias {defo} {md;pp;#delay {3} {mmc}};
+#alias {defo} {md;pp;#delay {3} {mmc;bcc}};
 
 
 /* ------------------------------------ */

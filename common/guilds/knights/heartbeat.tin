@@ -35,11 +35,16 @@
 
 #nop /* This stuff gets checked every tick */;
 #alias {_heartbeat} {
-	#if {$my[hp][diff] > 150} {st;};
-	#if {$my[hp][diff] > 250} {st;};
-	#if {$my[hp][diff] > 350} {st;};
-	#if {$my[hp][diff] > 450} {st;};
-	#if {$my[hp][diff] > 550} {st;};
+	#if {$my[hp][current] < 3400} {st;};
+	#if {$my[hp][current] < 3200} {st;};
+	#if {$my[hp][current] < 3000} {st;};
+	#if {$my[hp][current] < 2800} {st;};
+	#if {$my[hp][current] < 2600} {st;};
+	#if {$my[hp][current] < 2400} {st;};
+	#if {$my[hp][current] < 2200} {st;};
+	#if {$my[hp][current] < 2000} {st;};
+	#if {$my[hp][current] < 1800} {st;};
+	#if {$my[hp][current] < 1600} {st;};
 
 	#nop will when spork enabled;
 	#if {$incombat == 1} {
@@ -255,9 +260,6 @@
 	};
 	
 	#var killing -;
-	
-	get ring;
-    get shared;smuggle shard;
 
 	#if {@_get{afterkill_enabled} == 1} {
 		#foreach {$afterkillList} {action} { 

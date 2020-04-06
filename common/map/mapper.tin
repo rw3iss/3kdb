@@ -1,6 +1,6 @@
 #class {mapper} {open}
 
-#map read common/map/3k_map.tin;
+#map read common/map/3k_shared.map;
 #map goto 1;
 #map goto $curvnum;
 
@@ -205,10 +205,10 @@
 
 #alias {mapname %1} {
 	#map name %1;
-	#map write map/3k.map
+	mapsave;
 }
 
-#alias {mapsave} {#map write map/3k.map}
+#alias {mapsave} {#map write common/map/3k_shared.map force;}
 #alias {mapon} {
 	!brief off yes;
 	#map flag static off;

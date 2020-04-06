@@ -1,0 +1,211 @@
+#class {mipstats} {open};
+
+#NOP ***** Combined Stats Data *****
+#ALIAS {.mipProcessFFF} {
+	#VAR {mip[FFF][flag]} {0};
+	#VAR {mip[FFF][toggle]} {0};
+	#PARSE {%1} {i} {
+		#IF {"$mip[FFF][flag]" == "0"} {
+			#VAR {mip[FFF][flag]} {$i};
+			#VAR {mip[FFF][$i]} {};
+			#VAR {mip[FFF][$i][data]} {};
+		} {
+			#IF {"$i" == "~"} {
+				#IF {"$mip[FFF][toggle]" == "0"} {
+					#VAR {mip[FFF][toggle]} {1};
+				} {
+					.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]};
+					#VAR {mip[FFF][flag]} {0};
+					#VAR {mip[FFF][toggle]} {0};
+				}
+			} {
+				#VAR {mip[FFF][${mip[FFF][flag]}][data]} {${mip[FFF][${mip[FFF][flag]}][data]}${i}}
+			}
+		}
+	};
+	#IF {"$mip[FFF][$mip[FFF][flag]][data]" != ""} {
+		.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]}
+	}
+}
+
+#NOP ***** Separated Stats Data *****
+#ALIAS {.mipProcessFFFSub} {
+	#SWITCH {"%1"} {
+		#CASE {"A"} {#NOP Hit Points;#VAR {my[hp][current]} {%2}};
+		#CASE {"B"} {#NOP Hit Points Maximum;#VAR {my[hp][max]} {%2}};
+		#CASE {"C"} {#NOP Spell Points;#VAR {my[sp][current]} {%2}};
+		#CASE {"D"} {#NOP Spell Points Maximum;#VAR {my[sp][max]} {%2}};
+		#CASE {"E"} {#NOP Guild Points1;#VAR {my[gp1][current]} {%2}};
+		#CASE {"F"} {#NOP Guild Points1 Maximum;#VAR {my[gp1][max]} {%2}};
+		#CASE {"G"} {#NOP Guild Points2;#VAR {my[gp2][current]} {%2}};
+		#CASE {"H"} {#NOP Guild Points2 Maximum;#VAR {my[gp2][max]} {%2}};
+		#CASE {"I"} {#NOP Primary Guild Line;.mipProcessGline {1} {%2}};
+		#CASE {"J"} {#NOP Secondary Guild Line;.mipProcessGline {2} {%2}};
+		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
+		#CASE {"L"} {#NOP Mob Health;#VAR {enemy[hp]} {%2}};
+		#CASE {"M"} {#NOP Mob Image File};
+		#CASE {"N"} {#NOP Combat Round Counter;#VAR {mip[round]} {%2}};
+		#DEFAULT {#NOP Every other non-handled flag}
+	}
+}
+
+#NOP ***** Combat Mob Name *****;
+#ALIAS {.mipProcessFFFK} {
+	#IF {"%1" != ""} {
+		#VAR {enemy} {};
+		#VAR {enemy[name]} {%1};
+	} {
+		#VAR {enemy[hp]} {}
+	}
+}
+
+#NOP ***** Guild Stats Line 1/2 *****
+#ALIAS {.mipProcessGline} {
+	#VAR {mip[gline][%1]} {%2};
+	#VAR {temp} {};
+
+	#NOP GUILD SPECIFIC GLINE PROCESSING;
+	#IF {"%2" != ""} {
+		#SWITCH {"$guild"} {
+			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
+			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
+			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
+			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
+			#CASE {"bard"}		{.mipProcessGlineBard {%1}};
+		}
+	}
+}
+
+#ALIAS {.mipProcessGlineChangeling} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {Chaos Flux: %d/%d} {
+			#VAR {my[relinquish][current]}	{&1};
+			#VAR {my[relinquish][reset]}	{&2}
+		};
+		#REGEX {$mip[gline][1]} {{Density|Homeostasis|Mitosis|Morphogenesis|Resilience}: %d.%d\%} {
+			#VAR {my[skill][name]}		{&1};
+			#VAR {my[skill][current]}	{&2.&3}
+		};
+		#REGEX {$mip[gline][1]}	{\[{FF|IL}\(%d\): %d.%d\%\]>  \[%D\]} {
+			#VAR {my[ff][current]}		{&3.&4};
+			#VAR {my[form]}			{&5}
+		}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]}	{\[Bioplasts: %d\]} {#VAR {my[bioplasts]}	{&1}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineElemental} {
+	#IF {%1 == 1} {
+		#REGEX {Emit> : <%w%d>}			{#VAR {my[emit][level]}		{&2}};
+		#REGEX {Equipollent}			{#VAR {my[equip]}		{on}}
+							{#VAR {my[equip]}		{off}};
+		#REGEX {Form>: <c%w>\(<r%d>\)}		{
+			#VAR {my[form][type]}		{&1};
+			#VAR {my[form][size]}		{&2}
+		};
+		#REGEX {Rating>: <r%d>}			{#VAR {my[rating]}		{&1}}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {Stones/Waves/Shrouds>: <%w%d>/<%w%d>/<%w%d>\(%d\%\)}
+			#VAR {my[blasts]		{&2};
+			#VAR {my[waves]}		{&4};
+			#VAR {my[shrouds]}		{&6};
+			#VAR {my[reset]}		{&7}
+		};
+		#REGEX {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineJuggernaut} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <yGxp: %d.%d\%> Hits: \[%d\] <cCoffin: %d/%d} {
+			#VAR {ammo[1]}			{&1};
+			#VAR {ammo[2]}			{&2};
+			#VAR {ammo[3]}			{&3};
+			#VAR {ammo[4]}			{&4};
+			#VAR {ammo[5]}			{&5};
+			#VAR {gxp}			{&6.&7};
+			#VAR {hits}			{&8};
+			#VAR {corpses[coffin]}		{&9};
+			#VAR {corpses[coffinsize]}	{&10}
+		}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]> Reset: \[%d\%\]} {
+			#VAR {nukes}		{&1};
+			#VAR {nukes_max}	{&2};
+			#VAR {reset}		{&3};
+		}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineNecromancer} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {C:%d}		{#VAR {corpses[inventory]}	{&1}};
+		#REGEX {$mip[gline][1]} {Worth:%d}	{#VAR {my[worth]}		{&1}};
+		#REGEX {$mip[gline][1]} {Tport:%d/%d}	{
+			#VAR {my[ports][current]}	{&1};
+			#VAR {my[ports][max]}		{&2}
+		};
+		#REGEX {$mip[gline][1]} {Sprk:%d/%d}	{
+			#VAR {my[sparks][current]}	{&1};
+			#VAR {my[sparks][max]}		{&2};
+		};
+		#REGEX {$mip[gline][1]} {Prot:%wX}	{#VAR {my[prot]}		{&1}};
+		#REGEX {$mip[gline][1]} {Circle:%d}	{#VAR {my[gxp]}			{&1}};
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]}	{Undead:%w}	{#VAR {my[undead]}		{&1}};
+		#REGEX {$mip[gline][2]}	{SPf:%d/%d}	{
+			#VAR {my[sp][fuse][current]}	{&1};
+			#VAR {my[sp][fuse][max]}	{&2}
+		}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineBard} {
+	#IF {%1 == 1} {
+		#nop Protection Info
+		#REGEX {$mip[gline][1]} { PE:%d}	{#VAR {my[defs][pe]}		{&1}}   {#var {my[defs][pe]}    {0}};
+		#REGEX {$mip[gline][1]} { PN:%d}	{#VAR {my[defs][pn]}		{&1}}   {#var {my[defs][pn]}    {0}};
+		#REGEX {$mip[gline][1]} { PG:%d}	{#VAR {my[defs][pg]}		{&1}}   {#var {my[defs][pg]}    {0}};
+		#REGEX {$mip[gline][1]} { PF:%d}	{#VAR {my[defs][pf]}		{&1}}   {#var {my[defs][pf]}    {0}};
+		#REGEX {$mip[gline][1]} { PH:%d}	{#VAR {my[defs][ph]}		{&1}}   {#var {my[defs][ph]}    {0}};
+		#REGEX {$mip[gline][1]} { HS:%d}	{#VAR {my[defs][hs]}		{&1}}   {#var {my[defs][hs]}    {0}};
+		#REGEX {$mip[gline][1]} { O:%d}		{#VAR {my[defs][o]}		{&1}}	{#var {my[defs][o]}     {0}};
+		#REGEX {$mip[gline][1]} { AG:%d}	{#VAR {my[defs][ag]}		{&1}}	{#var {my[defs][ag]}	{0}};
+		#REGEX {$mip[gline][1]} { B}		{#VAR {my[defs][blink]}		 {1}}	{#var {my[defs][blink]} {0}};
+		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
+		#REGEX {$mip[gline][1]} { PE:%d}	{#VAR {my[defs][pe]}		{&1}}   {#var {my[defs][pe]}    {0}};
+
+	}; #ELSEIF {%1 == 2} {
+		#nop Smile, GXP, Song Performing, Rounds left
+		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
+		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
+		#REGEX {$mip[gline][2]} { S: %1% %2: %3 NGL:}	{#VAR {my[song][&2]}	{&3}};
+	
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#NOP ***** Guild Stats Line Colour Handling *****
+#FUNCTION {fMipColourConv} {
+	#VAR {result} {%1};
+	#REPLACE {result} {>} {<099>};
+	#REPLACE {result} {<y} {<839>};
+	#REPLACE {result} {<r} {<819>};
+	#REPLACE {result} {<b} {<849>};
+	#REPLACE {result} {<g} {<829>};
+	#REPLACE {result} {<c} {<869>};
+	#REPLACE {result} {<v} {<859>};
+	#REPLACE {result} {<s} {<279>};
+}
+
+#class {mipstats} {close};

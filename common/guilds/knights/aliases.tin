@@ -7,6 +7,7 @@
 #alias {md} {stance def;mm;shieldblock on;parry on;};
 #alias {bcc} {battlecry Battlecrymenow.};
 #alias {st} {staunch};
+#alias {stt} {#10 staunch;hp};
 
 #NOP UTILITY / NON-COMBAT =====================================================;
 #alias {ce} {callesquire};

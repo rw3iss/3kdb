@@ -1,0 +1,97 @@
+#class {mipchatlog} {open}
+
+
+#VAR ignoreEmotes {cries 'OW;takes a deep breath;ceases his performance};
+
+
+#NOP ***** Broadcast Communication (Chat/Shout) *****
+#ALIAS {.mipProcessCAA} {
+	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
+		#var {mip[enomm]} {};
+		#var {mip[comm][command]}	{&2};
+		#var {mip[comm][line]}		{&3};
+		#var {mip[comm][source]}	{&4};
+		#var {mip[comm][data]}		{&5};
+
+		#format {timestamp} {%t} {<108>[<268>%H<108>:<268>%M<108>]<088> };
+		#format {datestamp} {%t} {%Y-%m-%d.log};
+
+		#NOP Ansify lines;
+		#var {commcol} {<178>};
+		#switch {"$mip[comm][line]"} {
+			#case {"ADMIN"}		    {#var {commcol} {<158>}};
+			#case {"Auction"}	    {#var {commcol} {<cba>}};
+			#case {"Bear"}		    {#var {commcol} {<168>}};
+			#case {"Bloodname"}	    {#var {commcol} {<138>}};
+			#case {"Clan Spol"}	    {#var {commcol} {<ABF><fff>}};
+			#case {"Com"}		    {#var {commcol} {<128>}};
+			#case {"Council"}	    {#var {commcol} {<108>}};
+			#case {"Eternal Main"}	{#var {commcol} {<168>}};
+			#case {"Events"}	    {#var {commcol} {<168>}};
+			#case {"Falcon"}	    {#var {commcol} {<128>}};
+			#case {"High Mortal"}	{#var {commcol} {<aff>}};
+			#case {"JuggAnnounce"}	{#var {commcol} {<118>}};
+			#case {"JuggMissiles"}	{#var {commcol} {<118>}};
+			#case {"JuggNewbie"}	{#var {commcol} {<258>}};
+			#case {"Cult Game"}	    {#var {commcol} {<ade>}};
+			#case {"Main"}		    {#var {commcol} {<118>}};
+			#case {"Newbie"}	    {#var {commcol} {<aca>}};
+			#case {"Party"}		    {#var {commcol} {<AEF><fff>}};
+			#case {"Shout"}		    {#var {commcol} {<bbb>}};
+			#case {"Whine"}		    {#var {commcol} {<118>}};
+			#case {"Wolf"}		    {#var {commcol} {<228>}};
+			#default		        {#var {commcol} {<178>}};
+		};
+		
+		#var {mip[comm][cdata]} {$mip[comm][data]};
+		#replace {mip[comm][cdata]} {:} {:<099>};
+		#replace {mip[comm][cdata]} {]} {]<099>};
+		#var {mip[comm][cdata]} {$commcol$mip[comm][cdata]<099>};
+
+		#line log {logs/$datestamp} {$timestamp\};
+		#line log {logs/$datestamp} {$mip[comm][cdata]};
+
+	}
+}
+
+
+#NOP ***** 2 Way Communication (Tell/Emote) *****
+#ALIAS {.mipProcessBAB} {
+	#REGEX {%1} {{(.*)\~(.*)\~(.*)}} {
+		#IF {"&3" != "0"} {
+			#var mip[comm][data]	{&4};
+			#var mip[comm][source]	{&3};
+			#var mip[comm][line]	{Tell};
+
+            #var ignore 0;
+            #foreach {$ignoreEmotes} {iem} {
+                #if {"&4" == "%*$iem%*"} {
+                    #var ignore 1;
+                }
+            }
+
+            #if {!$ignore} {
+                #var mip[comm][command]	{tell $mip[comm][source]};
+                #format {timestamp} {%t} {<108>[<268>%H<108>:<268>%M<108>]<088> };
+                #format {datestamp} {%t} {%Y-%m-%d.log};
+                #format {timestamp_save} {%t} {[%H:%M] };
+                #IF {"&2" == "x"} {
+                    #NOP Message to another player;
+                    #var mip[comm][twoway] {to};
+                    #line log {logs/$datestamp} {$timestamp_save\};
+                    #line log {logs/$datestamp} {<ead>To &3<088>: &4}
+                } {
+                    #NOP Message from another player;
+                    #var mip[comm][twoway] {from};
+                        #line log {logs/$datestamp} {$timestamp_save\};
+                        #line log {logs/$datestamp} {<ead>&3<088>: &4};
+                        #bell;
+                }
+            } {
+            };
+
+		}
+	}
+}
+
+#class {mipchatlog} {close};

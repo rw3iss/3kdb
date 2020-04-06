@@ -1,21 +1,32 @@
 #class {miproom} {open};
 
-#nop react to room mip, capture vars...;
 
-/* register_heartbeat_action {vars}; */
 
-/* Draw room output */
+#ALIAS {.mipProcessBAD} {
+    #VAR {room[name]} {%1};
+};
 
-    /*
-    #var top 30;
-    #var left 100;
-    #var right 120;
-    #var bottom 50;
-    #draw top side $top $left $top $right;
-    #draw left side $top $left $bottom $left
-    #draw bottom side $bottom $left $bottom $right;
-    #draw right side $top $right $bottom $right;
-    */
+#ALIAS {.mipProcessDDD} {
+    #var exitStr %1;
+    #replace exitStr {~} { };
+    #var {room[exits]} {%1};
+};
+
+#NOP ***** Room Nouns Handling *****
+#ALIAS {.mipProcessHAB} {
+	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
+		#list {nouns} {fin} {&3} {noun_index};
+		#if {$noun_index == 0} {
+			#list {nouns} {add} {&3};
+			#if {"$autosearch" == "on"} {
+				exa &3;
+				search &3
+			}
+		}
+	}
+}
+#list {nouns} {create};
+
 
 
 #alias {draw_mip_room} {
@@ -57,43 +68,8 @@
 } {2};
 
 
+#nop To clean/customise positioning...;
 #split {0} {4} {0} {-100};
 
+
 #class {miproom} {close};
-
-
-
-
-/*
-#K%60980022DDDn~s~w~enter~stables                                                                   │
-#K%60980042HABnoun~clearing~clearing~exa #N/search #N                                               │
-#K%60980038HABnoun~chapel~chapel~exa #N/search #N                                                   │
-#K%60980038HABnoun~forest~forest~exa #N/search #N                                                   │
-#K%60980042HABnoun~clearing~clearing~exa #N/search #N                                               │
-#K%60980032HABnoun~row~row~exa #N/search #N                                                         │
-#K%60980038HABnoun~spikes~spikes~exa #N/search #N                                                   │
-#K%60980040HABnoun~placard~placard~exa #N/search #N
-
-
-
-BAD = room short
-DDD = room look exits
-HAB = item in room
-
-
-
-#K%60980019BADIvory path (n,s) 
-#K%60980006DDDn~s   
-
-
-
-
-There are four obvious exits: north, south, west, east
-#K%60980010DDDn~s~w~e
-#K%60980050HABnoun~intersection~intersection~exa #N/search #N
-#K%60980034HABnoun~path~path~exa #N/search #N
-#K%60980034HABnoun~road~road~exa #N/search #N
-#K%60980036HABnoun~trees~trees~exa #N/search #N
-#K%60980038HABnoun~forest~forest~exa #N/search #N
-*/
-

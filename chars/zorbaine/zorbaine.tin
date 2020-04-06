@@ -36,7 +36,13 @@ $username;$password;
 #read modules/cursecheck/cursecheck.tin;
 #read modules/colors/colors.tin;
 
+
 /* create space for static hpbar at bottom */
 #split 0 3;
+
+
+/* startup / init modules for character */
+mipon;
+
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};
