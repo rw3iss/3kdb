@@ -21,6 +21,7 @@
 
 	#show ===========> WORLD DROP %1 <============;
 	#if {$botting == 1} {.stop;#delay {1} {.stop}};
+	.stop;
 	#unvar {worldDropName};
 } {1}; 
 

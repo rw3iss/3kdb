@@ -12,6 +12,7 @@ $username;$password;
 
 /* load common */
 #read common/index.tin;
+#read common/areas/index.tin;
 
 /* load guild */
 #read common/guilds/knights/index.tin;
@@ -31,6 +32,9 @@ $username;$password;
 /* load specific modules for this character */
 #read modules/settings/settings.tin;
 #read modules/afterkill/afterkill.tin;
+#read modules/dmgtracker/dmgtracker.tin;
+#read modules/cursecheck/cursecheck.tin;
+#read modules/colors/colors.tin;
 
 /* create space for static hpbar at bottom */
 #split 0 3;

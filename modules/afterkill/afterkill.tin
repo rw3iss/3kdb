@@ -4,15 +4,17 @@
 
 _set {afterkill_enabled} {0};
 
-#var afterkillList {
-	{1}{say after kill 1;say another 1;}
-	{2}{say after kill 2;say another 2;}
-};
+#var afterkillList {};
 
 #alias {afterkill} {
-    _set afterkill_enabled 1;
     #list afterkillList {add} {%0};
     #show Added to afterkill: %0;
+    afterkillon;
+};
+
+
+#alias {akcl} {
+    #vaf afterkillList {};
 };
 
 #alias {akrem} {
@@ -23,6 +25,11 @@ _set {afterkill_enabled} {0};
         _set afterkill_enabled 0;
         #nop #var afterkillList {};
         #show After kill disabled.;
+};
+
+#alias {afterkillon} {
+        _set afterkill_enabled 1;
+        #show After kill enabled.;
 };
 
 #act {^{$characterName} dealt the killing blow to} {
@@ -38,6 +45,7 @@ _set {afterkill_enabled} {0};
 /* -- Shortcuts -- */
 #alias {ak} {afterkill};
 #alias {akoff} {afterkilloff};
+#alias {akon} {afterkillon};
 
 
 register_module {afterkill};

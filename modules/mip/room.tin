@@ -1,0 +1,99 @@
+#class {miproom} {open};
+
+#nop react to room mip, capture vars...;
+
+/* register_heartbeat_action {vars}; */
+
+/* Draw room output */
+
+    /*
+    #var top 30;
+    #var left 100;
+    #var right 120;
+    #var bottom 50;
+    #draw top side $top $left $top $right;
+    #draw left side $top $left $bottom $left
+    #draw bottom side $bottom $left $bottom $right;
+    #draw right side $top $right $bottom $right;
+    */
+
+
+#alias {draw_mip_room} {
+
+    #var roomTop 40;
+    #var roomLeft 105;
+    #var roomWidth 80;
+    #var roomHeight 20;
+    #math roomBottom {$roomTop + $roomHeight};
+    #math roomRight {$roomLeft + $roomWidth}; 
+    
+    #var nounStr {};
+    #foreach {*nouns[%*]} {idx} {
+        #var noun $nouns[$idx];
+        #var nounStr {$nounStr\n $noun};
+    };
+    
+    #var roomName ${room[name]};
+
+    #var roomNameStr {<ffa>${roomName}};
+
+    #var nounStr {<ade>${nounStr}};
+
+    #var roomStr {${roomNameStr}\n${nounStr}\n\n <afe>${exitStr}};
+
+    #draw {<dda>} {box} $roomTop $roomLeft $roomBottom $roomRight { ${roomStr} };
+
+};
+
+#alias {sr} {
+    #foreach {*nouns[%*]} {idx} {
+        #var noun $nouns[$idx];
+        ex $noun;
+    };
+};
+
+#ticker draw_room {
+    draw_mip_room;
+} {2};
+
+
+#split {0} {4} {0} {-100};
+
+#class {miproom} {close};
+
+
+
+
+/*
+#K%60980022DDDn~s~w~enter~stables                                                                   │
+#K%60980042HABnoun~clearing~clearing~exa #N/search #N                                               │
+#K%60980038HABnoun~chapel~chapel~exa #N/search #N                                                   │
+#K%60980038HABnoun~forest~forest~exa #N/search #N                                                   │
+#K%60980042HABnoun~clearing~clearing~exa #N/search #N                                               │
+#K%60980032HABnoun~row~row~exa #N/search #N                                                         │
+#K%60980038HABnoun~spikes~spikes~exa #N/search #N                                                   │
+#K%60980040HABnoun~placard~placard~exa #N/search #N
+
+
+
+BAD = room short
+DDD = room look exits
+HAB = item in room
+
+
+
+#K%60980019BADIvory path (n,s) 
+#K%60980006DDDn~s   
+
+
+
+
+There are four obvious exits: north, south, west, east
+#K%60980010DDDn~s~w~e
+#K%60980050HABnoun~intersection~intersection~exa #N/search #N
+#K%60980034HABnoun~path~path~exa #N/search #N
+#K%60980034HABnoun~road~road~exa #N/search #N
+#K%60980036HABnoun~trees~trees~exa #N/search #N
+#K%60980038HABnoun~forest~forest~exa #N/search #N
+*/
+

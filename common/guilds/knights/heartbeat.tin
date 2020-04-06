@@ -239,7 +239,6 @@
 #alias {killtrigger} {
 	rest;
 	immolate corpse;
-	get ring;
 
 	#if {$party == 1} {
 		#if {"$partyLeader" == "zorbaine"} {
@@ -256,6 +255,17 @@
 	};
 	
 	#var killing -;
+	
+	get ring;
+    get shared;smuggle shard;
+
+	#if {@_get{afterkill_enabled} == 1} {
+		#foreach {$afterkillList} {action} { 
+			#show ACTION: $action; 
+			$action;
+		};
+	};
+
 };
 
 #alias {docorpsetrig} {

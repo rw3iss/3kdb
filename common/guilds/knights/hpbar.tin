@@ -1,6 +1,14 @@
 #class {knight_hpbar} {kill}
 #class {knight_hpbar} {open}
 
+
+/*
+HP:5265/5265 | SP:1662/1664 | STM:1921/2490 | STN:19%(1) | SW:100.0% | Off Charge
+PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
+[WPN:Superb] [LIGHT:n(0%)] [LF:476] [MOB:bleeding]
+*/
+
+
 #function {colscale}
 {
     #switch {10 * %1 / %2}
@@ -149,6 +157,18 @@
 #prompt {{HP:(\d+)/(\d+) \| SP:(\d+)/(\d+) \| STM:(\d+)/(\d+) \| STN:(\d+)%\((\d+)\) \| SW:(\d+[.]\d+)% \| (Neu|Off|Def) (Melee|Focus|Standard|Charge|Flurry)}} {${prompt1} } {-4};
 #prompt {{^PPD\((Y|n)\).+$}} {${prompt2}} {-3};
 #prompt {{\[WPN:(.*)\] \[LIGHT:(Y|n)\((\d+)%\)\] \[LF:(\d+)\] \[MOB:(.*)\]}} {${prompt3}} {-2};
+
+
+#draw Blue box 66 1 68 80 { HP: $my[hp][current]/$my[hp][max]; };
+#draw top side 66 1 67 80;
+#draw crossed corner 68 1 68 2;
+#draw vertical line 67 1 67 1;
+#draw tile 66 1 68 4;
+#draw blue tile 66 1 67 11 {<BFFF> $my[hp][current]/$my[hp][max]<FFFF>};
+#draw blue tile 66 13 67 23 {<BDDA> $my[sp][current]/$my[sp][max]<FDDA>};
+#draw red tile 66 25 67 35 {<B5FF> $my[stam][current]/$my[stam][max]<F5FF>};
+
+
 
 
 #class {knight_hpbar} {close};

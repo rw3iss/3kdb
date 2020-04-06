@@ -1,27 +1,32 @@
 #class {bot} {open}
 
 #var botting 1;
+
 #var foundmob 0;
 #var foundplayer 0;
-
-#var mobname 0;
-#var dontAttack 0;
-#var pickupAll 0;
+#var founditems 0;
 
 #var prevMobName 0;
-#var justItems 0;
-#var foundItems 0;
-#var doafterbot 0;
-#var afterbot 0;
-#var loop 1;
+#var mobname 0;
 
+#var loop 1;
+#var dontAttack 0;
+#var pickupAll 0;
+#var justItems 0;
+
+
+/* ignore these players */
 #var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void};
 
+
+/* pause the bot */
 #alias {.pause} {
 	#var halt 1;
 };
 #alias {.p} {.pause};
 
+
+/* kill the bot */
 #alias {.stop} {
 	.pause;
     #unvar botpath;
@@ -34,6 +39,8 @@
 };
 #alias {.s} {.stop};
 
+
+/* starts / continues the bot after it's loaded */
 #alias {..} {
 	#class {xbot} {open};
 
@@ -74,7 +81,7 @@
             }
         };
 
-        #if {$foundItems} {
+        #if {$founditems} {
             #if {$pickupAll} {#nop get all;}
         };
 
@@ -88,6 +95,8 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
+
+/* disable bot reactions when doing simple looks */
 /*
 #alias {l} {
 	#var halt 1;
@@ -100,6 +109,10 @@
 }
 */
 
+/* Todo: make friends auto-defend list */
+#act {{(.*) (\!)?attacking Toren\!}} {defend toren};
+
+/* Signify there is a player in the room, if not in friends list */
 #act {{^-P-_(.*)}} {
     #var foundfriend 0;
 	#foreach {$playerWhitelist} {name} {
@@ -111,18 +124,21 @@
 } {1};
 
 
+
+/* Bot end actions... */
 #act {#END OF PATH} {
     #if {!$loop || !$foundmob} {
+        #show \nLooping not enabled. Stopping.;
         .stop;
     } {
-        #show Looping bot...;
+        #show \nLooping bot...;
         #path load botpath;
-        #var foundmob 0;
         .bot;
     };
 };
 
 
+/* If for some reason we attack and mob isn't present, keep the bot going... */
 #act {{^There is no (\w+) here}} {
 	#if {$botting == 1 && $halt == 0} {
 		#if {"%2" == "$mobname" || "%2" == "$prevMobName"} {
@@ -132,6 +148,7 @@
 };
 
 
+/* load the selected bot's path into ready state */
 #path load botpath;
 
 

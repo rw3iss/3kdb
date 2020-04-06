@@ -1,5 +1,5 @@
-
 #nop Script to drop cursed rings trying to put them in a box;
+
 #act {{^The (.*) is banned from the box\.}} {drop %2;};
 
 #alias {ringcheck} {

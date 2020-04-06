@@ -77,7 +77,6 @@
 
 
 #alias {rftrain} {
-    enter;
     get helmet from box;
     get amulet from box;
     get armour from box;

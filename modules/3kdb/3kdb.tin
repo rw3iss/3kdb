@@ -3,6 +3,7 @@
 
 #alias {3kdb} { #system {node /web/sites/3kdb/api/getinfo.js}; };
 
+#read modules/3kdb/lib/armour.tin;
 
 
 register_module {3kdb};

@@ -80,9 +80,9 @@
 	}
 }
 
-#NOP Room Short with Exits
+#NOP Room Short with Exits$
 #act {{-R-_(.*) \((.*)\)\s*}} {
-	#var room %2;
+	#var roomName %2;
 	#var exits %3;
 	#if {"$mapping" == "on"} {
 		#replace exits {,} {;};
@@ -183,11 +183,11 @@
 #alias {mapgo} {#map goto {roomnote} {%0}}
 
 #alias {findhere} {
-	#if {"$room" == ""} {
+	#if {"$roomName" == ""} {
 		look
 	};
-	#map list {roomarea} {$area} {roomname} {$room%*};
-	#map list {roomarea} {$area} {roomname} {$room%*} {variable} {findroom};
+	#map list {roomarea} {$area} {roomname} {$roomName%*};
+	#map list {roomarea} {$area} {roomname} {$roomName%*} {variable} {findroom};
 	#if {&findroom[] == 1} {
 		#list {foundroom} {create} {$findroom};
 		#map goto $foundroom[1]

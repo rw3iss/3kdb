@@ -1,15 +1,5 @@
 #CLASS {global} OPEN
 
-#ALIAS {ld}
-{
-     #class global open;
-     #map get roomvnum curvnum;
-     #class global close;
-     #class global write chars/zorbaine/global.tin;
-     #delay 1 #zap
-}
-
-#VARIABLE         {curvnum}  {4119}
-#VARIABLE         {wielded}  {$wielded}
+#VARIABLE         {curvnum}  {5330}
 
 #CLASS {global} CLOSE

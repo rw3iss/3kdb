@@ -1,0 +1,3 @@
+#act {{^You spur your (.*) forward\, (.*)\. \((\d+)\)$}} { #show \n\n\nDMG: %1;#delay {.5} {#show dmg;}; };
+
+#act {You wheel past (.*) on your (.*).$} {};
