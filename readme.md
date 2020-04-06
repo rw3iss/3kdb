@@ -9,7 +9,7 @@ Work in progress....
 
 **RULES FOR REPO:**
 * put your character-specific stuff in /chars/\<charname\>
-* use /* COMMENT */ for comments, not "#nop COMMENT;"
+* use /* COMMENT */ for comments only outside of commands (ie. don't put inside an alias), and not as first-line in file, otherwise "#nop COMMENT;" is standard.
 
 
 **CONNECTING TO 3K / BASIC PLAYING**
@@ -22,6 +22,7 @@ Work in progress....
 
 
 **TIPS:**
+* TinTin++ syntax highlighting for VS Code: https://github.com/daagar/tintin-vscode
 * If you want to edit code locally and auto-send to server on saving, use VSCode and install "SFTP" plugin, then CTRL+SHIFT+P > SFTP: Config, and enter this, replacing with your server login info (ask rw3iss@gmail.com for an account if you don't have one):
 
         {
