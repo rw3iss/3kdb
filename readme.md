@@ -9,7 +9,7 @@ Work in progress....
 
 **RULES FOR REPO:**
 * put your character-specific stuff in /chars/\<charname\>
-* use /* COMMENT */ for comments only outside of commands (ie. don't put inside an alias), and not as first-line in file, otherwise "#nop COMMENT;" is standard.
+* use /* COMMENT */ for comments, not "#nop COMMENT;"
 
 
 **CONNECTING TO 3K / BASIC PLAYING**
@@ -22,7 +22,6 @@ Work in progress....
 
 
 **TIPS:**
-* TinTin++ syntax highlighting for VS Code: https://github.com/daagar/tintin-vscode
 * If you want to edit code locally and auto-send to server on saving, use VSCode and install "SFTP" plugin, then CTRL+SHIFT+P > SFTP: Config, and enter this, replacing with your server login info (ask rw3iss@gmail.com for an account if you don't have one):
 
         {
@@ -52,4 +51,3 @@ Then you can sync and edit the mud tintin scripts from your local VSCode, and it
     
 * *3kdb:*
     - add interface to local 3k mysql area/item/mob database, for use in-game (ooh, aah).
-
