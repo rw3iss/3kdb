@@ -1,7 +1,7 @@
 #class {mipchatlog} {open}
 
 
-#VAR ignoreEmotes {cries 'OW;takes a deep breath;ceases his performance};
+#VAR ignoreEmotes {nods and bids you farewell;smiles and welcomes you;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
 
 
 #NOP ***** Broadcast Communication (Chat/Shout) *****
@@ -23,7 +23,7 @@
 			#case {"Auction"}	    {#var {commcol} {<cba>}};
 			#case {"Bear"}		    {#var {commcol} {<168>}};
 			#case {"Bloodname"}	    {#var {commcol} {<138>}};
-			#case {"Clan Spol"}	    {#var {commcol} {<ABF><eee>}};
+			#case {"Clan Spol"}	    {#var {commcol} {<AAF><fff>}};
 			#case {"Com"}		    {#var {commcol} {<128>}};
 			#case {"Council"}	    {#var {commcol} {<108>}};
 			#case {"Eternal Main"}	{#var {commcol} {<168>}};
@@ -33,7 +33,7 @@
 			#case {"JuggAnnounce"}	{#var {commcol} {<118>}};
 			#case {"JuggMissiles"}	{#var {commcol} {<118>}};
 			#case {"JuggNewbie"}	{#var {commcol} {<258>}};
-			#case {"Cult Game"}	    {#var {commcol} {<ade>}};
+			#case {"Cult Game"}	    {#var {commcol} {<acd>}};
 			#case {"Main"}		    {#var {commcol} {<118>}};
 			#case {"Newbie"}	    {#var {commcol} {<aca>}};
 			#case {"Party"}		    {#var {commcol} {<ADA><fff>}};

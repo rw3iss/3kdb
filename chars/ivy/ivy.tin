@@ -23,8 +23,14 @@ $username;$password;
 
 /* Load modules */
 #read modules/corpsemanager/corpsemanager.tin;
+#read modules/chatlog/chatlog.tin;
 
 #nop create space for static hpbar at bottom;
 #split {0} {4};
+
+
+/* startup / init modules for character */
+#nop mipon;
+
 
 #alias {reload} {#kill all;#show \n;#read chars/ivy/ivy.tin;};

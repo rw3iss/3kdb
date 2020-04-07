@@ -34,7 +34,6 @@ $username;$password;
 #read modules/afterkill/afterkill.tin;
 #read modules/dmgtracker/dmgtracker.tin;
 #read modules/cursecheck/cursecheck.tin;
-#read modules/colors/colors.tin;
 
 
 /* create space for static hpbar at bottom */

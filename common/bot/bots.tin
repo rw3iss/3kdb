@@ -1,5 +1,6 @@
 #class {botlist} {open}
 
+#alias {-kayos} {scaler 140;#read common/bot/bots/kayos.tin;ak ..}
 #alias {-kayosbot} {scaler 125;#read common/bot/bots/kayosbot.tin;ak ..}
 #alias {-chessbot} {scaler 140;#read common/bot/bots/chessboard.tin;ak ..}
 #alias {-smurfbot} {scaler 75;#read common/bot/bots/smurfbot.tin;ak ..}

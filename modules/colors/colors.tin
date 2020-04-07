@@ -29,7 +29,7 @@
     
 
     #showme \nUse capitals for background colors, lowercase for foreground colors, ie:;
-    #showme <FFA><eaa> Test <088>  (\<FFA\>\<eaa\>Test\<088\>)\n;
+    #showme {    <FFA><eaa> Test <088>  (\<FFA\>\<eaa\>Test\<088\>)\n};
 };
 
 #class {colors} {close};

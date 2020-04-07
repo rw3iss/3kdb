@@ -351,7 +351,7 @@
 #alias {smr} {smuggle remove %0};
 
 /* cheat: get +ac from defense mode, preparing, then back to offense without re-preparing */
-#alias {defo} {md;pp;#delay {3} {mmc;bcc}};
+#alias {defo} {md;pp;#delay {3.5} {mmc;bcc}};
 
 
 /* ------------------------------------ */

@@ -42,7 +42,6 @@
 	#system tmux send -t parimd ls ENTER
 }
 
-
 #alias {cell} {#sys tmux select-layout even-vertical;#split 0 4}
 #alias {lappy} {#sys tmux select-layout main-vertical;#split 0 4}
 

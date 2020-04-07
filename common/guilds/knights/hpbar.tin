@@ -77,23 +77,43 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
 {	
 	#var my[hp][color] @colscale{%2;%3};
 	#var my[sp][color] @colscale{%4;%5};
+
     #var my[stam][color] @colscale{%6;%7};
+    #var my[gp1][color] @colscale{%6;%7};
+
     #var my[strain][color] @colscale{{100 - %8}{200}};
+    #var my[gp2][color] @colscale{{100 - %8}{200}};
+
 	#var my[hp][current] %2;
 	#var my[hp][max] %3;
-	#nop #math my[hp][diff] (%3 - %2);
+    #math my[hp][diff] (%3 - %2);
+
 	#var my[sp][current] %4;
 	#var my[sp][max] %5;
 	#math my[sp][diff] {%5 - %4};
+    
 	#var my[stam][last] $my[stam][current];
 	#var my[stam][current] %6;
 	#var my[stam][max] %7;
 	#math my[stam][diff] {%7 - %6};
 	#math my[stam][delta] {$my[stam][current] - $my[stam][last]};
+
+	#var my[gp1][last] $my[gp1][current];
+	#var my[gp1][current] %6;
+	#var my[gp1][max] %7;
+	#math my[gp1][diff] {%7 - %6};
+	#math my[gp1][delta] {$my[gp1][current] - $my[gp1][last]};
+
 	#var my[strain][current] %8;
 	#var my[strain][max] 200;
 	#math my[strain][diff] {200 - %8};
 	#var my[strain][intensity] %9;
+
+	#var my[gp2][current] %8;
+	#var my[gp2][max] 200;
+	#math my[gp2][diff] {200 - %8};
+	#var my[gp2][intensity] %9;
+    
 	#var my[secondwind][current] %10;
 	#var my[secondwind][max] 100;
 	#var my[secondwind][color] @secondwindcolscale{%10;100};
@@ -154,21 +174,9 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
 	#format {prompt3} {%s%s %s %s} {<088>} {%1} {$hpbar[corpsemsg]} {};
 };
 
-#prompt {{HP:(\d+)/(\d+) \| SP:(\d+)/(\d+) \| STM:(\d+)/(\d+) \| STN:(\d+)%\((\d+)\) \| SW:(\d+[.]\d+)% \| (Neu|Off|Def) (Melee|Focus|Standard|Charge|Flurry)}} {${prompt1} } {-4};
+#nop prompt {{HP:(\d+)/(\d+) \| SP:(\d+)/(\d+) \| STM:(\d+)/(\d+) \| STN:(\d+)%\((\d+)\) \| SW:(\d+[.]\d+)% \| (Neu|Off|Def) (Melee|Focus|Standard|Charge|Flurry)}} {${prompt1} } {-4};
 #prompt {{^PPD\((Y|n)\).+$}} {${prompt2}} {-3};
 #prompt {{\[WPN:(.*)\] \[LIGHT:(Y|n)\((\d+)%\)\] \[LF:(\d+)\] \[MOB:(.*)\]}} {${prompt3}} {-2};
-
-
-#draw Blue box 66 1 68 80 { HP: $my[hp][current]/$my[hp][max]; };
-#draw top side 66 1 67 80;
-#draw crossed corner 68 1 68 2;
-#draw vertical line 67 1 67 1;
-#draw tile 66 1 68 4;
-#draw blue tile 66 1 67 11 {<BFFF> $my[hp][current]/$my[hp][max]<FFFF>};
-#draw blue tile 66 13 67 23 {<BDDA> $my[sp][current]/$my[sp][max]<FDDA>};
-#draw red tile 66 25 67 35 {<B5FF> $my[stam][current]/$my[stam][max]<F5FF>};
-
-
 
 
 #class {knight_hpbar} {close};

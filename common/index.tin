@@ -7,16 +7,21 @@
 
 /* -- load common modules -- */;
 #read modules/modules/modules.tin;
-#read modules/reforge/reforge.tin;
+#read modules/logger/logger.tin;
 #read modules/deadman/deadman.tin;
-#read modules/playcult/playcult.tin;
 #read modules/worlddrops/worlddrops.tin;
+
+#read modules/reforge/reforge.tin;
+#read modules/playcult/playcult.tin;
+
 #read modules/info/info.tin;
-#read modules/3kdb/3kdb.tin;
+#read modules/colors/colors.tin;
+
 #read modules/mip/mip.tin;
+
+#read modules/3kdb/3kdb.tin;
 
 /* -- Do common init -- */;
 loadmap;
 deadman 30;
 hp;
-

@@ -1,1 +1,13 @@
-#nop nothing yet;
+#act {{(\w+) taps you on the shoulder\.}} { 
+    #format followtarget {%l} {%2}; 
+    follow $followtarget;
+};
+
+#act {{(\w+) begs you\.}} { 
+    #format defendtarget {%l} {%2}; 
+    defend $defendtarget;
+};
+
+#act {{(\w+) moos at you\.}} { 
+    unwrap corpse;
+};

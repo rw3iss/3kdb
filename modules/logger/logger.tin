@@ -1,0 +1,37 @@
+#nop Logs random things that MIP doesn't pick up;
+
+#class {logger} {kill}
+#class {logger} {open}
+
+#alias {-cl} {
+	#format {datestamp} {%t} {%Y-%m-%d.log};
+	#format {timestamp} {%t} {[%H:%M] };
+	#line log logs/$datestamp {$timestamp\};
+	#line log logs/$datestamp;
+	-xchatlog;
+	beep;
+};
+
+#alias {-clnobeep} {
+	#format {datestamp} {%t} {%Y-%m-%d.log};
+	#format {timestamp} {%t} {[%H:%M] };
+	#line log logs/$datestamp {$timestamp\};
+	#line log logs/$datestamp;
+	-xchatlog;
+};
+
+#alias {-xchatlog} {
+	#class {xchatlog} {open};
+	#act {^{\S}} {#class {xchatlog} {kill}} {99};
+	#act {{^(\s)*$}} {#class {xchatlog} {kill}} {99};
+	#act {^{\s{1,40}\S}} {-cl};
+	#class {xchatlog} {close};
+};
+
+
+
+/* cult game */
+#act {{^Gargoyle whispers:}} {-clnobeep}
+
+
+#class {logger} {close}

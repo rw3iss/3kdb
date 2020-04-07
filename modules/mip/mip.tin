@@ -17,6 +17,11 @@
     #class {mipstats} {kill};
 };
 
+#alias {mipreload} {
+    mipoff;
+    mipon;
+};
+
 #var mipdebug 0;
 #alias mipdebug {
     #var mipdebug 1;

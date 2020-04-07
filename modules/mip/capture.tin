@@ -26,7 +26,7 @@
     #if {$mipdebug} {
         #show MIP: %3: %4;
     };
-
+    
 	#VAR {mip[charcount]} {0};
 	#VAR {mip[out]} {};
 	#VAR {mip[overflow]} {};

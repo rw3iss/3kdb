@@ -30,11 +30,10 @@
 
 
 #alias {draw_mip_room} {
-
     #var roomTop 40;
-    #var roomLeft 105;
-    #var roomWidth 80;
-    #var roomHeight 20;
+    #var roomLeft 102;
+    #var roomWidth 100;
+    #var roomHeight 22;
     #math roomBottom {$roomTop + $roomHeight};
     #math roomRight {$roomLeft + $roomWidth}; 
     
@@ -44,16 +43,11 @@
         #var nounStr {$nounStr\n $noun};
     };
     
-    #var roomName ${room[name]};
-
-    #var roomNameStr {<ffa>${roomName}};
-
+    #var roomNameStr {<ffa>${room[name]}};
     #var nounStr {<ade>${nounStr}};
-
     #var roomStr {${roomNameStr}\n${nounStr}\n\n <afe>${exitStr}};
 
     #draw {<dda>} {box} $roomTop $roomLeft $roomBottom $roomRight { ${roomStr} };
-
 };
 
 #alias {sr} {
