@@ -15,7 +15,7 @@
 #alias {-grocbot} {#read common/bot/bots/groceries.tin}
 #alias {-chessbot2} {#read common/bot/bots/chessboard2.tin}
 #alias {-icybluebot} {map icyblueportal;#read common/bot/bots/icyblue.tin};
-#alias {-rimalkinbot} {#read common/bot/bots/rimalkins.tin;map rimalkin;#show RIMALKINS.;}
+#alias {-rimalkinbot} {map rimalkins;#read common/bot/bots/rimalkins.tin;}
 #alias {-chinbot} {#read common/bot/bots/chinchilla.tin;..}
 #alias {-muggerbot} {#read common/bot/bots/muggers.tin;}
 #alias {-knivurbot} {#read common/bot/bots/knivur.tin}

@@ -3,7 +3,6 @@
 #var deadmanIdleTimeout 1800; 
 #var deadmanEnabled 0;
 
-
 #alias deadman {
     #math deadmanIdleTimeout {60 * %1}; 
     #show \nDeadman enabled for %1 minutes.;

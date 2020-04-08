@@ -16,15 +16,16 @@
 
 
 /* ignore these players */
-#var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void};
+#var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void;Killgrave};
 
+/* load the selected bot's path into ready state */
+#path load botpath;
 
 /* pause the bot */
 #alias {.pause} {
 	#var halt 1;
 };
 #alias {.p} {.pause};
-
 
 /* kill the bot */
 #alias {.stop} {
@@ -120,7 +121,7 @@
             #var foundfriend 1;
         };
 	};
-    #if {!$foundfriend} {#var foundplayer 1;};
+    #if {!$foundfriend} {#var foundplayer 1;#show PLAYER.;};
 } {1};
 
 
@@ -146,10 +147,6 @@
 		};
 	};
 };
-
-
-/* load the selected bot's path into ready state */
-#path load botpath;
 
 
 /* helpers */

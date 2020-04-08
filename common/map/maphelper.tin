@@ -29,7 +29,7 @@
 };
 
 
-#alias {mk} {#map goto knight};
+#alias {mk} {#map goto knights};
 #alias {mg} {#map goto gentech};
 #alias {mc} {#map goto cot};
 #alias {mch} {#map goto chaos};

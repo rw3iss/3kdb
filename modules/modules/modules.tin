@@ -37,5 +37,10 @@
     #read modules/%1/%1.tin;
 };
 
+#alias {mkill} {
+    #show Killing module: %1;
+    #class {%1} {kill};
+};
+
 
 #class {modules} {close};

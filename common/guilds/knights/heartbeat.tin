@@ -146,7 +146,7 @@
 
 #action {{(\w+) dealt the killing blow to}} {
 	killTriggerAlways;
-	#if {%2 == "Zorbaine" && $party == 0} { 
+	#if {"%2" == "Zorbaine" && $party == 0} { 
 		killtrigger; 
 	};
 	rest;

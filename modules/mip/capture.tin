@@ -81,11 +81,10 @@
 	#math {idle} {$idle + 1};
 	#if {$idle > $IdleTimeout} {
 		#unvar bot;
+        .stop
 	};
 	update_caption
 } {1}
-
-#EVENT {RECEIVED INPUT} {#var idle 0}
 
 #NOP ***** Individual Data Sections *****
 #ALIAS {.mipProcessFlag} {
