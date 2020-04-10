@@ -13,6 +13,9 @@
 #var scaler[hotel] 150;
 #var scaler[zelligar] 131;
 
+/* load common */
+#read common/index.tin;
+
 /* load specific modules for this character */
 #read modules/settings/settings.tin;
 #read modules/professions/golem_master.tin;
