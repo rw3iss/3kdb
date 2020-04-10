@@ -1,7 +1,5 @@
 #class {miproom} {open};
 
-
-
 #ALIAS {.mipProcessBAD} {
     #VAR {room[name]} {%1};
 };
@@ -27,43 +25,11 @@
 }
 #list {nouns} {create};
 
-
-
-#alias {draw_mip_room} {
-    #var roomTop 40;
-    #var roomLeft 102;
-    #var roomWidth 100;
-    #var roomHeight 22;
-    #math roomBottom {$roomTop + $roomHeight};
-    #math roomRight {$roomLeft + $roomWidth}; 
-    
-    #var nounStr {};
-    #foreach {*nouns[%*]} {idx} {
-        #var noun $nouns[$idx];
-        #var nounStr {$nounStr\n $noun};
-    };
-    
-    #var roomNameStr {<ffa>${room[name]}};
-    #var nounStr {<ade>${nounStr}};
-    #var roomStr {${roomNameStr}\n${nounStr}\n\n <afe>${exitStr}};
-
-    #draw {<dda>} {box} $roomTop $roomLeft $roomBottom $roomRight { ${roomStr} };
-};
-
-#alias {sr} {
+#alias {sr_all} {
     #foreach {*nouns[%*]} {idx} {
         #var noun $nouns[$idx];
         ex $noun;
     };
 };
-
-#ticker draw_room {
-    draw_mip_room;
-} {2};
-
-
-#nop To clean/customise positioning...;
-#split {0} {4} {0} {-100};
-
 
 #class {miproom} {close};

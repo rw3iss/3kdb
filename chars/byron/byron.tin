@@ -2,8 +2,6 @@
 
 #SESSION {3k - Byron} {3k.org} {3000}
 
-#debug all on;
-
 #conf pack 1;
 #conf color on;
 
