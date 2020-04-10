@@ -19,7 +19,7 @@
 ak {grab $tacoTarget}
 
 #act {You try to grab} {
-    .bot;
+    ..;
 }
 
 #class {bot} {close}

@@ -1,0 +1,65 @@
+#class {bot} {open}
+
+#var {area} {kayos_war};
+
+#send {scaler 150};
+ktrig bc/get all/grab cell/get key;
+
+#var kayos[key] 0;
+#var kayos[cell] 0;
+
+#var {botpath} {e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;s;s;s;s;s};
+#var {bunker_path} {enter bunker;n;w;e;e;n;{grab cell;s};w;s;{out;#path load botpath;#path goto {$resume_path}}}
+#var {spaceship_path} {e;e;e;e;e;{open briefcase;touch beacon;killbot}}
+
+#act {^-M-_Almodo, Zorbaine's Golden Dun Akhal-Teke.} {#nop;} {0};
+
+#alias {_add_stack} {#nop;};
+
+#act {^-M-_%1} {
+	#regex {%1} {alien} {#var mobname alien;};
+	#regex {%1} {soldier} {#var mobname soldier;};
+	#regex {%1} {pirate} {#var mobname pirate;};
+	#regex {%1} {imp} {#var mobname imp;};
+	#regex {%1} {tiger} {#var mobname robot;};
+	#regex {%1} {flameroller} {#var mobname flameroller;};
+	#regex {%1} {lion} {#var mobname lion;};
+	#regex {%1} {hound} {#var mobname hound;};
+	#regex {%1} {refugee} {#var mobname refugee;};
+	#regex {%1} {tornado} {#var mobname tornado;};
+	#regex {%1} {TANK} {#var mobname tank;};
+	#regex {%1} {velociraptor} {#var mobname velociraptor;};
+	#regex {%1} {the} {#var mobname mob;};
+	yy;
+} {1};
+
+#act {You've killed} {#nop;} {1};
+
+#act {^An intricate digital key: Ok.$} {#math kayos[key] {$kayos[key]+1}};
+#act {^key: Taken.$} {#math kayos[key] {$kayos[key]+1}};
+#act {^You grab the power cell from the locker.$} {#math kayos[cell] {$kayos[cell] + 1}};
+
+#act {^(o)A squat bunker.$} {
+	#regex {$room_short} {enter} {#nop;} {
+        #if {$kayos[key] > 0 && !$foundmob} {
+                #path save position {resume_path};
+                #path load bunker_path;
+                #math {kayos[key]} {$kayos[key] - 1};
+                unlock bunker;
+	    }
+    }
+};
+
+#act {^(o)A scorch-marked landing pad.$} {
+    #if {$kayos[cell] == 3} {
+            #3 insert cell;
+            #path load spaceship_path;
+            teleport;
+    }
+}
+
+#act {^(o)An intricate digital key%*$} { get key; }
+
+#class {bot} {close}
+
+#read common/bot/generic.tin

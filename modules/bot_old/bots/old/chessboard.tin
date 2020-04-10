@@ -1,0 +1,31 @@
+#class {bot} {open}
+#var {areaname} {Chessboard}
+#var {botpath} {w;w;w;n;n;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;n;n;n;e;e;e}
+
+#act {^-M-_{Angry War Elephant|Angry Horse|A Refugee|A War Correspondent|Red Cross Medic|Red Charioteer|Red Counsellor|Red Foot Soldier|Red Horseman|Red King|Red Priest|White Charioteer|White Counsellor|White Foot Soldier|White Horseman|White King|White Priest}} {
+	#if {"%1" == "Angry War Elephant"} {#var mobname animal};
+	#if {"%1" == "Angry Horse"} {#var mobname animal};
+	#if {"%1" == "A Refugee"} {#var mobname human};
+	#if {"%1" == "A War Correspondent"} {#var mobname human};
+	#if {"%1" == "Red Cross Medic"} {#var mobname human};
+	#if {"%1" == "Red Charioteer"} {#var mobname human};
+	#if {"%1" == "Red Counsellor"} {#var mobname human};
+	#if {"%1" == "Red Foot Soldier"} {#var mobname human};
+	#if {"%1" == "Red Horseman"} {#var mobname human};
+	#if {"%1" == "Red King"} {#var mobname human};
+	#if {"%1" == "Red Priest"} {#var mobname human};
+	#if {"%1" == "White Charioteer"} {#var mobname human};
+	#if {"%1" == "White Counsellor"} {#var mobname human};
+	#if {"%1" == "White Foot Soldier"} {#var mobname human};
+	#if {"%1" == "White Horseman"} {#var mobname human};
+	#if {"%1" == "White King"} {#var mobname human};
+	#if {"%1" == "White Priest"} {#var mobname human};
+	yy
+	} {1};
+#act {You've killed} {#nop} {1};
+
+#alias {che} {e;e;e;e;e;e;e;e;n;n;n;n;n;n;n;n;s;s;s;s;w;w;w;w;map chess};
+
+#class {bot} {close}
+
+#read common/bot/generic.tin

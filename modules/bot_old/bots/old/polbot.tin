@@ -1,0 +1,26 @@
+#class {bot} {open}
+#var {areaname} {Portal of Life}
+#var {botpath} {n;n;n;nw;nw;n;se;se;n;nw;nw;ne;n;se;ne;s;sw;se;ne;s;sw;s;s;ne;n;se;ne;ne;ne;nw;nw;nw;n;nw;ne;se;s;se;se;n;nw;n;se;se;s;s;se;n;n;n;n;n;n;n;n;nw;s;s;s;sw;n;n;n;sw;s;s;sw;sw;nw;n;se;ne;nw;ne;nw;ne;ne;ne;nw;nw;nw;nw;nw;s;se;sw;se;sw;se;sw;s;s;nw;sw;n;ne;nw;nw;n;se;se;n;nw;ne;n;n;sw;s;sw;n;sw;sw;sw;sw;sw;sw;s;ne;s;se;n;n;ne;s;s;s;ne;n;n;se;s;se;sw;se;sw;nw;sw;nw;nw;nw;s;s;s;s;s;s;ne;se;n;nw;n;ne;ne;se;ne;se;sw;sw;nw;sw;se;se;sw;s;se;se;se;se;se;s;s}
+
+#act {^-M-_{Queen's Elite Guardswoman|Wild Stag|Faerie Lizard|Baby Dragon|Rabid Wolf|Ragged Peasant|Sylvan Elf|Wyvern}}
+ {
+	#var cMob 0;
+	#if {"Queen's Elite Guardswoman"=="%1"} {#var cMob guard};
+	#if {"Wild Stag"=="%1"} {#var cMob stag};
+	#if {"Faerie Lizard"=="%1"} {#var cMob lizard};
+	#if {"Baby Dragon"=="%1"} {#var cMob dragon};
+	#if {"Rabid Wolf"=="%1"} {#var cMob wolf};
+	#if {"Ragged Peasant"=="%1"} {#var cMob peasant};
+	#if {"Sylvan Elf"=="%1"} {#var cMob elf};
+	#if {"Wyvern"=="%1"} {#var cMob wyvern};
+	@setMobName{$cMob};
+	#if {($hardmode == 1 && "$mobname" == "guard") ^^ ("$mobname" != "guard")}
+	{yy}
+ } {1}
+
+#class {bot} {close}
+
+#show PoL bot loaded.;
+
+#read common/bot/generic.tin
+

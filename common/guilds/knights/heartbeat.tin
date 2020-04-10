@@ -50,7 +50,7 @@
 	#if {$my[gp2][current] > 180} {
         #if {$botting == 1} {
             .pause;tr;tr;tr;rest;
-            #delay {60} {..};
+            #delay {60} {.bot};
         }
     }
 
@@ -160,7 +160,7 @@
 	rest;
 	#var incombat 0;
 	#var truced 0;
-	#if {$botting == 1} {..};
+	#if {$botting == 1} {.bot};
 } {1}; #nop highest priority kill trigger;
 
 
@@ -202,7 +202,7 @@
 	hp;
 	#if {"$my[battlecry]" == "n"} {bcc};
 	#act {There is no $killing here} {
-		#if {$botting} {..};
+		#if {$botting} {.bot};
 	};
 	kill $killing;
 	#delay {.25} {#unact {There is no $killing here}}

@@ -1,0 +1,19 @@
+#class {bot} {open}
+
+#var {areaname} {KayosBot}
+#var {botpath} {e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;s;s;s;s;s};
+
+#var {num_cards} {0};
+
+aftercorpse {get card};
+
+#act {-M-_Almodo%*} { #nop; } {0};
+#act {-M-_%*}
+ {
+	#var mobname mob;
+	yy
+ } {1};
+
+#class {bot} {close}
+
+#read common/bot/generic.tin;

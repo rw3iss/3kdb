@@ -18,7 +18,7 @@
 	#show IDLE CHECK: $difference;
 
 	#if {$botting == 1} {
-		..;
+		.bot;
 	} {
 		#nop do area-specific stuff here;
 		cw;

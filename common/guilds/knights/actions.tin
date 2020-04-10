@@ -8,7 +8,7 @@
 
 #action {It is too dark.} {
 	ss;
-	#if {$botting == 1} {..};
+	#if {$botting == 1} {.bot};
 };
 
 #action {Zorbaine's Esquire leaves} {esq l};

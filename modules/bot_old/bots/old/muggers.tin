@@ -1,0 +1,12 @@
+#class {bot} {open}
+
+#var {areaname} {Mugger's}
+#var {botpath} {n;e;s;s;s;e;w;n;n;n;w;n;s;w;w;w;s;w;e;e;s;s;n;n;w;n;e;e;e;s};
+
+#act {-M-_A Mugger} {
+	#var mobname mugger;
+	yy} {1};
+
+#class {bot} {close}
+
+#read common/bot/generic.tin

@@ -145,7 +145,7 @@
 #act {{^There is no (\w+) here}} {
 	#if {$botting == 1 && $halt == 0} {
 		#if {"%2" == "$mobname" || "%2" == "$prevMobName"} {
-			l;.bot;
+			l;..;
 		};
 	};
 };
