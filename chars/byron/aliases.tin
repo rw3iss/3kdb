@@ -1,0 +1,13 @@
+#class {global} {kill}
+#class {global} {open}
+
+#ALIAS {ld}
+{
+     #class global open;
+     #map get roomvnum curvnum;
+     #class global close;
+     #class global write chars/$user/vars.tin;
+     #delay 1 {#end}
+}
+
+#class {global} {close}
