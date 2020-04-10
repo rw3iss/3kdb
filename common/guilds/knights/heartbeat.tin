@@ -153,6 +153,7 @@
 
 
 #action {{(\w+) dealt the killing blow to}} {
+	#show KILLING BLOW;
 	killTriggerAlways;
 	#if {"%2" == "Zorbaine" && $party == 0} { 
 		killtrigger; 
@@ -275,6 +276,8 @@
 			$action;
 		};
 	};
+
+	#if {$botting} {.bot};
 
 };
 

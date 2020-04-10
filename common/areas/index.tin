@@ -1,1 +1,3 @@
 #nop #read common/areas/tacos.tin;
+
+/* todo: should include a list of load-area shortcuts similar to bots.tin */

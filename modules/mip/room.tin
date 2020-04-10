@@ -10,7 +10,7 @@
     #var {room[exits]} {%1};
 };
 
-#NOP ***** Room Nouns Handling *****
+#NOP ***** Room Nouns Handling *****;
 #ALIAS {.mipProcessHAB} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
 		#list {nouns} {fin} {&3} {noun_index};
@@ -25,7 +25,7 @@
 }
 #list {nouns} {create};
 
-#alias {sr_all} {
+#alias {sra} {
     #foreach {*nouns[%*]} {idx} {
         #var noun $nouns[$idx];
         ex $noun;

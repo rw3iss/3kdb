@@ -12,6 +12,14 @@
 
 #alias {grep} {#grep {%1} {}};
 
+#ALIAS {ld} {
+    #class global open;
+    #map get roomvnum curvnum;
+    #class global close;
+    #class global write chars/$user/global.tin;
+    #delay 1 {#end};
+};
+
 
 /* Semi-opinionated / to-clean: ---------------------------- */
 
@@ -25,7 +33,7 @@
 
 #alias {x} {examine %0;search %0;};
 
-#alias {ld} {#end};
+
 #alias {ex} {examine %0;search %0};
 #alias {gc} {get coins};
 #alias {dg} {divvy gold};

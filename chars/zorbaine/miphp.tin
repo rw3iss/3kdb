@@ -23,7 +23,7 @@
 	#nop #showme {HP:$hp/$hp_max  SP:$sp/$sp_max  GP:$gp1/$gp1_max GP2:$gp2/$gp2_max} {4};
 	#nop #showme {H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph]} {3};
 
-    #var hpTop 62;
+    #var hpTop 55;
     #var hpLeft 102;
     #var hpWidth 100;
     #var hpHeight 3;
@@ -45,7 +45,7 @@
     
     #var statStr { I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
 
-    #draw {<dda>} {box} $hpTop $hpLeft $hpBottom $hpRight { ${hpStr}\n${statStr} };
+    #nop draw {<dda>} {box} $hpTop $hpLeft $hpBottom $hpRight { ${hpStr}\n${statStr} };
 }
 
 #alias {showhp} {

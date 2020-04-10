@@ -1,5 +1,2 @@
 #conf pack 1;
 #conf color on;
-
-/* create space for static hpbar at bottom */
-#split 0 3;

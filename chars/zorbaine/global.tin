@@ -1,5 +1,7 @@
 #CLASS {global} OPEN
 
-#VARIABLE         {curvnum}  {5330}
+#VARIABLE         {curvnum}  {4119}
+#VARIABLE         {shield}  {aurothon shield}
+#VARIABLE         {wielded}  {$wielded}
 
 #CLASS {global} CLOSE

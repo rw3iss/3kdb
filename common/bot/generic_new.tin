@@ -74,7 +74,7 @@
             } {
                 #if {$foundmob} {
                     .skip;
-                    .pause;
+                    #nop .pause;
                     k $mobname;
                 } {
                     .skip;
