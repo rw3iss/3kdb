@@ -20,9 +20,10 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#nop #showme {HP:$hp/$hp_max  SP:$sp/$sp_max  GP:$gp1/$gp1_max GP2:$gp2/$gp2_max} {4};
-	#nop #showme {H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph]} {3};
+	draw_hp;
+}
 
+#alias {draw_hp} {
     #var hpTop 56;
     #var hpLeft 1;
     #var hpWidth 100;
@@ -47,6 +48,7 @@
 
     #draw {<dda>} {box} $hpTop $hpLeft $hpBottom $hpRight { ${hpStr}\n${statStr} };
 }
+
 
 #alias {showhp} {
     #ticker update_status {

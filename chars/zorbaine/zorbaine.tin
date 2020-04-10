@@ -1,10 +1,13 @@
 #session {3k - Zorbaine} {3k.org} {3000};
 
 #read chars/zorbaine/password.tin;
+$username;$password;
+
 
 #var user zorbaine;
 #var guild knights;
 #var world 3k;
+
 
 /* load common */
 #read common/index.tin;
@@ -28,12 +31,12 @@
 #read common/areas/index.tin;
 
 
-/* startup / init modules for character 
+/* startup / init modules for character */
 mipon;
 deadman 30;
 loadmap;
 #read common/draw.tin;
-*/
+
 
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};

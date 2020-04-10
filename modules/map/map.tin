@@ -25,6 +25,9 @@
     #unsplit;
 };
 
+
+#alias {mapsave} {#map write common/map/3k_shared.map}
+
 /*
 @register_module{map};
 @register_module_info{map;{

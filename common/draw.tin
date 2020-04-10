@@ -11,8 +11,6 @@
 
 /* Load draw variables */
 
-
-
 #if {"$draw[canvas]" == "on"} {
 	#var canvas[width] 43
 } {
