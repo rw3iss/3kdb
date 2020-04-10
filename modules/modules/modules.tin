@@ -9,18 +9,20 @@
 
 #function register_module {
     #list {_modules} {add} {%1};
-    #show <169>%1<109> module registered.;
+    #show <169>%1<109> module loaded.;
+    #return;
 };
 
 #function {register_module_info} {
     #var _moduleInfo[%1] {%2};
+    #return;
 };
 
 
 /*  -- Public methods: -- */
 
 #alias {modules} {
-    #show \nRegistered modules:;
+    #show \Loaded modules:;
     #foreach {$_modules[%*]} {_m} {#show $_m};
     #show \n;
 };

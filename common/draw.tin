@@ -1,6 +1,6 @@
 #CLASS draw {open}
 
-#VARIABLE         {draw}  {
+#VARIABLE {draw}  {
     {canvas}{on}
     {caption}{on}
     {chat}{on}
@@ -77,7 +77,7 @@
 	update_status;
 }
 
-#draw {line} -2 1 -2 -1
+#draw {line} -2 1 -2 -1;
 
 #if {"$draw[map]" == "on"} {
 	#draw line 1 -$map[width]-1 $map[height] -$map[width]-1;

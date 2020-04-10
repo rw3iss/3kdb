@@ -1,55 +1,19 @@
-#alias {loadmap} {
-    #read common/map/mapper.tin;
-    #read common/map/maphelper.tin;
-    #show Map loaded. Use 'showmap' and 'hidemap' to see it.;
-};
-
-#alias {killmap} {
-    #class {mapper} {kill};
-    #class {maphelper} {kill};
-    #class {drawmap} {kill};
-    undrawmap;
-};
-
-#alias {showmap} {
-    #read common/map/drawmap.tin;
-};
-
-#alias {hidemap} {
-    #class {drawmap} {kill};
-    #alias {mapupdate_draw} { #nop; };
-    #unsplit;
-};
-/* ------------------ */
-
-
 #alias {debug} {#debug all on};
 #alias {debugoff} {#debug all off};
 
-
+/* enable/disable beep notifications */
 #var beepon 1;
-#alias {beep} {
-	#if {$beepon == 1} {
-		#bell;
-	};
-};
+#alias {beep} {#if {$beepon == 1} { #bell; }};
 #alias {beepon} {#var beepon 1;#show Beep on.;};
 #alias {beepoff} {#var beepon 0;#show Beep off.;};
 
-
-#alias {clearlogs} {
-	#show Clearing log;
-	#system rm ~/mud/logs;
-	#system tmux send -t 3k ls ENTER
-}
-
-#alias {cell} {#sys tmux select-layout even-vertical;#split 0 4}
-#alias {lappy} {#sys tmux select-layout main-vertical;#split 0 4}
+#alias {cell} {#sys tmux select-layout even-vertical;#split 0 4};
+#alias {lappy} {#sys tmux select-layout main-vertical;#split 0 4};
 
 #alias {grep} {#grep {%1} {}};
 
 
-/* ---------------------------- */
+/* Semi-opinionated / to-clean: ---------------------------- */
 
 #alias {c} {ctell %0};	
 #alias {cw} {cwho -O};

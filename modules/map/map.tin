@@ -1,1 +1,34 @@
-#nop;
+#class {map} {open};
+
+#alias {loadmap} {
+    #read modules/map/mapper.tin;
+    #read modules/map/maphelper.tin;
+	#map goto $curvnum;
+	#map flag static on;
+    #show Map loaded. Use 'showmap' and 'hidemap' to see it.;
+};
+
+#alias {killmap} {
+    #class {mapper} {kill};
+    #class {maphelper} {kill};
+    #class {drawmap} {kill};
+    undrawmap;
+};
+
+#alias {showmap} {
+    #read modules/map/drawmap.tin;
+};
+
+#alias {hidemap} {
+    #class {drawmap} {kill};
+    #alias {mapupdate_draw} { #nop; };
+    #unsplit;
+};
+
+
+@register_module{map};
+@register_module_info{map;{
+    #show Module info for map...;
+}};
+
+#class {map} {close};

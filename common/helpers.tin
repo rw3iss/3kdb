@@ -1,5 +1,6 @@
-#function {graph}
-{
+#nop helper functions;
+
+#function {graph} {
 	#regex {%1} {\d} {
 		#math per {100.0*%1/%2};
 		#format {per} {%d} {$per};
@@ -34,22 +35,12 @@
 		}; #else {
 			#var graph {          }
 		}
-	}
+	};
 
-        #return $graph
-}
+	#return $graph;
+};
 
-#function {listjoin} { 
-	#var temp {%0}; 
-	#var delimeter {}; 
-	#var output {}; 
-	#show List: $temp; 
-
-	#foreach {$temp[%*]} {val} { 
-	#show v: $val; 
-	#format {output} {%s %s} {$output} {$val}; 
-}; 
-
+/* Just shows something in color to see it more easily */
 #function {show} {
 	#show <114>%0<088>;
 	#return;
@@ -69,3 +60,17 @@
 	#format {result} {%t} {{%T}{$epoch}}
 };
 
+
+/* Work in progress */
+#function {listjoin} { 
+	#var temp {%0}; 
+	#var delimeter {};
+	#var output {}; 
+	#show List: $temp; 
+
+	#foreach {$temp[%*]} {val} { 
+		#show v: $val; 
+		#format {output} {%s %s} {$output} {$val}; 
+	}; 
+	#return $output;
+};
