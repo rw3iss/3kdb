@@ -2,6 +2,7 @@
 
 #SESSION {3k - Byron} {3k.org} {3000}
 
+#debug all on;
 #conf pack 1;
 #conf color on;
 
@@ -24,7 +25,6 @@
 #read chars/$user/global.tin;
 #read chars/$user/triggers.tin;
 #read chars/$user/aliases.tin;
-
 
 /* create space for static hpbar at bottom and reset map position */
 #split 0 4;
