@@ -3,9 +3,6 @@
 #show Reading map: common/map/3k_shared.map...;
 #map read common/map/3k_shared.map;
 
-#var map[height] 17;
-#var map[width] 42;
-
 /* Move Event */
 #alias {mapupdate} {
 	#map {get} {ROOMVNUM} {roomvnum};
@@ -45,11 +42,6 @@
 
 #event {MAP EXIT ROOM} {
 	#list nouns clear
-}
-
-/* Screen Sizing */
-#event {SCREEN RESIZE} {
-	#read common/draw.tin
 }
 
 #class {mapper} {close}

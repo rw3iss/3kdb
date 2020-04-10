@@ -15,10 +15,6 @@
     undrawmap;
 };
 
-#alias {showmap} {
-    #read modules/map/drawmap.tin;
-};
-
 #alias {hidemap} {
     #class {drawmap} {kill};
     #alias {mapupdate_draw} { #nop; };

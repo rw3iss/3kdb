@@ -24,12 +24,9 @@
 }
 
 #alias {draw_hp} {
-    #var hpTop 56;
-    #var hpLeft 1;
-    #var hpWidth 100;
-    #var hpHeight 3;
-    #math hpBottom {$hpTop + $hpHeight};
-    #math hpRight {$hpLeft + $hpWidth}; 
+	#show DRAW HP;
+    #math hpbar[bottom] {$hpbar[top] + $hpbar[height]};
+    #math hpbar[right] {$hpbar[left] + $hpbar[width]}; 
     
     #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
 
@@ -46,7 +43,7 @@
     
     #var statStr { I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
 
-    #draw {<dda>} {box} $hpTop $hpLeft $hpBottom $hpRight { ${hpStr}\n${statStr} };
+    #draw {<dda>} {box} $hpbar[top] $hpbar[left] $hpbar[bottom] $hpbar[right] { ${hpStr}\n${statStr} };
 }
 
 

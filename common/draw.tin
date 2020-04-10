@@ -5,9 +5,9 @@
     {caption}{on}
     {chat}{on}
     {gline}{on}
-    {hpbar}{on}
     {map}{on}
 }
+/*{hpbar}{on}*/
 
 /* Load draw variables */
 
@@ -40,18 +40,20 @@
 	#var gline[height] 0
 }
 
+/*
 #if {"$draw[hpbar]" == "on"} {
 	#var hpbar[height] 3
 } {
 	#var hpbar[height] 0
 }
+*/
 
 #NOP map dimensions set in mapper.tin
 
 #math status[height] {$hpbar[height] + $gline[height] + 1}
 
 #math split[top]	{$chat[height] + $caption[height]}
-#var split[bottom]	$status[height]
+#var split[bottom]	3; /* $status[height] */
 #var split[right]	$canvas[width]
 
 /* Perform Split */
@@ -66,6 +68,8 @@
 	chatend;
 }
 
+/*
+
 #if {"$draw[gline]" == "on"} {
 	#draw {line} -$hpbar[height]-$gline[height]-2 1 -$hpbar[height]-$gline[height]-2 -1
 }
@@ -74,6 +78,7 @@
 	#draw {line} -$hpbar[height]-2 1 -$hpbar[height]-2 -1;
 	update_status;
 }
+*/
 
 #draw {line} -2 1 -2 -1;
 

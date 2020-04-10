@@ -1,8 +1,7 @@
 #session {3k - Zorbaine} {3k.org} {3000};
 
-#read chars/zorbaine/password.tin;
+#read chars/zorbaine/vars.tin;
 $username;$password;
-
 
 #var user zorbaine;
 #var guild knights;
