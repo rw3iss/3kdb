@@ -13,7 +13,7 @@
 #action {^Your golem Charlie has expired.$} {build_golem companion} {3};
 #action {^Your golem Chizzit has expired.$} {build_golem explorer} {3};
 
-@register_module{golem_master};
+/* @register_module{golem_master};
 @register_module_info{golem_master;{
     #show {--------------------------------------------------};
     #show {--------   GOLEM MASTER MODULE LOADED    ---------};
@@ -31,5 +31,7 @@
     #show {--------------------------------------------------};
     #show {--------------------------------------------------};
 }};
+
+*/
 
 #class {golem_master} {close}

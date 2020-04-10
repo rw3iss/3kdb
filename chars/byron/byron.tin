@@ -17,7 +17,7 @@
 #read common/index.tin;
 
 /* load specific modules for this character */
-#read modules/professions/golem_master.tin;
+
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
