@@ -15,7 +15,7 @@
 
 /* load specific modules for this character */
 #read modules/settings/settings.tin;
-#read modules/profesions/golem_master.tin;
+#read modules/professions/golem_master.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
@@ -27,15 +27,14 @@
 
 
 /* create space for static hpbar at bottom and reset map position */
-#split 0 3;
-#map goto $curvnum;
-#map flag static on;
 #split 0 4;
 
 #alias {defaults_on} {
 	mipon;
 	#read common/draw.tin;
 	#read common/map/mapper.tin;
+	#map goto $curvnum;
+	#map flag static on;
 	#var autodmg 1;
 }
 
