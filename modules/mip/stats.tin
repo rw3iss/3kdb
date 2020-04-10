@@ -178,11 +178,11 @@
 		#REGEX {$mip[gline][1]} { PF:%d}	{#VAR {my[defs][pf]}		{&1}}   {#var {my[defs][pf]}    {0}};
 		#REGEX {$mip[gline][1]} { PH:%d}	{#VAR {my[defs][ph]}		{&1}}   {#var {my[defs][ph]}    {0}};
 		#REGEX {$mip[gline][1]} { HS:%d}	{#VAR {my[defs][hs]}		{&1}}   {#var {my[defs][hs]}    {0}};
-		#REGEX {$mip[gline][1]} { O:%d}		{#VAR {my[defs][o]}		{&1}}	{#var {my[defs][o]}     {0}};
+		#REGEX {$mip[gline][1]} { O:%d}		{#VAR {my[defs][o]}			{&1}}	{#var {my[defs][o]}     {0}};
 		#REGEX {$mip[gline][1]} { AG:%d}	{#VAR {my[defs][ag]}		{&1}}	{#var {my[defs][ag]}	{0}};
 		#REGEX {$mip[gline][1]} { B}		{#VAR {my[defs][blink]}		 {1}}	{#var {my[defs][blink]} {0}};
+		#REGEX {$mip[gline][1]} { MB}		{#VAR {my[defs][mb]}		 {1}}	{#var {my[defs][mb]}    {0}};
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
-		#REGEX {$mip[gline][1]} { PE:%d}	{#VAR {my[defs][pe]}		{&1}}   {#var {my[defs][pe]}    {0}};
 
 	}; #ELSEIF {%1 == 2} {
 		#nop Smile, GXP, Song Performing, Rounds left

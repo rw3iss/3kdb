@@ -1,0 +1,40 @@
+#NOP - 3k Session
+
+#SESSION {3k - Byron} {3k.org} {3000}
+
+#conf pack 1;
+#conf color on;
+
+/* Set player specific variables */
+#var guild bard;
+#var user byron;
+#var vaf_numbers 1;
+#var scaler[tacos] 91;
+#var scaler[hotel] 150;
+#var scaler[zelligar] 131;
+
+/* load specific modules for this character */
+#read modules/settings/settings.tin;
+#read modules/profesions/golem_master.tin;
+
+/* load guild */
+#read common/guilds/$guild/index.tin;
+
+/* load character-specific */
+#read chars/$user/global.tin;
+#read chars/$user/triggers.tin;
+#read chars/$user/aliases.tin;
+
+
+/* create space for static hpbar at bottom and reset map position */
+#split 0 3;
+#map goto $curvnum;
+#map flag static on;
+#split 0 4;
+
+#alias {defaults_on} {
+	mipon;
+	#var autodmg 1;
+}
+
+#alias {reload} {#kill all;#show \n;#read chars/$user/$user.tin;};
