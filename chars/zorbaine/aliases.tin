@@ -321,7 +321,8 @@
 
 /* cheat: get +ac from defense mode, preparing, then back to offense without re-preparing */
 #alias {defo} {md;pp;#delay {4} {mmc;bcc}};
-
+#alias {md} {stance def;method melee};
+#alias {bcc} {battlecry;}
 
 /* ------------------------------------ */
 #CLASS {ZORBAINE_ALIASES} CLOSE

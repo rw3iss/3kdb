@@ -4,7 +4,7 @@
 #read common/gags.tin;
 #read common/helpers.tin;
 
-/* -- load common modules -- */;
+/* -- load common modules -- */
 #read modules/modules/modules.tin;
 #read modules/deadman/deadman.tin;
 #read modules/map/map.tin;

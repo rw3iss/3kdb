@@ -13,10 +13,10 @@
 #alias {grep} {#grep {%1} {}};
 
 #ALIAS {ld} {
-    #class global open;
+    #class vars open;
     #map get roomvnum curvnum;
-    #class global close;
-    #class global write chars/$user/global.tin;
+    #class vars close;
+    #class vars write chars/$user/vars.tin;
     #delay 1 {#end};
 };
 

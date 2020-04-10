@@ -30,11 +30,11 @@
     #var mipdebug 0;
 }
 
-
+/*
 @register_module{mip};
 @register_module_info{logger;{
 	#show Mip info todo;
 }};
-
+*/
 
 #CLASS {mip} {close}

@@ -33,9 +33,11 @@
 };
 
 
+/*
 @register_module{colors};
 @register_module_info{colors;{
 	#show Use 'color' to see TinTin color definitions;
 }};
+*/
 
 #class {colors} {close};

@@ -28,11 +28,12 @@
 #act {^[A-z] Potion of Experience} {get potion};
 
 
-
+/*
 @register_module{worlddrops};
 @register_module_info{worlddrops;{
 	#show worlddrops info todo;
 }};
+*/
 
 
 #class {worlddrops} {close};
