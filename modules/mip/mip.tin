@@ -3,10 +3,9 @@
 
 #alias {mipon} {
     #read modules/mip/capture.tin;
-    #read modules/mip/miphp.tin;
-    #read modules/mip/room.tin;
     #read modules/mip/chatlog.tin;
     #read modules/mip/stats.tin;
+    #read chars/$user/miphp.tin;
 };
 
 #alias {mipoff} {

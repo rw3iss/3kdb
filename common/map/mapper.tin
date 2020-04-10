@@ -5,7 +5,6 @@
 #var map[height] 17
 #var map[width] 42
 
-
 /* Move Event */
 #alias {mapupdate} {
 	#map {get} {ROOMVNUM} {roomvnum};

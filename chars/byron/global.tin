@@ -5,7 +5,7 @@
      #class global open;
      #map get roomvnum curvnum;
      #class global close;
-     #class global write $user/global.tin;
+     #class global write chars/$user/global.tin;
      #delay 1 {#end}
 }
 

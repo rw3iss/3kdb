@@ -55,8 +55,7 @@
 	#IF {"${mip[overflow]}" != ""} {#SHOWME {${mip[overflow]}}};
 
 	#NOP update_status alias defined in personal hpbar trigger;
-#nop	update_status;
-#nop	_heartbeat;
+	update_status;
 
 	#IF {"$mip[echo]" != "on"} {
 		#LINE GAG
@@ -90,7 +89,7 @@
 #ALIAS {.mipProcessFlag} {
     
 	#SWITCH {"%1"} {
-#nop		#CASE {"AAA"} {#NOP Sound};
+		#CASE {"AAA"} {#NOP failed guild actions maybe - this shows when bards cast a spell and there is no target};
 #nop		#CASE {"AAB"} {#NOP Image};
 		#CASE {"AAC"} {#NOP Reboot Time;#VAR {session[reboot]} {%2};update_caption};
 #nop		#CASE {"AAD"} {#NOP Music};
