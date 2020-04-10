@@ -1,2 +1,2 @@
-#read common/guilds/bards/aliases.tin;
-#read common/guilds/bards/actions.tin;
+#read common/guilds/bard/aliases.tin;
+#read common/guilds/bard/actions.tin;
