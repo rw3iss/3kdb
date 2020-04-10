@@ -8,7 +8,6 @@
 #read modules/deadman/deadman.tin;
 #read modules/worlddrops/worlddrops.tin;
 
-#read modules/info/info.tin;
 #read modules/colors/colors.tin;
 
 #read modules/mip/mip.tin;
