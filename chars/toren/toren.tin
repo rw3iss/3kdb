@@ -1,0 +1,32 @@
+#NOP - 3k Session
+
+#SESSION {3k} {3k.org} {3000}
+
+#var guild necromancer;
+#var user toren;
+#var vaf_numbers 0;
+#var world 3k;
+#conf pack 1;
+#conf color on;
+
+#split 0 4;
+#read $user/global.tin;
+#read $user/aliases.tin;
+#read $user/triggers.tin;
+#read common/common.tin;
+#read common/chatlog.tin;
+#read common/mapper.tin;
+
+#read common/corpse_tracker.tin;
+#read common/deadmans.tin;
+
+#map goto $curvnum;
+#map flag static on;
+
+#alias {defaults_on} {
+	#read $user/hpbar.tin;
+	#read $user/heartbeat.tin;
+	#var autodmg 1;
+}
+
+#alias {mipon} {#read $user/mip.tin;#read $user/miphp.tin;#read $user/graph.tin};

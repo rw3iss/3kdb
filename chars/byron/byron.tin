@@ -17,7 +17,8 @@
 #read common/index.tin;
 
 /* load specific modules for this character */
-
+#read modules/professions/golem_master.tin;
+#read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
@@ -32,10 +33,8 @@
 
 #alias {defaults_on} {
 	mipon;
-	#read common/draw.tin;
-	#read common/map/mapper.tin;
-	#map goto $curvnum;
-	#map flag static on;
+	loadmap;
+	#read common/draw.tin
 	#var autodmg 1;
 }
 

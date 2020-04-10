@@ -1,139 +1,73 @@
-#nop parses corpse amount in inventory, coffin, and smuggle;
+#class {corpse_manager} {kill}
+#class {corpse_manager} {open}
 
-#class {corpse_manager} {open};
-    
-#var hasCoffin @hasInventory{"coffin"};
+#NOP -- GENERAL CORPSE MANAGEMENT TRACKING FOR HPBAR;
 
-#var corpses[inventory] 0;
+#NOP -- Override the alias for inventory to reset the variables and set alias to pick which corpse to use;
+#NOP -- If you have a corpse smuggled, but none elsewhere - smuggle remove it.  Otherwise, use coffin first, then freezer, then inventory;
+
+#alias {i} {#var corpses[inventory] 0;#send i};
+
+#alias corpse_select {
+        i;
+        #if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]} {smuggle remove corpse;drop corpse;};
+        #if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {unkeep corpse;drop corpse;}}
+}
+
+
+#NOP -- Inventory overrides.  These actions update the count when you check inventory;
+#act {^ %*Death's Freezer (%1 corpses).$} {
+	#if {%1 != $corpses[freezer]} {
+		#delay {1} {#echo {<169>Freezer:  Number of corpses thought $corpses[freezer], corrected to %1.};
+		#var corpses[freezer] %1};
+	} {
+		#delay {0.1} {#echo {<169>Freezer:  Correct number of corpses found, $corpses[freezer].}}
+	}
+};
+
+#act {^ 1 An enchanted coffin (%1 %w)%*.$} {
+	#if {%1 != $corpses[coffin]} {
+		#delay {1} {#echo {<169>Coffin:  Number of corpses thought $corpses[coffin], corrected to %1.};
+		#var corpses[coffin] %1};
+	} {
+		#delay {0.1} {#echo {<169>Coffin:  Correct number of corpses found, $corpses[coffin].}}
+	}
+};
+
+
+
+#NOP -- Corpse Management COFFIN / FREEZER;
 #var corpses[coffin] 0;
-#var corpses[smuggle] 0;
 #var corpses[freezer] 0;
-#var hasCoffin 0;
-#var coffinFull 0;
+#act {^You pick up} {#line gag;#echo {<169>Coffin: +1 corpse};#math {corpses[coffin]} {$corpses[coffin] + 1}} {5}
+#act {wrap it up into the coffin's protective hold!$} {#line gag}
+#act {^The coffin expels} {#line gag;#echo {<169>Coffin: -1 corpse};#math {corpses[coffin]} {$corpses[coffin] -1}}
+#act {^You shake the frame and out drops} {#line gag;#echo {<169>Freezer: -1 corpse};#math {corpses[freezer]} {$corpses[freezer] -1}}
+#act {^You pick up %* and touch} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {4}
+#act {^There are no corpses in the coffin!$} {#var corpses[coffin] 0};
 
-/* recalculate corpse inventory */
-#alias {ci} {
-	#nop check inventory;
-	#var corpses[inventory] 0;
-	#action {{^[ ]?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} { 
-		#math {corpses[inventory]} {$corpses[inventory] + %%2};
+
+#NOP -- Corpse Management INVENTORY
+#var corpses[inventory] 0;
+#act {^You drop %* corpse of %*.$} {#math {corpses[inventory]} {$corpses[inventory] - 1}}
+#act {^~%* corpse of %*: Taken.} {#math {corpses[inventory]} {$corpses[inventory] + 1}};
+#act {^%* corpse of %*: Ok.$} {#math {corpses[inventory]} {$corpses[inventory] + 1}};
+#act {^%s%d ~%* corpse of %*.$} {
+	#math {corpses[inventory]} {$corpses[inventory] + %2};
+	}
+
+#NOP -- Corpse Management SMUGGLE
+#var corpses[smuggle] 0;
+#act {^Items you are currently smuggling (%*):} {#var corpses[smuggle] 0;};
+#act {^> %* corpse of %*} {#math {corpses[smuggle]} {$corpses[smuggle] + 1}};
+#act {^You smuggle away: ~%* corpse of %w} {
+	#math {corpses[smuggle]} {$corpses[smuggle] + 1};
+	#math {corpses[inventory]} {$corpses[inventory] - 1};
 	};
 
-	#nop check coffin;
-	#var corpses[coffin] 0;
-	#action {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}} {
-		#var hasCoffin 1;
-		#var corpses[coffin] %%3;
-		#unact {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}};
+#act {^You unsmuggle: %* corpse of %*} {
+	#math {corpses[smuggle]} {$corpses[smuggle] - 1};
+	#math {corpses[inventory]} {$corpses[inventory] + 1};
 	};
-
-	#nop check smuggle;
-	#alias {countSmuggle} {
-		#var corpses[smuggle] 0;
-		#action {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} {
-			#math corpses[smuggle] {$corpses[smuggle] + 1};
-		};
-
-		#nop this stops the smuggle action;
-		#action {{^>$}} {
-			#unact {{^>$}};
-			#unact {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
-			#unact {{^>$}};
-			#ungag {{(.*)}};
-
-			#math {corpses[total]} {$corpses[inventory] + $corpses[coffin] + $corpses[smuggle]};
-
-			#show @showCorpses{};
-			#unalias {countSmuggle};
-		};
-
-		#delay {.2} {smuggle};
-	};
-
-	#nop this stops the inventory+coffin actions, and start smuggle action;
-	#action {{^>$}} {
-		#unact {{^[ ]?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
-		#unact {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}};
-
-		countSmuggle;
-	};
- 
-	#gag {{(.*)}};
-	#send i;
-};
-
-#function {showCorpses} {
-	#if {$hasCoffin == 0} {#var coffinMsg You don't have a coffin.;} {#var coffinMsg Coffin: $corpses[coffin];};
-
-	#format {result} {%s\n%s\n%s\n%s\n%s\n}
-		{TOTAL CORPSES:} 
-		{Inventory: $corpses[inventory]} 
-		{$coffinMsg}
-		{smuggle: $corpses[smuggle]}
-		{Total: $corpses[total]};
-
-	#delay {.5} {hp};
-};
-
-#nop fill corpse inventory;
-#alias {recorpse} {
-	#var gettingCoins 0;
-
-	#act {{^You don't have enough money\!}} {
-		#show no money;
-
-		#act {{Pinnacle Morgue \(n\)}} {
-			#unact {{Pinnacle Morgue \(n\)}};
-			recorpse;
-		};
-
-		#delay {.2} {
-			#if {$gettingCoins == 0} {
-				#show getting coins;
-				n;w;n;withdraw 35000;s;e;s;
-			};
-			#var gettingCoins 1;
-		};
-	};
-
-	#delay {.2} {
-		#7 buy 7;
-		wrap all;
-		#10 buy 7;
-		#10 smuggle corpse;
-		#30 buy 7;
-		#delay {.2} {ci};
-		#delay {1} {#unact {{^You don't have enough money\!}}};
-		sortcorpse;
-	};
-};
-
-#alias {sortcorpse} {
-	wrap all;
-	#20 smuggle corpse;
-	#delay {.2} {ci};
-};
-#alias {sco} {sortcorpse};
-
-#alias {unwrap} {
-	#if {$corpses[coffin] > 0} {
-		#send unwrap;
-		#math {$corpses[coffin]} {$corpse[coffin]  - 1};
-	} { #show No corpses in coffin. };
-};
-
-#action {There are no corpses in the coffin!} {#var coffinFull 0};
-#action {The coffin is full!} {#var coffinFull 1};
-
-/* Get initial count on load */;
-#delay {1} {ci};
-
-@register_module{corpse_manager};
-@register_module_info{corpse_manager;{
-    #show How to use corpse manager:
-    #show ci - recalcuate corpse inventory;
-    #show recorpse - refill corpse\n;
-    #show sortcorpse/sco - reorganize corpses;
-}};
 
 #class {corpse_manager} {close}

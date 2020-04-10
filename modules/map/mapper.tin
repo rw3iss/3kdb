@@ -47,9 +47,4 @@
 	#list nouns clear
 }
 
-/* Screen Sizing */
-#event {SCREEN RESIZE} {
-	#read common/draw.tin
-}
-
 #class {mapper} {close}

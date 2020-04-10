@@ -1,0 +1,127 @@
+Conclusions:
+Adrenaline surge: impacted by wis, 1 wis = .5hps
+		  impacted by str, 1 str = .5hps 
+		  int does nothing.
+
+Adrenaline rush: not impacted by wis
+Biases:  Below 95% doesn't penalize you, above 95% gives you a bonus.
+
+
+
+
+Tactical Enhancement:
+	~23,250/min max phase 6
+	~23,450/min max phase 7
+
+
+
+
+
+
+
+
+
+surge lvl 9 bio/biochem analysis/enhancement/masterly lvl 8
+attack 133 / def 57
+stats: Str: 126    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 482
+
+changing stats:
+surge lvl 9 bio/biochem analysis/enhancement/masterly lvl 8
+stats: Str: 126    Dex: 158    Wis: 149    Int: 155    Con: 243    Cha: 88
+attack 133 / def 57
+Heals 455
+54 less wis = 27 less hps healing.  1 wis = .5hps healed
+
+surge lvl 10 bio/biochem analysis/enhancement/masterly lvl 8
+attack 133 / def 57
+stats: Str: 126    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 545 -> = 63hps / 13%
+
+surge lvl 10 bio/biochem analysis/enhancement/masterly lvl 8
+attack 133 / def 57
+attack 190 / def 0
+Str: 149    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 556 -> +11hps from +23 str.  1 str = .5hps healed
+
+Str: 149    Dex: 158    Wis: 149    Int: 155    Con: 243    Cha: 88 
+Heals 529
+
+Str: 149    Dex: 158    Wis: 149    Int: 119    Con: 243    Cha: 88
+Heals 529
+
+attack 0 / def 190
+Str: 149    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 1101.
+
+attack 90 / def 100
+Str: 149    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 583
+
+attack 100 / def 90
+Str: 149    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 557
+
+attack 95 / def 95
+Str: 149    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 557
+
+attack 87 / def 103
+heals 596
+
+attack 86 / def 104
+heals 602
+
+attack 77 / def 113
+heals 654
+
+attack 75 / def 115
+heals 666
+
+
+
+rush lvl 7 bio/biochem analysis/enhancement/masterly lvl 8
+stats: Str: 126    Dex: 158    Wis: 203    Int: 155    Con: 243    Cha: 88
+Heals 74/rnd
+
+rush lvl 7 bio/biochem analysis/enhancement/masterly lvl 8
+
+
+
+
+
+GL 30 - Max GXP/minute: 12,000
+
+--- POST TURNHOLD CHANGES ---
+GL 35 - Max GXP/minute: 27,000 
+GL 40 - MAX GXP/minute: 27,000
+GL 45 - MAX GXP/minute: 30,000
+
+GL 47: Hotel: Scaler 83 - 145 round average per Zombie
+	
+	130% Defense/54% Attack Bias
+	Tshift I/II (8) + Redaxe + Genarm Knife + DDB I (7), DDB II (6), DDB III (6) + Ibeam (7), Ibeam II (6) + Synthorg (6)
+	Str: 92     Dex: 123    Wis: 101    Int: 72     Con: 126    Cha: 56
+
+
+GL 47: Chess: Scaler 95 -
+	Total Mobs: 16, 140 rounds/mob - Average Class: 2,155,129
+
+	130% Defense/54% Attack Bias
+	Tshift I/II (8) + Redaxe + Genarm Knife + DDB I (7), DDB II (6), DDB III (6) + Ibeam (7), Ibeam II (6) + Synthorg (6)
+	Str: 92     Dex: 123    Wis: 101    Int: 72     Con: 126    Cha: 56
+
+GL 47: Hotel: Scaler 83 
+	Total Mobs: 30, 145 rounds/mob - Average XP: 4,221,239
+
+	Average Dmg/attack = 50
+	130% Defense/54% Attack Bias
+	Tshift I/II (8) + Redaxe + Genarm Knife + DDB I (7), DDB II (6), DDB III (6) + Ibeam (7), Ibeam II (6) + Synthorg (6)
+	Str: 92     Dex: 123    Wis: 101    Int: 72     Con: 126    Cha: 56
+
+
+
+Powercell - Regens 3.5 SPU/round at Phase 6
+
+Land 2 Animals:
+RedAxe + Ibeam (4) + Ibeam II (1) + DDB (1) + Synthorg (5) + DDB Mastery (1):  60 rnd avg.

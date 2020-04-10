@@ -1,0 +1,77 @@
+#NOP ---THIS SECTION IS FOR GENTECH SPECIFIC ALIASES
+#alias {fill_cpc %1} {#map get roomvnum go_back;#delay 1 {go cpc;transfer %1;go $go_back;#unvar go_back}}
+
+#alias {select_random_action} {
+	#switch {1d6} {
+		#case 1 coins;
+		#case 2 coins;
+		#case 3 rcost;
+		#case 4 gs;
+		#case 5 gwho;
+		#case 6 eq;
+	}	
+};
+#alias {set_ticker} {#ticker {noise} {#if !$IDLE {select_random_action} {#nop}} {240}};
+#alias {heal_up} {#map get roomvnum go_back;go gentech_infirmary;admit myself};
+#action {^You feel completely healed and repaired.} {go $go_back};
+
+#NOP --- GENTECH DEFENSE SHIELDS
+#alias {check_shields} {
+	#var edna 0;
+	#var efield 0;
+	#var lsupp 0;
+	#act {^Ferrous DNA : [     On     ]} {#var edna 1};
+	#act {^Energy Field: [ On-Adaptive]} {#var efield 1};
+	#act {^Life Support: [     On     ]} {#var lsupp 1};
+	gs;
+	#delay 1 {
+		#if {!$edna} {edna};
+		#if {!$efield} {efield};
+		#if {!$lsupp} {efield enhanced};
+	};
+}
+
+
+#NOP --- Generic quick run/actions
+#alias {go_forge} {
+	#map get roomvnum reforge_return;
+	#path save forward path_path;
+	#path save position path_position;
+	reforge;
+	#delay 1 {
+		go bank;
+		withdraw 2000;
+		go BS;
+		#$forge_count {
+			buy 4;
+			reforge knife little edged penetrate;
+			drop skinning knife;
+		};
+		go $reforge_return;#unvar reforge_return;
+		#math path_position {$path_position - 1};	
+		#path load $path_path;
+		#path move $path_position;
+	}
+	
+}
+#act {^You can currently reforge %d items.$} {#var forge_count %1};
+
+
+#NOP ---THIS SECTION IS FOR ETERNAL POWERS
+
+
+#NOP ----THIS SECTION IS FOR DIRS
+#alias {fan-wat} {portal;n;n;n;n;n;n;n;n;e;n;n;n;n;n;drink water;drink water;s;s;s;s;s;w;s;s;s;s;s;s;s;s;portal}
+
+#alias {kilton_gear} {go kilton;break glass;enter;go kilton_card_1;search box;get card;go kilton_card_2;search crate;get card;go kilton_computer;turn on computer;go kilton_guard;kill guard}
+
+#NOP ---MISC
+#alias {un} {unlock %1; open %1}
+#alias {challenge_all} {challenge grundar;challenge sholan;challenge crae;challenge beloch;challenge aranow;challenge heorki;challenge noeque;challenge yoeln;challenge ghoti;challenge delundar};
+
+#alias {spike_search} {exa east wall;search east wall;exa spikes;search spikes;exa longer spike;push spike}
+#alias {sr_holes} {insert hand into left hole;insert hand into centre hole;insert hand into right hole};
+
+
+#NOP - CORPSE ALIASES
+#alias {corpsetrig} {#if {$coffin} {wrap;share gold} {wrap;share gold}};
