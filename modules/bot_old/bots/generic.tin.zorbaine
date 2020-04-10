@@ -1,0 +1,116 @@
+#class {bot} {open}
+
+#show GENERIC LOADED;
+
+#var foundmob 0;
+#var foundplayer 0;
+#var founditem 0;
+#var mobname 0;
+#var IdleTimeout 1800;
+#var botdelay 0;
+#var botting 0;
+#var botnextroom 0;
+#var botnextbot 0;
+#var safemode 0;
+
+#var pickupitems 0;
+#alias {itemson} {#show Pickup items on.;#var pickupitems 1};
+#alias {itemsoff} {#show Pickup items off.;#var pickupitems 0};
+
+
+#alias {.pause} {#class {xbot} {kill};#alias {yy} {.pause}};
+#alias {.stop} {#var halt 1;.pause;#path end;#class xbot kill;#class bot kill;};
+#alias {yy} {#nop;};
+
+#alias {..} {#var halt 0;
+    #class {xbot} {open};
+    #act {{^-R-_}} {xx};
+    #alias {xx} {#unvar foundplayer;#act {^>$} {#path walk;zz} {1}};
+    #alias {yy} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;@registerkillcommand{};#var foundmob 1}}};
+    #alias {zz} {#unact {^>$}};
+    glance;
+    #class {xbot} {close}
+};
+
+#alias {gi} {
+	#if {$pickupitems == 1} {
+		#if {$foundplayer == 1} {
+			zz;#path walk;
+		} {
+			ga;pab;
+		};
+	};
+};
+
+#alias {killbot} {zz;.pause;#class xbot kill;#class bot kill;#path run;#undelay {deadmanSwitch}}
+
+#alias {.bot} {#if {$halt == 0} {..}}
+
+#function {botcontinue} {
+	killtrigger;
+	#if {$safemode == 1} {
+		#nop if we have secondwind, keep going;
+		#if {$my[secondwind][current] > 50} {
+			.bot;
+		} {
+			#nop otherwise wait until full;
+			#action {{^STAMINA AT MAX:}} {
+				#var resting 0;
+				.bot;
+			} {4};
+		};
+	} {
+		#if {$safemode == 2} {
+			#action {{^STAMINA AT MAX:}} {
+				#var resting 0;
+				.bot;
+			} {4};
+		} {
+			#nop no safemode, continue only if our we're not totally depleted:;
+			#if {$my[strain][current] > 150} {
+				#nop otherwise wait until full;
+				#action {{^STAMINA AT MAX:}} {
+					#var resting 0;
+					.bot;
+				} {4};
+			} {
+				#nop just continue;
+				.bot;
+			}
+		};
+	};
+};
+
+#alias {killfinish} {
+	#if {$botdelay == 1} {
+		#delay {.2} {
+			@botcontinue{};
+		};
+	} {
+		@botcontinue{};
+	};
+};
+#act {dealt the killing blow to} {killfinish};
+#act {gurgles in his own blood} {killfinish};
+#act {gurgles in its own blood} {killfinish};
+#act {gurgles in her own blood} {killfinish};
+#act {gasps for breath, then slumps into death} {killfinish};
+#act {screeches in agony and falls to the ground, dead} {killfinish};
+
+#act {^-P-} {#var foundplayer 1} {6};
+#act {^\({o|a|w}\)} {#var founditem 1;gi};
+
+#nop #act {{^There is no (.*) here\.}} {..};
+#act {{^There is no reason to (.*) here\.}} {#nop;} {1};
+
+#act {#END OF PATH} {
+	#if {$no_loop | !$foundmob} {
+		killbot;
+	} {
+		#path load botpath;.bot;#var foundmob 0;#var botting 0;
+	};
+};
+
+.cbot;#path load botpath;#var halt 0;#var botting 1;..;
+
+#class {bot} {close}

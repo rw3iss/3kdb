@@ -2,7 +2,7 @@
 
 #alias {_draw_map} {
 	#split {0} {4} {0} {-100};
-	#map offset {5} {102} {-6} {-2};
+	#map offset {0} {102} {-20} {-2};
 };
 
 #nop intialize visual map ----;

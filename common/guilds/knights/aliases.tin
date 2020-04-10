@@ -26,9 +26,10 @@
 #alias {fixme} {
 	study on;
 	endure on;
-	mc;
+    stance offense;
+	mmc;
 	react at 300 stm with secondwind;
-	doaction @staunch;
+	doaction **@staunch;
 };
 
 

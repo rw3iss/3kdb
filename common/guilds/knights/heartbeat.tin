@@ -46,6 +46,14 @@
 	#if {$my[hp][current] < 1800} {st;};
 	#if {$my[hp][current] < 1600} {st;};
 
+    #nop stop when strain is too high;
+	#if {$my[gp2][current] > 180} {
+        #if {$botting == 1} {
+            .pause;tr;tr;tr;rest;
+            #delay {60} {.bot};
+        }
+    }
+
 	#nop will when spork enabled;
 	#if {$incombat == 1} {
 		#if {$hasspork == 1 && $my[stam][current] < STAMINA_EMERGENCY_CHECK && $my[sp][current] > WILL_WITH_SPORK_WITH_SP} { 
@@ -152,7 +160,7 @@
 	rest;
 	#var incombat 0;
 	#var truced 0;
-	#if {$botting == 1} {..};
+	#if {$botting == 1} {.bot};
 } {1}; #nop highest priority kill trigger;
 
 
@@ -194,7 +202,7 @@
 	hp;
 	#if {"$my[battlecry]" == "n"} {bcc};
 	#act {There is no $killing here} {
-		#if {$botting} {..};
+		#if {$botting} {.bot};
 	};
 	kill $killing;
 	#delay {.25} {#unact {There is no $killing here}}

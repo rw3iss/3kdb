@@ -33,7 +33,7 @@
 			#case {"JuggAnnounce"}	{#var {commcol} {<118>}};
 			#case {"JuggMissiles"}	{#var {commcol} {<118>}};
 			#case {"JuggNewbie"}	{#var {commcol} {<258>}};
-			#case {"Cult Game"}	    {#var {commcol} {<acd>}};
+			#case {"Cult Game"}	    {#var {commcol} {<ace>}};
 			#case {"Main"}		    {#var {commcol} {<118>}};
 			#case {"Newbie"}	    {#var {commcol} {<aca>}};
 			#case {"Party"}		    {#var {commcol} {<ADA><fff>}};

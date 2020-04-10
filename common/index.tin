@@ -19,9 +19,12 @@
 
 #read modules/mip/mip.tin;
 
-#read modules/3kdb/3kdb.tin;
 
 /* -- Do common init -- */;
 loadmap;
 deadman 30;
-hp;
+
+#delay {2} {
+    hp;
+    ci;
+};

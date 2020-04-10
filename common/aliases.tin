@@ -7,6 +7,7 @@
 #alias {killmap} {
     #class {mapper} {kill};
     #class {maphelper} {kill};
+    #class {drawmap} {kill};
     undrawmap;
 };
 
@@ -39,10 +40,45 @@
 #alias {clearlogs} {
 	#show Clearing log;
 	#system rm ~/mud/logs;
-	#system tmux send -t parimd ls ENTER
+	#system tmux send -t 3k ls ENTER
 }
 
 #alias {cell} {#sys tmux select-layout even-vertical;#split 0 4}
 #alias {lappy} {#sys tmux select-layout main-vertical;#split 0 4}
 
-#alias {grep} {#grep {{%1}}}
+#alias {grep} {#grep {%1} {}};
+
+
+/* ---------------------------- */
+
+#alias {c} {ctell %0};	
+#alias {cw} {cwho -O};
+#alias {cwo} {cwho -o};
+
+#alias {ww} {who wiz};
+
+#alias {r} {reply %0};
+
+#alias {x} {examine %0;search %0;};
+
+#alias {ld} {#end};
+#alias {ex} {examine %0;search %0};
+#alias {gc} {get coins};
+#alias {dg} {divvy gold};
+#alias {ud} {unlock door;open door};
+
+#alias {gdf} {get flask;drink flask;dispose flask};
+
+#alias {pb} {put %0 in box};
+#alias {gb} {get %0 from box};
+
+#alias {id} {identify %0};
+
+#alias {msk} {mskills};
+#alias {rco} {rcost};
+#alias {mxp} {massxp};
+
+#alias {wield %0} {#var wielded %0;#send {wield $wielded}};
+
+#alias {dn} {dungeons};
+#alias {ql} {questlist};
