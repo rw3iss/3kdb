@@ -16,7 +16,7 @@
 #var scaler[zelligar] 131;
 
 /* load common */
-#NOP #read common/index.tin;
+#read common/index.tin;
 
 /* load specific modules for this character */
 #read modules/settings/settings.tin;

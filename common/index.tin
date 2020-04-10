@@ -5,9 +5,9 @@
 
 /* -- load common modules -- */;
 #read modules/modules/modules.tin;
-#read modules/deadman/deadman.tin;
-#read modules/worlddrops/worlddrops.tin;
+#NOP #read modules/deadman/deadman.tin;
+#NOP #read modules/worlddrops/worlddrops.tin;
 
-#read modules/colors/colors.tin;
+#NOP #read modules/colors/colors.tin;
 
 #read modules/mip/mip.tin;
