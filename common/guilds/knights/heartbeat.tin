@@ -46,6 +46,14 @@
 	#if {$my[hp][current] < 1800} {st;};
 	#if {$my[hp][current] < 1600} {st;};
 
+    #nop stop when strain is too high;
+	#if {$my[gp2][current] > 180} {
+        #if {$botting == 1} {
+            .pause;tr;tr;tr;rest;
+            #delay {60} {..};
+        }
+    }
+
 	#nop will when spork enabled;
 	#if {$incombat == 1} {
 		#if {$hasspork == 1 && $my[stam][current] < STAMINA_EMERGENCY_CHECK && $my[sp][current] > WILL_WITH_SPORK_WITH_SP} { 

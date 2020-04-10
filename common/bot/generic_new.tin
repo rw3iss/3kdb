@@ -5,6 +5,7 @@
 #var foundmob 0;
 #var foundplayer 0;
 #var founditems 0;
+#var loophadmob 0;
 
 #var prevMobName 0;
 #var mobname 0;
@@ -24,6 +25,7 @@
 /* pause the bot */
 #alias {.pause} {
 	#var halt 1;
+    #show Bot paused.;
 };
 #alias {.p} {.pause};
 
@@ -59,7 +61,7 @@
         #act {^>$} {.onPrompt};
     };
     
-    #alias {yy} {.prompt;#var foundmob 1;};
+    #alias {yy} {.prompt;#var foundmob 1;#var loophadmob 1;};
 
 	#alias {.onPrompt} {
         #nop #show mob? $foundmob  player? $foundplayer;
@@ -128,12 +130,13 @@
 
 /* Bot end actions... */
 #act {#END OF PATH} {
-    #if {!$loop || !$foundmob} {
+    #if {!$loop || !$loophadmob} {
         #show \nLooping not enabled. Stopping.;
         .stop;
     } {
         #show \nLooping bot...;
         #path load botpath;
+        #var loophadmob 0'
         .bot;
     };
 };

@@ -35,6 +35,8 @@ $username;$password;
 #read modules/dmgtracker/dmgtracker.tin;
 #read modules/cursecheck/cursecheck.tin;
 
+#read modules/3kdb/3kdb.tin;
+
 
 /* create space for static hpbar at bottom */
 #split 0 3;

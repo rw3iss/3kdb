@@ -265,37 +265,6 @@
 #alias {.=} {#var repeatCommand %0;#show Repeat command set to: %0};
 #alias {.} {#if{"$repeatCommand" != "0"} {$repeatCommand};};
 
-#alias {ww} {who wiz};
-
-#alias {r} {reply %0};
-
-#alias {x} {examine %0;search %0;};
-
-#alias {ld} {#end};
-#alias {ex} {examine %0;search %0};
-#alias {gc} {get coins};
-#alias {dg} {divvy gold};
-#alias {ud} {unlock door;open door};
-
-#alias {gdf} {get flask;drink flask;dispose flask};
-
-#alias {pb} {put %0 in box};
-#alias {gb} {get %0 from box};
-
-#alias {id} {identify %0};
-
-#alias {msk} {mskills};
-#alias {rco} {rcost};
-#alias {mxp} {massxp};
-
-#alias {wield %0} {#var wielded %0;#send {wield $wielded}};
-
-#alias {c} {ctell %0};	
-#alias {cw} {cwho -O};
-#alias {cwo} {cwho -o};
-
-#alias {dn} {dungeons};
-#alias {ql} {questlist};
 
 #nop #alias {rally %1} {
 	#var whitelist_player;
@@ -351,7 +320,7 @@
 #alias {smr} {smuggle remove %0};
 
 /* cheat: get +ac from defense mode, preparing, then back to offense without re-preparing */
-#alias {defo} {md;pp;#delay {3.5} {mmc;bcc}};
+#alias {defo} {md;pp;#delay {4} {mmc;bcc}};
 
 
 /* ------------------------------------ */

@@ -105,7 +105,7 @@
 #nop		#CASE {"BAF"} {#NOP Send Edit};
 		#CASE {"BBA"} {#NOP Guild Point1 Mask;#FORMAT {my[gp1][name]} {%s} {%2}};
 		#CASE {"BBB"} {#NOP Guild Point2 Mask;#FORMAT {my[gp2][name]} {%s} {%2}};
-		#CASE {"BBC"} {#NOP Hit Point Mask;#FORMAT {my[hp][name]} {%s} {%2}};
+		#CASE {"BBC"} {#NOP Hit Point Mask;#SHOW HP CAP: %2; #FORMAT {my[hp][name]} {%s} {%2}};
 		#CASE {"BBD"} {#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2}};
 
 		#CASE {"CAA"} {#NOP Chat Messages;.mipProcessCAA {%2}};
