@@ -6,9 +6,10 @@
 #read modules/3kdb/lib/armour.tin;
 
 
-register_module {3kdb};
-register_module_info {3kdb} {
-    #show Module info for 3kdb...;s
+@register_module{3kdb};
+@register_module_info{3kdb;{
+       #show Module info for 3kdb...;
+    }
 };
 
 #class {3kdb} {close};

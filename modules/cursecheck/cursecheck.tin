@@ -21,3 +21,8 @@
 
 	@checkring{};
 };
+
+@register_module{cursecheck};
+@register_module_info{cursecheck;{
+	#show Cursecheck info;
+}};

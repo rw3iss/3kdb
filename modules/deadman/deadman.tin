@@ -29,10 +29,10 @@
 } {0};
 
 
-register_module {deadman};
-register_module_info {deadman} {
+@register_module{deadman};
+@register_module_info{deadman;{
     #show Deadman enabled? $deadmanEnabled;
     #show Deadman timeout: $deadmanIdleTimeout;
-};
+}};
 
 #class {deadman} {close};   

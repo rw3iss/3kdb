@@ -37,10 +37,10 @@
 };
 
 
-register_module {dmgtracker};
-register_module_info {dmgtracker} {
+@register_module{dmgtracker};
+@register_module_info{dmgtracker;{
     #show Dmg tracker stats:;
     dstats;
-};
+}};
 
 #class {dmgtracker} {close}

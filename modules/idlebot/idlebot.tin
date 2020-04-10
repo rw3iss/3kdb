@@ -32,3 +32,10 @@
 		};
 	};
 };
+
+
+@register_module{idlebot};
+@register_module_info{idlebot;{
+	#show Idlebot info todo;
+}};
+

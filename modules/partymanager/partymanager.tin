@@ -9,3 +9,10 @@
    #class {Player_Whitelist} {close};
    \rally %1;
 }
+
+
+
+@register_module{partymanager};
+@register_module_info{partymanager;{
+	#show Party manager info todo;
+}};

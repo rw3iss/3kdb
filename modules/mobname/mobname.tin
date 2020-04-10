@@ -98,10 +98,10 @@
 };
 
 
-register_module {mobname};
-register_module_info {mobname} {
+@register_module{mobname};
+@register_module_info{mobname;{
     #show Module info for mobname;
-};
+}};
 
 
 #class {mobname} {close}

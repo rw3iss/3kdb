@@ -106,6 +106,14 @@
 
 #act {Solaris tells} {#nop;} {0}
 
+
+
+@register_module{chatlog};
+@register_module_info{chatlog;{
+	#show Chatlog info.;
+}};
+
+
 #class {chatlog} {close}
 
 

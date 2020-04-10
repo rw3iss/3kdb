@@ -21,3 +21,9 @@
 	#var hascorpse 0;
 };
 
+
+
+@register_module{dog};
+@register_module_info{dog;{
+	#show Dog info todo;
+}};

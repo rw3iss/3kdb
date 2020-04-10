@@ -34,4 +34,9 @@
 #act {{^Gargoyle whispers:}} {-clnobeep}
 
 
+@register_module{logger};
+@register_module_info{logger;{
+	#show Logger info todo;
+}};
+
 #class {logger} {close}

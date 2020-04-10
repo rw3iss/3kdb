@@ -1,7 +1,6 @@
 #session {3k - Zorbaine} {3k.org} {3000};
 
 #read chars/zorbaine/password.tin;
-$username;$password;
 
 #conf pack 1;
 #conf color on;
@@ -11,7 +10,6 @@ $username;$password;
 
 
 /* load common */
-#read common/index.tin;
 #read common/areas/index.tin;
 
 /* load guild */
@@ -29,21 +27,12 @@ $username;$password;
 #read common/eq/armour_of_elements.tin;
 #read common/eq/spork_lance.tin;
 
-/* load specific modules for this character */
-#read modules/settings/settings.tin;
-#read modules/afterkill/afterkill.tin;
-#read modules/dmgtracker/dmgtracker.tin;
-#read modules/cursecheck/cursecheck.tin;
-
-#read modules/3kdb/3kdb.tin;
-
-
 /* create space for static hpbar at bottom */
 #split 0 3;
 
 
 /* startup / init modules for character */
 mipon;
-
+deadman 30;
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};

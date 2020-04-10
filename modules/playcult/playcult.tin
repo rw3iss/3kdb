@@ -37,9 +37,9 @@
 #alias {ct} {cult takeout};
 #alias {cu} {cult unvote};
 
-register_module {playcult};
-register_module_info {playcult} {
+@register_module{playcult};
+@register_module_info playcult;{
     #show Playcult info...;
-};
+}};
 
 #class {playcult} {close};

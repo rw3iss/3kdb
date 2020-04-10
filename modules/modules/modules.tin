@@ -7,12 +7,12 @@
 
 /* -- Module methods: -- */
 
-#alias {register_module} {
+#function register_module {
     #list {_modules} {add} {%1};
     #show <169>%1<109> module registered.;
-}
+};
 
-#alias {register_module_info} {
+#function {register_module_info} {
     #var _moduleInfo[%1] {%2};
 };
 

@@ -1,3 +1,4 @@
+#nop;
 #var aoe_enabled 0;
 
 #alias {aoeon} {
@@ -8,8 +9,6 @@
     #var aoe_enabled 0;
     #show Armour of Elements corpse immolate disabled.;
 };
-
-#nop Add killing blow corpse immolation....
 
 
 

@@ -48,11 +48,11 @@ _set {afterkill_enabled} {0};
 #alias {akon} {afterkillon};
 
 
-register_module {afterkill};
-register_module_info {afterkill} {
+@register_module{afterkill};
+@register_module_info{afterkill;{
     #show Afterkill module usage:;
     #show ak {command1;command2;...};
-};
+}};
 
 
 #class {afterkill} {close};
