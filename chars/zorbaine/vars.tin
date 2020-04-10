@@ -1,7 +1,18 @@
 #CLASS {vars} OPEN
 
+#var username zorbaine;
+#var password qazokm;
+
 #VARIABLE         {curvnum}  {4119}
 #VARIABLE         {shield}   {aurothon shield}
 #VARIABLE         {wielded}  {$wielded}
+
+#var map[height] 20;
+#var map[width] 60;
+
+#var hpbar[top] 56;
+#var hpbar[left] 1;
+#var hpbar[width] 100;
+#var hpbar[height] 3;
 
 #CLASS {vars} CLOSE
