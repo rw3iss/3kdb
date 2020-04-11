@@ -1,6 +1,11 @@
 #class {global} {kill}
 #class {global} {open}
 
+#alias {_player_deadmanActions} {
+    .stop;
+    clear_prots;
+} {0};
+
 #ALIAS {ld}
 {
      #class global open;

@@ -2,18 +2,8 @@
 
 #TICKER {idle} {
         #math {idle} {$idle + 1};
-        #if {$idle > $IdleTimeout} {
-			.stop;
-			#var IDLE 1;
-			clear_prots;
-        };
         update_status
 } {1}
-
-#event {RECEIVED INPUT} {
-	#var idle 0;
-	#var IDLE 0;
-}
 
 #alias {update_status} {
 
