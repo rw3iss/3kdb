@@ -1,0 +1,5 @@
+#CLASS {global} OPEN
+
+#VARIABLE         {curvnum}  {17489}
+
+#CLASS {global} CLOSE

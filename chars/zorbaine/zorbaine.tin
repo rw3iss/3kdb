@@ -3,14 +3,12 @@
 #read chars/zorbaine/vars.tin;
 $username;$password;
 
-#var user zorbaine;
+#var user $username;
 #var guild knights;
 #var world 3k;
 
-
 /* load common */
 #read common/index.tin;
-#read common/bot/bots.tin;
 
 /* load guild */
 #read common/guilds/knights/index.tin;
@@ -28,14 +26,19 @@ $username;$password;
 #read common/eq/armour_of_elements.tin;
 #read common/eq/spork_lance.tin;
 #read common/areas/index.tin;
+#read common/bot/bots.tin;
 
+/* personal modules */
+#read modules/professions/reforger.tin;
+#read modules/dmgtracker/dmgtracker.tin;
+#read modules/corpsemanager/corpsemanager.tin;
 
 /* startup / init modules for character */
-mipon;
 deadman 30;
+mipon;
 loadmap;
-#read common/draw.tin;
 
+#read common/draw.tin;
 
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};

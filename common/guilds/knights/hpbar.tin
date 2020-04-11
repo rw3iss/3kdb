@@ -149,9 +149,9 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
 
 	#format {prompt2} {%s%s %s %s} {<088>} {%1} {$my[stance][current]} {$my[method][current]};
 
-	#replace {prompt2} {(Y)} {(<120>Y<088>)};
-	#replace {prompt2} {(n)} {(<110>N<088>)};
-	#replace {prompt2} {$my[mnt][stm][cur]/$my[mnt][stm][max]} {$my[mnt][stm][clr]$my[mnt][stm][cur]<088>/<120>$my[mnt][stm][max]<088>};
+	#nop replace {prompt2} {(Y)} {(<120>Y<088>)};
+	#nop replace {prompt2} {(n)} {(<110>N<088>)};
+	#nop replace {prompt2} {$my[mnt][stm][cur]/$my[mnt][stm][max]} {$my[mnt][stm][clr]$my[mnt][stm][cur]<088>/<120>$my[mnt][stm][max]<088>};
 
 	_heartbeat;
 	_horseHeartbeat;
@@ -174,9 +174,9 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
 	#format {prompt3} {%s%s %s %s} {<088>} {%1} {$hpbar[corpsemsg]} {};
 };
 
-#nop prompt {{HP:(\d+)/(\d+) \| SP:(\d+)/(\d+) \| STM:(\d+)/(\d+) \| STN:(\d+)%\((\d+)\) \| SW:(\d+[.]\d+)% \| (Neu|Off|Def) (Melee|Focus|Standard|Charge|Flurry)}} {${prompt1} } {-4};
-#prompt {{^PPD\((Y|n)\).+$}} {${prompt2}} {-3};
-#prompt {{\[WPN:(.*)\] \[LIGHT:(Y|n)\((\d+)%\)\] \[LF:(\d+)\] \[MOB:(.*)\]}} {${prompt3}} {-2};
+#nop #prompt {{HP:(\d+)/(\d+) \| SP:(\d+)/(\d+) \| STM:(\d+)/(\d+) \| STN:(\d+)%\((\d+)\) \| SW:(\d+[.]\d+)% \| (Neu|Off|Def) (Melee|Focus|Standard|Charge|Flurry)}} {${prompt1} } {-4};
+#nop #prompt {{^PPD\((Y|n)\).+$}} {${prompt2}} {-3};
+#nop #prompt {{\[WPN:(.*)\] \[LIGHT:(Y|n)\((\d+)%\)\] \[LF:(\d+)\] \[MOB:(.*)\]}} {${prompt3}} {-2};
 
 
 #class {knight_hpbar} {close};

@@ -7,6 +7,17 @@
 
 /* -- Module methods: -- */
 
+#alias register_module {
+    #list {_modules} {add} {%1};
+    #show <169>%1<109> module loaded.;
+    #return;
+};
+
+#alias {register_module_info} {
+    #var _moduleInfo[%1] {%2};
+    #return;
+};
+
 #function register_module {
     #list {_modules} {add} {%1};
     #show <169>%1<109> module loaded.;

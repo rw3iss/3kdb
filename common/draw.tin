@@ -6,8 +6,13 @@
     {chat}{on}
     {gline}{on}
     {map}{on}
+	{hpbar}{on}
 }
-/*{hpbar}{on}*/
+
+#screen get 	rows 	screen[height];
+#screen get 	cols 	screen[width];
+
+#show screen height: $screen[height];
 
 /* Load draw variables */
 
@@ -40,47 +45,28 @@
 	#var gline[height] 0
 }
 
-/*
-#if {"$draw[hpbar]" == "on"} {
-	#var hpbar[height] 3
-} {
-	#var hpbar[height] 0
-}
-*/
-
-#NOP map dimensions set in mapper.tin
+#NOP map dimensions set in mapper.tin;
 
 #math status[height] {$hpbar[height] + $gline[height] + 1}
 
-#math split[top]	{$chat[height] + $caption[height]}
-#var split[bottom]	3; /* $status[height] */
-#var split[right]	$canvas[width]
-
-/* Perform Split */
-#split $split[top] $split[bottom] $split[left] $split[right]
+/* Split bottom area for hp+guild/stats bar */
+#math 	split[top]		{$chat[height] + $caption[height]}
+#var 	split[bottom]	$status[height]
+#var 	split[right]	$canvas[width]
+#split 	$split[top] 	$split[bottom] $split[left] $split[right]
 
 /* Clear any previous drawings */
-#screen clear split
-#buffer end
+#screen clear split;
+#buffer end;
 
+#alias chatend {#nop;};
 #if {"$draw[chat]" == "on"} {
 	#draw {green} {line} $chat[height] 1 $chat[height] -1;
 	chatend;
 }
 
-/*
-
-#if {"$draw[gline]" == "on"} {
-	#draw {line} -$hpbar[height]-$gline[height]-2 1 -$hpbar[height]-$gline[height]-2 -1
-}
-
-#if {"$draw[hpbar]" == "on"} {
-	#draw {line} -$hpbar[height]-2 1 -$hpbar[height]-2 -1;
-	update_status;
-}
-*/
-
-#draw {line} -2 1 -2 -1;
+/* handles setup+draw in player's miphp.tin */
+init_hpbar;
 
 #if {"$draw[map]" == "on"} {
 	#draw line 1 -$map[width]-1 $map[height] -$map[width]-1;
@@ -106,13 +92,13 @@
 			#case {"gline"}		{#var redraw[option] %1};
 			#case {"hpbar"}		{#var redraw[option] %1};
 			#case {"map"}		{#var redraw[option] %1};
-			#default		{#var redraw[args][1] invalid;#showme REDRAW:  Invalid redraw option}
+			#default			{#var redraw[args][1] invalid;#showme REDRAW:  Invalid redraw option}
 		};
 		#if {"%2" != ""} {
 			#switch{"%2"} {
 				#case {"on"}	{#var redraw[flag] on};
 				#case {"off"}	{#var redraw[flag] off};
-				#default	{#var redraw[args][2] invalid;#showme REDRAW:  Invalid redraw parameter (on or off)}
+				#default		{#var redraw[args][2] invalid;#showme REDRAW:  Invalid redraw parameter (on or off)}
 			}
 		} {
 			#if {"$draw[$redraw[option]]" == "on"} {
@@ -127,34 +113,5 @@
 	} {
 	}
 }
-
-
-
-#NOP  #alias {draw_mip_room} {
-#NOP      #var roomTop 40;
-#NOP      #var roomLeft 102;
-#NOP      #var roomWidth 100;
-#NOP      #var roomHeight 22;
-#NOP      #math roomBottom {$roomTop + $roomHeight};
-#NOP      #math roomRight {$roomLeft + $roomWidth}; 
-#NOP      
-#NOP      #var nounStr {};
-#NOP      #foreach {*nouns[%*]} {idx} {
-#NOP          #var noun $nouns[$idx];
-#NOP          #var nounStr {$nounStr\n $noun};
-#NOP      };
-#NOP      
-#NOP      #var roomNameStr {<ffa>${room[name]}};
-#NOP      #var nounStr {<ade>${nounStr}};
-#NOP      #var roomStr {${roomNameStr}\n${nounStr}\n\n <afe>${exitStr}};
-#NOP  
-#NOP      #draw {<dda>} {box} $roomTop $roomLeft $roomBottom $roomRight { ${roomStr} };
-#NOP  };
-
-/* Notes for 'T' drawings */
-#NOP #showme {<228>\u252C} 20 89;
-#NOP #showme {<088>\u2534} -5 89;
-
-
 
 #CLASS draw {close}

@@ -4,6 +4,9 @@
 #var $session[reboot] 0;
 #var $session[lag] 0;
 
+#screen get 	rows 	screen[height];
+#screen get 	cols 	screen[width];
+
 #alias {update_status} {
 	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
 	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
@@ -20,14 +23,26 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	draw_hp;
+	draw_hpbar;
 }
 
-#alias {draw_hp} {
-	#show DRAW HP;
-    #math hpbar[bottom] {$hpbar[top] + $hpbar[height]};
-    #math hpbar[right] {$hpbar[left] + $hpbar[width]}; 
+#if {"$draw[hpbar]" == "on"} {
+	#var hpbar[enabledheight] $hpbar[height];
+} {
+	#var hpbar[enabledheight] 0;
+}
     
+/* calculate hpbar size and draws initial line above hpbar area */
+#alias {init_hpbar} {
+    #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
+    #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
+    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
+
+    #draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
+    showhp;
+};
+
+#alias {draw_hpbar} {
     #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
 
 	#format {uptimeStr}	{%+8s}	{$session[uptime]};
@@ -37,15 +52,17 @@
 	#math	{idle_min}	{$idle % 3600 / 60};
 	#math	{idle_sec}	{$idle % 60};
 	#if	{$idle_hr < 10}	{#var idle_hr  0$idle_hr};
-	#if	{$idle_min < 10}{#var idle_min 0$idle_min};
-	#if	{$idle_sec < 10}{#var idle_sec 0$idle_sec};
+	#if	{$idle_min < 10} {#var idle_min 0$idle_min};
+	#if	{$idle_sec < 10} {#var idle_sec 0$idle_sec};
 	#format {idleStr}	{%+4s}	{<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
     
     #var statStr { I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
 
-    #draw {<dda>} {box} $hpbar[top] $hpbar[left] $hpbar[bottom] $hpbar[right] { ${hpStr}\n${statStr} };
-}
+    #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
 
+    #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 { ${hpStr}\n${statStr}\n ${prompt2}\n ${prompt3} };
+    
+}
 
 #alias {showhp} {
     #ticker update_status {
@@ -56,7 +73,5 @@
 #alias {hidehp} {
     #unticker update_status;
 }
-
-showhp;
 
 #class {miphp} {close}

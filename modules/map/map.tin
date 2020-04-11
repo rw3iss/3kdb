@@ -5,7 +5,7 @@
     #read modules/map/maphelper.tin;
 	#map goto $curvnum;
 	#map flag static on;
-    #show Map loaded. Use 'showmap' and 'hidemap' to see it.;
+    #show Map 3k_shared.map loaded. Use 'showmap' and 'hidemap' to see it.;
 };
 
 #alias {killmap} {
@@ -17,18 +17,13 @@
 
 #alias {hidemap} {
     #class {drawmap} {kill};
-    #alias {mapupdate_draw} { #nop; };
+    #alias {mapupdate_draw} { #nop overwritten/handled by personal draw.tin; };
     #unsplit;
 };
 
-
-#alias {mapsave} {#map write common/map/3k_shared.map}
-
-/*
-@register_module{map};
-@register_module_info{map;{
+register_module {map};
+register_module_info {map} {
     #show Module info for map...;
-}};
-*/
+};
 
 #class {map} {close};

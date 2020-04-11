@@ -26,6 +26,8 @@
 	#IF {"$mip[FFF][$mip[FFF][flag]][data]" != ""} {
 		.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]}
 	}
+
+    update_status;
 }
 
 #NOP ***** Separated Stats Data *****

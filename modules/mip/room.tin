@@ -32,4 +32,32 @@
     };
 };
 
+
+
+#NOP  #alias {draw_mip_room} {
+#NOP      #var roomTop 40;
+#NOP      #var roomLeft 102;
+#NOP      #var roomWidth 100;
+#NOP      #var roomHeight 22;
+#NOP      #math roomBottom {$roomTop + $roomHeight};
+#NOP      #math roomRight {$roomLeft + $roomWidth}; 
+#NOP      
+#NOP      #var nounStr {};
+#NOP      #foreach {*nouns[%*]} {idx} {
+#NOP          #var noun $nouns[$idx];
+#NOP          #var nounStr {$nounStr\n $noun};
+#NOP      };
+#NOP      
+#NOP      #var roomNameStr {<ffa>${room[name]}};
+#NOP      #var nounStr {<ade>${nounStr}};
+#NOP      #var roomStr {${roomNameStr}\n${nounStr}\n\n <afe>${exitStr}};
+#NOP  
+#NOP      #draw {<dda>} {box} $roomTop $roomLeft $roomBottom $roomRight { ${roomStr} };
+#NOP  };
+
+/* Notes for 'T' drawings */
+#NOP #showme {<228>\u252C} 20 89;
+#NOP #showme {<088>\u2534} -5 89;
+
+
 #class {miproom} {close};

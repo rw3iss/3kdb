@@ -1,0 +1,10 @@
+#session {3k - Empty} {3k.org} {3000};
+
+#var world 3k;
+#var user guest;
+
+#read modules/mip/mip.tin;
+
+mipon;
+
+#alias {reload} {#kill all;#show \n;#read chars/empty/empty.tin;};

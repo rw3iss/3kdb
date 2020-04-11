@@ -1,7 +1,7 @@
 #class {mipcapture} {open};
 
-#NOP *** Generic idle timeout ***
-#var IdleTimeout 3600;
+/* This file ONLY does the MIP message capturing, putting stats into variables, and calling the 
+associated aliases related to each mip message, which are generally handles in their respective files. */
 
 #NOP ***** Set MIP ID Code **********
 #VAR {mip} {}
@@ -13,7 +13,7 @@
 }
 #UNVAR {temp[digit]}
 
-#NOP ***** Kick Off MIP *************
+#NOP ***** Tell MUD to send MIP *************
 #DELAY {2} {
 	#SEND 3klient $mip[id]~~Tin$mip[Version];
 	#SEND 3klient LINEFEED on;
@@ -54,72 +54,48 @@
 	.mipProcessFlag {%3} {$mip[out]};
 	#IF {"${mip[overflow]}" != ""} {#SHOWME {${mip[overflow]}}};
 
-	#NOP update_status alias defined in personal hpbar trigger;
-	update_status;
-
 	#IF {"$mip[echo]" != "on"} {
 		#LINE GAG
 	}
-} {1}
-
-#ALIAS {update_caption} {
-	#format {uptime_cap}	{%+8s}	{$session[uptime]};
-	#format {reboot_cap}	{%+5s}	{$session[reboot]};
-	#format {lag_cap}	{%+4s}	{$session[lag]};
-	#math	{idle_hr}	{$idle / 3600};
-	#math	{idle_min}	{$idle % 3600 / 60};
-	#math	{idle_sec}	{$idle % 60};
-	#if	{$idle_hr < 10}	{#var idle_hr  0$idle_hr};
-	#if	{$idle_min < 10}{#var idle_min 0$idle_min};
-	#if	{$idle_sec < 10}{#var idle_sec 0$idle_sec};
-	#format {idle_cap}	{%+4s}	{<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-    #nop #SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {4}
-}
-
-#TICKER {idle} {
-	#math {idle} {$idle + 1};
-	#if {$idle > $IdleTimeout} {
-		#unvar bot;
-        .stop
-	};
-	update_caption
-} {1}
+} {1};
 
 #NOP ***** Individual Data Sections *****
 #ALIAS {.mipProcessFlag} {
     
 	#SWITCH {"%1"} {
+		#CASE {"AAC"} {update_status;#NOP Reboot Time;#VAR {session[reboot]} {%2};};
+		#CASE {"AAF"} {update_status;#NOP Uptime;#VAR {session[uptime]} {%2};};
+		#CASE {"BAE"} {update_status;#NOP Mud Lag;#VAR {session[lag]} {%2};};
+        
+		#CASE {"BBC"} {update_status;#NOP Hit Point Mask;#SHOW HP CAP: %2; #FORMAT {my[hp][name]} {%s} {%2};};
+		#CASE {"BBD"} {update_status;#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2};};
+		#CASE {"BBA"} {update_status;#NOP Guild Point1 Mask;#FORMAT {my[gp1][name]} {%s} {%2};};
+		#CASE {"BBB"} {update_status;#NOP Guild Point2 Mask;#FORMAT {my[gp2][name]} {%s} {%2};};
+		#CASE {"FFF"} {.mipProcessFFF {%2};#NOP Combined Stats Data;};
+
+		#CASE {"BAD"} {.mipProcessBAD {%2};#NOP Room Description;};
+		#CASE {"DDD"} {.mipProcessDDD {%2};#NOP Room Exits;#NOP Split at Hex 160 (Non Breaking Space)};
+		#CASE {"HAB"} {.mipProcessHAB {%2};#NOP Item Actions;};
+		#CASE {"HAA"} {#NOP Room Items;#show room items mip... %2;};
 		#CASE {"AAA"} {#NOP failed guild actions maybe - this shows when bards cast a spell and there is no target};
+        
+		#CASE {"CAA"} {.mipProcessCAA {%2};#NOP Chat Messages;};
+		#CASE {"BAB"} {.mipProcessBAB {%2};#NOP 2 Way Communications;};
+		#CASE {"BAC"} {#NOP Special Textstring2;#show special MIP text: %2;};
+
 #nop		#CASE {"AAB"} {#NOP Image};
-		#CASE {"AAC"} {#NOP Reboot Time;#VAR {session[reboot]} {%2};update_caption};
 #nop		#CASE {"AAD"} {#NOP Music};
-		#CASE {"AAF"} {#NOP Uptime;#VAR {session[uptime]} {%2};update_caption};
 #nop		#CASE {"AAG"} {#NOP AVI movie};
 #nop		#CASE {"AAH"} {#NOP Download Media};
 #nop		#CASE {"BAA"} {#NOP Special Textstring;#showme {%2} {-2}};
-		#CASE {"BAB"} {#NOP 2 Way Communications;.mipProcessBAB {%2}};
-		#CASE {"BAC"} {#NOP Special Textstring2};
-		#CASE {"BAD"} {#NOP Room Description;.mipProcessBAD {%2}};
-		#CASE {"BAE"} {#NOP Mud Lag;#VAR {session[lag]} {%2};update_caption};
 #nop		#CASE {"BAF"} {#NOP Send Edit};
-		#CASE {"BBA"} {#NOP Guild Point1 Mask;#FORMAT {my[gp1][name]} {%s} {%2}};
-		#CASE {"BBB"} {#NOP Guild Point2 Mask;#FORMAT {my[gp2][name]} {%s} {%2}};
-		#CASE {"BBC"} {#NOP Hit Point Mask;#SHOW HP CAP: %2; #FORMAT {my[hp][name]} {%s} {%2}};
-		#CASE {"BBD"} {#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2}};
-
-		#CASE {"CAA"} {#NOP Chat Messages;.mipProcessCAA {%2}};
 #nop		#CASE {"CAP"} {#NOP Window Caption Text;#FORMAT {temp} {%h} {%2};#showme {$temp} {-2}};
 #nop		#CASE {"CCF"} {#NOP Send File Line};
 #nop		#CASE {"CDF"} {#NOP Send File Begin};
 #nop		#CASE {"CEF"} {#NOP Send File End};
 
-		#CASE {"DDD"} {#NOP Room Exits;.mipProcessDDD {%2};#NOP Split at Hex 160 (Non Breaking Space)};
-		#CASE {"FFF"} {#NOP Combined Stats Data;.mipProcessFFF {%2}};
-		#CASE {"HAA"} {#NOP Room Items};
-		#CASE {"HAB"} {#NOP Item Actions;.mipProcessHAB {%2}};
-		#DEFAULT {#NOP Every other non-handled flag;#showme <148>UNHANDLED MIP: %0<088>}
+		#DEFAULT {#showme <148>UNHANDLED MIP: %0<088>;#NOP Every other non-handled flag;}
 	}
 }
-
 
 #class {mipcapture} {close};

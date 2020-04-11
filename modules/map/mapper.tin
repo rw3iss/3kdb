@@ -1,6 +1,5 @@
 #class {mapper} {open}
 
-#show Reading map: common/map/3k_shared.map...;
 #map read common/map/3k_shared.map;
 
 /* Move Event */
@@ -24,11 +23,9 @@
 	}
 }
 
-
 #alias {go} {#map get roomvnum go_back;#map run };
-
 #alias {go_back} {#map run $go_back};
-
+#alias {mapsave} {#map write common/map/3k_shared.map};
 
 #event {MAP UPDATED VTMAP} {
 	#delay {0.05} {mapupdate}

@@ -1,7 +1,5 @@
 #class {maphelper} {open}
 
-#nop map helpers;
-#alias {mh} {maphelp}
 #alias {maphelp} {
 	#show mapsave/mapload - save/load from map/3k_map.tin;
 	#show map <roomname> - set map at roomname;
@@ -20,14 +18,23 @@
 	#show mapm <dir> - move the map in dir;
 	#show maparea <name> - set area name for the current room;
 	#show areamapped <area> - show which rooms are mapped in this area;
-}
-
+};
+#alias {mh} {maphelp};
 
 #alias {go} {
+        #map get roomvnum go_back;
         #map find {roomname} {%0%*};
         #path run;
 };
+#alias {goback} {#map run $go_back};
 
+#alias {map} {
+    #map find {roomname} {%0%*};
+    #map goto %1;
+};
+#alias {mapgo} {#map goto %0};
+
+#alias {mi} {#map info};
 
 #alias {mk} {#map goto knights};
 #alias {mg} {#map goto gentech};
@@ -35,19 +42,14 @@
 #alias {mch} {#map goto chaos};
 #alias {mm} {#map goto magic};
 
-
-#alias {map} {
-    #map find {roomname} {%0%*};
-    #map goto %1;
-};
-#alias {mapbackup} {#map write common/map/3k_map_AUTOSAVE.tin;};
-#alias {maprestore} {#map read common/map/3k_map_AUTOSAVE.tin;};
+#alias {mapbackup} {#map write common/map/3k_shared_BACKUP.tin;};
+#alias {maprestore} {#map read common/map/3k_shared_BACKUP.tin;};
 #alias {mapundo} {maprestore};
-
-#alias {mapgo} {#map goto %0};
 #alias {mapsave} { #map write common/map/3k_shared.map force;#show Map saved.;};
 #alias {mapload} { #map read common/map/3k_shared.map;#show Map loaded.;};
-#alias {mi} {#map info;};
+
+
+/* Modify/extend the map helpers: */
 #alias {mapexit} {#map exit {%1} {COMMAND} {%2};#show Map exit created. %2 will lead %1.;mapsave;};
 #alias {mapname} {#map name %1;#show Map room named: %1;mapsave;};
 #alias {mapdig} {
@@ -87,6 +89,5 @@
 	#map find %0;
 	#path show;
 };
-
 
 #class {maphelper} {close}

@@ -10,9 +10,16 @@
 #var map[height] 20;
 #var map[width] 60;
 
-#var hpbar[top] 56;
-#var hpbar[left] 1;
-#var hpbar[width] 100;
-#var hpbar[height] 3;
+#var hpbar[height] 4;
+#var hpbar[left] 0;
+
+#VARIABLE {draw}  {
+    {canvas}{on}
+    {caption}{on}
+    {chat}{on}
+    {gline}{on}
+    {map}{on}
+	{hpbar}{on}
+};  
 
 #CLASS {vars} CLOSE

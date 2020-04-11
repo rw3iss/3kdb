@@ -1,0 +1,302 @@
+#EVENT {PROGRAM START}
+{
+     #config {MOUSE TRACKING} {ON};
+     #variable MAP[READY] 0;
+     #nop change this to 1 for overlap mode;
+     #variable MAP[OVERLAP] 0;
+     #variable SPLIT_TOP 9;
+     #variable SPLIT 0;
+     #screen raise SCREEN RESIZE;
+     #variable DRAG 1;
+     #variable COMMS[OFFSET] 0
+}
+
+#EVENT {SCREEN RESIZE}
+{
+     #variable SCREEN[ROWS] %0;
+     #variable SCREEN[COLS] %1;
+     #if {&MAP[COLS] == 0}
+     {
+          #if {$SCREEN[COLS] >= 160}
+          {
+               #math MAP[COLS] 80;
+               #math MAP[TOPC] 81;
+               #math MAP[BOTC] 161
+          };
+          #elseif {$SCREEN[COLS] < 120}
+          {
+               #math MAP[COLS] $SCREEN[COLS] - 40;
+               #math MAP[TOPC] 41;
+               #math MAP[BOTC] $SCREEN[COLS] + 1
+          };
+          #else
+          {
+               #math MAP[COLS] #SCREEN[COLS] - 80;
+               #math MAP[TOPC] 81;
+               #math MAP[BOTC] $SCREEN[COLS] + 1
+          }
+     };
+     #math MAP[ROWS] $SPLIT_TOP - 1;
+     #if {$SPLIT == 0}
+     {
+          #return
+     };
+     #if {$SCREEN[ROWS] > 20 && $SCREEN[COLS] >= 120 && $MAP[OVERLAP] == 1}
+     {
+          #math MAP[ROWS] $SCREEN[ROWS] - 6
+     };
+     #map offset 1 $MAP[TOPC]+1 $MAP[ROWS]-1 $MAP[BOTC];
+     #screen clear top;
+     #draw Jade line $SPLIT_TOP 1 $SPLIT_TOP $MAP[TOPC]-1;
+     #if {$MAP[OVERLAP] == 1}
+     {
+          #draw Jade line $SPLIT_TOP+1 $MAP[TOPC] -4 $MAP[TOPC];
+          #draw Jade tile -3 $MAP[TOPC] -3 $MAP[TOPC] ▲
+     };
+     #else
+     {
+          #draw Jade line $SPLIT_TOP  $MAP[TOPC]+1 $SPLIT_TOP -1;
+          #draw Jade tile $SPLIT_TOP -1 $SPLIT_TOP -1 ▼
+     };
+     #draw Jade line 1 $MAP[TOPC] $SPLIT_TOP-1 $MAP[TOPC];
+     #draw Jade tile $SPLIT_TOP $MAP[TOPC] $SPLIT_TOP $MAP[TOPC] ◆;
+     showwin
+}
+
+#EVENT {SHORT-CLICKED MOUSE BUTTON ONE}
+{
+     #if {%0 == $SPLIT_TOP}
+     {
+          #if {%3 == -1}
+          {
+               #variable MAP[OVERLAP] 1;
+               #screen clear square 1 $MAP[TOPC]+1 $MAP[ROWS]-1 $MAP[BOTC];
+               #screen raise SCREEN RESIZE;
+               #line quiet #split $SPLIT_TOP 1 0 -$MAP[TOPC]+1
+          }
+     };
+     #if {%2 == -3}
+     {
+          #if {%1 == $MAP[TOPC]}
+          {
+               #if {$MAP[OVERLAP] == 1}
+               {
+                    #variable MAP[OVERLAP] 0;
+                    #screen clear square 1 $MAP[TOPC]+1 $MAP[ROWS]-1 $MAP[BOTC];
+                    #screen clear square $SPLIT_TOP+1 $MAP[TOPC] -3 $MAP[TOPC];
+                    #screen raise SCREEN RESIZE;
+                    #line quiet #split $SPLIT_TOP 1
+               }
+          }
+     }
+}
+
+#EVENT {PRESSED MOUSE BUTTON ONE}
+{
+     #if {%0 == $SPLIT_TOP}
+     {
+          #if {%1 == $MAP[TOPC]}
+          {
+               #variable DRAG 2
+          };
+          #else
+          {
+               #variable DRAG 1
+          }
+     }
+}
+
+#EVENT {RELEASED MOUSE BUTTON ONE}
+{
+     #variable DRAG 0
+}
+
+#EVENT {MOVED MOUSE BUTTON ONE}
+{
+     #switch {$DRAG}
+     {
+          #case {0}
+          {
+               #return
+          };
+          #case {1}
+          {
+               #screen clear square 1 1 $SPLIT_TOP -1;
+               #variable SPLIT_TOP %0
+          };
+          #case {2}
+          {
+               #screen clear square 1 1 $SPLIT_TOP -1;
+               #screen clear square $SPLIT_TOP $MAP[TOPC] -3 -1;
+               #variable SPLIT_TOP %0;
+               #variable MAP[TOPC] %1
+          }
+     };
+     #if {$MAP[OVERLAP]}
+     {
+          #line quiet #split $SPLIT_TOP 1 0 -$MAP[TOPC]+1
+     };
+     #else
+     {
+          #line quiet #split $SPLIT_TOP 1
+     };
+     #screen raise SCREEN RESIZE
+}
+
+#EVENT {RECEIVED LINE}
+{
+     #if {$MAP[READY] && $MAP[OVERLAP]}
+     {
+          #map update
+     }
+}
+
+#EVENT {RECEIVED INPUT}
+{
+     #if {$MAP[READY] && $MAP[OVERLAP]}
+     {
+          #map update
+     }
+}
+
+#EVENT {MAP ENTER MAP}
+{
+     #variable MAP[READY] 1;
+     #screen raise SCREEN RESIZE
+}
+
+#EVENT {MAP EXIT MAP}
+{
+     #variable MAP[READY] 0
+}
+
+#EVENT {SESSION CONNECTED}
+{
+     #map read mymap.map;
+     #variable SPLIT 1;
+     #line quiet #split $SPLIT_TOP 1;
+     #screen raise SCREEN RESIZE
+}
+
+#EVENT {MAP SHORT-CLICKED MOUSE BUTTON ONE}
+{
+     #map run %0
+}
+
+#EVENT {SCROLLED MOUSE WHEEL UP}
+{
+     #if {%0 == -1}
+     {
+          #cursor {HISTORY PREV}
+     };
+     #if {%0 > $SPLIT_TOP}
+     {
+          #if {%1 < $MAP[TOPC]}
+          {
+               #buffer {up} {1}
+          }
+     };
+     #if {%0 < $SPLIT_TOP}
+     {
+          #if {%1 < $MAP[TOPC]}
+          {
+               #if {$COMMS[OFFSET] < 100}
+               {
+                    #math COMMS[OFFSET] $COMMS[OFFSET] + 1;
+                    showwin
+               }
+          }
+     }
+}
+
+#EVENT {SCROLLED MOUSE WHEEL DOWN}
+{
+     #if {%2 == -1}
+     {
+          #cursor {HISTORY NEXT};
+          #return
+     };
+     #if {%0 > $SPLIT_TOP}
+     {
+          #if {%1 < $MAP[TOPC]}
+          {
+               #buffer {down} {1}
+          }
+     };
+     #if {%0 < $SPLIT_TOP}
+     {
+          #if {%1 < $MAP[TOPC]}
+          {
+               #if {$COMMS[OFFSET] > 0}
+               {
+                    #math COMMS[OFFSET] $COMMS[OFFSET] - 1;
+                    showwin
+               }
+          }
+     }
+}
+
+#VARIABLE {COMMS}
+{
+     {WIN} {}
+}
+#ACTION {~%1 tells you %2}
+{
+     #variable COMMS[OFFSET] 0;
+     addtowin %1 tells you %2
+}
+
+#ACTION {~%1 chats %2}
+{
+     #variable COMMS[OFFSET] 0;
+     addtowin %1 chats %2
+}
+
+#ALIAS {addtowin}
+{
+     #format temp {%w} {{%0}{$MAP[TOPC] - 1}};
+     #loop {1} {&temp[]} {cnt}
+     {
+          #list COMMS[WIN] ins -1 {$temp[$cnt]}
+     };
+     #while {&COMMS[WIN][] > 100}
+     {
+          #list COMMS[WIN] del 1
+     };
+     showwin
+}
+
+#ALIAS {showwin}
+{
+     #if {$SPLIT == 0}
+     {
+          #return
+     };
+     #screen clear square 1 1 $SPLIT_TOP-1 $MAP[TOPC]-1;
+     #list COMMS[TMP] create $COMMS[WIN][-$SPLIT_TOP+1-$COMMS[OFFSET]..-1-$COMMS[OFFSET]];
+     #loop {1} {&COMMS[TMP][]} {cnt}
+     {
+          #regexp {$COMMS[TMP][$cnt]} {^$}
+          {
+               #nop
+          };
+          #else
+          {
+               #line ignore #showme {$COMMS[TMP][$cnt]} {$cnt} {1}
+          }
+     }
+}
+
+#ALIAS {test}
+{
+     #variable SPLIT 1;
+     #line quiet #split $SPLIT_TOP 1;
+     #map create;
+     #map flag vtmap;
+     #map goto 1;
+     #map move 2n4e2s4w;
+     #showme <138>Bubba tells you 'hello';
+     #showme <158>Pamela chats 'bye';
+     #screen fill default Jade;
+     #screen raise SCREEN RESIZE
+}
