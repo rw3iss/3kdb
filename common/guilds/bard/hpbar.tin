@@ -28,19 +28,18 @@
 #var hpbar[points_low] <119>;
 
 #ALIAS {update_caption} {
-        #math   {idle_hr}       {$idle / 3600};
-        #math   {idle_min}      {$idle % 3600 / 60};
-        #math   {idle_sec}      {$idle % 60};
-        #if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
-        #if     {$idle_min < 10}{#var idle_min 0$idle_min};
-        #if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
-        #format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
+    #math   {idle_hr}       {$idle / 3600};
+    #math   {idle_min}      {$idle % 3600 / 60};
+    #math   {idle_sec}      {$idle % 60};
+    #if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
+    #if     {$idle_min < 10}{#var idle_min 0$idle_min};
+    #if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
+    #format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
+    #math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
 
-        #showme {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])  Rnd: $mobrounds   Idle: $idle_cap} {-4};
+    #showme {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])  Rnd: $mobrounds   Idle: $idle_cap} {-4};
 }
-
 
 #TICKER {idle} {
         #math {idle} {$idle + 1};

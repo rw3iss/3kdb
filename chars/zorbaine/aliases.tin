@@ -1,3 +1,9 @@
+#alias {_player_deadmanActions} {
+    .stop;
+    #unact {%*};
+    #show \nPLAYER DEADMAN ACTIONS.\n;
+};
+    
 #ALIAS {brun}
 {
 	w;

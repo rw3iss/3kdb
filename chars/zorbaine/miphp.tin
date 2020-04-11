@@ -65,9 +65,10 @@
 }
 
 #alias {showhp} {
-    #ticker update_status {
-        update_status;
-    } {2};
+    #TICKER {update_status} {
+            #math {idle} {$idle + 1};
+            update_status;
+    } {1}
 }
 
 #alias {hidehp} {
