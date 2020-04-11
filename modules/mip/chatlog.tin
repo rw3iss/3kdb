@@ -1,7 +1,7 @@
 #class {mipchatlog} {open}
 
 
-#VAR ignoreEmotes {Owie.;nods and bids you farewell;smiles and welcomes you;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
+#VAR ignoreEmotes {Owie.;Arruns Thelton;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
 
 
 #NOP ***** Broadcast Communication (Chat/Shout) *****

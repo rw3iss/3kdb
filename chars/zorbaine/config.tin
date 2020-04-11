@@ -1,2 +1,12 @@
 #conf pack 1;
 #conf color on;
+
+#alias postload {
+    
+    #map flag static on;
+    #map flag vtmap on;
+    #map flag unicodegraphics on;
+    #map flag terrain on;
+    #map flag direction on;
+
+}

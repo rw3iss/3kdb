@@ -50,6 +50,7 @@
 
 
 /* Modify/extend the map helpers: */
+#alias {mapf} {#map flag %1 %2};
 #alias {mapexit} {#map exit {%1} {COMMAND} {%2};#show Map exit created. %2 will lead %1.;mapsave;};
 #alias {mapname} {#map name %1;#show Map room named: %1;mapsave;};
 #alias {mapdig} {
