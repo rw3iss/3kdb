@@ -1,15 +1,15 @@
 #class {botlist} {open}
 
-#alias {-kayos} {scaler 140;#read common/bot/bots/kayos.tin;ak ..}
-#alias {-kayosbot} {scaler 125;#read common/bot/bots/kayosbot.tin;ak ..}
-#alias {-chessbot} {scaler 140;#read common/bot/bots/chessboard.tin;ak ..}
-#alias {-smurfbot} {scaler 75;#read common/bot/bots/smurfbot.tin;ak ..}
-#alias {-letterbot} {scaler 145;#read common/bot/bots/letterbot.tin;ak ..}
-#alias {-carnbot} {scaler 120;#read common/bot/bots/carnegie.tin;ak ..}
-#alias {-hotelbot} {scaler 124;#read common/bot/bots/hotelbot.tin;setk k;ak ..}
-#alias {-anchorbot} {scaler 145;#read common/bot/bots/anchorman.tin;ak ..}
-#alias {-tacobot} {scaler 91;#read common/bot/bots/tacos.tin};
-#alias {-zellbot} {scaler 91;#read common/bot/bots/zelligar.tin;..};
+#alias {-kayos} {#read common/bot/bots/kayos.tin;ak ..}
+#alias {-kayosbot} {#read common/bot/bots/kayosbot.tin;ak ..}
+#alias {-chessbot} {map chess;#read common/bot/bots/chessboard.tin;ak ..}
+#alias {-smurfbot} {#read common/bot/bots/smurfbot.tin;ak ..}
+#alias {-letterbot} {#read common/bot/bots/letterbot.tin;ak ..}
+#alias {-carnbot} {#read common/bot/bots/carnegie.tin;ak ..}
+#alias {-hotelbot} {map hotel;#read common/bot/bots/hotelbot.tin;setk k;ak ..}
+#alias {-anchorbot} {#read common/bot/bots/anchorman.tin;ak ..}
+#alias {-tacobot} {#read common/bot/bots/tacos.tin};
+#alias {-zellbot} {#read common/bot/bots/zelligar.tin;..};
 
 #alias {-polbot} {#read common/bot/bots/polbot.tin;..;afterbot {go mahj;mb;afterbot {go chin2;cb;afterbot {go pol;portal;-polbot}}}}
 #alias {-grocbot} {#read common/bot/bots/groceries.tin}
@@ -47,16 +47,16 @@
 
 
 
-#nop Shortcuts: ---------------- ;
+#nop Shortercuts: ---------------- ;
 
 #alias {-ft} {go chaos;map chaos;-findtruck};
 #alias {-ftv} {go chaos;map chaos;-findtv};
 #alias {-tb} {-truckbot;..};
 
-#alias {-hb} {-hotelbot;scaler 128;..};
-#alias {-rb} {-rimalkinbot;scaler 150};
+#alias {-hb} {-hotelbot;scaler 150;..};
+#alias {-rb} {-rimalkinbot;scaler 150;..};
 #alias {-kb} {-kayosbot;scaler 150;..}
-#alias {-cb} {map chess;-chessbot;..}
+#alias {-cb} {-chessbot;..}
 #alias {-knb} {-knivurbot}
 #alias {-mb} {-mahjbot}
 #alias {-pb} {map pol3;-polbot;..};

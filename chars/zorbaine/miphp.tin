@@ -40,33 +40,23 @@
     #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
     #math hpbar[right] {$hpbar[left] + $screen[width]}; 
 
+    #if {"$draw[hpbar]" == "on"} {
     #draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
-    showhp;
+    }
+    tickhp;
 };
 
 #alias {draw_hpbar} {
-    #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
+    #if {"$draw[hpbar]" == "on"} {
+        #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
 
-	#format {uptimeStr}	{%+8s}	{$session[uptime]};
-	#format {rebootStr}	{%+5s}	{$session[reboot]};
-	#format {lagStr}	{%+4s}	{$session[lag]};
-    #math	{idle_hr}	{$idle / 3600};
-	#math	{idle_min}	{$idle % 3600 / 60};
-	#math	{idle_sec}	{$idle % 60};
-	#if	{$idle_hr < 10}	{#var idle_hr  0$idle_hr};
-	#if	{$idle_min < 10} {#var idle_min 0$idle_min};
-	#if	{$idle_sec < 10} {#var idle_sec 0$idle_sec};
-	#format {idleStr}	{%+4s}	{<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-    
-    #var statStr {I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
+        #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
 
-    #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
-
-    #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${statStr}\n${prompt2}\n${prompt3} };
-    
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3} };
+    }
 }
 
-#alias {showhp} {
+#alias {tickhp} {
     #TICKER {update_status} {
             #math {idle} {$idle + 1};
             update_status;

@@ -5,7 +5,6 @@
     #read modules/map/maphelper.tin;
 	#map goto $curvnum;
 	#map flag static on;
-    #show Map 3k_shared.map loaded. Use 'showmap' and 'hidemap' to see it.;
 };
 
 #alias {killmap} {

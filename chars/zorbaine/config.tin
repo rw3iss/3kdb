@@ -9,4 +9,6 @@
     #map flag terrain on;
     #map flag direction on;
 
+    #delay {1} {hp};
+
 }

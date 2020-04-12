@@ -11,10 +11,16 @@
 	#show .=		Set a repeatable command to repeat with '.';
 	#show ------------------------------------------;
 	#show <169>Other help commands:</169>;
-	#show sl		Souls;
-	#show scripts		Scripts;
-	#show module		module reload/module info;
+    #show sl		Souls;
+    #show scripts   Scripts;
+    #show module	module reload/module info;
 	#show \n;
+
+	#show ------------------------------------------;
+	#show <169>MIP / Room helpers:</169>;
+    #show sra - examine and search all MIP nouns in the current room;
+
+    #show \n;
 };
 #alias hhelp hh;
 

@@ -26,7 +26,12 @@
 #var partymode 0;
 #var usemask 0;
 #var autospork 0;
-#var autodog 0;
+#var autodog 0;'
+
+#act {^You attack} {bcc};
+#act {^You are already attacking} {
+	#if {"$my[battlecry]" == "n"} {bcc};
+};
 
 #action {{The Spork Lance tingles and you feel refreshed\.}} {#if {$my[sp][current] > 900} {will};};
 #nop #action {{^You must be wielding}} {wield sword;method $my[method][desired]};

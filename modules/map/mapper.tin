@@ -18,7 +18,7 @@
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
     
-    #if {"$draw[room]" == "on"} {
+    #if {"$draw[map]" == "on"} {
         draw_map;
     };
 }

@@ -27,17 +27,17 @@
 
 
 #alias update_room {
-    #if {"$draw[room]" == "on"} {
-        draw_room;
-    };
+    #if {"$draw[room]" == "on"} { draw_room };
 };
 
 
 #alias {sra} {
+    #ungag {^>$};
     #foreach {*nouns[%*]} {idx} {
         #var noun $nouns[$idx];
         ex $noun;
     };
+    #delay {1} { #gag {^>$} {1} };
 };
 
 #class {miproom} {close};

@@ -122,7 +122,7 @@
             #var foundfriend 1;
         };
 	};
-    #if {!$foundfriend} {#var foundplayer 1;#show PLAYER.;};
+    #if {!$foundfriend} {#var foundplayer 1;};
 } {1};
 
 

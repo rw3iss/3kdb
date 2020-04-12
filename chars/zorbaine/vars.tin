@@ -18,15 +18,15 @@
     {room}{on}
 }
 
-#var canvas[widthperc] .33;
+#var canvas[widthperc] .5
 
-#var map[widthperc] .33;
-#var map[heightperc] .33;
+#var map[widthperc] .5; /* must be <= canvas[widthperc] */
+#var map[heightperc] .6;
 
-#var hpbar[height] 4;
+#var hpbar[height] 3;
 #var hpbar[left] 0;
 
-#var room[widthperc] .33;
-#var room[heightperc] .33;
+#var room[widthperc] .5; /* must be <= canvas[widthperc] */
+#var room[heightperc] .4;
 
 #CLASS {vars} CLOSE
