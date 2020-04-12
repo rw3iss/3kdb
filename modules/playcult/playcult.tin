@@ -2,12 +2,14 @@
 
 #act {{Gargoyle \<cgame\>: One more minute left for role players to enter night actions\.}} {
     #show One minute left.;
+    #delay {40} {#show CULT: 20 SECONDS};
     #delay {50} {#show CULT: 10 SECONDS};
     #delay {55} {#show CULT: 4 SECONDS};
 };
 
 #act {{Gargoyle \<cgame\>: One more minute left to finish voting\.}} {
     #show One minute left.;
+    #delay {40} {#show CULT: 20 SECONDS};
     #delay {50} {#show CULT: 10 SECONDS};
     #delay {55} {#show CULT: 4 SECONDS};
 };
@@ -20,8 +22,8 @@
 #action {Gargoyle \<cgame\>: Remaining roles:} {
     #if {$autojoinCult == 1} {cult join};
 };
-#alias {autojoincult} {
-    #if {"$autojoinCult" == "1"} {
+#alias {cultautojoin} {
+    #if {$autojoinCult == 1} {
         #var autojoinCult 0;
         #show Autojoin off.;
     } {
@@ -37,9 +39,9 @@
 #alias {ct} {cult takeout};
 #alias {cu} {cult unvote};
 
-@register_module{playcult};
-@register_module_info playcult;{
+register_module {playcult};
+register_module_info {playcult} {
     #show Playcult info...;
-}};
+};
 
 #class {playcult} {close};

@@ -1,3 +1,5 @@
+#alias {info} {knight};
+
 #alias {fw} {unwield %1;fix %1; wield %1;}
 
 #alias {wa} {#send {wear all};pp};

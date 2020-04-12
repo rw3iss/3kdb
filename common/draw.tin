@@ -1,89 +1,131 @@
 #CLASS draw {open}
 
-#VARIABLE {draw}  {
+/* draw[] variables need to be set in player's vars.tin:
+#VARIABLE {draw} {
     {canvas}{on}
     {caption}{on}
     {chat}{on}
     {gline}{on}
     {map}{on}
 	{hpbar}{on}
+    {room}{on}
+}
+*/
+
+/* Calculate various area dimensions, called on start and SCREEN RESIZE */
+
+#alias init_screen {
+    #screen get 	rows 	screen[height];
+    #screen get 	cols 	screen[width];
+
+    #math map[width] {$map[widthperc] * $screen[width]};
+    #math map[height] {$map[heightperc] * $screen[height]};
+
+    #math room[width] {$room[widthperc] * $screen[width]};
+    #math room[height] {$room[heightperc] * $screen[height]};
+    #math room[top] {$screen[height] - $room[height]};
+    #math room[bottom] {$screen[height] - $hpbar[height] - 1};
+        
+    #if {"$draw[canvas]" == "on"} {
+        #math canvas[width] {$canvas[widthperc] * $screen[width] + 1};
+    } {
+        #var canvas[width] 0
+    }
+
+    #if {"$draw[caption]" == "on"} {
+        #var caption[height] 2
+    } {
+        #var caption[height] 0
+    }
+
+    #if {"$draw[chat]" == "on"} {
+        #math chat[height] {$chat[rows] + 1};
+        #if {"$draw[map]" == "on"} {
+            #math {chat[right]} {-$map[width]-2}
+        } {
+            #var chat[right] -1
+        }
+    } {
+        #var chat[height] 0
+    }
+
+    #if {"$draw[gline]" == "on"} {
+        #var gline[height] 2
+    } {
+        #var gline[height] 0
+    }
+
+    #nop Clear any previous drawings;
+    #screen clear split;
+    #buffer end;
+
+    #math status[height] { $hpbar[height] + 1}; 
+
+    #nop Split bottom area for hp+guild/stats bar;
+    #math 	split[top]		{$chat[height] + $caption[height]};
+    #var 	split[bottom]	$status[height];
+    #var    split[left]     0;
+    #var 	split[right]	$canvas[width];
+    #split 	$split[top] $split[bottom] $split[left] $split[right];
+
+    init_hpbar;
+    init_map;
 }
 
-#screen get 	rows 	screen[height];
-#screen get 	cols 	screen[width];
 
-#show screen height: $screen[height];
-
-/* Load draw variables */
-
-#if {"$draw[canvas]" == "on"} {
-	#var canvas[width] 43
-} {
-	#var canvas[width] 0
+#alias draw_all {
+    draw_chat;
+    draw_map;
+    draw_room;
 }
 
-#if {"$draw[caption]" == "on"} {
-	#var caption[height] 2
-} {
-	#var caption[height] 0
-}
-
-#if {"$draw[chat]" == "on"} {
-	#math chat[height] {$chat[rows] + 1};
-	#if {"$draw[map]" == "on"} {
-		#math {chat[right]} {-$map[width]-2}
-	} {
-		#var chat[right] -1
-	}
-} {
-	#var chat[height] 0
-}
-
-#if {"$draw[gline]" == "on"} {
-	#var gline[height] 2
-} {
-	#var gline[height] 0
-}
-
-#NOP map dimensions set in mapper.tin;
-
-#math status[height] {$hpbar[height] + $gline[height] + 1}
-
-/* Split bottom area for hp+guild/stats bar */
-#math 	split[top]		{$chat[height] + $caption[height]}
-#var 	split[bottom]	$status[height]
-#var 	split[right]	$canvas[width]
-#split 	$split[top] 	$split[bottom] $split[left] $split[right]
-
-/* Clear any previous drawings */
-#screen clear split;
-#buffer end;
-
+/* -- CHAT LOGS -- */
 #alias chatend {#nop;};
-#if {"$draw[chat]" == "on"} {
-	#draw {green} {line} $chat[height] 1 $chat[height] -1;
-	chatend;
+#alias draw_chat {
+    #if {"$draw[chat]" == "on"} {
+        #draw {green} {line} $chat[height] 1 $chat[height] -1;
+        chatend;
+    }
 }
 
-/* handles setup+draw in player's miphp.tin */
-init_hpbar;
-
-#if {"$draw[map]" == "on"} {
-	#draw line 1 -$map[width]-1 $map[height] -$map[width]-1;
-	#if {"$draw[caption]" == "on"} {
-		#showme {<228>\u2534<088>} $map[height]+1 -$map[width]-1
-	};
-	#map flag vtmap on;
-	#map offset 1 -$map[width] $map[height] -1;
-	#delay 0 #draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-	#delay 0 #draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
-} {
-	#map flag vtmap off
+/* -- MAP -- */
+#alias init_map {
+    #if {"$draw[map]" == "on"} {
+        #draw line 1 -$map[width]-1 $map[height] -$map[width]-1;
+        #map offset 1 -$map[width] $map[height] -1;
+        #map flag vtmap on;
+        draw_map;
+    } {
+        #map flag vtmap off
+    };
 }
 
+#alias draw_map {
+    #draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+    #draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+}
+
+/* -- ROOM -- */
+#alias draw_room {
+    #var nounStr {};
+    #foreach {*nouns[%*]} {idx} {
+        #var noun $nouns[$idx];
+        #var nounStr {$nounStr$noun\n};
+    };
+     
+    #var roomNameStr {<ffa>${room[name]}<088>};
+    #var nounStr {<ade>${nounStr}<088>};
+    
+    #draw {tile} $room[top]-1 -$room[width] $room[bottom] -1 { <020>$roomNameStr<099>};
+    #draw {<dda>} {box} $room[top] -$room[width] $room[bottom] -1 {${nounStr}\nExits: <afe>${exitStr}<088> };
+    #nop draw {tile} $room[top] -$room[width] $room[bottom] -1 {<020>$roomStr<099>};
+}
+
+
+#NOP NOT USED???;
 #alias redraw {
 	#var redraw[args][1] valid;
-	#var redraw[args][2] valid;
+	#var redraw[args][2] val`id;
 	#if {"%1" != ""} {
 		#switch {"%1"} {
 			#case {"canvas"}	{#var redraw[option] %1};
@@ -113,5 +155,15 @@ init_hpbar;
 	} {
 	}
 }
+
+#EVENT {SCREEN RESIZE}
+{
+    init_screen;
+    draw_all;
+}
+
+/* kick off */
+init_screen;
+draw_all;
 
 #CLASS draw {close}

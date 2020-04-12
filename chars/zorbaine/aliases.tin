@@ -99,6 +99,17 @@
 };
 
 
+/* -- repeat commands -- */
+#var repeatCommand 0;
+#var repeatInCombat 0;
+#alias {rpt} {
+    #show repeat: %0;
+    #var repeatCommand %0;
+    #ticker {repeat} {$repeatCommand} {2};
+};
+
+#alias {rptoff} {#unticker {repeat}};
+
 #nop /* repeat commands every round */;
 #alias {rpc} {
     #if {"%0" != ""} {
@@ -107,6 +118,10 @@
     } {
         #show Repeat currently set to: $repeatInCombat;
     }
+}
+#alias {rpcoff} {
+    #var repeatInCombat 0;
+    #show Repeat in combat off.\n;
 }
 
 #var delayRepeat 0;
@@ -135,6 +150,7 @@
     #var delayRepeatDelay 2500;
     #show Chess bot delay repeat at 2500s set.;
 };
+/*----------------------*/
 
 
 #CLASS {ZORBAINE_ALIASES} OPEN

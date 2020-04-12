@@ -17,10 +17,10 @@
 	#unvar area_mapped;
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
-	#if {"$draw[map]" == "on"} {
-		#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-		#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
-	}
+    
+    #if {"$draw[room]" == "on"} {
+        draw_map;
+    };
 }
 
 #alias {go} {#map get roomvnum go_back;#map run };
@@ -33,7 +33,7 @@
 
 #event {MAP ENTER ROOM} {
 	#if {"$mapping" == "on"} {
-		mapupdate
+		mapupdate;
 	}
 }
 

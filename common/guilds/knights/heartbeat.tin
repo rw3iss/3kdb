@@ -50,12 +50,19 @@
 	#if {$my[gp2][current] > 180} {
         #if {$botting == 1} {
             .pause;tr;tr;tr;rest;
-            #delay {60} {.bot};
+            #delay {2} {tr;tr;tr;.pause;rest};
+            #delay {60} {..};
         }
     }
 
 	#nop will when spork enabled;
 	#if {$incombat == 1} {
+
+        #if {$repeatInCombat != 0} {
+            #show RPC: $repeatInCombat;
+            $repeatInCombat;
+        }
+
 		#if {$hasspork == 1 && $my[stam][current] < STAMINA_EMERGENCY_CHECK && $my[sp][current] > WILL_WITH_SPORK_WITH_SP} { 
 			will;
 		};
@@ -161,7 +168,7 @@
 	rest;
 	#var incombat 0;
 	#var truced 0;
-	#if {$botting == 1} {.bot};
+	#if {$botting == 1} {..};
 } {1}; #nop highest priority kill trigger;
 
 
@@ -200,7 +207,6 @@
 	#var truced 0;
 	#var resting 0;
 	#if {$my[settings][killfollow] == 1} { follow $killing; };
-	hp;
 	#if {"$my[battlecry]" == "n"} {bcc};
 	#act {There is no $killing here} {
 		#if {$botting} {.bot};

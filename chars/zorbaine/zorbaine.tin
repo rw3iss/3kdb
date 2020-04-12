@@ -32,6 +32,7 @@ $username;$password;
 #read modules/professions/reforger.tin;
 #read modules/dmgtracker/dmgtracker.tin;
 #read modules/corpsemanager/corpsemanager_old.tin;
+#read modules/playcult/playcult.tin;
 
 /* startup / init modules for character */
 deadman 30;
@@ -40,6 +41,5 @@ loadmap;
 postload;
 
 #read common/draw.tin;
-
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;};

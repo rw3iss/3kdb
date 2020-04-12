@@ -7,19 +7,26 @@
 #VARIABLE         {shield}   {aurothon shield}
 #VARIABLE         {wielded}  {$wielded}
 
-#var map[height] 20;
-#var map[width] 60;
+
+#VARIABLE {draw} {
+    {canvas}{on}
+    {caption}{off}
+    {chat}{off}
+    {gline}{off}
+    {map}{on}
+	{hpbar}{on}
+    {room}{on}
+}
+
+#var canvas[widthperc] .33;
+
+#var map[widthperc] .33;
+#var map[heightperc] .33;
 
 #var hpbar[height] 4;
 #var hpbar[left] 0;
 
-#VARIABLE {draw}  {
-    {canvas}{on}
-    {caption}{on}
-    {chat}{on}
-    {gline}{on}
-    {map}{on}
-	{hpbar}{on}
-};  
+#var room[widthperc] .33;
+#var room[heightperc] .33;
 
 #CLASS {vars} CLOSE

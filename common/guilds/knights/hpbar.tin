@@ -152,9 +152,6 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
 	#nop replace {prompt2} {(Y)} {(<120>Y<088>)};
 	#nop replace {prompt2} {(n)} {(<110>N<088>)};
 	#nop replace {prompt2} {$my[mnt][stm][cur]/$my[mnt][stm][max]} {$my[mnt][stm][clr]$my[mnt][stm][cur]<088>/<120>$my[mnt][stm][max]<088>};
-
-	_heartbeat;
-	_horseHeartbeat;
 };
 
 #action {{\[WPN:(.*)\] \[LIGHT:(Y|n)\((\d+)%\)\] \[LF:(\d+)\] \[MOB:(.*)\]}}

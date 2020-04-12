@@ -1,5 +1,24 @@
 #class {drawmap} {open};
 
+
+
+
+
+#nop NOT USED!!!!!!!!!!!!!!!!!!!;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #alias {_draw_map} {
 	#split {0} {4} {0} {-100};
 	#map offset {0} {102} {-20} {-2};

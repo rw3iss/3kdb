@@ -61,27 +61,26 @@ associated aliases related to each mip message, which are generally handles in t
 
 #NOP ***** Individual Data Sections *****
 #ALIAS {.mipProcessFlag} {
-    
 	#SWITCH {"%1"} {
-		#CASE {"AAC"} {update_status;#NOP Reboot Time;#VAR {session[reboot]} {%2};};
-		#CASE {"AAF"} {update_status;#NOP Uptime;#VAR {session[uptime]} {%2};};
-		#CASE {"BAE"} {update_status;#NOP Mud Lag;#VAR {session[lag]} {%2};};
+		#CASE {"AAC"} {#VAR {session[reboot]} {%2};update_status}; #NOP Reboot Time;
+		#CASE {"AAF"} {#VAR {session[uptime]} {%2};update_status}; #NOP Uptime;
+		#CASE {"BAE"} {#VAR {session[lag]} {%2};update_status}; #NOP Mud Lag;
         
-		#CASE {"BBC"} {update_status;#NOP Hit Point Mask;#SHOW HP CAP: %2; #FORMAT {my[hp][name]} {%s} {%2};};
-		#CASE {"BBD"} {update_status;#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2};};
-		#CASE {"BBA"} {update_status;#NOP Guild Point1 Mask;#FORMAT {my[gp1][name]} {%s} {%2};};
-		#CASE {"BBB"} {update_status;#NOP Guild Point2 Mask;#FORMAT {my[gp2][name]} {%s} {%2};};
-		#CASE {"FFF"} {.mipProcessFFF {%2};#NOP Combined Stats Data;};
+		#CASE {"BBC"} {#FORMAT {my[hp][name]} {%s} {%2};update_status}; #NOP Hit Point Mask;
+		#CASE {"BBD"} {#FORMAT {my[sp][name]} {%s} {%2};update_status}; #NOP Spell Point Mask;
+		#CASE {"BBA"} {#FORMAT {my[gp1][name]} {%s} {%2};update_status}; #NOP Guild Point1 Mask;
+		#CASE {"BBB"} {#FORMAT {my[gp2][name]} {%s} {%2};update_status}; #NOP Guild Point2 Mask;
+		#CASE {"FFF"} {.mipProcessFFF {%2};update_status}; #NOP Combined Stats Data;
 
-		#CASE {"BAD"} {.mipProcessBAD {%2};#NOP Room Description;};
-		#CASE {"DDD"} {.mipProcessDDD {%2};#NOP Room Exits;#NOP Split at Hex 160 (Non Breaking Space)};
-		#CASE {"HAB"} {.mipProcessHAB {%2};#NOP Item Actions;};
-		#CASE {"HAA"} {#NOP Room Items;#show room items mip... %2;};
+		#CASE {"BAD"} {.mipProcessBAD {%2};update_room}; #NOP Room Description;
+		#CASE {"DDD"} {.mipProcessDDD {%2};update_room}; #NOP Room Exits;
+		#CASE {"HAB"} {.mipProcessHAB {%2};update_room}; #NOP Item Actions;
+		#CASE {"HAA"} {#show room items mip... %2;update_room}; #NOP Room Items;
 		#CASE {"AAA"} {#NOP failed guild actions maybe - this shows when bards cast a spell and there is no target};
         
-		#CASE {"CAA"} {.mipProcessCAA {%2};#NOP Chat Messages;};
-		#CASE {"BAB"} {.mipProcessBAB {%2};#NOP 2 Way Communications;};
-		#CASE {"BAC"} {#NOP Special Textstring2;#show special MIP text: %2;};
+		#CASE {"CAA"} {.mipProcessCAA {%2}}; #NOP Chat Messages;
+		#CASE {"BAB"} {.mipProcessBAB {%2}}; #NOP 2 Way Communications;
+		#CASE {"BAC"} {#show special MIP text: %2;}; #NOP Special Textstring;
 
 #nop		#CASE {"AAB"} {#NOP Image};
 #nop		#CASE {"AAD"} {#NOP Music};
@@ -94,7 +93,7 @@ associated aliases related to each mip message, which are generally handles in t
 #nop		#CASE {"CDF"} {#NOP Send File Begin};
 #nop		#CASE {"CEF"} {#NOP Send File End};
 
-		#DEFAULT {#showme <148>UNHANDLED MIP: %0<088>;#NOP Every other non-handled flag;}
+		#DEFAULT {#showme <148>UNHANDLED MIP: %0<088>;} #NOP Every other non-handled flag;
 	}
 }
 

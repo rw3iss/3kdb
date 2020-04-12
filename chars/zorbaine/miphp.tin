@@ -22,7 +22,9 @@
 	#format {gp2}			{%+4s} {$my[gp2][current]};
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
-
+    
+    _heartbeat;
+    
 	draw_hpbar;
 }
 
@@ -56,11 +58,11 @@
 	#if	{$idle_sec < 10} {#var idle_sec 0$idle_sec};
 	#format {idleStr}	{%+4s}	{<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
     
-    #var statStr { I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
+    #var statStr {I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
 
     #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
 
-    #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 { ${hpStr}\n${statStr}\n ${prompt2}\n ${prompt3} };
+    #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${statStr}\n${prompt2}\n${prompt3} };
     
 }
 
