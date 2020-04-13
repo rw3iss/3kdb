@@ -1,3 +1,8 @@
+#class {knight_horse} {kill};
+#class {knight_horse} {open};
+
+#NOP NOTE: Needs cleaning!;
+
 #action {{Almodo\: STM\: (\d+)/(\d+) (.*)$}} {#show horse stam: %2;}
 
 #alias {efh} {callesquire;esq fetch horse;mount horse;mc;};
@@ -32,3 +37,5 @@
 #var horsefeed 1;
 #alias {horsefeedon} {#var horsefeed 1;#show Horse feeding on.;};
 #alias {horsefeedoff} {#var horsefeed 0;#show Horse feeding off.;};
+
+#class {knight_horse} {close};

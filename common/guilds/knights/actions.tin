@@ -1,20 +1,7 @@
-#act {[WPN:Badly cracked]} {
-    #show FIX WEAPON!;
-    .stop;
-};
-
 #class {knight_actions} {kill};
 #class {knight_actions} {open};
 
-#action {It is too dark.} {
-	ss;
-	#if {$botting == 1} {.bot};
-};
-
-#action {Zorbaine's Esquire leaves} {esq l};
-
-#nop Auto-focus after joust win;
-#action {{as Zorbaine unhorses him\.}} { mf; };
+#NOP NOTE: Needs cleaning!;
 
 #var wimpied 0
 #var bouncebot 1
@@ -27,6 +14,16 @@
 #var usemask 0;
 #var autospork 0;
 #var autodog 0;'
+
+#act {[WPN:Badly cracked]} {
+    #show FIX WEAPON!;
+    .stop;
+};
+
+#action {It is too dark.} {
+	ss;
+	#if {$botting == 1} {.bot};
+};
 
 #act {^You attack} {bcc};
 #act {^You are already attacking} {
@@ -51,8 +48,8 @@
 	#if {"%2" == "southwest"} {#var wimpyreturn northeast};
 	#echo {%2 return set to $wimpyreturn};
 	#delay {wimpyrest} {_checkwimpy} {2};
-	
 };
+
 #action {{Your legs run away with you (\w+)\.}} 
 {
 	#send {!rest};
@@ -68,12 +65,12 @@
 	#echo {%2 return set to $wimpyreturn};
 	#delay {wimpyrest} {_checkwimpy} {2};
 } {0};
+
 #action {{^You feel your stamina returning as you rest your battle-wear$}} {#var my[truceing] 0; #var my[incombat] 0; #var my[battlecry] 0;#var my[resting] 1};
 #action {{^You will now begin recuperating from battle\.}} {#var my[resting] 1;};
 #action {{dealt the killing blow to}} {corpsetrig;_ondeath};
 #action {{.* gurgles in its own blood as it dies\.}} {_ondeath};
 #action {{.* gasps for breath, then slumps into death\.}} {_ondeath};
-
 
 #action {{Switches attacks: No}} {
 	#if {$autodog == 1} {
@@ -91,34 +88,5 @@
 #gag {{^You cant rest during combat\.$}} {#var my[incombat] 1;};
 #gag {{^You easily deflect .* attack with your shield\.$}};
 #gag {{^You are already resting\.}} {#var my[incombat] 0;};
-
-#action {{ Ueheuh, Council Member of the Neutral Dragons \(dragon\)}} {
-	#if {"$my[wielding]" != "wv"} {
-		unwield;
-		wield wv;
-		#var my[wielding] wv;
-	};
-};
-
-#action {{A (.+) (\w+) dragon \(dragon\)}} {
-	
-	#if {$autospork == 1} {
-		#var dragon[name] %2;
-		#var dragon[color] %3;
-		#if {"%3" == "quartz"} {
-			#if {"$my[wielding]" != "wv"} {
-				unwield;
-				wield wv;
-				#var my[wielding] wv;
-			};
-		} {
-			#if {"$my[wielding]" != "spork"} {
-				unwield;
-				wield spork;
-				#var my[wielding] spork;
-			};
-		};
-	};
-};
 
 #class {knight_actions} {close}; 

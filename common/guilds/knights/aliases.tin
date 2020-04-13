@@ -1,3 +1,8 @@
+#class {knight_aliases} {kill};
+#class {knight_aliases} {open};
+
+#NOP NOTE: Needs cleaning!;
+
 #alias {info} {knight};
 
 #alias {fw} {unwield %1;fix %1; wield %1;}
@@ -209,3 +214,5 @@
 #alias {_boot} {
 	guild;enter;n;quickbuy;buy sack;buy tinder;buy tinder;buy tinder;buy tinder;buy tinder;buy tinder;buy tinder;n;quickbuy;e;quickbuy;wear all;hone sword;hone sword 2;smuggle shield;wield sword;wear all;smuggle sword;kae;put all in sack;smuggle sack;w;s;s;out;h
 };
+
+#class {knight_aliases} {close};

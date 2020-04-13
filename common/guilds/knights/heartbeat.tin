@@ -162,7 +162,7 @@
 #action {{(\w+) dealt the killing blow to}} {
 	#show KILLING BLOW;
 	killTriggerAlways;
-	#if {"%2" == "Zorbaine" && $party == 0} { 
+	#if {"%2" == "$characterName" && $party == 0} { 
 		killtrigger; 
 	};
 	rest;
@@ -182,7 +182,7 @@
 	_guild_killTrigger;
 
 	#if {$party == 1} {
-		#if {"$partyLeader" == "zorbaine"} {
+		#if {"$partyLeader" == "$character"} {
 			docorpsetrig;
 		} {
 			divvy coins;
