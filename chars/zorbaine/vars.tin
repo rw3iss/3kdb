@@ -10,7 +10,7 @@
 
 #VARIABLE {draw} {
     {canvas}{on}
-    {caption}{off}
+    {caption}{on}
     {chat}{off}
     {gline}{off}
     {map}{on}
@@ -18,15 +18,17 @@
     {room}{on}
 }
 
-#var canvas[widthperc] .5
+#var splitWidthPerc .45;
 
-#var map[widthperc] .5; /* must be <= canvas[widthperc] */
+#var canvas[widthperc] $splitWidthPerc;
+
+#var map[widthperc] $splitWidthPerc; /* must be <= canvas[widthperc] */
 #var map[heightperc] .6;
 
 #var hpbar[height] 3;
 #var hpbar[left] 0;
 
-#var room[widthperc] .5; /* must be <= canvas[widthperc] */
+#var room[widthperc] $splitWidthPerc; /* must be <= canvas[widthperc] */
 #var room[heightperc] .4;
 
 #CLASS {vars} CLOSE

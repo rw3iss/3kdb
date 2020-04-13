@@ -130,12 +130,12 @@
 /* Bot end actions... */
 #act {#END OF PATH} {
     #if {!$loop || !$loophadmob} {
-        #show \nLooping not enabled. Stopping.;
+        #show \nBot finished.;
         .stop;
     } {
         #show \nLooping bot...;
         #path load botpath;
-        #var loophadmob 0'
+        #var loophadmob 0;
         .bot;
     };
 };

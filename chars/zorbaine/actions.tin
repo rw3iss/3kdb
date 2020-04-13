@@ -4,6 +4,8 @@
 #act {^\[PARTY\] Byron: go %1} {%1};
 
 
+#nop auto-buy at least three lottery tickets;
+#act {\$\$Lottery:\$\$ A lottery has been created for} {#show \n\n%0\n\n;#3 {lottery buy;y};lottery check};
 
 
 /* Auto-hold talisman for +alignment when it recharges */
