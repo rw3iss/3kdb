@@ -160,7 +160,6 @@
 
 
 #action {{(\w+) dealt the killing blow to}} {
-	#show KILLING BLOW;
 	killTriggerAlways;
 	#if {"%2" == "$characterName" && $party == 0} { 
 		killtrigger; 
