@@ -17,8 +17,8 @@
 		#if {$noun_index == 0} {
 			#list {nouns} {add} {&3};
 			#if {"$autosearch" == "on"} {
-				exa &3;
-				search &3
+				exa &3 in room;
+				search &3 in room;
 			}
 		}
 	}

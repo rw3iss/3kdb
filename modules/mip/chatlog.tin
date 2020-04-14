@@ -48,8 +48,8 @@
 		#replace {mip[comm][cdata]} {]} {]<099>};
 		#var {mip[comm][cdata]} {$commcol$mip[comm][cdata]<099>};
 
-		#line log {logs/$datestamp} {$timestamp\};
-		#line log {logs/$datestamp} {$mip[comm][cdata]};
+		#line log {logs/$user/$datestamp} {$timestamp\};
+		#line log {logs/$user/$datestamp} {$mip[comm][cdata]};
 
 	}
 }
@@ -78,13 +78,13 @@
                 #IF {"&2" == "x"} {
                     #NOP Message to another player;
                     #var mip[comm][twoway] {to};
-                    #line log {logs/$datestamp} {$timestamp_save\};
-                    #line log {logs/$datestamp} {<ead>To &3<088>: &4}
+                    #line log {logs/$user/$datestamp} {$timestamp_save\};
+                    #line log {logs/$user/$datestamp} {<ead>To &3<088>: &4}
                 } {
                     #NOP Message from another player;
                     #var mip[comm][twoway] {from};
-                        #line log {logs/$datestamp} {$timestamp_save\};
-                        #line log {logs/$datestamp} {<ead>&3<088>: &4};
+                        #line log {logs/$user/$datestamp} {$timestamp_save\};
+                        #line log {logs/$user/$datestamp} {<ead>&3<088>: &4};
                         #bell;
                 }
             } {

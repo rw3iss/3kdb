@@ -20,10 +20,6 @@
 	drink flask;
 	dispose flask;
 };
-
-#alias {spider2} {search waterfall;remove slate;place hand on print;search dust;knock on door};
-#act {A voice says: What is the PASSWORD?} {say black swan};
-
 #nop embalm and get corpses;
 #act {Sock romps about with you} {#20 egc;};
 #nop defend someone when they beg me:;

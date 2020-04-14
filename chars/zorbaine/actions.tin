@@ -27,13 +27,13 @@
 		#if {"%3" == "quartz"} {
 			#if {"$my[wielding]" != "wv"} {
 				unwield;
-				wield wv;
+				#send wield wv;
 				#var my[wielding] wv;
 			};
 		} {
 			#if {"$my[wielding]" != "spork"} {
 				unwield;
-				wield spork;
+				#send wield spork;
 				#var my[wielding] spork;
 			};
 		};

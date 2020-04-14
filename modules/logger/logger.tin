@@ -6,8 +6,8 @@
 #alias {-cl} {
 	#format {datestamp} {%t} {%Y-%m-%d.log};
 	#format {timestamp} {%t} {[%H:%M] };
-	#line log logs/$datestamp {$timestamp\};
-	#line log logs/$datestamp;
+	#line log logs/$user/$datestamp {$timestamp\};
+	#line log logs/$user/$datestamp;
 	-xchatlog;
 	beep;
 };
@@ -15,8 +15,8 @@
 #alias {-clnobeep} {
 	#format {datestamp} {%t} {%Y-%m-%d.log};
 	#format {timestamp} {%t} {[%H:%M] };
-	#line log logs/$datestamp {$timestamp\};
-	#line log logs/$datestamp;
+	#line log logs/$user/$datestamp {$timestamp\};
+	#line log logs/$user/$datestamp;
 	-xchatlog;
 };
 

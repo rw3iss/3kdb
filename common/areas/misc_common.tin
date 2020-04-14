@@ -1,0 +1,2 @@
+#alias {spider2} {search waterfall;remove slate;place hand on print;search dust;knock on door};
+#act {A voice says: What is the PASSWORD?} {say black swan};
