@@ -35,7 +35,8 @@
     #ungag {^>$};
     #foreach {*nouns[%*]} {idx} {
         #var noun $nouns[$idx];
-        ex $noun;
+        examine $noun in room;
+        search $nound in room;
     };
     #delay {1} { #gag {^>$} {1} };
 };
