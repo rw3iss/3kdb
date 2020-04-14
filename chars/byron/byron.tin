@@ -5,6 +5,8 @@
 #conf pack 1;
 #conf color on;
 
+#read chars/byron/vars.tin;
+
 /* Set player specific variables */
 #var guild bard;
 #var user byron;
@@ -34,8 +36,10 @@
 #alias {defaults_on} {
 	mipon;
 	loadmap;
+    postload;
 	#read common/draw.tin
 	#var autodmg 1;
 }
+
 
 #alias {reload} {#kill all;#show \n;#read chars/$user/$user.tin;};

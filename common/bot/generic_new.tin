@@ -18,6 +18,7 @@
 
 /* ignore these players */
 #var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void;Killgrave};
+#var mobWhitelist {Almodo;Packy the packmule};
 
 /* load the selected bot's path into ready state */
 #path load botpath;
@@ -73,9 +74,21 @@
                 #path walk;
             } {
                 #if {$foundmob} {
-                    .skip;
-                    .pause;
-                    k $mobname;
+                    
+                    #var ignoremob 0;
+                    #foreach {$mobWhitelist} {name} {
+                        #if {"%0" == "%*$name%*"} {
+                            #var ignoremob 1;
+                        };
+                    };
+                    #if {!$ignoremob} {
+                        .skip;
+                        .pause;
+                        k $mobname;
+                    } {
+                        .bot;
+                    }
+                    
                 } {
                     .skip;
                     #path walk;

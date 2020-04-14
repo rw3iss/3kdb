@@ -1,7 +1,7 @@
 #alias {_player_deadmanActions} {
     .stop;
     #unact {%*};
-    #show \nPLAYER DEADMAN ACTIONS.\n;
+    #delay {450} {#show \nPLAYER DEADMAN DISCONNECTING.\n;ld};
 };
     
 #ALIAS {brun}
@@ -33,6 +33,7 @@
 {5};
 
 #alias {ex} {examine %0;search %0;};
+#alias {exr} {examine %0 in room;search %0 in room};
 
 #nop Get coffin from morgue and fill it;
 #alias {coffin} {acquire;#5 buy 2;#5 wrap corpse;};
@@ -362,7 +363,6 @@
 #alias {x} {examine %0;search %0;};
 
 
-#alias {ex} {examine %0;search %0};
 #alias {gc} {get coins};
 #alias {dg} {divvy gold};
 #alias {ud} {unlock door;open door};

@@ -1,0 +1,115 @@
+#class {auto_mapper} {open};
+
+#var lastcommand 0;
+
+#var roomarea 0;
+
+#var roomentrancecmd 0;
+#var roomshort 0;
+#var roomlong 0;
+#var roomexits 0;
+
+#var lastvnum 0;
+#var currentvnum 0;
+
+#function {enablemapping} {
+
+	#event {RECEIVED INPUT} {
+		#nop capture last command as room entrance;
+		#var lastcommand %%0;
+	} {5};
+
+	#act {{^-R-_(.*)}} {
+		#var roomentrancecmd ${lastcommand};
+		#var roomshort %%1;
+	};
+
+	#nop room description;
+	#act {{^-D-_(.*)}%%1} {
+		#var roomlong %%1;
+
+		#act {{There are (.*) obvious exits: (.*)}} {
+			#var roomexits %%%3;
+
+			@makenewroom{};
+		} {2};
+
+		#ACTION {%%%0} 
+	    { 
+	       #VARIABLE {roomlong} {${roomlong}%%%0} 
+	    } {5};
+	};
+};
+
+#function {disablemapping} {
+	#unevent {RECEIVED INPUT};
+	#unact {{^-R-_(.*)}};
+	#unact {{^-D-_(.*)}%%1};
+	#unact {%%%0};
+	#unact {{There are (.*) obvious exits: (.*)}};
+};
+
+#alias {mapstart} {
+	#alias {l} {
+		#nop disable room triggers when looking;
+		@disablemapping{};
+		look;
+		#delay {2} { @enablemapping{}; };
+	};
+
+	@enablemapping{};
+
+	#show Mapping enabled.;
+
+	#if {$maparea == 0} {
+		#show WARNING: no area set for mapper. use 'maparea Area Name' to set one.;
+	};
+};
+
+#alias {mapend} {
+	@disablemapping{};
+
+	#show Mapping disabled.
+};
+
+#nop Sets ansi variables necessary for mapping to work;
+#alias {mapinit} {
+	aset room_short -R-_;
+	aset room_long -D-_;
+};
+
+
+#alias {maparea} {
+	#var maparea %0;
+	#show Map area set to: %0;
+};
+
+#nop deletes the last room created and selects the previous room;
+#alias {mapundo} {
+
+};
+
+#nop does new room creation;
+#function {makenewroom} {
+	#unact {%%%0};
+	#unact {{There are (.*) obvious exits: (.*)}};
+
+	#show Making new room...;
+	#show Entrance: $roomentrancecmd;
+	#show Short: $roomshort;
+	#show Desc: $roomlong;
+	#show Exits: $roomexits;
+
+	#map dig ${roomentrancecmd};
+	#show #map dig ${roomentrancecmd};
+	
+	#map move ${roomentrancecmd};
+
+	#map set roomarea $roomarea;
+	#map set roomname $roomshort;
+	#map set roomdesc $roomlong;
+};
+
+#class {auto_mapper} {close};
+
+#show Automapper loaded.;

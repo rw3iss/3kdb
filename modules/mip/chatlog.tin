@@ -108,7 +108,6 @@
 		#line sub {var} #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
 	}
 }
-
 #ALIAS {update_chat} {
 	#if {&chat[log][] > $chat[max]} {
 		#list chat[log] del 1
@@ -118,7 +117,6 @@
 	#class {chat} {write} {.tt/3k/vars/${mud}chat.var};
 	show_chat
 }
-
 #ALIAS {chatup} {
 	#if {$chat[rows]*{$chat[page]+1} <= $chat[max] &&
 	     $chat[rows]*{$chat[page]+1} <= &chat[log][]} {
@@ -126,14 +124,12 @@
 		show_chat
 	}
 }
-
 #ALIAS {chatdown} {
 	#if {$chat[page] > 1} {
 		#math chat[page] {$chat[page]-1};
 		show_chat
 	}
 }
-
 #ALIAS {chatend} {
 	#math chat[page] 1;
 	show_chat

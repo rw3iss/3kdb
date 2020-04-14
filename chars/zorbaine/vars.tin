@@ -10,7 +10,7 @@
 
 #VARIABLE {draw} {
     {canvas}{on}
-    {caption}{on}
+    {caption}{off}
     {chat}{off}
     {gline}{off}
     {map}{on}

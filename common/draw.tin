@@ -112,7 +112,6 @@
 /* -- MAP -- */
 #alias init_map {
     #if {"$draw[map]" == "on"} {
-        #nop draw line 1 -$map[width]-1 $map[height] -$map[width]-1;
         #draw line $map[height] -$map[width]-1 $map[height] -1;
         #map offset 1 -$map[width] $map[height]-1 -1;
         #map flag vtmap on;

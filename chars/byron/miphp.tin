@@ -53,8 +53,10 @@
 	#showme {$eternal_string Idle: $idle_cap} {-2};
 
 	_heartbeat;
+    
+	draw_hpbar;
 }
-
+    
 #alias {_heartbeat} {
 	#if {$defs[pe] && $my[defs][pe] == 0} {cast protection from evil};
 	#if {$defs[pg] && $my[defs][pg] == 0} {cast protection from good};
@@ -62,6 +64,49 @@
 	#if {$defs[ph] && $my[defs][ph] == 0} {cast protection from heat};
 	#if {$defs[pf] && $my[defs][pf] == 0} {cast protection from frost};
 	#if {$defs[blink] && $my[defs][blink] == 0} {cast blink};
+}
+
+#if {"$draw[hpbar]" == "on"} {
+	#var hpbar[enabledheight] $hpbar[height];
+} {
+	#var hpbar[enabledheight] 0;
+}
+    
+/* calculate hpbar size and draws initial line above hpbar area */
+#alias {init_hpbar} {
+    
+    #if {"$draw[hpbar]" == "on"} {
+        #var hpbar[enabledheight] $hpbar[height];
+    } {
+        #var hpbar[enabledheight] 0;
+    }
+
+    #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
+    #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
+    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
+
+    #if {"$draw[hpbar]" == "on"} {
+    #draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
+    }
+
+    tickhp;
+};
+
+#alias {draw_hpbar} {
+    #if {"$draw[hpbar]" == "on"} {
+        #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
+
+        #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
+
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3} };
+    }
+}
+
+#alias {tickhp} {
+    #TICKER {update_status} {
+            #math {idle} {$idle + 1};
+            update_status;
+    } {1}
 }
 
 #class {miphp} {close}

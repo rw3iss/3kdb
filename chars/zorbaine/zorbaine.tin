@@ -4,7 +4,6 @@
 $username;$password;
 
 #var user $username;
-#var guild knights;
 #var world 3k;
 
 /* load common */
