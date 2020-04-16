@@ -17,12 +17,13 @@
 }
 
 #alias deadmanActions {
-    #var idle 1;
+    #var idle_flag 1;
     #show \nDEADMAN TIMEOUT.\n;
     _player_deadmanActions;
 }
 
 #event {RECEIVED INPUT} {
+    #var idle_flag 0;
     #var idle 0;
     #delay {deadmanSwitch} {deadmanActions} {$deadmanIdleTimeout};
 } {0};

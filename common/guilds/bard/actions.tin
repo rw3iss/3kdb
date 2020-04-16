@@ -1,16 +1,16 @@
 #NOP --------------------------------------- BARD SPECIFIC ACTIONS ------------------------------------------
 
 #NOP --- BARD DEFENSIVE SONGS AND SPELLS
-#ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[grace] && !$IDLE} {ag}} {5}
-#ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$IDLE} {perform o muse}} {5}
-#ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$IDLE} {setpanic clear;cast blink;#list dodge_stats add $blink_count}} {5}
-#ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$IDLE} {cast hardened skin}} {5}
-#ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$IDLE} {cast protection from evil}} {5}
-#ACTION {^Your protection from neutral is beginning to fade.$} {#if {$defs[pn] && !$IDLE} {cast protection from neutral}} {5}
-#ACTION {^Your protection from good is beginning to fade.$} {#if {$defs[pg] && !$IDLE} {cast protection from good}} {5}
-#action {^Your protection from heat is beginning to fade.$} {#if {$defs[ph] && !$IDLE} {cast protection from heat}} {5};
-#action {^Your protection from frost is beginning to fade.$} {#if {$defs[pf] && !$IDLE} {cast protection from frost}} {5};
-#ACTION {^Your empowered strikes have faded.} {#if {$defs[es] && !$IDLE && $my[karma][current] > 300} {empowered strikes}} {5};
+#ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[grace] && !$idle_flag} {ag}} {5}
+#ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$idle_flag} {perform o muse}} {5}
+#ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {setpanic clear;cast blink;#list dodge_stats add $blink_count}} {5}
+#ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$idle_flag} {cast hardened skin}} {5}
+#ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$idle_flag} {cast protection from evil}} {5}
+#ACTION {^Your protection from neutral is beginning to fade.$} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral}} {5}
+#ACTION {^Your protection from good is beginning to fade.$} {#if {$defs[pg] && !$idle_flag} {cast protection from good}} {5}
+#action {^Your protection from heat is beginning to fade.$} {#if {$defs[ph] && !$idle_flag} {cast protection from heat}} {5};
+#action {^Your protection from frost is beginning to fade.$} {#if {$defs[pf] && !$idle_flag} {cast protection from frost}} {5};
+#ACTION {^Your empowered strikes have faded.} {#if {$defs[es] && !$idle_flag && $my[karma][current] > 300} {empowered strikes}} {5};
 
 #ACTION {^As you complete the spell you begin phasing in and out of view!$} {
 		setpanic cast cure at 67%;setpanic cease;#var blink_count 0
@@ -32,7 +32,7 @@
 
 #NOP --- GENERAL MISC
 
-#action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$IDLE} {#delay 6 {cult join}}};
+#action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
 
 #nop --- BARD HEALING
 

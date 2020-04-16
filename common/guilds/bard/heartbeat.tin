@@ -3,18 +3,18 @@
 #alias {_heartbeat} {
 	#if {$my[karma][current] < $my[karma][min]} {unwrap;pd};
 	#if {$corpses[coffin] < 15 && $dmg_on} {reflex remove gp1 >250;#var dmg_on 0};
-	#regex $prots {PE:} {#nop} {#if {$defs[pe] && !$IDLE} {cast protection from evil} {#nop}};
-	#regex $prots {PN:} {#nop} {#if {$defs[pn] && !$IDLE} {cast protection from neutral} {#nop}};
-	#regex $prots {PG:} {#nop} {#if {$defs[pg] && !$IDLE} {cast protection from good} {#nop}};
-	#regex $prots {PF:} {#nop} {#if {$defs[pf] && !$IDLE} {cast protection from frost} {#nop}};
-	#regex $prots {PH:} {#nop} {#if {$defs[ph] && !$IDLE} {cast protection from heat} {#nop}};
+	#regex $prots {PE:} {#nop} {#if {$defs[pe] && !$idle_flag} {cast protection from evil} {#nop}};
+	#regex $prots {PN:} {#nop} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral} {#nop}};
+	#regex $prots {PG:} {#nop} {#if {$defs[pg] && !$idle_flag} {cast protection from good} {#nop}};
+	#regex $prots {PF:} {#nop} {#if {$defs[pf] && !$idle_flag} {cast protection from frost} {#nop}};
+	#regex $prots {PH:} {#nop} {#if {$defs[ph] && !$idle_flag} {cast protection from heat} {#nop}};
 
-	#regex $prots {MB} {#nop} {#if {$defs[mb] && !$IDLE} {cast mind blank} {#nop}};	
-	#regex $prots { B} {#nop} {#if {$defs[blink] && !$IDLE} {cast blink} {#nop}};
-	#regex $prots {HS:} {#nop} {#if {$defs[hs] && !$IDLE} {cast hardened skin} {#nop}};
-	#regex $prots {O:} {#nop} {#if {$defs[muse] && !$IDLE} {perform o muse} {#nop}};
-	#regex $prots {AG:} {#nop} {#if {$defs[grace] && !$IDLE} {remove shield;perform amazing grace} {#nop}};
-	#regex $prots {ES:} {#nop} {#if {$defs[es] && !$IDLE && $my[karma][current] > 300} {empowered strikes} {#nop}};	
+	#regex $prots {MB} {#nop} {#if {$defs[mb] && !$idle_flag} {cast mind blank} {#nop}};	
+	#regex $prots { B} {#nop} {#if {$defs[blink] && !$idle_flag} {cast blink} {#nop}};
+	#regex $prots {HS:} {#nop} {#if {$defs[hs] && !$idle_flag} {cast hardened skin} {#nop}};
+	#regex $prots {O:} {#nop} {#if {$defs[muse] && !$idle_flag} {perform o muse} {#nop}};
+	#regex $prots {AG:} {#nop} {#if {$defs[grace] && !$idle_flag} {remove shield;perform amazing grace} {#nop}};
+	#regex $prots {ES:} {#nop} {#if {$defs[es] && !$idle_flag && $my[karma][current] > 300} {empowered strikes} {#nop}};	
 };
 
 

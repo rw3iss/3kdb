@@ -42,7 +42,7 @@
 }
 
 #alias {_heartbeat} {
-	#if {!$IDLE && $my[worth] < 125} {con 100} {#NOP};
+	#if {!$idle_flag && $my[worth] < 125} {con 100} {#NOP};
 };
 
 

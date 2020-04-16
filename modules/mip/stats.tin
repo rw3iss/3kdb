@@ -70,10 +70,11 @@
 	#IF {"%2" != ""} {
 		#SWITCH {"$guild"} {
 			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
-			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
+			#CASE {"elemental"}		{.mipProcessGlineElemental {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
-			#CASE {"bard"}		{.mipProcessGlineBard {%1}};
+			#CASE {"bard"}			{.mipProcessGlineBard {%1}};
+			#CASE {"gentech"}		{.mipProcessGlineGentech {%1}};
 		}
 	}
 }
@@ -117,6 +118,26 @@
 			#VAR {my[reset]}		{&7}
 		};
 		#REGEX {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineGentech} {
+	#var my[cpc][max] 10000;
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]}	{CPC:\<%?%d\>} {#VAR {my[cpc][current]} {&2}};
+		#REGEX {$mip[gline][1]}	{G2N:%d} {#VAR {my[g2n]} {&1}};
+		#REGEX {$mip[gline][1]}	{TS:%d} {#VAR {my[timeslide_personal]} {&1}};
+		#REGEX {$mip[gline][1]}	{Reset\(\<%?%d\%\>\)} {#VAR {my[timeslide_reset]} {&2}};
+		#REGEX {$mip[gline][1]}	{E-TS:%d} {#VAR {my[timeslide_emergency]} {&1}};
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]}	{Bias\[\<%?%w\>\]} {#VAR {my[bias][status]} {&2}};
+		#REGEX {$mip[gline][2]}	{Atk\(\<%?%d\%\>\)} {#VAR {my[bias][attack]} {&2}};
+		#REGEX {$mip[gline][2]}	{Def\(\<%?%d\%\>\)} {#VAR {my[bias][defense]} {&2}};
+		#REGEX {$mip[gline][2]}	{Efield\>\(\<%?%d%w\>\)} {#VAR {my[efield]} {&2}};
+		#REGEX {$mip[gline][2]}	{Edna\(\<%?%d%w\>\)} {#VAR {my[edna]} {&2}};
+		#REGEX {$mip[gline][2]}	{Illum\(\<%?%w\>\)} {#VAR {my[illum]} {&2}};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
@@ -208,6 +229,7 @@
 	#REPLACE {result} {<c} {<869>};
 	#REPLACE {result} {<v} {<859>};
 	#REPLACE {result} {<s} {<279>};
+	#REPLACE {result} {<w} {};
 }
 
 #class {mipstats} {close};

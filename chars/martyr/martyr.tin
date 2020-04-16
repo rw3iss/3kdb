@@ -1,32 +1,48 @@
 #NOP - 3k Session
 
-#SESSION {3k} {3k.org} {3000}
+#SESSION {3k - Martyr} {3k.org} {3000}
 
-#var guild gentech;
-#var user martyr;
-#var vaf_numbers 0;
-#var world 3k;
 #conf pack 1;
 #conf color on;
 
-#split 0 4;
-#read $user/global.tin;
-#read $user/aliases.tin;
-#read $user/triggers.tin;
-#read common/common.tin;
-#read common/chatlog.tin;
-#read common/mapper.tin;
+/* Set player specific variables */
+#var guild gentech;
+#var user martyr;
+#var vaf_numbers 0;
+#var scaler[tacos] 91;
 
-#read common/corpse_tracker.tin;
-#read common/deadmans.tin;
+/* load common */
+#read common/index.tin;
 
-#map goto $curvnum;
-#map flag static on;
+/* load specific modules for this character */
+#read modules/corpsemanager/corpsemanager.tin;
+#read modules/deadman/deadman.tin;
+#read modules/professions/reforger.tin;
+
+/* load guild */
+#read common/guilds/$guild/index.tin;
+
+/* load character-specific */
+#read chars/$user/aliases.tin;
+#read chars/$user/miphp.tin;
+#read chars/$user/triggers.tin;
+#read chars/$user/vars.tin;
 
 #alias {defaults_on} {
-	#read $user/hpbar.tin;
-	#read $user/heartbeat.tin;
-	#var autodmg 1;
+	mipon;
+	loadmap;
+    postload;
+	#read common/draw.tin;
+
+	#ECHO {+++++++ DEFAULTS SET: Auto Ibeam / PU Recharging ++++++};
+	#var auto_ibeam 1;
+	#var pu_recharger 1;
+	#var pu_recharge_at 2500;
+	#ECHO {+++++++      MASK ON FUCK IT MASK ON             ++++++};
+	#var mask 1;
+	#delay 1 {i;smuggle};
+	set_ticker;
 }
 
-#alias {mipon} {#read $user/mip.tin;#read $user/miphp.tin;#read $user/graph.tin};
+
+#alias {reload} {#kill all;#show \n;#read chars/martyr/martyr.tin;};

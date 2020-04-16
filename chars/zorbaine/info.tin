@@ -73,6 +73,9 @@
 };
 
 
+
+
+
 #alias {dns} {
 	#show <169>Dungeons:<169>;
 	#show;
@@ -88,7 +91,10 @@
 };
 
 
+
+
 #alias {qw} {
+    #show <<  THINGS TO RUN  >>\n;
 	#show <169>[WEAPONS] --------<169>;
 	#show stl, laser sword, isleth;
 	#show ghoti, ssq, ;

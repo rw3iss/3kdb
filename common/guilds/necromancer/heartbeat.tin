@@ -1,0 +1,7 @@
+#nop - heartbeat actions
+
+#alias {_heartbeat} {
+	#echo heartbeat from necro/heartbeat.tin;
+};
+
+

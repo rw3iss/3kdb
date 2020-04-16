@@ -1,0 +1,6 @@
+#NOP --- ALIASES
+#class {aliases} {kill}
+#class {aliases} {open}
+
+
+#class {aliases} {close}

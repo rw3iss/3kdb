@@ -34,6 +34,7 @@
 
 #alias {ex} {examine %0;search %0;};
 #alias {exr} {examine %0 in room;search %0 in room};
+#alias {exg} {exa %0 on ground;search %0 on ground};
 
 #nop Get coffin from morgue and fill it;
 #alias {coffin} {acquire;#5 buy 2;#5 wrap corpse;};
@@ -153,6 +154,67 @@
     #var delayRepeatDelay 2500;
     #show Chess bot delay repeat at 2500s set.;
 };
+
+
+
+/* MAPPER ALIASES */
+#alias {mh} {maphelp};
+#alias {mk} {#map goto knights};
+#alias {mg} {#map goto gentech};
+#alias {mc} {#map goto cot};
+#alias {mch} {#map goto chaos};
+#alias {mm} {#map goto magic}
+
+
+
+
+/* PROFESSIONS */
+#alias {reftrain} {
+    keep all;
+    get helmet from box;
+    get amulet from box;
+    get armour from box;
+    get cloak from box;
+    get gloves from box;
+    get boots from box;
+    get shield from box;
+    get other from box;
+    get ring from box;
+    get ring from box;
+    out;
+    mk;
+    go reforge;
+    rfall;
+    go kn;
+    enter;
+    pp;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*----------------------*/
 
 
@@ -337,6 +399,7 @@
 #alias {lsh} {list shield};
 #alias {gb} {get %0 from box};
 #alias {pb} {put %0 in box};
+#alias {upb} {unkeep %0;put %0 in box};
 
 /* toggle beep on or off */
 #alias {`} { #if {$beepon == 1} {#var beepon 0;@show{Beep off}} {#var beepon 1;@show{Beep on}} };

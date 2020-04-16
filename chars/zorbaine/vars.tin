@@ -1,34 +1,15 @@
 #CLASS {vars} OPEN
 
-#var username zorbaine;
-#var password qazokm;
-
-#VARIABLE         {curvnum}  {4119}
-#VARIABLE         {shield}   {aurothon shield}
-#VARIABLE         {wielded}  {$wielded}
-
-
-#VARIABLE {draw} {
-    {canvas}{on}
-    {caption}{off}
-    {chat}{off}
-    {gline}{off}
-    {map}{on}
-	{hpbar}{on}
-    {room}{on}
-}
-
-#var splitWidthPerc .45;
-
-#var canvas[widthperc] $splitWidthPerc;
-
-#var map[widthperc] $splitWidthPerc; /* must be <= canvas[widthperc] */
-#var map[heightperc] .6;
-
-#var hpbar[height] 3;
-#var hpbar[left] 0;
-
-#var room[widthperc] $splitWidthPerc; /* must be <= canvas[widthperc] */
-#var room[heightperc] .4;
+#VARIABLE         {canvas}  {{width}{80}{widthperc}{.45}}
+#VARIABLE         {curvnum}  {4121}
+#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
+#VARIABLE         {hpbar}  {{bottom}{65}{corpsemsg}{<088>☠:\[0\]}{deadman}{<088>Deadman:\[1800\]}{emsg}{<088>E:<169>-}{enabledheight}{3}{height}{3}{hpmsg}{<088>HP:<129>3965<088>/<129>3965}{label}{<088>}{left}{0}{points_full}{<129>}{points_high}{<169>}{points_low}{<119>}{points_med}{<139>}{right}{177}{spmsg}{<088>SP:<129>1564<088>/<129>1564<088>}{stammsg}{<088>Stam:<129>2490<088>/<129>2490(65)}{strainmsg}{<088>Stn:<129>0<088>%}{swmsg}{<088>Sw:<129>100.0<088>}{targetmsg}{<088>T:-}{top}{63}}
+#VARIABLE         {map}  {{height}{39}{heightperc}{.6}{width}{79}{widthperc}{.45}}
+#VARIABLE         {password}  {qazokm}
+#VARIABLE         {room}  {{bottom}{62}{exits}{se~sw~n~s}{height}{26}{heightperc}{.4}{name}{Altar of the Elements (se,sw,n,s)}{top}{40}{width}{79}{widthperc}{.45}}
+#VARIABLE         {shield}  {aurothon shield}
+#VARIABLE         {splitWidthPerc}  {.45}
+#VARIABLE         {username}  {zorbaine}
+#VARIABLE         {wielded}  {lance}
 
 #CLASS {vars} CLOSE

@@ -6,7 +6,7 @@
 };
 
 #action {^You tear apart %d defenses!} {#var shred 0;#ticker {shred} {3648} {tell $user SHRED RESET;#unticker shred;#var shred 1}};
-#action {^You notice that %1 has come into view.} {#if {!$IDLE} {tell $user %1 has reset;ctell %1 has reset.}};
+#action {^You notice that %1 has come into view.} {#if {!$idle_flag} {tell $user %1 has reset;ctell %1 has reset.}};
 
 
 @register_module{eternals};

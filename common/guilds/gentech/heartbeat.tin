@@ -1,70 +1,30 @@
-#nop - heartbeat actions
-
-#class {heartbeat} {kill}
-#class {heartbeat} {open}
-
-#var auto_ibeam 1;
-#var pu_recharger 1;
-#var mask 0;
-
-#alias {set_defaults} {
-	#ECHO {+++++++ DEFAULTS SET: Auto Ibeam / PU Recharging ++++++}	
-	#ECHO {+++++++ DEFAULTS SET: Corpse Counting Reset      ++++++}	
-	#var auto_ibeam 1;
-	#var pu_recharger 1;
-	#var corpses[coffin] 0;
-	#var corpses[inventory] 0;
-	#var corpses[smuggle] 0;
-	(csclear;
-	cs clear;
-	set_xp_tracker;
-	dmg_tracker;
-	#delay 1 {i;smuggle};
-	set_ticker;
-	mask_on;
-	
-}
-
-#alias {mask_on} {
-	#var mask 1;
-	#ECHO {+++++++ MASK ON FUCK IT MASK ON ++++++}
-}
-
-#var pu_recharge_at 200;
-
-/* power configs */
+#class {gentech_heartbeat} {kill}
+#class {gentech_heartbeat} {open}
 
 #alias {_heartbeat} {
-	#if !$IDLE {
-        
-		#if {($my[hp][current] < 50} {
-            #if {$edna == 0} {edna}
-        };
-
+	#if !$idle_flag {
 		#if {($my[cpc][current] < 3000 || $my[pu][current] < 200) && $auto_ibeam} {autoguild ionbeam;#var auto_ibeam 0};
 		#if {($my[cpc][current] > 3000 && $my[pu][current] > 200) && !$auto_ibeam} {autoguild ionbeam;#var auto_ibeam 1};
 
-		#if {($my[pu][current] < $pu_recharge_at && $corpses[total] > 0 && $pu_recharger)} {
+		#if {($my[gp1][current] < $pu_recharge_at && $corpses[total] > 0 && $pu_recharger)} {
 			#var pu_recharger 0;
 			#delay {pu_charge_toggle} {#var pu_recharger 1} {6};
 			corpse_select;
 			#if $mask {
 				#delay {mask_no_dupe} {reclaim} {6};
 
-				#action {^Ivy's eyes glow bright green upon the} {
+				#action {eyes glow bright green upon the} {
 					recharge;reclaim;recharge;reclaim;recharge;
-					#unaction {^Ivy's eyes glow bright green upon the};
+					#unaction {eyes glow bright green upon the};
 					#undelay $mask_no_dupe;
 				};
 			} {recharge;reclaim;recharge};
 		};
-		#if {$my[pu][current] > 3000 && $corpses[total] > 5 && $my[cpc][current] <4000} {
+		#if {$my[gp1][current] > 3000 && $corpses[total] > 5 && $my[cpc][current] <4000} {
 			conduit 2000;
 		};
         
 	} {#NOP;};
 };
 
-
-
-#class {heartbeat} {close}
+#class {gentech_heartbeat} {close}

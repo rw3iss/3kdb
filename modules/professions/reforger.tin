@@ -2,24 +2,24 @@
 
 #nop REFORGING;
 
-#alias {rfk} {
+#alias {refk} {
 	buy knife;
 	reforge knife little edged critical;
 	dispose knife;
 };
 
-#alias {rf} {
+#alias {ref} {
 	reforge %1 lots %3 %2;
 	reforge %1 some %3 %2;
 };
 
-#alias {rf2} {
+#alias {ref2} {
 	reforge %1 lots %3 %2;
 	reforge %1 some %3 %2;
 	reforge %1 little %3 %2;
 };
 
-#alias {rf3} {
+#alias {ref3} {
 	reforge %1 lots poison %2;
 	reforge %1 lots electric %2;
 	reforge %1 lots acid %2;
@@ -46,61 +46,38 @@
     reforge %1 little fire %2;
 };
 
-#alias {rfall} {
-	rf3 helmet defense;
-	rf3 amulet defense;
-	rf3 armour defense;
-	rf3 greaves defense;
-	rf3 cloak defense;
-	rf3 gloves defense;
-	rf3 boots defense;
-	rf3 ring defense;
-	rf3 other defense;
-	rf3 shield defense;
+#alias {refall} {
+	ref3 helmet defense;
+	ref3 amulet defense;
+	ref3 armour defense;
+	ref3 greaves defense;
+	ref3 cloak defense;
+	ref3 gloves defense;
+	ref3 boots defense;
+	ref3 ring defense;
+	ref3 other defense;
+	ref3 shield defense;
     drop ring 2;
     get ring;
-    rf3 ring defense;
+    ref3 ring defense;
     wear ring;
     drop ring 3;
     get ring;
-    rf3 ring defense;
+    ref3 ring defense;
     drop ring 4;
     get ring;
-    rf3 ring defense;
+    ref3 ring defense;
     drop ring 5;
     get ring;
-    rf3 ring defense;
+    ref3 ring defense;
     wear all;
     pp;
 };
 
 
-
-#alias {rftrain} {
-    keep all;
-    get helmet from box;
-    get amulet from box;
-    get armour from box;
-    get cloak from box;
-    get gloves from box;
-    get boots from box;
-    get shield from box;
-    get other from box;
-    get ring from box;
-    get ring from box;
-    out;
-    mk;
-    go reforge;
-    rfall;
-    go kn;
-    enter;
-    pp;
-};
-
-
-@register_module{reforger};
-@register_module_info{reforger;{
+register_module {reforger};
+register_module_info {reforger} {
     #show Module info for reforger todo.;
-}};
+};
 
 #class {reforger} {close}

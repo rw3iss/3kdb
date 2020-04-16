@@ -3,7 +3,6 @@
 #ALIAS {_player_deadmanActions}
 {
      .stop;
-     clear_prots
 }
 {0}
 

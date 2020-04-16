@@ -19,7 +19,6 @@
 	#show maparea <name> - set area name for the current room;
 	#show areamapped <area> - show which rooms are mapped in this area;
 };
-#alias {mh} {maphelp};
 
 #alias {go} {
         #map get roomvnum go_back;
@@ -35,12 +34,6 @@
 #alias {mapgo} {#map goto %0};
 
 #alias {mi} {#map info};
-
-#alias {mk} {#map goto knights};
-#alias {mg} {#map goto gentech};
-#alias {mc} {#map goto cot};
-#alias {mch} {#map goto chaos};
-#alias {mm} {#map goto magic};
 
 #alias {mapbackup} {#map write common/map/3k_shared_BACKUP.tin;};
 #alias {maprestore} {#map read common/map/3k_shared_BACKUP.tin;};

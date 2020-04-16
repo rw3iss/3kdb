@@ -14,7 +14,6 @@
         #if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {unkeep corpse;drop corpse;}}
 }
 
-
 #NOP -- Inventory overrides.  These actions update the count when you check inventory;
 #act {^ %*Death's Freezer (%1 corpses).$} {
 	#if {%1 != $corpses[freezer]} {
@@ -33,8 +32,6 @@
 		#delay {0.1} {#echo {<169>Coffin:  Correct number of corpses found, $corpses[coffin].}}
 	}
 };
-
-
 
 #NOP -- Corpse Management COFFIN / FREEZER;
 #var corpses[coffin] 0;

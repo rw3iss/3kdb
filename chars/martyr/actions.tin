@@ -1,0 +1,12 @@
+#class {player_actions} {kill}
+#class {player_actions} {open}
+
+#NOP --- Martyr specific actions
+#act {^Owie. That hurt!} {unwrap;deslab;smuggle remove corpse;drop corpse;=drop corpse;reclaim};
+
+#NOP -------------------------------- ACTIONS TO SUPPORT OTHER PLAYERS ---------------------------------------		
+#ACTION {^Nix pokes you with a cattle prod.} {timeslide emergency} {5}
+#ACTION {^Nix gives you a low-five!} {timeslide} {5}
+#ACTION {^Nix taps you on the shoulder.$} {follow nix} {5};
+
+#class {player_actions} {close}
