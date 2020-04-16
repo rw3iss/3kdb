@@ -1,3 +1,5 @@
+#class {tacos} {open};
+
 #nop Aliases;
 #alias {distaco} {
     #7 dispose shell;
@@ -33,9 +35,6 @@
 	#elseif {"%1" == "cream"} {wstrat e;rstrat w};
 	#elseif {"%1" == "guacamole"} {wstrat e;rstrat w};
 };
-
-#act {Zorbaine dealt the killing blow to} {get all;grab $tacoTarget} {1};
-
 
 #alias {assemble} {
 	#send {assemble %0}
@@ -81,7 +80,10 @@
 
 #alias {tacokill} {
 	$class {strategy} {kill};
-}
 
 #show Taco strategy loaded.;
 grab shell;
+
+#alias killtaco {#class {tacos} {kill}};
+
+#class {tacos} {close};

@@ -16,8 +16,6 @@
 	yy;
  } {1};
 
-ak {grab $tacoTarget}
-
 #act {You try to grab} {
     ..;
 }

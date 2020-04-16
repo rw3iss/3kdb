@@ -15,6 +15,35 @@
 #var autospork 0;
 #var autodog 0;'
 
+
+
+#action {{(\w+) dealt the killing blow to}} {
+	killTriggerAlways;
+	#if {"%2" == "$characterName" && $party == 0} { 
+		killtrigger; 
+	};
+	rest;
+	#var incombat 0;
+	#var truced 0;
+	#if {$botting == 1} {..};
+} {1}; #nop highest priority kill trigger;
+
+
+
+
+
+#act {There is nothing to quaff - the Chalice of Tarin is empty.} {#show{CHALICE EMPTY};tr};
+
+
+
+
+
+
+
+
+
+
+
 #act {[WPN:Badly cracked]} {
     #show FIX WEAPON!;
     .stop;

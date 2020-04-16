@@ -40,6 +40,61 @@
 };
 
 
+
+#alias {corpsetrig} {
+
+    #if {$getcorpses == 1} {
+        immolate corpse;
+        bury corpse;
+        get coins;
+    }
+    #if {$botting == 1} {.bot};
+
+};
+
+#nop /* Sets kill target */;
+#alias {k} {
+	#var killing %0;
+	#var incombat 1;
+	#var truced 0;
+	#var resting 0;
+	#if {$my[settings][killfollow] == 1} { follow $killing; };
+	#if {"$my[battlecry]" == "n"} {bcc};
+	#act {There is no $killing here} {
+		#if {$botting} {.bot};
+	};
+	kill $killing;
+	#delay {.25} {#unact {There is no $killing here}}
+} {0};
+
+
+
+
+
+#alias {tr} {
+	#if {$party == 1} {
+		#if {"$partyLeader" == "zorbaine"} {
+			#show ----------- LOW, NEED TO TRUCE!!! =============;
+			ptell Need to truce, please wimpy/leave!
+			#delay {2} {truce;truce}
+		} {
+			cassist +clear;
+			truce;
+			truce;
+		};
+	} {
+		truce;
+		truce;
+	};
+};
+
+#alias {cassist2} {\cassist %1;#var cassisting %1;#var Cassisting: %1;#if {"%1" == "+clear"} {#var cassisting 0}};
+
+#alias {killing} {#var killing %1;#show Set target to: <119>%1<088>;hp;};
+
+
+
+
 #NOP SCRIPTY STUFF ============================================================;
 
 #alias {corpseon} {#var getcorpses 1;#show Corpse burying enabled.;};

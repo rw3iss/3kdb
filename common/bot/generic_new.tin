@@ -64,7 +64,7 @@
     #alias {yy} {.prompt;#var foundmob 1;#var loophadmob 1;};
 
 	#alias {.onPrompt} {
-        #nop #show mob? $foundmob  player? $foundplayer;
+        #nop show mob? $foundmob  player? $foundplayer;
 
         #if {$foundplayer} {
             .skip;
@@ -74,14 +74,13 @@
                 #path walk;
             } {
                 #if {$foundmob} {
+
+                    #nop if any mob is not in whitelist, proceed;
+
+                    #var okayToAttack 1;
+                    #nop foreach {$mobWhitelist} {name} {};
                     
-                    #var ignoremob 0;
-                    #foreach {$mobWhitelist} {name} {
-                        #if {"%0" == "%*$name%*"} {
-                            #var ignoremob 1;
-                        };
-                    };
-                    #if {!$ignoremob} {
+                    #if {$okayToAttack} {
                         .skip;
                         .pause;
                         k $mobname;

@@ -4,7 +4,7 @@
 
 #alias {ringcheck} {
 	#var ringchecks 0;
-	#var maxringchecks 10;
+	#var maxringchecks 5;
 
 	#function {checkring}
 	{
@@ -12,7 +12,7 @@
 		#math ringchecks $ringchecks + 1;
 
 		#if {$ringchecks != $maxringchecks} {
-			#delay {.25} { @checkring{}; };
+			#delay {.5} { @checkring{}; };
 		} {
 			#var $ringchecks 0;
 		}
@@ -22,7 +22,8 @@
 	@checkring{};
 };
 
-@register_module{cursecheck};
-@register_module_info{cursecheck;{
-	#show Cursecheck info;
-}};
+register_module {cursecheck};
+register_module_info {cursecheck} {
+	#show 'ringcheck' in same room as box to filter out cursed rings.\n;
+    #show Note: Only type it once, and wait for 5 rings, the do it again, otherwise it gets messed up.\n;
+};

@@ -1,0 +1,32 @@
+#CLASS {global} OPEN
+
+#var username ivy;
+#var password monage;
+
+#ALIAS {_player_deadmanActions}
+{
+     .stop;
+     clear_prots
+}
+{0}
+
+#ALIAS {postload}
+{
+     #map flag static on;
+     #map flag vtmap on;
+     #map flag unicodegraphics on;
+     #map flag terrain on;
+     #map flag direction on;
+     #delay {1} {hp}
+}
+
+#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
+#VARIABLE         {curvnum}  {8483}
+#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
+#VARIABLE         {hpbar}  {{bottom}{53}{enabledheight}{3}{height}{3}{left}{0}{right}{204}{top}{51}}
+#VARIABLE         {map}  {{height}{32}{heightperc}{.6}{width}{91}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{50}{exits}{w~e}{height}{21}{heightperc}{.4}{name}{Approaching the Altar (w,e)}{top}{33}{width}{91}{widthperc}{.45}}
+#VARIABLE         {splitWidthPerc}  {.45}
+
+
+#CLASS {global} CLOSE

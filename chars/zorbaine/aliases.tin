@@ -196,7 +196,12 @@
 
 
 
-
+#alias {.rest} {
+    #4 tr;
+    .pause;
+    rest;
+    #delay {40} {..};
+};
 
 
 
