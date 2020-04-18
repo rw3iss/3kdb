@@ -119,21 +119,6 @@
 #alias {cih} {cut head;get head;impale head on stake;bc};
 
 
-#nop /* performed as a knight on any kill, self or others */;
-#alias {_guild_killTriggerAlways} {
-	#if {"$killCountAll" == "10"} {
-		arepair all;
-		#var killCountAll 0;
-	}
-}
-
-#alias {_guild_killTrigger} {
-	#if {"$killCountAll" == "10"} {
-		arepair all;
-		#var killCountAll 0;
-	}
-}
-
 #alias {{_ondeath}} {
 	rest;
 	staunch;

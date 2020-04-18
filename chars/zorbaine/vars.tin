@@ -12,6 +12,8 @@
 #VARIABLE         {shield}  {aurothon shield}
 #VARIABLE         {splitWidthPerc}  {.45}
 #VARIABLE         {username}  {zorbaine}
+#VARIABLE         {character}  {zorbaine}
+#VARIABLE         {characterName}  {Zorbaine}
 #VARIABLE         {wielded}  {lance}
 
 #CLASS {vars} CLOSE

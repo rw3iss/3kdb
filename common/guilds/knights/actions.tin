@@ -16,13 +16,9 @@
 #var autodog 0;'
 
 
-
 #action {{(\w+) dealt the killing blow to}} {
 	killTriggerAlways;
-	#if {"%2" == "$characterName" && $party == 0} { 
-		killtrigger; 
-	};
-	rest;
+    killtrigger;
 	#var incombat 0;
 	#var truced 0;
 	#if {$botting == 1} {..};
