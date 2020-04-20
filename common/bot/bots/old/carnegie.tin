@@ -6,7 +6,7 @@
 #act {^-M-_{A New Yorker \(waiting in line\)|An Usher|A Large Usher|A bodyguard \(ex-mafia\)|A Lady \(waiting to use the toilet\)|A polite audience member|An angry audience member|A member of the audience hurrying to his seat|A lady in a hurry to find her seat|A sleeping audience member|A New Yorker trying to find his seat|An audience member rushing to get to his seat|An audience member rushing to get to her seat|A man in a hurry to find his seat|A New Yorker trying to find her seat|A member of the audience hurrying to her seat}}
  {
   #var mobname human;
-  yy;
+  .check_monster;
  } {1};
 
 #var largeushers 1;

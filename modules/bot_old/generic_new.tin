@@ -60,7 +60,7 @@
         #act {^>$} {.onPrompt};
     };
     
-    #alias {yy} {.prompt;#var foundmob 1;#var loophadmob 1;};
+    #alias {.check_monster} {.prompt;#var foundmob 1;#var loophadmob 1;};
 
 	#alias {.onPrompt} {
         #nop #show mob? $foundmob  player? $foundplayer;
@@ -104,9 +104,9 @@
 	#var halt 1;
     #act {^>$} {
         #var halt 0;
-        #alias {yy} {.prompt;#var foundmob 1;};
+        #alias {.check_monster} {.prompt;#var foundmob 1;};
     };
-    #alias {yy} {#nop;};
+    #alias {.check_monster} {#nop;};
     #send l;
 }
 */
@@ -152,7 +152,7 @@
 
 
 /* helpers */
-#function {botSetMobName} {
+#function {botSetMobActions} {
 	#var botPrevMobName $mobname;
 	#var mobname %0;
     #var foundmob 1;

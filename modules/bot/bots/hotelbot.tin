@@ -4,7 +4,7 @@
 #act {-M-_%*{zombie}%*} 
  {
 	#var mobname zombie;
-	yy
+	.check_monster
  } {1};
 
 

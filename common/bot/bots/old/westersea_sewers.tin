@@ -11,7 +11,7 @@
   #if {"An irradiated crocodile"=="%1"} {#var mobname crocodile};
   #if {"A medium sized glowing rat"=="%1"} {#var mobname rat};
   #if {"A small cockroach"=="%1"} {#var mobname cockroach};
-  yy
+  .check_monster
  }
 
 #class {bot} {close}

@@ -20,7 +20,7 @@
 	#if {"%1" == "White Horseman"} {#var mobname human};
 	#if {"%1" == "White King"} {#var mobname human};
 	#if {"%1" == "White Priest"} {#var mobname human};
-	yy
+	.check_monster
 	} {1};
 #act {You've killed} {#nop} {1};
 

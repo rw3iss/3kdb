@@ -6,7 +6,7 @@
 #act {{^-M-_(Adamant of |Crystal |Living |A |An |)(Garnet|garnet|Quartz|quartz|Sapphire|sapphire|Jade|jade|Ruby|ruby|Spinel|spinel|Aquamarine|aquamarine|Amber|amber|Emerald|emerald|Amethyst|amethyst|Kyanite|kyanite|Diamond|diamond)( entity| creature|)?( \((shining|living|crystalline)\))*( \<[\<\>\|\X\\\/\-]+\>)?( \(demoralized\))?( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}}
 	{
 	#var mobname crystal;
-	yy
+	.check_monster
 	}
 #act {-M-_Crysmal, Prismatic God of Crystals} {xx}
 

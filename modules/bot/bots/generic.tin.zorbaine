@@ -18,15 +18,15 @@
 #alias {itemsoff} {#show Pickup items off.;#var pickupitems 0};
 
 
-#alias {.pause} {#class {xbot} {kill};#alias {yy} {.pause}};
+#alias {.pause} {#class {xbot} {kill};#alias {.check_monster} {.pause}};
 #alias {.stop} {#var halt 1;.pause;#path end;#class xbot kill;#class bot kill;};
-#alias {yy} {#nop;};
+#alias {.check_monster} {#nop;};
 
 #alias {..} {#var halt 0;
     #class {xbot} {open};
     #act {{^-R-_}} {xx};
     #alias {xx} {#unvar foundplayer;#act {^>$} {#path walk;zz} {1}};
-    #alias {yy} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;@registerkillcommand{};#var foundmob 1}}};
+    #alias {.check_monster} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;@registerkillcommand{};#var foundmob 1}}};
     #alias {zz} {#unact {^>$}};
     glance;
     #class {xbot} {close}

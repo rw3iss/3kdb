@@ -21,7 +21,7 @@
 	#if {"%1" == "A basilisk"} {#var mobname basilisk};
 	#if {"%1" == "A valkyrie"} {#var mobname valkyrie};
 	#if {"%1" == "A troll"} {#var mobname troll};
-	yy}
+	.check_monster}
 
 #act {Your bite crushed} {#nop} {1};
 #class {bot} {close}

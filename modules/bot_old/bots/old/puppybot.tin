@@ -4,7 +4,7 @@
 #act {-M-_{Some moron with a lead pipe|Rocko the redneck.}} 
  {
 	#var mobname human;
-	yy
+	.check_monster
  } {1};
 
 #class {bot} {close}

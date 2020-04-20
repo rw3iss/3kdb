@@ -19,10 +19,10 @@
 	#return;
 };
 
-#alias {.pause} {#class {xbot} {kill};#alias {yy} {.pause}};
+#alias {.pause} {#class {xbot} {kill};#alias {.check_monster} {.pause}};
 #alias {.stop} {#var halt 1;.pause;aoff;#unvar botpath;#unalias {..};#class {xbot} {kill}};
 #alias {.s} {.stop};
-#alias {yy} {#nop;};
+#alias {.check_monster} {#nop;};
 #alias {..} {
 	#var halt 0;
 	#class {xbot} {open};
@@ -30,7 +30,7 @@
 	#nop at room entrance, enable trigger waiting for prompt, mobs will be detected;
 	#act {{^-R-_}} {xx};
 	#alias {xx} {#unvar foundplayer;#act {^>$} {#path walk;zz} {1}};
-	#alias {yy} {
+	#alias {.check_monster} {
 		#act {^>$} {
 			#if {$foundplayer} {zz;#path walk} {
 				#if {$justItems} {

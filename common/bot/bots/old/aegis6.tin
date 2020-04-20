@@ -5,7 +5,7 @@
 #act {-M-_{Aegis Assembler Model 68-AS}}
 	{
 	#if {"%1" == "Aegis Assembler Model 68-AS"} {#var mobname robot};
-	yy
+	.check_monster
 	}
 #nop #act {#END OF PAT} {
 #nop	killbot;

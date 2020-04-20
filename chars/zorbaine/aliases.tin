@@ -3,6 +3,8 @@
     #unact {%*};
     #delay {450} {#show \nPLAYER DEADMAN DISCONNECTING.\n;ld};
 };
+
+
     
 #ALIAS {brun}
 {
@@ -73,9 +75,7 @@
     };
     #delay {1} {#ungag {There is no corpse here.}};
 };
-#alias buryCorpseKilltrigger {
-    bury corpse;
-};
+
 
 #alias {burycorpse} {
     #show BURYCORPSE;

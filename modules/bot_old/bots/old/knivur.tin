@@ -7,13 +7,13 @@
 #act {-M-_{(.*) Knivur Homeguard Sentry|Tisha, Captain of the Dwarven Homeguard|(.*) Elite Knivur Peacekeeper|A dwarf|A drunk dwarf|(.*) generous dwarf|(.*) apprentice blacksmith|(.*) dwarven miner|(.*) Knivur Homeguard Legionnaire|Gwain, The Dwarven Brigade Leader|(.*) the extremely snobby dwarf|(.*) Councilman of Knivur|Kaleen, Dwarven High Elder|Orcish Battle Commander|(.*) a dwarven archeologist}}
 {
 	@setMobName{dwarf};
-	yy;
+	.check_monster;
 }
 #act {-M-_{A Labour of Moles|A Vicious Mole}}
 {
 	#if {"%1" == "A Labour of Moles"} {#var mobname labour};
 	#if {"%1" == "A Vicious Mole"} {#var mobname mole};
-	yy;
+	.check_monster;
 }
 
 #class {bot} {close}

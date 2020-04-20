@@ -5,7 +5,7 @@
 
 #act {-M-_A {small|large|very large} Rimalkin} {
 	@setMobName{rimalkin};
-	yy} {1};
+	.check_monster} {1};
 
 #class {bot} {close}
 

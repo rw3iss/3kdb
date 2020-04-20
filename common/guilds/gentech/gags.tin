@@ -1,0 +1,8 @@
+#class {gentech_gags} {kill}
+#class {gentech_gags} {open}
+
+#gag {^You activate a remote transfer conduit and transfer %d PU to CPC.$};
+#gag {^[> Power Unit Recharge Complete. <]};
+#gag {^Your genetic arm strikes %* with %*.$};
+
+#class {gentech_gags} {close}

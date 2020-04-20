@@ -5,7 +5,7 @@
 #var foundmob 0;
 #var foundplayer 0;
 #var founditems 0;
-#var loophadmob 0;
+#var repeat_path 0;
 
 #var prevMobName 0;
 #var mobname 0;
@@ -17,8 +17,13 @@
 
 
 /* ignore these players */
-#var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void;Killgrave};
-#var mobWhitelist {Almodo;Packy the packmule};
+#var playerWhitelist {A vicious bear;Nix;Toren;Byron;Martyr;Roor;Void;Killgrave;Zorbaine};
+#var mobWhitelist {Almodo;Packy the packmule;Roor;Ivy;Martyr};
+#NOP #act {-M-_%*Almodo%*$.} {#NOP} {0};
+#NOP #act {-M-_%*Packy%*$.} {#NOP} {0};
+#NOP #act {-M-_%*Roor%*$.} {#NOP} {0};
+#NOP #act {-M-_%*Ivy%*$.} {#NOP} {0};
+#NOP #act {-M-_%*Martyr%*$.} {#NOP} {0};
 
 /* load the selected bot's path into ready state */
 #path load botpath;
@@ -27,7 +32,6 @@
 #alias {.pause} {
 	#var halt 1;
 };
-#alias {.p} {.pause};
 
 /* kill the bot */
 #alias {.stop} {
@@ -42,11 +46,14 @@
 };
 #alias {.s} {.stop};
 
+#NOP - If a monster is found that should be killed, the path will loop again.
+#alias {.check_monster} {
+    .prompt;#var foundmob 1;#var repeat_path 1;
+    };
 
 /* starts / continues the bot after it's loaded */
 #alias {..} {
-	#class {xbot} {open};
-
+    #class {xbot} {open};
 	#var halt 0;
 
     #act {{^-R-_}} {.onRoom} {0};
@@ -60,36 +67,33 @@
     #alias {.prompt} {
         #act {^>$} {.onPrompt};
     };
-    
-    #alias {yy} {.prompt;#var foundmob 1;#var loophadmob 1;};
 
 	#alias {.onPrompt} {
-        #nop show mob? $foundmob  player? $foundplayer;
+        #nop #show mob? $foundmob  player? $foundplayer;
 
         #if {$foundplayer} {
-            .skip;
+            .stop_prompt;
             #path walk;
         } {
             #if {$dontAttack} {
                 #path walk;
             } {
                 #if {$foundmob} {
-
-                    #nop if any mob is not in whitelist, proceed;
-
-                    #var okayToAttack 1;
-                    #nop foreach {$mobWhitelist} {name} {};
-                    
-                    #if {$okayToAttack} {
-                        .skip;
-                        .pause;
+                    #var ignoremob 0;
+                    #foreach {$mobWhitelist} {name} {
+                        #if {"%0" == "%*$name%*"} {
+                            #var ignoremob 1;
+                        };
+                    };
+                    #if {!$ignoremob} {
+                        .stop_prompt;
                         k $mobname;
                     } {
                         .bot;
                     }
                     
                 } {
-                    .skip;
+                    .stop_prompt;
                     #path walk;
                 }
             }
@@ -101,7 +105,7 @@
 
     };
 
-	#alias {.skip} {#unact {^>$}};
+	#alias {.stop_prompt} {#unact {^>$}};
     
 	glance;
 
@@ -109,18 +113,14 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
+#act {^%1 screeches in agony} {.bot} {0};
+#act {^%1 gurgles in his own blood} {.bot} {0};
+#act {^%1 gurgles in her own blood} {.bot} {0};
+#act {^%1 gurgles in its own blood} {.bot} {0};
+#act {^%1 gasps for breath, then slumps} {.bot} {0};
 
-/* disable bot reactions when doing simple looks */
-/*
-#alias {l} {
-	#var halt 1;
-    #act {^>$} {
-        #var halt 0;
-        #alias {yy} {.prompt;#var foundmob 1;};
-    };
-    #alias {yy} {#nop;};
-    #send l;
-}
+
+
 */
 
 /* Todo: make friends auto-defend list */
@@ -141,13 +141,13 @@
 
 /* Bot end actions... */
 #act {#END OF PATH} {
-    #if {!$loop || !$loophadmob} {
+    #if {!$loop || !$repeat_path} {
         #show \nBot finished.;
         .stop;
     } {
         #show \nLooping bot...;
         #path load botpath;
-        #var loophadmob 0;
+        #var repeat_path 0;
         .bot;
     };
 };
@@ -155,17 +155,11 @@
 
 /* If for some reason we attack and mob isn't present, keep the bot going... */
 #act {{^There is no (\w+) here}} {
-	#if {$botting == 1 && $halt == 0} {
-		#if {"%2" == "$mobname" || "%2" == "$prevMobName"} {
-			l;.bot;
-		};
-	};
+    .bot;
 };
 
-
 /* helpers */
-#function {botSetMobName} {
-	#var botPrevMobName $mobname;
+#function {botSetMobActions} {
 	#var mobname %0;
     #var foundmob 1;
     #return;

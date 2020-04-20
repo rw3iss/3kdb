@@ -11,7 +11,7 @@ aftercorpse {get card};
 #act {-M-_%*}
  {
 	#var mobname mob;
-	yy
+	.check_monster
  } {1};
 
 #class {bot} {close}

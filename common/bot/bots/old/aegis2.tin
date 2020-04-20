@@ -10,7 +10,7 @@
   #if {"Faceless zombie"=="%1"} {#var mobname zombie};
   #if {"Vomit-splattered zombie"=="%1"} {#var mobname zombie};
   #if {"Aegis Sentry Model 62-CC"=="%1"} {#var mobname sentry};
-  yy
+  .check_monster
  }
 #act {#END OF PAT} {
 	killbot;

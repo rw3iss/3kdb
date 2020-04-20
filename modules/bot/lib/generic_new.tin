@@ -45,11 +45,11 @@
 
 	#alias {xx} {
 		#unvar foundplayer;
-		/* area script will detect mob, if any, and yy will be called, overwriting this prompt action */
+		/* area script will detect mob, if any, and .check_monster will be called, overwriting this prompt action */
 		#act {^>$} {#path walk;zz} {1};
 	};
 
-    #alias {yy} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;#var foundmob 1}}};
+    #alias {.check_monster} {#act {^>$} {#if {$foundplayer} {zz;#path walk} {zz;.pause;k $mobname;#var foundmob 1}}};
 
 	#alias {.onPrompt} {
 		#act {^>$} {

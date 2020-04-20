@@ -8,7 +8,7 @@ e;e;w;w;w;w;e;e;s;w;e;n;n;e;e;w;w;n;e;e;w;w;n;e;e;w;w;w;n;w;n;s;e;n;e;w;s;e;e;e;
   #if {"Charred zombie"=="%1"} {#var mobname zombie};
   #if {"Severely burnt zombie"=="%1"} {#var mobname zombie};
   #if {"Aegis Sentry Model 64-CC"=="%1"} {#var mobname sentry};
-  yy
+  .check_monster
  }
 
 #act {#END OF PAT} {

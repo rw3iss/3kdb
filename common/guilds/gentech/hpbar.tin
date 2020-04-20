@@ -1,0 +1,175 @@
+#class {hpbar} {kill}
+#class {hpbar} {open}
+
+#var IdleTimeout 900;
+
+#nop -- #send genset hpbar HP:$hp$ SP:$sp$ PU:$pu$ CPC:$cpc-now$ T:$tslide$/$reset-pct$%/$e-tslide$ [G2N:$g2n-pct$%]E:$enemy$ GXP:$gexp$
+
+#function {colscale}
+{
+    #switch {10 * %1 / %2}
+    {
+        #case {0} {#return <119>};
+        #case {1} {#return <119>};
+        #case {2} {#return <119>};
+        #case {3} {#return <139>};
+        #case {4} {#return <139>};
+        #case {5} {#return <139>};
+        #case {6} {#return <139>};
+        #case {7} {#return <169>};
+        #case {8} {#return <169>};
+        #case {9} {#return <169>};
+        #default  {#return <129>};
+    };
+}
+
+#var hpbar[label] <088>;
+#var hpbar[points_full] <129>;
+#var hpbar[points_high] <169>;
+#var hpbar[points_med] <139>;
+#var hpbar[points_low] <119>;
+#var hpbar[points_reserve] <169>;
+
+#ALIAS {update_caption} {
+    #math   {idle_hr}       {$idle / 3600};
+    #math   {idle_min}      {$idle % 3600 / 60};
+    #math   {idle_sec}      {$idle % 60};
+    #if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
+    #if     {$idle_min < 10}{#var idle_min 0$idle_min};
+    #if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
+    #format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
+	
+	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
+    
+	#showme {$hpbar[slidemsg]  $hpbar[enemymsg]  Idle: $idle_cap} {-5}; 
+
+	#showme {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])  GXP: $gxp_curr_round (Avg: $gxp_avg)} {-4};
+
+}
+
+#TICKER {idle} {
+        #math {idle} {$idle + 1};
+        #if {$idle > $IdleTimeout} {
+            .stop;
+            #var is_idle 1;
+            #unticker cs;
+        };
+        update_caption;
+} {1}
+
+#alias {pu} {
+    #show Last: $my[pu][last];
+    #show Current: $my[pu][current];
+    #show Delta: $my[pu][delta];
+}
+
+#act {^HP:%1/%2 SP:%3/%4 PU:%5/%6(%7) CPC:%8 T:%9/%10/%11/%12 [G2N:%13]E:%14 GXP:%15} {
+        #var my[hp][color] @colscale{%1;%2};
+        #var my[sp][color] @colscale{%3;%4}; 
+        #var my[pu][color] @colscale{%5;%6};
+        #var my[cpc][color] @colscale{%8;1000};
+        
+        #var my[hp][current] %1;
+        #var my[hp][max] %2;
+
+        #var my[sp][current] %3;
+        #var my[sp][max] %4;
+
+        #var my[pu][last] $my[pu][current];
+        #var my[pu][current] %5;
+        #var my[pu][max] %6;
+        #var my[pu][reserve] %7;
+	    #math my[pu][delta] {$my[pu][current] - $my[pu][last]};
+
+        #var my[cpc][current] %8;
+        #var my[cpc][max] 1000;
+        
+        #var my[slide][personal] %9;
+        #var my[slide][max] %10;
+        #var my[slide][reset] %11;
+        #var my[slide][emergency] %12;
+
+        #var my[g2n] %13;
+        #var my[enemy] %14;
+        #var my[gxp] %15;
+
+        #format {hpbar[hpmsg]} {%sHP:%s%s%s/%s%s}
+	        {$hpbar[label]} {$my[hp][color]} {$my[hp][current]}
+		    {$hpbar[label]} {$hpbar[points_full]} {$my[hp][max]};
+
+	    #format {hpbar[spmsg]} {%sSP:%s%s%s/%s%s%s} 
+            {$hpbar[label]}	{$my[sp][color]} {$my[sp][current]}
+            {$hpbar[label]} {$hpbar[points_full]} {$my[sp][max]} {$hpbar[label]};
+
+	    #format {hpbar[pumsg]} {%sPU:%s%s%s/%s%s%s(%s%s%s)[Δ%s%s%s]}
+	        {$hpbar[label]} {$my[pu][color]} {$my[pu][current]}
+            {$hpbar[label]} {$hpbar[points_full]} {$my[pu][max]}
+		    {$hpbar[label]} {$hpbar[points_reserve]} {$my[pu][reserve]} {$hpbar[label]}
+		    {$hpbar[label]} {$my[pu][delta]} {$hpbar[label]};
+
+        #format {hpbar[cpcmsg]} {%sCPC:%s%s%s} 
+            {$hpbar[label]} {$my[cpc][color]} {$my[cpc][current]}
+            {$hpbar[label]} {$hpbar[points_full]} {$my[cpc][max]};
+
+        #format {hpbar[g2nmsg]} {%sG2N:%s%s} 
+		    {$hpbar[label]} {$my[g2n][color]} {$my[g2n]} {$hpbar[label]};
+
+	    #format {hpbar[enemymsg]} {Enemy:%s}
+		    {$my[enemy]};
+
+	    #format {hpbar[slidemsg]} {Timeslide: %s/%s/%s} {$my[slide][personal]} {$my[slide][reset]} {$my[slide][emergency]};
+
+        #format {prompt_1} {%s %s %s %s %s} 
+            {$hpbar[hpmsg]}
+            {$hpbar[spmsg]} 
+            {$hpbar[pumsg]} 
+            {$hpbar[cpcmsg]} 
+            {$hpbar[g2nmsg]};
+
+        _heartbeat;
+}
+
+#act {^[%1] [%2] [%3] [%4] [%5]$} {
+	#var my[melee] %1;
+	#var my[ibeam] %2;
+	#var my[ddb] %3;
+	#var my[synthorg] %4;
+	#var my[dunno] %5;
+
+	#format {hpbar[msg_melee]} {[%s]} {$my[melee]};
+	#format {hpbar[msg_ibeam]} {[%s]} {$my[ibeam]};
+	#format {hpbar[msg_ddb]} {[%s]} {$my[ddb]};
+	#format {hpbar[msg_synthorg]} {[%s]} {$my[synthorg]};
+	#format {hpbar[msg_dunno]} {[%s]} {$my[dunno]};
+
+	#format {prompt_2} {%s %s %s %s %s %s}
+                {$hpbar[msg_melee]}
+                {$hpbar[msg_ibeam]}
+                {$hpbar[msg_ddb]}
+                {$hpbar[msg_synthorg]}
+                {$hpbar[msg_dunno]};
+
+	#if {$cmbt[rnd] > 0} {
+		#math {gxp_curr_round} {%15 - $gxp_total};
+		#var gxp_total %15;
+		#if {$gxp_curr_round > )} {#math {gxp_gained} {$gxp_gained + $gxp_curr_round}};
+		#math {gxp_avg} {$gxp_gained / $cmbt[rnd]}
+	} {
+		#var gxp_total %15;
+	}
+        #math cmbt[rnd] {$cmbt[rnd] + 1};
+}
+
+#NOP -- GXP PER ROUD TRACKER
+#alias gxp_reset {
+	#var cmbt[rnd] 0;
+	#var gxp_total 0;
+	#var gxp_gained 0;
+	#var gxp_avg 0;
+	#var gxp_curr_roud 0;
+};
+
+#prompt {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d T:%d/%d/%d%/%d [G2N:%d%]E:%w GXP:%d} {${prompt_1} } {-3};
+#prompt {[%*] [%*] [%*] [%*] [%*]} {${prompt_2}} {-2};
+
+#class {hpbar} {close};

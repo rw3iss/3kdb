@@ -9,7 +9,7 @@
 	#if {"%1" == "Massive zombie"} {#var mobname zombie};
 	#if {"%1" == "Ravaged zombie"} {#var mobname zombie};
 	#if {"%1" == "Shuffling zombie"} {#var mobname zombie};
-	yy
+	.check_monster
 	}                                                              
                                                                        
 

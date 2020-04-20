@@ -4,7 +4,7 @@
 #act {-M-_{Strawberry Shortcake Bar|Screw Ball|Creamsicle Bar|Giant Vanilla Sandwich|Giant Neapolitan Sandwich|Candy Center Crunch Bar|Rainbow Sherbet Pop-Up|Fudgesicle Bar|Snow Cone|The Great White|Choco Taco|Orange Sherbet Pop-Up|Toasted Almond Bar|King Cone Bar|Chocolate Eclair Bar|Spider-Man Bar}} {
 		#var mobname {ice cream};
 		#show $mobname;		
-		yy
+		.check_monster
 };
 
 #act {^Ice Cream Wrapper.$} {get wrapper}

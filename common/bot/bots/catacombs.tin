@@ -1,0 +1,44 @@
+#class {bot} {open}
+#var {areaname} {Catacombs}
+
+#var bot_message_1 '---- CATACOMBS STEPPER ----';
+#var bot_message_2 '---- ALL TARGETS ----';
+#show $bot_message_1;#show $bot_message_2;
+
+#if {{$guild} == {bard}} {
+	#nop - Turn on kill-em-all
+	#var kill_em_all 1
+
+	echo_divider1;
+	clear_prots;reflex_clear;
+	echo_divider2;
+	echo_reflex_header;
+	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
+	echo_divider2;
+
+	#alias {set_prots} {
+		#var defs[es] 1;
+		#var defs[blink] 1;
+	}
+};
+
+#var {botpath} {n;n;n;n;e;e;n;d;w;w;s;s;s;w;d;s;s;e;e;e;e;e;n;n;n;w;d;e;e;n;w;e;n;s;e;w;s;e;s;w;s;e;w;s;e;w;n;w;n;s;w;n;n;w;w;s;s;e;w;w;w;n;e;n;n;e;e;n;e;s;s;u;e;s;s;s;w;w;w;w;w;n;n;u;e;e;e;e;n;n;w;n;u;s;w;w;s;s;s;s};
+
+#act {^-M-_A Guide of Catacombs.$} {#NOP} {0};
+#act {-M-_{A statue of a dwarf|A vampire soldier|Duke of Vampires|A Vampire|A wandering vampire|A ghoul|A Ghoul Militia}%*.$} {
+    #var foundtimes 1;
+	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
+    #var mobname_long %1;
+    #if {"%1" == "A Ghoul Militia"} {@botSetMobActions{ghoul};#$foundtimes _add_stack};
+    #if {"%1" == "A ghoul"} {@botSetMobActions{ghoul};#$foundtimes _add_stack};
+    #if {"%1" == "A statue of a dwarf"} {@botSetMobActions{statue};#$foundtimes _add_stack};
+    #if {"%1" == "A vampire solider"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
+    #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
+    #if {"%1" == "Duke of Vampires"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
+    #if {"%1" == "A wandering vampire"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
+    #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
+	.check_monster;
+} {1};
+
+#class {bot} {close}
+#read common/bot/generic.tin

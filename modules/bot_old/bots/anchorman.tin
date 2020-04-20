@@ -6,7 +6,7 @@
 
 #act {^-M-_{Brick Tamland|Wes Mantooth|Frank Vitchard|Arturo Mendes|Brian Fantana|Ed Harken|Champ Kind|Garth Holladay|Veronica Corningstone}} {
 	#var mobname human;
-	yy
+	.check_monster
 	} {1};
 
 #nop -M-_Ron Burgundy

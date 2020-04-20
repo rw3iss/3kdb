@@ -30,7 +30,7 @@ ktrig bc/get all/grab cell/get key;
 	#regex {%1} {TANK} {#var mobname tank;};
 	#regex {%1} {velociraptor} {#var mobname velociraptor;};
 	#regex {%1} {the} {#var mobname mob;};
-	yy;
+	.check_monster;
 } {1};
 
 #act {You've killed} {#nop;} {1};

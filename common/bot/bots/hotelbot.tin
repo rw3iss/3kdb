@@ -1,14 +1,38 @@
 #class {bot} {open}
 #var {areaname} {Hotel Transylvania}
+
+#var bot_message_1 '---- HOTEL STEPPER ----';
+#var bot_message_2 '---- ALL TARGETS ----';
+#show $bot_message_1;#show $bot_message_2;
+
+#if {{$guild} == {bard}} {
+	#nop - Turn off kill-em-all
+	#var kill_em_all 0
+
+	echo_divider1;
+	clear_prots;reflex_clear;
+	echo_divider2;
+	echo_reflex_header;
+	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
+	echo_divider2;
+
+	#alias {set_prots} {
+		#var defs[es] 1;
+		#var defs[blink] 1;
+		#var defs[pe] 1;
+	}
+};
+
 #var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s};
-#act {-M-_%*{zombie}%*} 
- {
-	#var mobname zombie;
-	yy
- } {1};
-
-
-#alias {hr} {out;out;w;s;e;e;n;w;w;n;n;w;w;w;mch};
+#act {-M-_{A zombie bell hop waiting to carry your things|A zombie waiter offering drinks|A zombie cook looking for something to chop}%*.$} {
+    #var foundtimes 1;
+	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
+    #var mobname_long %1;
+    #if {"%1" == "A zombie bell hop waiting to carry your things"} {@botSetMobActions{zombie};#$foundtimes _add_stack};
+    #if {"%1" == "A zombie waiter offering drinks"} {@botSetMobActions{zombie};#$foundtimes _add_stack};
+	#if {"%1" == "A zombie cook looking for something to chop"} {@botSetMobActions{zombie};#$foundtimes _add_stack};	
+	.check_monster;
+} {1};
 
 #class {bot} {close}
 #read common/bot/generic.tin

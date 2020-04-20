@@ -1,4 +1,4 @@
-#function {botSetMobName} {
+#function {botSetMobActions} {
 	#var botPrevMobName $mobname;
 	#var mobname %0;
 	#return;

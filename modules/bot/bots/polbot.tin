@@ -15,7 +15,7 @@
 	#if {"Wyvern"=="%1"} {#var cMob wyvern};
 	@setMobName{$cMob};
 	#if {($hardmode == 1 && "$mobname" == "guard") ^^ ("$mobname" != "guard")}
-	{yy}
+	{.check_monster}
  } {1}
 
 #class {bot} {close}

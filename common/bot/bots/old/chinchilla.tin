@@ -5,7 +5,7 @@
 
 #act {-M-_A {Young|Baby|Mature} Chinchilla} {
 	@setMobName{chinchilla};
-	yy}
+	.check_monster}
 
 #class {bot} {close}
 

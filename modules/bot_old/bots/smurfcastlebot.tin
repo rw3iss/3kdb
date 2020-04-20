@@ -7,7 +7,7 @@
 	#if {"%2" == "spider"} {#var mobname spider};
 	#if {"%2" == "zreal"} {#var mobname azreal};
 	#if {"%2" == "argamel"} {#var mobname gargamel};
-	yy
+	.check_monster
  } {1};
 #class {bot} {close}
 #read common/bot/generic.tin

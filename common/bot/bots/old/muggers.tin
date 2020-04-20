@@ -5,7 +5,7 @@
 
 #act {-M-_A Mugger} {
 	#var mobname mugger;
-	yy} {1};
+	.check_monster} {1};
 
 #class {bot} {close}
 

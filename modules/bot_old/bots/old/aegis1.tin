@@ -8,7 +8,7 @@
   #if {"Shambling zombie"=="%1"} {#var mobname zombie};
   #if {"One-armed zombie"=="%1"} {#var mobname zombie};
   #if {"Aegis Sentry Model 60-FT"=="%1"} {#var mobname sentry};
-  yy
+  .check_monster
  }
 #act {#END OF PAT} {
 	killbot;

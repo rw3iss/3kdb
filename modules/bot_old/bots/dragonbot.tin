@@ -8,7 +8,7 @@
 #act {{^-M-_((A|An) (tiny|small|medium|large|enormous) $findDragons dragon)( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}}
 	{
 	#var mobname dragon;
-	yy
+	.check_monster
 } {1};
 
 #act {You cannot get past the dragon guards.} {

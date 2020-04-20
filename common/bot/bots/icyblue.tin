@@ -8,7 +8,7 @@
 	#if {"%1" == "Ice Woman"} {#var mobname ice};
 	#if {"%1" == "Ice Youth"} {#var mobname ice};
 	#if {"%1" == "Ice Child"} {#var mobname ice};
-	yy} {1};
+	.check_monster} {1};
 
 #class {bot} {close}
 

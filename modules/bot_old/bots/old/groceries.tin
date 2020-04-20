@@ -38,7 +38,7 @@
 	#if {"%1" == "Jolly Green Giant"} {#var mobname giant};
 	#if {"%1" == "Mr. Lucky Charm"} {#var mobname charm};
 	#if {"%1" == "Snuggles the Bear"} {#var mobname bear};
-	yy}
+	.check_monster}
 
 #act {Your bite crushed} {#nop} {1}
 #class {bot} {close}

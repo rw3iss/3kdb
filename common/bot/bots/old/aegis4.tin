@@ -8,7 +8,7 @@ e;e;e;e;s;w;w;w;w;w;w;w;w;w;n;n;n;n;n;n;n;n;e;e;e;e;e;e;e}
   #if {"Limping zombie"=="%1"} {#var mobname zombie};
   #if {"Bullet-ridden zombie"=="%1"} {#var mobname zombie};
   #if {"Aegis Sentry Model 65-SE"=="%1"} {#var mobname sentry};
-  yy
+  .check_monster
  }
 #act {#END OF PAT} {
 	killbot;

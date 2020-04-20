@@ -12,8 +12,6 @@
 
 #alias {esqget} {ce;esq goshop weaponsmith;esquire_act_on;};
 
-#act {Zorbaine dealt the killing blow to Nightmare.} {get phylactery;wear phylactery;#unact {Zorbaine dealt the killing blow to Nightmare.}};
-
 #alias {isleth2} {climb out;jump across;e;e;d;d;e;e;ex basin;get dagger;cut hand;enter;e;map isleth};
 #alias {gfdf} { 
 	get flask;
