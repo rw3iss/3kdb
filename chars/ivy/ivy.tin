@@ -1,9 +1,8 @@
 #ses {3k - Ivy} {3k.org} {3000}
 
-#read chars/ivy/vars.tin;
+#read chars/ivy/password.tin;
 $username;$password;
 
-#var user $username;
 #conf pack 1;
 #conf color on;
 
@@ -22,21 +21,16 @@ $username;$password;
 #read chars/ivy/gags.tin;
 #read chars/ivy/global.tin;
 
-#read common/bot/bots.tin;
-
 /* Load modules */
 #read modules/corpsemanager/corpsemanager.tin;
-#read modules/professions/reforger.tin;
-#read modules/dmgtracker/dmgtracker.tin;
-#read modules/corpsemanager/corpsemanager_old.tin;
-#read modules/playcult/playcult.tin;
+#read modules/chatlog/chatlog.tin;
+
+#nop create space for static hpbar at bottom;
+#split {0} {4};
+
 
 /* startup / init modules for character */
-deadman 30;
-mipon;
-loadmap;
-postload;
+#nop mipon;
 
-#read common/draw.tin;
 
 #alias {reload} {#kill all;#show \n;#read chars/ivy/ivy.tin;};

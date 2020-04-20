@@ -59,6 +59,7 @@
 	#map link {%2} {$mapCurrentVnum};
 	mapsave;
 };
+#alias {mapvnum} {#map get roomvnum curvnum;#show Map vnum $curvnum set to \$curvnum.;};
 #alias {mapsym} {#map set roomsymbol %1;#show Map symbol set to: %1;mapsave;};
 #alias {mapnote} {#map set roomnote %0;#show Room note set to: %0;mapsave;};
 #alias {mapdelete} {#map delete {%1};#show Exit deleted: %1;mapsave;};
@@ -71,6 +72,7 @@
 	#map list {} {} {} {%1} {variable} {area_mapped};
 	#showme {&area_mapped[] rooms mapped.};
 };
+#alias {maplm} {#map landmark {%0} {$curvnum}};
 
 #alias {mapfind} {
 	#show <129>Desc matches<088>;

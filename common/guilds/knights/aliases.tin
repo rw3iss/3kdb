@@ -170,7 +170,8 @@
 #alias {_checkwait} {
 	#if {$my[stam][delta] < 500 && $my[strain][delta] < 70 && $my[sp][delta] < 50} {
 		#if {$my[secondwind][current] == 100 || $my[strain][delta] < 10} {
-			j;
+			#show EXECUTING K:;
+            j;
 		} {
 			#delay {botrest} {_checkwait} {2}
 		};

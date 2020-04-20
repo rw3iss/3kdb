@@ -2,6 +2,7 @@
 
 #var deadmanIdleTimeout 1800;
 #var deadmanEnabled 0;
+#var idle_flag 0;
 
 #alias deadman {
     #math deadmanIdleTimeout {60 * %1};

@@ -4,7 +4,11 @@
 #var {botpath} {e;ne;se;w;s;w;s;e;ne;n;se;nw;n;nw;se;s;w;s;d;n;nw;ne;sw;se;s;u;n;w;w}
 
 #act {-M-_A {small|large|very large} Rimalkin} {
+<<<<<<< HEAD
 	@botSetMobActions{rimalkin};
+=======
+	@botSetMobName{rimalkin};
+>>>>>>> latest
 	.check_monster;
 } {1};
 
