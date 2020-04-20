@@ -1,0 +1,11 @@
+#class {player_actions} {kill}
+#class {player_actions} {open}
+
+#NOP --- Byron specific actions
+
+#ACTION {^Owie. That hurt!} {
+	corpse_select;
+	#delay {4} {pd;pd;wrap};
+	} {0}
+
+#class {player_actions} {close}

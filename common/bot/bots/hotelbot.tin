@@ -24,13 +24,13 @@
 };
 
 #var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s};
-#act {-M-_{A zombie bell hop waiting to carry your things|A zombie waiter offering drinks|A zombie cook looking for something to chop}%*.$} {
+#act {-M-_{A zombie bell hop waiting to carry your things|A zombie waiter offering drinks|A zombie cook looking for something to chop}%*} {
     #var foundtimes 1;
 	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
     #var mobname_long %1;
-    #if {"%1" == "A zombie bell hop waiting to carry your things"} {@botSetMobActions{zombie};#$foundtimes _add_stack};
-    #if {"%1" == "A zombie waiter offering drinks"} {@botSetMobActions{zombie};#$foundtimes _add_stack};
-	#if {"%1" == "A zombie cook looking for something to chop"} {@botSetMobActions{zombie};#$foundtimes _add_stack};	
+    #if {"%1" == "A zombie bell hop waiting to carry your things"} {@botSetMobActions{zombie;$foundtimes};};
+    #if {"%1" == "A zombie waiter offering drinks"} {@botSetMobActions{zombie;$foundtimes};};
+	#if {"%1" == "A zombie cook looking for something to chop"} {@botSetMobActions{zombie;$foundtimes};};	
 	.check_monster;
 } {1};
 

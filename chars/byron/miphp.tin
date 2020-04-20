@@ -1,10 +1,5 @@
 #class {miphp} {open}
 
-#TICKER {idle} {
-        #math {idle} {$idle + 1};
-        update_status
-} {1}
-
 #alias {update_status} {
 
 	#math   {idle_hr}       {$idle / 3600};
@@ -47,24 +42,16 @@
 	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 	#var eternal_string {Eternal Pwr: $ewell_string };
 
-	#showme {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth} {-5};
-	#showme {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]} {-4};
-	#showme {$prot_string $etc_string} {-3};
-	#showme {$eternal_string Idle: $idle_cap} {-2};
+	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth};
+	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]};
+	#var prompt3 {$prot_string $etc_string};
+	#var prompt4 {$eternal_string Idle: $idle_cap};
 
-	_heartbeat;
-    
+	_player_heartbeat;
+    _guild_heartbeat;
 	draw_hpbar;
 }
     
-#alias {_heartbeat} {
-	#if {$defs[pe] && $my[defs][pe] == 0} {cast protection from evil};
-	#if {$defs[pg] && $my[defs][pg] == 0} {cast protection from good};
-	#if {$defs[pn] && $my[defs][pn] == 0} {cast protection from neutral};
-	#if {$defs[ph] && $my[defs][ph] == 0} {cast protection from heat};
-	#if {$defs[pf] && $my[defs][pf] == 0} {cast protection from frost};
-	#if {$defs[blink] && $my[defs][blink] == 0} {cast blink};
-}
 
 #if {"$draw[hpbar]" == "on"} {
 	#var hpbar[enabledheight] $hpbar[height];
@@ -86,25 +73,21 @@
     #math hpbar[right] {$hpbar[left] + $screen[width]}; 
 
     #if {"$draw[hpbar]" == "on"} {
-    #draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
-    }
+    	#draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
+    };
 
     tickhp;
 };
 
 #alias {draw_hpbar} {
     #if {"$draw[hpbar]" == "on"} {
-        #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
-
-        #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
-
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3} };
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3}\n${prompt4} };
     }
 }
 
 #alias {tickhp} {
     #TICKER {update_status} {
-            #math {idle} {$idle + 1};
+            #math {idle_time} {$idle_time + 1};
             update_status;
     } {1}
 }

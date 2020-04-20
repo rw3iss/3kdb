@@ -37,10 +37,6 @@
 #nop --- BARD HEALING
 
 #ACTION {^You reach into the pouch of} {wear gloves} {5}
-#ACTION {^Owie. That hurt!} {
-	corpse_select;
-	#delay {4} {pd;pd;wrap};
-	} {0}
 
 #NOP --- BARD MISC.
 

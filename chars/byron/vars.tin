@@ -20,7 +20,7 @@
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {9411}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{53}{enabledheight}{3}{height}{3}{left}{0}{right}{204}{top}{51}}
+#VARIABLE         {hpbar}  {{bottom}{53}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{51}}
 #VARIABLE         {map}  {{height}{32}{heightperc}{.6}{width}{91}{widthperc}{.45}}
 #VARIABLE         {room}  {{bottom}{50}{exits}{n~w~e}{height}{21}{heightperc}{.4}{name}{A twisting passage (n,w,e)}{top}{33}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}
