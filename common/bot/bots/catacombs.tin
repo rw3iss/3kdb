@@ -16,7 +16,7 @@
 	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
 	echo_divider2;
 
-	#alias {set_prots} {
+	#alias {.set_prots} {
 		#var defs[es] 1;
 		#var defs[blink] 1;
 	}

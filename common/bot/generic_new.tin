@@ -19,15 +19,16 @@
 
 
 /* ignore these players */
-#act {^-P-_%*A vicious bear%*$.} {#NOP} {0};
 #act {^-P-_%*Nix%*.$} {#NOP} {0};
+#act {^-P-_%*Roor%*.$} {#NOP} {0};
+#act {^-P-_%*Void%*.$} {#NOP} {0};
+#act {^-P-_%*Mako%*.$} {#NOP} {0};
+#act {^-P-_%*A vicious bear%*$.} {#NOP} {0};
 #act {^-P-_%*Toren%*.$} {#NOP} {0};
 #act {^-P-_%*Byron%*.$} {#NOP} {0};
 #act {^-P-_%*Martyr%*.$} {#NOP} {0};
-#act {^-P-_%*Roor%*.$} {#NOP} {0};
-#act {^-P-_%*Void%*.$} {#NOP} {0};
 #act {^-P-_%*Zorbaine%*.$} {#NOP} {0};
-#act {^-P-_%*Mako%*.$} {#NOP} {0};
+#act {^-P-_%*Ivy%*.$} {#NOP} {0};
 
 /* ignore these followers */
 #act {^-M-_%*Almodo%*.$} {#NOP} {0};
@@ -66,6 +67,8 @@
 #alias {..} {
     #class {xbot} {open};
 	#var halt 0;
+
+    #if {"$guild" == "bard"} {.set_prots};
 
     #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
 
