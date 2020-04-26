@@ -203,6 +203,7 @@
 		#REGEX {$mip[gline][1]} { HS:%d}	{#VAR {my[defs][hs]}		{&1}}   {#var {my[defs][hs]}    {0}};
 		#REGEX {$mip[gline][1]} { O:%d}		{#VAR {my[defs][o]}			{&1}}	{#var {my[defs][o]}     {0}};
 		#REGEX {$mip[gline][1]} { AG:%d}	{#VAR {my[defs][ag]}		{&1}}	{#var {my[defs][ag]}	{0}};
+		#REGEX {$mip[gline][1]} { ES:%d}	{#VAR {my[defs][es]}		{&1}}	{#var {my[defs][es]}	{0}};
 		#REGEX {$mip[gline][1]} { B}		{#VAR {my[defs][blink]}		 {1}}	{#var {my[defs][blink]} {0}};
 		#REGEX {$mip[gline][1]} { MB}		{#VAR {my[defs][mb]}		 {1}}	{#var {my[defs][mb]}    {0}};
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
