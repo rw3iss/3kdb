@@ -194,7 +194,7 @@
 
 #ALIAS {.mipProcessGlineBard} {
 	#IF {%1 == 1} {
-		#nop Protection Info
+		#nop Protection Info;
 		#REGEX {$mip[gline][1]} { PE:%d}	{#VAR {my[defs][pe]}		{&1}}   {#var {my[defs][pe]}    {0}};
 		#REGEX {$mip[gline][1]} { PN:%d}	{#VAR {my[defs][pn]}		{&1}}   {#var {my[defs][pn]}    {0}};
 		#REGEX {$mip[gline][1]} { PG:%d}	{#VAR {my[defs][pg]}		{&1}}   {#var {my[defs][pg]}    {0}};
@@ -208,13 +208,13 @@
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
 
 	}; #ELSEIF {%1 == 2} {
-		#nop Smile, GXP, Song Performing, Rounds left
+		#nop Smile, GXP, Song Performing, Rounds left;
 		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
 		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
 		#REGEX {$mip[gline][2]} { S: %1% %2: %3 NGL:}	{#VAR {my[song][&2]}	{&3}};
 	
 	}; #ELSE {
-		#ECHO {<171> Invalid Gline Number <088>}
+		#ECHO {<171> Invalid Gline Number <088>};
 	}
 }
 
