@@ -7,20 +7,23 @@
 #showme {2) Ivy}
 #showme {3) Ro}
 #showme {4) Fug}
-#showme {5) (Empty)}
+#showme {5) Ryst}
+#showme {6) (Empty)}
 
 #macro {1} {#read chars/zorbaine/zorbaine.tin;@setcharacter{zorbaine};um}
 #macro {2} {#read chars/ivy/ivy.tin;@setcharacter{ivy};um}
 #macro {3} {#read chars/ro/ro.tin;#var character ro;um}
 #macro {4} {#read chars/fug/fug.tin;#var character fug;um}
-#macro {5} {#read chars/empty/empty.tin;};
+#macro {5} {#read chars/ryst/ryst.tin;@setcharacter{ryst};um}
+#macro {6} {#read chars/empty/empty.tin;};
 
 #event {SESSION DEACTIVATED} {
 	#showme {1) Zorbaine}
 	#showme {2) Ivy}
 	#showme {3) Ro}
 	#showme {4) Fug}
-	#showme {5) (Empty)}
+	#showme {5) Ryst}
+	#showme {6) (Empty)}
 };
 
 /* Helpers ---- */

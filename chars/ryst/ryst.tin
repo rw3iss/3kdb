@@ -1,0 +1,30 @@
+#session {3k - Ryst} {3k.org} {3000};
+
+#read chars/ryst/vars.tin;
+$username;$password;
+
+#var user $username;
+#var world 3k;
+
+/* load common */
+#read common/index.tin;
+
+
+/* load character-specific */
+#read chars/ryst/config.tin;
+#read chars/ryst/actions.tin;
+#read chars/ryst/aliases.tin;
+#read chars/ryst/gags.tin;
+#read chars/ryst/global.tin;
+
+#read modules/playcult/playcult.tin;
+
+/* startup / init modules for character */
+deadman 30;
+mipon;
+loadmap;
+postload;
+
+#read common/draw.tin;
+
+#alias {reload} {#kill all;#show \n;#read chars/ryst/ryst.tin;};

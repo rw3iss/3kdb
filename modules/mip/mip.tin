@@ -30,6 +30,26 @@
     #var mipdebug 0;
 }
 
+#alias {maproomoff} {
+    #var draw[room] "off";
+    #var draw[map] "off";
+    #var draw[canvas] "off";
+    #nop #class {miproom} {kill};
+    init_screen;
+    draw_all;
+    #class {draw} {kill};
+    #show Map and room details off.;
+}
+
+#alias {maproomon} {
+    #var draw[room] "on";
+    #var draw[map] "on";
+    #var draw[canvas] "on";
+    #nop #read modules/mip/room.tin;
+#read common/draw.tin;
+    #show Map and room details on.;
+}
+
 /*
 @register_module{mip};
 @register_module_info{logger;{

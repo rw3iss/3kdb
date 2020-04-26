@@ -1,14 +1,14 @@
 #CLASS {vars} OPEN
 
-#VARIABLE         {canvas}  {{width}{68}{widthperc}{.45}}
+#VARIABLE         {canvas}  {{width}{33}{widthperc}{.45}}
 #VARIABLE         {character}  {zorbaine}
 #VARIABLE         {characterName}  {Zorbaine}
-#VARIABLE         {curvnum}  {20013}
+#VARIABLE         {curvnum}  {20004}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{53}{corpsemsg}{<088>☠:\[0\]}{deadman}{<088>Deadman:\[1800\]}{emsg}{<088>E:<169>perfect}{enabledheight}{3}{height}{3}{hpmsg}{<088>HP:<129>3783<088>/<129>3783}{label}{<088>}{left}{0}{points_full}{<129>}{points_high}{<169>}{points_low}{<119>}{points_med}{<139>}{right}{151}{spmsg}{<088>SP:<169>834<088>/<129>1163<088>}{stammsg}{<088>Stam:<129>2500<088>/<129>2500(0)}{strainmsg}{<088>Stn:<129>2<088>%}{swmsg}{<088>Sw:<129>100.0<088>}{targetmsg}{<088>T:rimalkin}{top}{51}}
-#VARIABLE         {map}  {{height}{32}{heightperc}{.6}{width}{67}{widthperc}{.45}}
+#VARIABLE         {hpbar}  {{bottom}{32}{corpsemsg}{<088>☠:\[0\]}{deadman}{<088>Deadman:\[1800\]}{emsg}{<088>E:<169>perfect}{enabledheight}{3}{height}{3}{hpmsg}{<088>HP:<129>3653<088>/<129>3653}{label}{<088>}{left}{0}{points_full}{<129>}{points_high}{<169>}{points_low}{<119>}{points_med}{<139>}{right}{73}{spmsg}{<088>SP:<169>901<088>/<129>1086<088>}{stammsg}{<088>Stam:<169>2545<088>/<129>2600(-55)}{strainmsg}{<088>Stn:<129>13<088>%}{swmsg}{<088>Sw:<129>100.0<088>}{targetmsg}{<088>T:rimalkin}{top}{30}}
+#VARIABLE         {map}  {{height}{19}{heightperc}{.6}{width}{32}{widthperc}{.45}}
 #VARIABLE         {password}  {qazokm}
-#VARIABLE         {room}  {{bottom}{50}{exits}{d~n~w}{height}{21}{heightperc}{.4}{name}{A dark foul smelling cave (d,n,w)}{top}{33}{width}{67}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{29}{exits}{se~nw~n~s~w}{height}{13}{heightperc}{.4}{name}{A large cavern (se,nw,n,s,w)}{top}{20}{width}{32}{widthperc}{.45}}
 #VARIABLE         {shield}  {aurothon shield}
 #VARIABLE         {splitWidthPerc}  {.45}
 #VARIABLE         {username}  {zorbaine}

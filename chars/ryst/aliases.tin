@@ -1,0 +1,98 @@
+#alias {_player_deadmanActions} {
+    .stop;
+    #unact {%*};
+    #delay {450} {#show \nPLAYER DEADMAN DISCONNECTING.\n;ld};
+};
+
+
+#alias {ex} {examine %0;search %0;};
+#alias {exr} {examine %0 in room;search %0 in room};
+#alias {exg} {exa %0 on ground;search %0 on ground};
+
+#nop Get coffin from morgue and fill it;
+#alias {coffin} {acquire;#5 buy 2;#5 wrap corpse;};
+
+#alias {mw} {mywho};
+#alias {mem} {members};
+#alias {r} {reply};
+#alias {rco} {rcost};
+#alias {skq} {skillquests};
+#alias {mxp} {massxp};
+
+#alias {us} {unkeep %0;smuggle %0};
+
+#alias {dd} {drink %0;dispose %0};
+
+#alias {wp} {wear all;pp};
+
+#alias {sr} {sra};
+
+/* box stuff */
+#alias {lh} {list helmet};
+#alias {la} {list amulet};
+#alias {lar} {list armour};
+#alias {lbp} {list breastplate};
+#alias {lc} {list cloak};
+#alias {lg} {list gloves};
+#alias {lg} {list gloves};
+#alias {lgr} {list greaves};
+#alias {lb} {list boots};
+#alias {lr} {list ring};
+#alias {lo} {list other};
+#alias {lm} {list misc};
+#alias {lw} {list weapon};
+#alias {ls} {list shield};
+#alias {lsh} {list shield};
+#alias {gb} {get %0 from box};
+#alias {pb} {put %0 in box};
+#alias {upb} {unkeep %0;put %0 in box};
+
+/* toggle beep on or off */
+#alias {`} { #if {$beepon == 1} {#var beepon 0;@show{Beep off}} {#var beepon 1;@show{Beep on}} };
+
+#alias {sm} {smuggle};
+#alias {smr} {smuggle remove %0};
+
+/* cheat: get +ac from defense mode, preparing, then back to offense without re-preparing */
+#alias {defo} {md;pp;#delay {4} {mmc;bcc}};
+#alias {md} {stance def;method melee};
+#alias {bcc} {battlecry Battlecrymenow.;hp};
+
+
+
+#alias {c} {ctell %0};	
+#alias {cw} {cwho -O};
+#alias {cwo} {cwho -o};
+
+#alias {ww} {who wiz};
+
+#alias {r} {reply %0};
+
+#alias {x} {examine %0;search %0;};
+
+
+#alias {gc} {get coins};
+#alias {dg} {divvy gold};
+#alias {ud} {unlock door;open door};
+
+#alias {gdf} {get flask;drink flask;dispose flask};
+
+#alias {pb} {put %0 in box};
+#alias {gb} {get %0 from box};
+
+#alias {id} {identify %0};
+
+#alias {msk} {mskills};
+#alias {rco} {rcost};
+#alias {mxp} {massxp};
+
+#alias {wield %0} {#var wielded %0;#send {wield %0}};
+
+#alias {dn} {dungeons};
+#alias {ql} {questlist};
+
+
+
+
+/* ------------------------------------ */
+#CLASS {ZORBAINE_ALIASES} CLOSE

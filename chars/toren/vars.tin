@@ -2,9 +2,50 @@
 
 #ALIAS {_player_deadmanActions}
 {
-     .stop;
+     .stop
 }
 {0}
+
+#ALIAS {go_study}
+{
+     go were;
+     u;
+     nw;
+     nw;
+     path;
+     sw;
+     sw;
+     w;
+     study alter 10;
+     study rabies 90;
+     study infest 90;
+     e;
+     ne;
+     ne;
+     path;
+     se;
+     se;
+     d;
+     go $go_back
+}
+
+#ALIAS {house_donate}
+{
+     r;
+     get all from box;
+     bank;
+     go necro;
+     #6 n;
+     #6 w;
+     donate all;
+     e;
+     d;
+     w;
+     store all;
+     go home;
+     recover;
+     i
+}
 
 #ALIAS {postload}
 {
@@ -16,12 +57,17 @@
      #delay {1} {hp}
 }
 
+#ALIAS {set_ticker}
+{
+     #ticker {con} {#if !$idle_flag {con 100} {#nop}} {90}
+}
+
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
-#VARIABLE         {curvnum}  {8483}
+#VARIABLE         {curvnum}  {8467}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{53}{enabledheight}{3}{height}{3}{left}{0}{right}{204}{top}{51}}
-#VARIABLE         {map}  {{height}{32}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {room}  {{bottom}{50}{exits}{w~e}{height}{21}{heightperc}{.4}{name}{Approaching the Altar (w,e)}{top}{33}{width}{91}{widthperc}{.45}}
+#VARIABLE         {hpbar}  {{bottom}{32}{enabledheight}{3}{height}{3}{left}{0}{right}{204}{top}{30}}
+#VARIABLE         {map}  {{height}{19}{heightperc}{.6}{width}{91}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{29}{exits}{w~e~puddle}{height}{13}{heightperc}{.4}{name}{Eastwick (w,e,puddle)}{top}{20}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}
 
 #CLASS {global} CLOSE

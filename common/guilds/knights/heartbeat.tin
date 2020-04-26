@@ -132,6 +132,7 @@
 
 	#if {"$my[method][current]" == "Standard"} {
 		#show IN STANDARD;
+        mmc;hp;
 		method $my[method][desired];
 	};
 
@@ -142,12 +143,11 @@
 		beep;#delay {.5} {beep;#delay {.5} {beep};};
 	};
 
-	#if {$my[hp][current] < 400} {
+	#if {$my[hp][current] < 500} {
 		#if {$botting == 1} {
 			#show BAILING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n;
 			.stop;
-			go kn;
-			ld;
+            wimpystrat;
 		};
 	};
 
@@ -158,67 +158,37 @@
 	};
 };
 
-
-
 #alias {killTriggerAlways} {
 	#math killCountAll {$killCountAll + 1};
 	_guild_killTriggerAlways;	
 }
 
+#nop /* performed as a knight on any kill, self or others */;
+#alias {_guild_killTriggerAlways} {
+    rest;
+    arepair all;
+}
+
+#alias _guild_killTrigger {
+    rest;
+    arepair all;
+}
+
 #alias {killtrigger} {
-	#show killtrigger...;
 	_guild_killTrigger;
-
-	#if {$party == 1} {
-		#if {"$partyLeader" == "$character"} {
-			docorpsetrig;
-		} {
-			divvy coins;
-		};
-	} {
-		docorpsetrig;
-	};
-
-	#if {$party ==1 && $showreport == 1} {
-		ptell \[Report:  STAM: $my[stam][current]/$my[stam][max] 2W: $my[secondwind][current]%/100%\];
-	};
-	
-	#var killing -;
-};
-
-
-
-
-#function dobury {
-	#if {$embalmcorpses == 1} {
-		embalm remains;
-		get corpse;
-	} {
-		buryCorpseKilltrigger;
-	};
-	#return;
-};
-
-#alias {killtrigger} {
-	rest;
-	immolate corpse;
-
-    #show KILLTRIGGER;
 
 	#if {$party == 1} {
 		#if {"$partyLeader" == "zorbaine"} {`
 			docorpsetrig;
+			divvy coins;
 		} {
 			divvy coins;
 		};
 	} {
 		docorpsetrig;
+        get coins;
 	};
-
-	#if {$party ==1 && $showreport == 1} {
-		ptell \[Report:  STAM: $my[stam][current]/$my[stam][max] 2W: $my[secondwind][current]%/100%\];
-	};
-	
+    
 	#var killing -;
 
 	#if {@_get{afterkill_enabled} == 1} {
@@ -227,32 +197,43 @@
 			$action;
 		};
 	};
-
-	#if {$botting} {.bot};
-
 };
+
 
 #alias {docorpsetrig} {
     #show docorpsetrig;
+    
+	#if {$aoe_enabled == 1} {
+        immolate corpse;
+    }
 
 	#if {$hasdog == 1 && $dogfeed == 1} {
 		#if {$dog[hungry][current] > 50} { dog feed; } { 
-			#if {$getcorpses == 1} {@dobury{}};
+			#if {$getcorpses == 1} {handlebury};
 		};
 	} { 
-		#if {$getcorpses == 1} {@dobury{}};
+		#if {$getcorpses == 1} {handlebury};
 	};
-
-	#if {$party == 1} {
-		divvy gold;
-	} {
-		get coins;
-	};
-
-    #if {$botting == 1} {
-        .bot;
-    }
 };
+
+#alias handlebury {
+	#if {$embalmcorpses == 1} {
+		embalm remains;
+		get corpse;
+	} {
+		bury corpse;
+	};
+};
+
+
+
+
+
+
+
+
+
+
 
 #nop /* Actions to help us determine if we're still in combat */;
 #action {{You wheel past}} {

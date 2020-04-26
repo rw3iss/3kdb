@@ -5,7 +5,11 @@
 };
 
 
+#NOP bot shortcuts;
+#alias {-rb} {-rimalkins;scaler 150};
+#alias {-hb} {-hotelbot;scaler 126};
     
+
 #ALIAS {brun}
 {
 	w;

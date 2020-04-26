@@ -1,0 +1,72 @@
+#class {miphp} {open}
+
+#var $session[uptime] 0;
+#var $session[reboot] 0;
+#var $session[lag] 0;
+
+#screen get 	rows 	screen[height];
+#screen get 	cols 	screen[width];
+
+#alias {update_status} {
+	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
+	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
+	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
+	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
+	#format {hp}			{%+4s} {$my[hp][current]};
+	#format {hp_max}		{%+4s} {$my[hp][max]};
+	#format {sp}			{%+4s} {$my[sp][current]};
+	#format {sp_max}		{%+4s} {$my[sp][max]};
+	#format {gp1}			{%+4s} {$my[gp1][current]};
+	#format {gp1_max}		{%+4s} {$my[gp1][max]};
+	#format {gp2}			{%+4s} {$my[gp2][current]};
+	#format {gp2_max}		{%+4s} {$my[gp2][max]};
+	#format {ehealth}		{%+7s} {$enemy[hp]%%};
+    
+    _heartbeat;
+    
+	draw_hpbar;
+}
+
+#if {"$draw[hpbar]" == "on"} {
+	#var hpbar[enabledheight] $hpbar[height];
+} {
+	#var hpbar[enabledheight] 0;
+}
+    
+/* calculate hpbar size and draws initial line above hpbar area */
+#alias {init_hpbar} {
+    #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
+    #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
+    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
+
+    #if {"$draw[hpbar]" == "on"} {
+    #draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
+    }
+    tickhp;
+};
+
+#alias {draw_hpbar} {
+    #if {"$draw[hpbar]" == "on"} {
+        #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
+
+        #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
+
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3} };
+    }
+}
+
+#alias {tickhp} {
+    #TICKER {update_status} {
+            #math {idle} {$idle + 1};
+            update_status;
+    } {1}
+}
+
+#alias {hidehp} {
+    #unticker update_status;
+}
+
+#alias {_heartbeat} {#nop;};
+
+#class {miphp} {close}
