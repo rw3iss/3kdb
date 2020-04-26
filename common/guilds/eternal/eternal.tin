@@ -1,5 +1,7 @@
 #NOP --- ETERNAL POWERS
 
+#action {%d/%d energy well          :   55    %*    RDY} {#var ewell 1};
+
 #action {A shimmering ball of energy appears magically when you snap your fingers.} {
 	#var ewell 0;
 	#ticker {ewell} {tell $user ENERGY WELL RESET;#var ewell 1;#unticker ewell} {1700}

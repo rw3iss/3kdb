@@ -18,9 +18,6 @@
 
 #NOP --- GENTECH DEFENSE SHIELDS.  This alias checks if all shields are enabled before beginning combat.
 #alias {shields} {
-	#var edna 0;
-	#var efield 0;
-	#var lsupp 0;
 	#act {^Ferrous DNA : [     On     ]} {#var edna 1};
 	#act {^Energy Field: [ On-Adaptive]} {#var efield 1};
 	#act {^Life Support: [     On     ]} {#var lsupp 1};

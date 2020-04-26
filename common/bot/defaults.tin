@@ -9,6 +9,7 @@
 	aset look_monster_pref -M-_;
 	aset look_player -P-_;
 	aset room_short_pref -R-_;
+	aset room_short_suff -R-_;
 	aset room_long_pref <ESC>[33m-D-_;
 	aset look_weapon -W-_;
 	aset look_object -O-_;

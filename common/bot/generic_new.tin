@@ -27,6 +27,7 @@
 #act {^-P-_%*Roor%*.$} {#NOP} {0};
 #act {^-P-_%*Void%*.$} {#NOP} {0};
 #act {^-P-_%*Zorbaine%*.$} {#NOP} {0};
+#act {^-P-_%*Mako%*.$} {#NOP} {0};
 
 /* ignore these followers */
 #act {^-M-_%*Almodo%*.$} {#NOP} {0};
@@ -66,7 +67,7 @@
     #class {xbot} {open};
 	#var halt 0;
 
-    #act {^-R-_} {.onRoom} {0};
+    #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
 
 	#alias {.onRoom} {
 		#var foundplayer 0;
@@ -108,7 +109,7 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
-#act {^%1 {screeches in agony|gurgles in his own blood|gurgles in her own blood|gurgles in its own blood|gasps for breath, then slumps}} {
+#act {^%1 {screeches in agony|gurgles in %* own blood|gasps for breath, then slumps}} {
     #if $check_death {
         #delay .3 {.check_death;};
         #delay .5 {.bot;};
