@@ -16,10 +16,18 @@
 	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
 	echo_divider2;
 
-	#alias {.set_prots} {
+	#alias {.pre_fight_check} {
 		#var defs[es] 1;
 		#var defs[blink] 1;
-	}
+	}	
+};
+
+#if {{$guild} == {gentech}} {
+	#alias .pre_fight_check {
+        repair;
+		repair;
+		tactical;
+    }
 };
 
 #var {botpath} {n;n;n;n;e;e;n;d;w;w;s;s;s;w;d;s;s;e;e;e;e;e;n;n;n;w;d;e;e;n;w;e;n;s;e;w;s;e;s;w;s;e;w;s;e;w;n;w;n;s;w;n;n;w;w;s;s;e;w;w;w;n;e;n;n;e;e;n;e;s;s;u;e;s;s;s;w;w;w;w;w;n;n;u;e;e;e;e;n;n;w;n;u;s;w;w;s;s;s;s};

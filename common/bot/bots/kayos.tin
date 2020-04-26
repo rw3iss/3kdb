@@ -16,11 +16,19 @@
 	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
 	echo_divider2;
 
-	#alias {.set_prots} {
+	#alias {.pre_fight_check} {
 		#var defs[es] 1;
 		#var defs[blink] 1;
 		#var defs[pn] 1;
 	}
+};
+
+#if {{$guild} == {gentech}} {
+	#alias .pre_fight_check {
+        repair;
+		repair;
+		tactical;
+    }
 };
 
 #var check_death 1;

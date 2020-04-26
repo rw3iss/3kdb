@@ -68,7 +68,7 @@
     #class {xbot} {open};
 	#var halt 0;
 
-    #if {"$guild" == "bard"} {.set_prots};
+    .pre_fight_check;
 
     #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
 
