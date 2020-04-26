@@ -1,8 +1,6 @@
-#alias {
-    sopemspike} {
-        #10 ex east wall;
-        #5 ex spikes;
-        #10 ex spike;
-        push spike;
-    }
-};
+#alias {sopemspike} {
+    #10 ex east wall;
+    #5 ex spikes;
+    #10 ex spike;
+    push spike;
+}

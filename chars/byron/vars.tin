@@ -18,11 +18,11 @@
 }
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
-#VARIABLE         {curvnum}  {9411}
+#VARIABLE         {curvnum}  {24174}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{53}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{51}}
-#VARIABLE         {map}  {{height}{32}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {room}  {{bottom}{50}{exits}{n~w~e}{height}{21}{heightperc}{.4}{name}{A twisting passage (n,w,e)}{top}{33}{width}{91}{widthperc}{.45}}
+#VARIABLE         {hpbar}  {{bottom}{32}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{29}}
+#VARIABLE         {map}  {{height}{19}{heightperc}{.6}{width}{91}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{28}{exits}{n~out}{height}{13}{heightperc}{.4}{name}{Along a wall (n,out)}{top}{20}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}
 
 #CLASS {global} CLOSE

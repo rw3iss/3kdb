@@ -74,15 +74,18 @@
 		};
 	};
 }
+
+#act {dealt the killing blow to} {grab $tacoTarget;} {0};
+
 #nop _enableCheeseStrat;
 
 #act {^{Death Taco (.*) you}} {staunch};
 
-#alias {tacokill} {
-	$class {strategy} {kill};
+#alias {tacostop} {
+	#class {tacos} {kill};
+}
 
-#show Taco strategy loaded.;
-grab shell;
+#show Taco bot loaded. 'grab shell' to start.;
 
 #alias killtaco {#class {tacos} {kill}};
 

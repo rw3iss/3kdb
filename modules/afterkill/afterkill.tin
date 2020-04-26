@@ -8,13 +8,13 @@ _set {afterkill_enabled} {0};
 
 #alias {afterkill} {
     #list afterkillList {add} {%0};
-    #show Added to afterkill: %0;
+    #show Actiona added to afterkill list:\n <119>%0<088>;
     afterkillon;
 };
 
-
 #alias {akcl} {
     #vaf afterkillList {};
+    #show \nAfterkill list cleared.\n;
 };
 
 #alias {akrem} {
@@ -44,15 +44,14 @@ _set {afterkill_enabled} {0};
 
 /* -- Shortcuts -- */
 #alias {ak} {afterkill};
-#alias {akoff} {afterkilloff};
 #alias {akon} {afterkillon};
+#alias {akoff} {afterkilloff};
 
-
-@register_module{afterkill};
-@register_module_info{afterkill;{
-    #show Afterkill module usage:;
-    #show ak {command1;command2;...};
-}};
+register_module {afterkill};
+register_module_info {afterkill} {
+    #show Afterkill actions:;
+    #show  $afterkillList;
+};
 
 
 #class {afterkill} {close};

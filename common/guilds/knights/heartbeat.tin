@@ -132,6 +132,7 @@
 
 	#if {"$my[method][current]" == "Standard"} {
 		#show IN STANDARD;
+        mmc;hp;
 		method $my[method][desired];
 	};
 
@@ -142,12 +143,11 @@
 		beep;#delay {.5} {beep;#delay {.5} {beep};};
 	};
 
-	#if {$my[hp][current] < 400} {
+	#if {$my[hp][current] < 500} {
 		#if {$botting == 1} {
 			#show BAILING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n;
 			.stop;
-			go kn;
-			ld;
+            wimpystrat;
 		};
 	};
 
