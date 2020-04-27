@@ -112,7 +112,7 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
-#act {^%1 {screeches in agony|gurgles in %* own blood|gasps for breath, then slumps}} {
+#act {^%1 {screeches in agony|gurgles in (\w+) own blood|gasps for breath, then slumps}} {
     #if $check_death {
         #delay .3 {.check_death;};
         #delay .5 {.bot;};

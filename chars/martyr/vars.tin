@@ -17,6 +17,10 @@
      #delay {1} {hp}
 }
 
+#VARIABLE         {pu_recharger}  {1};
+#VARIABLE         {pu_recharge_at}  {1500};
+#VARIABLE         {mask}  {1};
+
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {24666}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
