@@ -74,7 +74,7 @@
 	#alias {.onRoom} {
 		#var foundplayer 0;
 		#var foundmob 0;
-        #delay 1 .prompt;
+        .prompt;
 	};
 
     #alias {.prompt} {
@@ -82,6 +82,7 @@
     };
 
 	#alias {.onPrompt} {
+        #delay 1 
         #if {$foundplayer || $dontAttack} {
             .stop_prompt;
             #path walk;
@@ -109,7 +110,7 @@
 
 	#alias {.stop_prompt} {#unact {^>$}};
     
-	glance;
+	#delay .5 glance;
 
 	#class {xbot} {close};
 };
