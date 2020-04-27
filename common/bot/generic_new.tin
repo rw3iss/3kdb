@@ -97,6 +97,7 @@
                 }
             };
             #if {$check_room} {
+                .stop_prompt;
                 .check_room;
             }
         };
