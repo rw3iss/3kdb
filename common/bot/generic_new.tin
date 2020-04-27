@@ -93,14 +93,15 @@
                 #delay 1 {kill $mobname};
             } {
                 #if {$foundobject} {#send $object_action} {
-                    .stop_prompt;
-                    #path walk;
+                    #if {$check_room} {
+                        .stop_prompt;
+                        .check_room;
+                    } {
+                        .stop_prompt;
+                        #path walk;
+                    }
                 }
             };
-            #if {$check_room} {
-                .stop_prompt;
-                .check_room;
-            }
         };
 
         #if {$founditems} {
