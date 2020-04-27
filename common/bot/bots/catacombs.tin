@@ -1,5 +1,8 @@
+#class {bot} {kill}
 #class {bot} {open}
-#var {areaname} {Catacombs}
+
+#var check_death 0;
+#var {area} {Catacombs};
 
 #var bot_message_1 '---- CATACOMBS STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';
@@ -37,14 +40,14 @@
     #var foundtimes 1;
 	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
     #var mobname_long %1;
-    #if {"%1" == "A Ghoul Militia"} {@botSetMobActions{ghoul};#$foundtimes _add_stack};
-    #if {"%1" == "A ghoul"} {@botSetMobActions{ghoul};#$foundtimes _add_stack};
-    #if {"%1" == "A statue of a dwarf"} {@botSetMobActions{statue};#$foundtimes _add_stack};
-    #if {"%1" == "A vampire solider"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
-    #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
-    #if {"%1" == "Duke of Vampires"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
-    #if {"%1" == "A wandering vampire"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
-    #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};#$foundtimes _add_stack};
+    #if {"%1" == "A Ghoul Militia"} {@botSetMobActions{ghoul};};
+    #if {"%1" == "A ghoul"} {@botSetMobActions{ghoul};};
+    #if {"%1" == "A statue of a dwarf"} {@botSetMobActions{statue};};
+    #if {"%1" == "A vampire solider"} {@botSetMobActions{vampire};};
+    #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};};
+    #if {"%1" == "Duke of Vampires"} {@botSetMobActions{vampire};};
+    #if {"%1" == "A wandering vampire"} {@botSetMobActions{vampire};};
+    #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};};
 	.check_monster;
 } {1};
 

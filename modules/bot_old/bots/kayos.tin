@@ -14,8 +14,6 @@ ktrig bc/get all/grab cell/get key;
 
 #act {^-M-_Almodo, Zorbaine's Golden Dun Akhal-Teke.} {#nop;} {0};
 
-#alias {_add_stack} {#nop;};
-
 #act {^-M-_%1} {
 	#regex {%1} {alien} {#var mobname alien;};
 	#regex {%1} {soldier} {#var mobname soldier;};
