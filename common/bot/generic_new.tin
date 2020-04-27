@@ -117,10 +117,8 @@
         #delay .3 {.check_death;};
         #delay .5 {.bot;};
     } {
-        .check_death;
         .bot;
     };
-    .bot
 } {0};
 
 
