@@ -147,12 +147,6 @@
     };
 };
 
-
-/* If for some reason we attack and mob isn't present, keep the bot going... */
-#act {{^There is no (\w+) here}} {
-    .bot;
-};
-
 /* helpers */
 #function {botSetMobActions} {
 	#var mobname %1;
