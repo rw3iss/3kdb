@@ -1,8 +1,9 @@
 #class {bot} {kill}
 #class {bot} {open}
 
-#var check_death 0;
 #var {area} {Catacombs};
+#var check_room 0;
+#var check_death 0;
 
 #var bot_message_1 '---- CATACOMBS STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';

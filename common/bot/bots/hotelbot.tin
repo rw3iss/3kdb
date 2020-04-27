@@ -1,5 +1,8 @@
 #class {bot} {open}
-#var {areaname} {Hotel Transylvania}
+
+#var {area} {Hotel Transylvania}
+#var check_room 0;
+#var check_death 0;
 
 #var bot_message_1 '---- HOTEL STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';

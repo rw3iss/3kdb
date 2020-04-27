@@ -1,6 +1,8 @@
 #class {bot} {open}
+
 #var {area} {Night of Colour};
 #var check_death 1;
+#var check_room 1;
 
 #var bot_message_1 '---- NIGHT OF COLORS STEPPER ----';
 #var bot_message_2 '----  SAFE MODE: NO PEACE    ----';
