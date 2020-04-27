@@ -71,7 +71,7 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
         k $mobname;
         #unaction {^Shadow}
     };
-	#delay {.4} {#if {!$foundshadow} {#path walk};}
+	#delay {.4} {#if {!$foundshadow && !$foundmob} {#path walk};}
 }
 
 #act {^-O-_{White web}} {

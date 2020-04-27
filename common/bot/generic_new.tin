@@ -108,9 +108,9 @@
         };
     };
 
-	#alias {.stop_prompt} {#unact {^>$}};
+    #alias {.stop_prompt} {#unact {^>$}};
     
-	#delay .5 glance;
+	glance;
 
 	#class {xbot} {close};
 };
