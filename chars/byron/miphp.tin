@@ -1,7 +1,6 @@
 #class {miphp} {open}
 
 #alias {update_status} {
-	#list $def_string clear
 
 	#math   {idle_hr}       {$idle / 3600};
 	#math   {idle_min}      {$idle % 3600 / 60};
@@ -26,17 +25,29 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#if {$my[defs][ab] == 1} {#list $def_string add {AB}};
+	#if {$my[defs][ab] == 1} {#var ab_string {AB}};
 	#if {$my[defs][blink] == 1} {#var blink_string {B}};
 	#if {$my[defs][mb] == 1} {#var mb_string {MB}};
-	#if {$my[defs][ag] > 0} {#list $def_string add {AG:$my[defs][ag]}};
-	#if {$my[defs][o] > 0} {#list $def_string add {O:$my[defs][o]}};
-	#if {$my[defs][pe] > 0} {#list $def_string add {PE:$my[defs][pe]}};
+	#if {$my[defs][ag] > 0} {#var ag_string {AG:$my[defs][ag]}};
+	#if {$my[defs][o] > 0}  {#var o_string {O:$my[defs][o]}};
+	#if {$my[defs][pe] > 0} {#var pe_string {PG:$my[defs][pe]}};
 	#if {$my[defs][pg] > 0} {#var pg_string {PG:$my[defs][pg]}};
 	#if {$my[defs][pn] > 0} {#var pn_string {PN:$my[defs][pn]}};
 	#if {$my[defs][pf] > 0} {#var pf_string {PF:$my[defs][pf]}};
 	#if {$my[defs][ph] > 0} {#var ph_string {PH:$my[defs][ph]}};
 	#if {$my[defs][es] > 0} {#var es_string {ES:$my[defs][es]}};
+
+	#format {ab_string} {%p}   {$ab_string}
+	#format {blink_string} {%p}   {$blink_string}
+	#format {mb_string} {%p}   {$mb_string}
+	#format {ag_string} {%p}   {$ag_string}
+	#format {o_string} {%p}   {$o_string}
+	#format {pe_string} {%p}   {$pe_string}
+	#format {pg_string} {%p}   {$pg_string}
+	#format {pn_string} {%p}   {$pn_string}
+	#format {pf_string} {%p}   {$pf_string}
+	#format {ph_string} {%p}   {$ph_string}
+	#format {es_string} {%p}   {$es_string}
 	
 	#if {$ewell} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
 
