@@ -69,53 +69,42 @@
     #class {xbot} {open};
 	#var halt 0;
 
-    #line debug {
-        #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
-    }
+    #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
 
-    #line debug {
-        #alias {.onRoom} {
-            #var foundplayer 0;
-            #var foundmob 0;
-            .prompt;
-        };
-    }
+	#alias {.onRoom} {
+		#var foundplayer 0;
+		#var foundmob 0;
+        .prompt;
+	};
 
-    #line debug {
-        #alias {.prompt} {
-            #act {^>$} {.onPrompt} {0};
-        };
-    }
-    
+    #alias {.prompt} {
+        #act {^>$} {.onPrompt} {0};
+    };
 
-    #line debug {
-        #alias {.onPrompt} {
+	#alias {.onPrompt} {
 
-            #if {$foundplayer || $dontAttack} {
+        #if {$foundplayer || $dontAttack} {
+            .stop_prompt;
+            #path walk;
+        } {
+            #if {$foundmob} {
                 .stop_prompt;
-                #path walk;
+                .pre_fight_check;
+                #delay 1 {kill $mobname};
             } {
-                #if {$foundmob} {
+                #if {$foundobject} {#send $object_action} {
                     .stop_prompt;
-                    .pre_fight_check;
-                    #delay 1 {kill $mobname};
-                } {
-                    #if {$foundobject} {#send $object_action} {
-                        .stop_prompt;
-                        #path walk;
-                    }
-                };
-            };
-
-            #if {$founditems} {
-                #if {$pickupAll} {#nop get all;}
+                    #path walk;
+                }
             };
         };
-    }
 
-    #line debug {
-	    #alias {.stop_prompt} {#unact {^>$}};
-    }
+        #if {$founditems} {
+            #if {$pickupAll} {#nop get all;}
+        };
+    };
+
+	#alias {.stop_prompt} {#unact {^>$}};
     
 	glance;
 
