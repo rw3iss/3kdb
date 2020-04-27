@@ -58,6 +58,7 @@
 };
 #alias {.s} {.stop};
 
+
 #NOP - If a monster is found that should be killed, the path will loop again.
 #alias {.check_monster} {
     #var foundmob 1;#var repeat_path 1;
@@ -68,43 +69,53 @@
     #class {xbot} {open};
 	#var halt 0;
 
-    .pre_fight_check;
+    #line debug {
+        #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
+    }
 
-    #act {^-R-_%%1-R-_$} {#var room_short %%1;.onRoom} {0};
+    #line debug {
+        #alias {.onRoom} {
+            #var foundplayer 0;
+            #var foundmob 0;
+            .prompt;
+        };
+    }
 
-	#alias {.onRoom} {
-		#var foundplayer 0;
-		#var foundmob 0;
-        .prompt;
-	};
+    #line debug {
+        #alias {.prompt} {
+            #act {^>$} {.onPrompt} {0};
+        };
+    }
+    
 
-    #alias {.prompt} {
-        #act {^>$} {.onPrompt} {0};
-    };
+    #line debug {
+        #alias {.onPrompt} {
 
-	#alias {.onPrompt} {
-
-        #if {$foundplayer || $dontAttack} {
-            .stop_prompt;
-            #path walk;
-        } {
-            #if {$foundmob} {
+            #if {$foundplayer || $dontAttack} {
                 .stop_prompt;
-                k $mobname;
+                #path walk;
             } {
-                #if {$foundobject} {#send $object_action} {
+                #if {$foundmob} {
                     .stop_prompt;
-                    #path walk;
-                }
+                    .pre_fight_check;
+                    #delay 1 {kill $mobname};
+                } {
+                    #if {$foundobject} {#send $object_action} {
+                        .stop_prompt;
+                        #path walk;
+                    }
+                };
+            };
+
+            #if {$founditems} {
+                #if {$pickupAll} {#nop get all;}
             };
         };
+    }
 
-        #if {$founditems} {
-            #if {$pickupAll} {#nop get all;}
-        };
-    };
-
-	#alias {.stop_prompt} {#unact {^>$}};
+    #line debug {
+	    #alias {.stop_prompt} {#unact {^>$}};
+    }
     
 	glance;
 
