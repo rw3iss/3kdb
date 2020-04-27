@@ -4,7 +4,7 @@
 	#if {$my[karma][current] < $my[karma][min]} {unwrap;pd};
 	#if {$corpses[coffin] < 15 && $dmg_on} {reflex remove gp1 >250;#var dmg_on 0};
 	#if {$my[defs][hs] > 0} {#NOP} {#if {$defs[hs] && !$idle_flag} {cast hardened skin} {#nop}};
-	#if {$my[defs][es] > 0} {#NOP} {#if {$defs[es] && !$idle_flag} {empowered strikes} {#nop}};
+	#if {$my[defs][es] > 0} {#NOP} {#if {$defs[es] && !$idle_flag && $my[gp1][current] > 400} {empowered strikes} {#nop}};
 	#if {$my[defs][mb] > 0} {#NOP} {#if {$defs[mb] && !$idle_flag} {cast mind blank} {#nop}};
 	#if {$my[defs][pe] > 0} {#NOP} {#if {$defs[pe] && !$idle_flag} {cast protection from evil} {#nop}};
 	#if {$my[defs][pn] > 0} {#NOP} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral} {#nop}};
