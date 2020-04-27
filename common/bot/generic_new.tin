@@ -82,7 +82,6 @@
     };
 
 	#alias {.onPrompt} {
-        #delay 1 
         #if {$foundplayer || $dontAttack} {
             .stop_prompt;
             #path walk;
