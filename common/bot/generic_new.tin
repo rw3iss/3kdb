@@ -91,7 +91,10 @@
                 .pre_fight_check;
                 #delay 1 {kill $mobname};
             } {
-                #if {$foundobject} {#send $object_action} {
+                #if {$foundobject} {
+                    .stop_prompt;
+                    #send $object_action
+                } {
                     #if {$check_room} {
                         .stop_prompt;
                         .check_room;
