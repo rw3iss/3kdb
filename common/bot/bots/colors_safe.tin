@@ -74,7 +74,7 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
 	#delay {.4} {#if {!$foundshadow && !$foundmob} {#path walk};}
 }
 
-#act {^-O-_{White web}} {
+#act {^-I-_{White web}} {
 	#if {"%1" == "White web" && $corpses[total] > 10} {
         #var foundobject 1;#var object_action {shake web}
     } {
