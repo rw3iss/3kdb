@@ -1,7 +1,7 @@
 #session {3k - Zorbaine} {3k.org} {3000};
 
 #read chars/zorbaine/vars.tin;
-$username;$password;
+$username
 
 #var user $username;
 #var world 3k;
@@ -39,10 +39,10 @@ $username;$password;
 #read modules/afterkill/afterkill.tin;
 
 /* startup / init modules for character */
-deadman 30;
-mipon;
-loadmap;
-postload;
+#nop deadman 30;
+#nop mipon;
+#nop loadmap;
+#nop postload;
 
 #read common/draw.tin;
 
