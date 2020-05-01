@@ -5,6 +5,7 @@ $username;$password;
 
 #var user $username;
 #var world 3k;
+#var guild knight;
 
 /* load common */
 #read common/index.tin;

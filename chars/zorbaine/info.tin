@@ -44,6 +44,8 @@
 #nop souls I like;
 #alias {sl} {
 	#show <169>Souls:<169>\n;
+
+    #show \nFun:\n;
 	#show dogb - Zorbaine holds up a biscuit in front of you. You bark.;
 	#show payne2 - You apologize to Zorbaine. You tell Zorbaine: You nasty little worm. Go change your huggies boy, and be back here pronto. And stop that crying. You\'ll get no pity from me. You think your tears will stop Charlie taking his bayonet and sticking it in your tiny little heart?;
 	#show pebble - You kick a small pebble.;
@@ -51,27 +53,32 @@
 	#show peel - You run around in a big banana suit yelling \'PEEL ME, PEEL ME!\';
     #show apu - Zorbaine tells you: Welcome to the Quickie Mart, please come again.;
     #show arr - Zorbaine goes 'ArRrrRrrRRrrRrRrRRrRRRrR!!!!!!!!' like a squiffy pirate at you.;
+    #show adalius2 - Zorbaine grabs his boobs tight! Zorbaine tells you: YES THEY'RE REAL!;
+    #show amen - Zorbaine asks: Can ai-yah have an AMEN Bruthah Zorbaine?!;
+    #show alien - Zorbaine takes your alien. You never get over it. Ever.;
+    #show austin - Zorbaine asks you: Do I make you horny baby? Do I?;
+    #show ayt - Zorbaine waves a hand in front of your face to see if you're there.;
+    #show budice - Zorbaine warns you to beware of the penguins. You say: Doobie doobie doo!;
+    #show swegrin - Grins like a swede and asks you for a beer;
+    #show \n;
 
     #show \nGet Attention:;
     #show knockon - You knock on player.;
+    #show \n;
 
     #show \nAffection:;
-    #show squeeze2 - Zorbaine squeezes you like he will never let go.;
-    #show supercha - Zorbaine gives you a super cha!; 
-    #show swegrin - Grins like a swede and asks you for a beer;
-    #show adalius2 - Zorbaine grabs his boobs tight! Zorbaine tells you: YES THEY'RE REAL!;
     #show admire - Zorbaine admires you. No, really.;
     #show air5 - Zorbaine gives you an air5;
-    #show alien - Zorbaine takes your alien. You never get over it. Ever.;
-    #show amen - Zorbaine asks: Can ai-yah have an AMEN Bruthah Zorbaine?!;
-    #show asskick - Zorbaine kicks your ass all around the room;
     #show attention - Zorbaine screams 'Pay attention to me!' at you;
-    #show austin - Zorbaine asks you: Do I make you horny baby? Do I?;
-    #show authoritah - From afar, you whip out your nightstick and teach Nik to respect your authoritah!;
     #show awesome - Zorbaine thinks you are totally awesome.;
-    #show ayt - Zorbaine waves a hand in front of your face to see if you're there.;
-};
+    #show squeeze2 - Zorbaine squeezes you like he will never let go.;
+    #show \n;
 
+    #show Scolding:\n;
+    #show asskick - Zorbaine kicks your ass all around the room\n;
+    #show authoritah - From afar, you whip out your nightstick and teach Nik to respect your authoritah!;
+    #show \n;
+}
 
 
 

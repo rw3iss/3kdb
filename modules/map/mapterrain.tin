@@ -1,0 +1,7 @@
+#map terrain Forest 🌲;
+#map terrain Desert 🌵;
+#map terrain Water 💧;
+#map terrain Mountain ⛰;
+#map terrain Store 🏪;
+
+#show Map terrain configurations loaded.\n;

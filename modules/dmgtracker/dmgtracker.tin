@@ -8,6 +8,7 @@
 #var cmbt[dmg] 0;
 
 #act {{^You hit (.*) (\d+) (time|times) for (\d+) damage\.$}} {
+    #var incombat 1;
     #math {cmbt[ravg]} {($cmbt[ravg] + %3) / 2};
     #var cmbt[curr] %5;
     #math cmbt[dmg] {$cmbt[dmg] + %5};
@@ -16,6 +17,7 @@
 } {1};
     
 #act {^Your blow was deflected. (.*)$} {
+    #var incombat 1;
     #var cmbt[curr] 0;
     #math cmbt[rnd] {$cmbt[rnd] + 1};
     #math {cmbt[avg]} {$cmbt[dmg] / $cmbt[rnd]};

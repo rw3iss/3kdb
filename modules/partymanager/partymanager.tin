@@ -10,9 +10,18 @@
    \rally %1;
 }
 
+#nop TODO: alias pquit, clear whitelist
 
+#act {(\w+) joins the party.$} {
+    #var party 1;
+}
 
-@register_module{partymanager};
-@register_module_info{partymanager;{
+#act {$characterName has quit the party!$} {
+    #var party 0;
+}
+
+@register_module {partymanager};
+@register_module_info {partymanager} {
 	#show Party manager info todo;
-}};
+    #show Partying? $party;
+};

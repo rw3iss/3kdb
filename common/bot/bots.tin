@@ -1,6 +1,7 @@
 #class {botlist} {open}
 
 #alias {-%1} {#read common/bot/bots/%1.tin;..}
+#alias {.-%1} {#read common/bot/bots/%1.tin}
 
 #nop Shortercuts: ---------------- ;
 

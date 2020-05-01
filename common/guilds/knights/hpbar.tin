@@ -131,16 +131,16 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
 };
 
 #action {{^PPD\((Y|n)\).+$}}
-{	
-	#regexp {%1} {{PPD\((Y|n)\)}} {#var my[prepared] {&2};};
-	#regexp {%1} {{Stud\((Y|n)\)}} {#var my[study] {&2};};
-	#regexp {%1} {{Batt\((Y|n)\)}} {#var my[battlecry] {&2};};
-	#regexp {%1} {{Braw\((Y|n)\)}} {#var my[brawl] {&2};};
-	#regexp {%1} {{Dodg\((Y|n)\)}} {#var my[dodge] {&2};};
-	#regexp {%1} {{Defl\((Y|n)\)}} {#var my[deflect] {&2};};
-	#regexp {%1} {{Shie\((Y|n)\)}} {#var my[shieldblock] {&2};};
-	#regexp {%1} {{Endu\((Y|n)\)}} {#var my[endure] {&2};};
-	#regexp {%1} {{Parr\((Y|n)\)}} {#var my[parry] {&2};};
+{
+	#regexp {%1} {{PPD\((Y|n|-)\)}} {#var my[prepared] {&2};};
+	#regexp {%1} {{Stud\((Y|n|-)\)}} {#var my[study] {&2};};
+	#regexp {%1} {{Batt\((Y|n|-)\)}} {#var my[battlecry] {&2};};
+	#regexp {%1} {{Braw\((Y|n|-)\)}} {#var my[brawl] {&2};};
+	#regexp {%1} {{Dodg\((Y|n|-)\)}} {#var my[dodge] {&2};};
+	#regexp {%1} {{Defl\((Y|n|-)\)}} {#var my[deflect] {&2};};
+	#regexp {%1} {{Shie\((Y|n|-)\)}} {#var my[shieldblock] {&2};};
+	#regexp {%1} {{Endu\((Y|n|-)\)}} {#var my[endure] {&2};};
+	#regexp {%1} {{Parr\((Y|n|-)\)}} {#var my[parry] {&2};};
 	#regexp {%1} {{STM: (\d+)\/(\d+)}} {
 		#var my[mnt][stm][cur] &2;
 		#var my[mnt][stm][max] &3;

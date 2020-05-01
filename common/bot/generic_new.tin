@@ -23,7 +23,7 @@
 #act {^-P-_%*Roor%*.$} {#NOP} {0};
 #act {^-P-_%*Void%*.$} {#NOP} {0};
 #act {^-P-_%*Mako%*.$} {#NOP} {0};
-#act {^-P-_%*A vicious bear%*$.} {#NOP} {0};
+#act {^-P-_%*A vicious bear%*.$} {#NOP} {0};
 #act {^-P-_%*Toren%*.$} {#NOP} {0};
 #act {^-P-_%*Byron%*.$} {#NOP} {0};
 #act {^-P-_%*Martyr%*.$} {#NOP} {0};
