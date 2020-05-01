@@ -1,0 +1,6 @@
+#class {player_actions} {kill}
+#class {player_actions} {open}
+
+#NOP --- Nix specific actions
+
+#class {player_actions} {close}

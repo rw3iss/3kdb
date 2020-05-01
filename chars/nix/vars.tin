@@ -1,0 +1,28 @@
+#CLASS {global} OPEN
+
+#ALIAS {_player_deadmanActions}
+{
+     .stop;
+     clear_prots
+}
+{0}
+
+#ALIAS {postload}
+{
+     #map flag static on;
+     #map flag vtmap on;
+     #map flag unicodegraphics on;
+     #map flag terrain on;
+     #map flag direction on;
+     #delay {1} {hp}
+}
+
+#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
+#VARIABLE         {curvnum}  {24666}
+#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
+#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{32}}
+#VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{31}{exits}{n}{height}{14}{heightperc}{.4}{name}{Beside a dark chasm (n)}{top}{22}{width}{91}{widthperc}{.45}}
+#VARIABLE         {splitWidthPerc}  {.45}
+
+#CLASS {global} CLOSE

@@ -10,12 +10,17 @@
 {
      #class global open;
      #map get roomvnum curvnum;
-     #variable shield $shield
-     #variable wielded $wielded
+     #variable shield $shield;
+     #variable wielded $wielded;
      #class global close;
      #class global write chars/$user/vars.tin;
      #delay 1 {#end}
 };
+
+#alias {wield} {
+    wield %1;
+    #var wielded %1;
+}
 
 #ALIAS {hell_pots} {
     place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of fire on shelf 1;
