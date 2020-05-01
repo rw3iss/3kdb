@@ -1,5 +1,5 @@
-#class {global} {kill}
-#class {global} {open}
+#class {player_aliases} {kill}
+#class {player_aliases} {open}
 
 #alias {_player_deadmanActions} {
     .stop;
@@ -17,13 +17,8 @@
      #delay 1 {#end}
 };
 
-#alias {wield} {
-    wield %1;
-    #var wielded %1;
-}
-
 #ALIAS {hell_pots} {
     place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of air on shelf 4;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of fire on shelf 1;place jar of water on shelf 3;place jar of air on shelf 4;place jar of earth on shelf 2;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of air on shelf 4;place jar of water on shelf 3;place jar of fire on shelf 1;place jar of earth on shelf 2;place jar of air on shelf 4;place jar of water on shelf 3;place jar of earth on shelf 2;place jar of fire on shelf 1;
 };
 
-#class {global} {close}
+#class {player_aliases} {close}

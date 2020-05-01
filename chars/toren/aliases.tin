@@ -18,5 +18,5 @@
 #alias {set_ticker} {#ticker {con} {#if !$idle_flag {con 100} {#nop}} {90}};
 #alias {go_study} {go were;u;nw;nw;path;sw;sw;w;study alter 10;study rabies 90;study infest 90;e;ne;ne;path;se;se;d;go $go_back};
 #alias {house_donate} {r;get all from box;bank;go necro;#6 n;#6 w;donate all;e;d;w;store all;go home;recover;i};
-
+#alias {gxp_tracker} {#act { |  Next Circle:[%*]%*]}  {#line log comms.txt %1}};
 #class {global} {close}
