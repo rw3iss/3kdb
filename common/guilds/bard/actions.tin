@@ -1,9 +1,11 @@
+#class {bard_actions} {kill}
+#class {bard_actions} {open}
+
 #NOP --------------------------------------- BARD SPECIFIC ACTIONS ------------------------------------------
 
 #NOP --- BARD DEFENSIVE SONGS AND SPELLS
 #ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[grace] && !$idle_flag} {ag}} {5}
 #ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$idle_flag} {perform o muse}} {5}
-#ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {setpanic clear;cast blink;#list dodge_stats add $blink_count}} {5}
 #ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$idle_flag} {cast hardened skin}} {5}
 #ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$idle_flag} {cast protection from evil}} {5}
 #ACTION {^Your protection from neutral is beginning to fade.$} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral}} {5}
@@ -11,69 +13,16 @@
 #action {^Your protection from heat is beginning to fade.$} {#if {$defs[ph] && !$idle_flag} {cast protection from heat}} {5};
 #action {^Your protection from frost is beginning to fade.$} {#if {$defs[pf] && !$idle_flag} {cast protection from frost}} {5};
 #ACTION {^Your empowered strikes have faded.} {#if {$defs[es] && !$idle_flag && $my[karma][current] > 300} {empowered strikes}} {5};
+#ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {cast blink}} {5}
 
-#ACTION {^As you complete the spell you begin phasing in and out of view!$} {
-		setpanic cast cure at 67%;setpanic cease;#var blink_count 0
-	} {5};
 
-#action {^You blink out just as the attack strikes!$} {#math blink_count {$blink_count + 1}};
-
+#ACTION {Uttering a few words of power you touch} {wear gloves} {1};
 #ACTION {^You utter a few words of power and then touch your wounds,} {wear gloves} {1};
-#ACTION {^You reach into the pouch of phoenix ashes} {wear gloves} {1};
+#ACTION {^You reach into the pouch of} {wear gloves} {1};
+
 
 #ACTION {^You cease your} {wear $shield} {5}
 #ACTION {^You finish your performance with a bow.$} {wear $shield} {5}
 #ACTION {^You have exceeded the usefulness of this song.$} {wear $shield} {5}
 
-#NOP -- Lumberjack increases damage directly, it doesn't add to +mskill -> therefore crank damage when lumberjack is running
-#action {^Yes, you're a lumberjack and you're ok, but you're done singing for now.$} {damage-off};
-#action {^You sing: Oh I'm a lumberjack and I'm ok!} {#if {$corpses[total] > 10} {damage-on}};
-
-
-#NOP --- GENERAL MISC
-
-#action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
-
-#nop --- BARD HEALING
-
-#ACTION {^You reach into the pouch of} {wear gloves} {5}
-
-#NOP --- BARD MISC.
-
-#ACTION {^The coffin is full!$} {#if {$autodmg} {damage-on} {#nop}} {2};
-#ACTION {^There are no corpses in the coffin!} {damage-off} {1};
-
-
-#NOP -------------------------------- ACTIONS TO SUPPORT OTHER PLAYERS ---------------------------------------
-		
-#ACTION {^Ziphe pokes you with a cattle prod.} {wrap all} {5}
-#ACTION {^Ziphe tugs on your sleeve persistently.} {unwrap;unwrap;unwrap;unwrap;unwrap} {5}
-#ACTION {%1 offers to guard} {accept} {5}
-#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {5}
-#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {5}
-
-
-#NOP -- BELOCH BOT
-#ACTION {^Beloch storms out to do battle!$} {
-	#if {$auto_beloch} {
-		challenge_all;
-		itf
-	}
-}
-
-
-#NOP ------------------------------ STATISTICS AND VARIABLE SETTINGS ----------------------------------------
-
-
-#NOP --- CORPSE COUNTING
-#ACTION {^There are no corpses in the coffin!$} {#variable corpse_count 0} {5}
-#ACTION {^You pick up } {#math {corpse_count} {$corpse_count + 1}} {5}
-#ACTION {^You shake the frame and out drops } {#math {corpse_count} {$corpse_count - 1}} {5}
-#ACTION {^The coffin expels a corpse onto the ground!} {#math {corpse_count} {$corpse_count - 1}} {5}
-
-
-
-
-
-
-
+#class {bard_actions} {close}

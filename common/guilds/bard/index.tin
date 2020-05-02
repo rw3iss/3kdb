@@ -1,3 +1,4 @@
 #read common/guilds/bard/actions.tin;
 #read common/guilds/bard/aliases.tin;
+#read common/guilds/bard/gags.tin
 #read common/guilds/bard/heartbeat.tin;
