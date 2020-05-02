@@ -131,7 +131,7 @@
             $repeatInCombat;
         };
 
-		#if {$hasspork == 1 && $my[stam][current] < $STAMINA_EMERGENCY_CHECK && $my[sp][current] > WILL_WITH_SPORK_WITH_SP} { 
+		#if {$hasspork == 1 && $my[stam][current] < $STAMINA_EMERGENCY_CHECK && $my[sp][current] > $WILL_WITH_SPORK_WITH_SP} { 
 			will;
 		};
 
@@ -320,7 +320,7 @@
 		wimpystrat;
 	} {
         #if {$party == 0} {
-            truceTrigger
+            truceTrigger;
         } {
             .stop;
             .x;
