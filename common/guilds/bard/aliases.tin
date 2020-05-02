@@ -2,9 +2,6 @@
 #class {aliases} {kill}
 #class {aliases} {open}
 
-#NOP ---THIS SECTION IS FOR BARD SPECIFIC ALIASES
-#alias {_login} {watch mywho;playcult;cult join;first impression;c floating disc};
-#alias {kill_em_all} {#var kill_em_all 1;#ECHO {+++++++++++ KILL EM ALL MODE ACTIVATED +++++++++}}
 
 #NOP ---THIS SECTION IS FOR SONG ALIASES
 #alias {clear_prots} {#var defs 0};
@@ -18,8 +15,8 @@
 #alias {itf} {remove shield;perform into the fire};
 #alias {es} {empowered strikes;#var defs[es] 1};
 
-#alias {critic} {reflex remove sp >200;reflex add sp >200 cast caustic critic};
-#alias {ebolt} {reflex remove sp >200;reflex add sp >200 cast energy bolt};
+#alias {critic} {reflex remove sp >$critic_sp;reflex add sp >$critic_sp cast caustic critic};
+#alias {ebolt} {reflex remove sp >$ebolt_sp;reflex add sp >$ebolt_sp cast energy bolt};
 #alias {damage-on} {reflex remove gp1 >250;reflex add gp1 >250 martial assault;reflex add gp1 >250 martial assault;#var dmg_on 1};
 #alias {damage-off} {reflex remove gp1 >250;#var dmg_on 0}; 
 #alias {clear_align} {#var defs[pe] 0;#var defs[pn] 0;#var defs[pg] 0};
@@ -84,24 +81,5 @@
 	#delay $buff_delay_3 {remove shield;perform naked sunday for %1};
 	#delay $buff_delay_4 {remove shield;perform grinch's hero for %1};
 }
-
-#NOP ---MISC
-#alias {unbag_all} {#loop 1 %1 i {get all from bag $i;put all in box};get all from disc;put all in box;get all from buckler;put all in box;golem give all to byron;put all in box};
-#alias {bag_all %1} {get all from disc;#loop 1 %1 i {put all in bag $i}};
-
-
-
-
-#NOP - CORPSE ALIASES
-#alias {dcoffin} {}
-
-#alias {gxp_rate} {
-	#math {gxp_avg} {$gxp_total / $gxp_rounds};
-	#math {gxp_time} {((($g2n / $gxp_avg) * 2) / 60) / 60};
-	#math {gxp_hour} {$gxp_avg * 1800};
-	#showme {Total gxp earned is: $gxp_total.  Gxp per round is: $gxp_avg  Total rounds: $gxp_rounds};
-	#showme {Average time to glevel: $gxp_time hours.  Current gxp/hr: $gxp_hour}
-	}
-
 
 #class {aliases} {close}

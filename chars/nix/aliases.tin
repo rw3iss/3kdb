@@ -17,9 +17,36 @@
      #delay 1 {#end}
 };
 
+#NOP ---THIS SECTION IS FOR BARD SPECIFIC ALIASES
 #alias {{hh}} {remove gloves;cast healing hands;wear gloves};
 #alias {{karma}} {unwrap corpse;dirge};
+#alias {boost} {
+        perform hero for %1;
+        #delay {114} {perform memory for %1};
+        #delay {192} {perform let it be for %1};
+        #delay {310} {perform naked sunday for %1};
+        #delay {352} {perform son of man for %1};
+};
 
+
+#NOP ---THIS SECTION IS FOR SONG ALIASES
+#alias {if} {remove shield;perform into the fire};
+#alias {meyes} {remove shield;perform mystic eyes};
+
+
+#NOP -- THIS SECTION IS FOR OTHER ALIASES
+
+#alias {k} {
+        #var killing 1;
+        kill %1;
+};
+#alias {gxp_rate} {
+        #math {gxp_avg} {$gxp_total / $gxp_rounds};
+        #math {gxp_time} {((($g2n / $gxp_avg) * 2) / 60) / 60};
+        #math {gxp_hour} {$gxp_avg * 1800};
+        #showme {Total gxp earned is: $gxp_total.  Gxp per round is: $gxp_avg  Total rounds: $gxp_rounds};                                   
+        #showme {Average time to glevel: $gxp_time hours.  Current gxp/hr: $gxp_hour}                                                        
+        };
 
 #alias {heals} {
         cast mystic guardian at hp/500/(heal;
@@ -44,7 +71,6 @@
 
 #act {^Ripley hit %1. \{%2\}} {#math dog[dmg] {$dog[dmg] + %2};#math dog[rnd] {$dog[rnd] + 1};};
 
-
 #alias {shankey} {
         search bed;
         pull lever;
@@ -61,12 +87,11 @@
 };
 
 #alias {defense} {
-        prots_grace;
-        prots_muse;
-        prots_hs;
-        prots_blink;
+	prots_grace;
+	prots_muse;
+	prots_hs;
+	prots_blink;
 };
-
 
 #alias {zell1} {sr shelf;take gloves;n;n;w;w;w;s;get key from pool;drop gloves;n;e;e;e;s;s;e;e;e;n;e;e;e;n;n;n;n;w;w;w;w;s;s;s;s;unlock door;open door;w;take key;e;n;n;n;n;e;e;e;e;s;s;s;s;w;w;w;s;w;w;w;n;n;w;w;n;unlock door;open door;w;w;s;s;sw;w;w;w;n;nw;e;e;e;e;n;ne;e;e;e;n};
 #alias {zell2} {s;w;w;w;sw;s;w;w;w;w;se;s;e;e;e;ne;n;n;e;e;e;s;w;s;se;s;e;s;s;out;map zell}

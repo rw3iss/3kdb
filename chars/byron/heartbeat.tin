@@ -2,7 +2,7 @@
 #class {player_heartbeat} {open}
 
 #alias {_player_heartbeat} {
-    #NOP;
+    #if {$corpses[coffin] < 15 && $dmg_on} {reflex remove gp1 >250;#var dmg_on 0};
 };
 
 #class {player_heartbeat} {close}

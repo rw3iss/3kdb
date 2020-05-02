@@ -3,9 +3,36 @@
 
 #NOP --- Byron specific actions
 
+#ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {setpanic clear;cast blink}} {4}
+#ACTION {^As you complete the spell you begin phasing in and out of view!$} {
+		setpanic cast cure at 67%;setpanic cease;#var blink_count 0
+	} {4};
+
 #ACTION {^Owie. That hurt!} {
 	corpse_select;
 	#delay {4} {pd;pd;wrap};
 	} {0}
+
+#NOP -- Lumberjack increases damage directly, it doesn't add to +mskill -> therefore crank damage when lumberjack is running
+#action {^Yes, you're a lumberjack and you're ok, but you're done singing for now.$} {damage-off};
+#action {^You sing: Oh I'm a lumberjack and I'm ok!} {#if {$corpses[total] > 10} {damage-on}};
+#NOP --- GENERAL MISC
+
+#action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
+
+#NOP --- BARD MISC.
+#ACTION {^The coffin is full!$} {#if {$autodmg} {damage-on} {#nop}} {2};
+#ACTION {^There are no corpses in the coffin!} {damage-off} {1};
+		
+#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {5}
+#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {5}
+
+#NOP -- BELOCH BOT
+#ACTION {^Beloch storms out to do battle!$} {
+	#if {$auto_beloch} {
+		challenge_all;
+		itf
+	}
+}
 
 #class {player_actions} {close}
