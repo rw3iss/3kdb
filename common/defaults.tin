@@ -4,10 +4,21 @@
 #sub {-D-_} {<cca>};
 #sub {-S-_} {<059>};
 #sub {-W-_} {<cff>};
-#sub {-A-_} {<add>};
-#sub {-O-_} {<add>};
-#sub {-I-_} {<adc>};
+#sub {-A-_} {<add>}; #nop items, wearable;
+#sub {-O-_} {<eac>}; #nop I don't know??;
+#sub {-I-_} {<acb>}; #nop items, non-wearable;
 
+
+#nop More subtle/new-wave colors:
+#sub {-M-_} {<faa>};
+#sub {-P-_} {<bfa>};
+#sub {-R-_} {<fff>};
+#sub {-D-_} {<cba>};
+#sub {-S-_} {<cbf>};
+#sub {-W-_} {<aef>};
+#sub {-A-_} {<add>}; #nop items, wearable;
+#sub {-O-_} {<eac>}; #nop I don't know??;
+#sub {-I-_} {<acb>}; #nop items, non-wearable;
 
 /* tell tintin to repeat last command on enter */
 #config {repeat enter} on;

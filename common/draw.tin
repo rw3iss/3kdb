@@ -1,7 +1,7 @@
 #CLASS draw {open}
 
 /* draw[] variables need to be set in player's vars.tin:
-#VARIABLE {draw} {
+#nop VARIABLE {draw} {
     {canvas}{on}
     {caption}{on}
     {chat}{on}
@@ -9,11 +9,21 @@
     {map}{on}
 	{hpbar}{on}
     {room}{on}
-}
+};
 */
 
-/* Calculate various area dimensions, called on start and SCREEN RESIZE */
+/* Pass 0-100 percentage number to split the current screen at. */
+#alias {setsplit} {
+    #math _perc {%1 / 100}; 
+    #var splitWidthPerc $_perc;
+    #var canvas[widthperc] $_perc;
+    #var map[widthperc] $_perc;
+    #var room[widthperc] $_perc;
+    #show \nSplit width percentage set to: %1\%;
+    init_screen;
+};
 
+/* Calculate various area dimensions, called on start and SCREEN RESIZE */
 #alias init_screen {
     #screen get 	rows 	screen[height];
     #screen get 	cols 	screen[width];

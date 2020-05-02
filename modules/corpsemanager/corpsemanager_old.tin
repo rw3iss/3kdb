@@ -15,7 +15,7 @@
 #alias {ci} {
 	#nop check inventory;
 	#var corpses[inventory] 0;
-	#action {{^[ ]?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} { 
+	#action {{^[ ]+?(\d+)(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} { 
 		#math {corpses[inventory]} {$corpses[inventory] + %%2};
 	};
 
@@ -39,7 +39,7 @@
 			#unact {{^>$}};
 			#unact {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}};
 			#unact {{^>$}};
-			#ungag {{(.*)}};
+			#nop ungag {{(.*)}};
 
 			#math {corpses[total]} {$corpses[inventory] + $corpses[coffin] + $corpses[smuggle]};
 
@@ -58,7 +58,7 @@
 		countSmuggle;
 	};
  
-	#gag {{(.*)}};
+	#nop gag {{(.*)}};
 	#send i;
 };
 

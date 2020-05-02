@@ -1,6 +1,11 @@
-#alias {sopemspike} {
-    #10 ex east wall;
+#alias {sopem1} {enter sopem;center;center;sleep upon altar};
+#alias {sopem2} {
+    push button;
+    #5 ex east wall;
     #5 ex spikes;
-    #10 ex spike;
+    #5 ex spike;
     push spike;
+}
+#alias {sopem3} {
+    e;n;n;n;w;w;w;n;n;n;
 }

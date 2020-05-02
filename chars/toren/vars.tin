@@ -63,11 +63,11 @@
 }
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
-#VARIABLE         {curvnum}  {8467}
+#VARIABLE         {curvnum}  {4119}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
 #VARIABLE         {hpbar}  {{bottom}{32}{enabledheight}{3}{height}{3}{left}{0}{right}{204}{top}{30}}
 #VARIABLE         {map}  {{height}{19}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {room}  {{bottom}{29}{exits}{w~e~puddle}{height}{13}{heightperc}{.4}{name}{Eastwick (w,e,puddle)}{top}{20}{width}{91}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{29}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{13}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{20}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}
 
 #CLASS {global} CLOSE

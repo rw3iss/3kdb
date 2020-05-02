@@ -8,6 +8,8 @@
 #var bot_message_1 '---- RIMALKINS STEPPER ----';
 #var bot_message_2 '----    ALL TARGETS    ----';
 
+#alias .pre_fight_check {#nop;};
+
 #if {{$guild} == {bard}} {
 	#nop - Turn on kill-em-all
 	#var kill_em_all 1
@@ -36,6 +38,17 @@
     }
 };
 
+
+#if {{$guild} == {knight}} {
+	#alias .pre_fight_check {
+        #if {$my[strain][current] > 100} {
+            #show STRAIN HIGH, RESTING.;
+            .pause;
+            rest;
+            #delay {30} {..};
+        }
+    }
+};
 
 #var {botpath} {e;ne;se;w;s;w;s;e;ne;n;se;nw;n;nw;se;s;w;s;d;n;nw;ne;sw;se;s;u;n;w;w}
 

@@ -4,10 +4,21 @@
     #delay {450} {#show \nPLAYER DEADMAN DISCONNECTING.\n;ld};
 };
 
+#alias .x {
+    #var incombat 0;
+}
+
+#alias dbg {
+    #show VARS:
+    #show incombat: $incombat;
+    #show botting: $botting;
+    #show killing: $killing;
+}
+
 
 #NOP bot shortcuts;
-#alias {-rb} {-rimalkins;scaler 150};
-#alias {-hb} {-hotelbot;scaler 126};
+#alias {.rb} {-rimalkins;scaler 150};
+#alias {.hb} {-hotelbot;scaler 130};
     
 
 #ALIAS {brun}
@@ -167,8 +178,6 @@
 #alias {mg} {#map goto gentech};
 #alias {mc} {#map goto cot};
 #alias {mch} {#map goto chaos};
-#alias {mm} {#map goto magic}
-
 
 
 

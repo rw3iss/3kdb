@@ -29,7 +29,7 @@
 } {1}; #nop highest priority kill trigger;
 
 
-
+#act {^You wheel past} { #var incombat 1; };
 
 
 #act {There is nothing to quaff - the Chalice of Tarin is empty.} {#show{CHALICE EMPTY};tr};
@@ -44,7 +44,7 @@
 
 
 
-#act {[WPN:Badly cracked]} {
+#act {\[WPN:Badly cracked\]} {
     #show FIX WEAPON!;
     .stop;
 };

@@ -1,0 +1,175 @@
+#class {bot} {open}
+
+#var botting 1;
+
+#var foundmob 0;
+#var foundplayer 0;
+#var foundobject 0;
+#var founditems 0;
+#var repeat_path 0;
+#var check_death 0;
+
+#var prevMobName 0;
+#var mobname 0;
+
+#var loop 1;
+#var dontAttack 0;
+#var pickupAll 0;
+#var justItems 0;
+
+/* ignore these players */
+#act {^-P-_%*Nix%*.$} {#NOP} {0};
+#act {^-P-_%*Roor%*.$} {#NOP} {0};
+#act {^-P-_%*Void%*.$} {#NOP} {0};
+#act {^-P-_%*Mako%*.$} {#NOP} {0};
+#act {^-P-_%*A vicious bear%*.$} {#nop} {0};
+#act {^-P-_%*Toren%*.$} {#NOP} {0};
+#act {^-P-_%*Byron%*.$} {#NOP} {0};
+#act {^-P-_%*Martyr%*.$} {#NOP} {0};
+#act {^-P-_%*Zorbaine%*.$} {#NOP} {0};
+#act {^-P-_%*Ivy%*.$} {#NOP} {0};
+
+/* ignore these followers */
+#act {^-M-_%*Almodo%*.$} {#NOP} {0};
+#act {^-M-_%*Packy%*.$} {#NOP} {0};
+#act {^-M-_%*Roor%*.$} {#NOP} {0};
+#act {^-M-_%*Ivy%*.$} {#NOP} {0};
+#act {^-M-_%*Martyr%*.$} {#NOP} {0};
+
+/* load the selected bot's path into ready state */
+#path load botpath;
+
+/* pause the bot */
+#alias {.pause} {
+	#var halt 1;
+};
+
+/* kill the bot */
+#alias {.stop} {
+	.pause;
+    #unvar botpath;
+	#unalias {..};
+	#unalias {.onPrompt};
+	#unact {^>$};
+	#class {bot} {kill};
+	#class {xbot} {kill};
+    #show Bot killed.;
+};
+#alias {.s} {.stop};
+
+
+#NOP - If a monster is found that should be killed, the path will loop again.
+#alias {.check_monster} {
+    #var foundmob 1;
+    #var repeat_path 1;
+};
+
+/* starts / continues the bot after it's loaded */
+#alias {..} {
+    #class {xbot} {open};
+	#var halt 0;
+
+    #act {{^-R-_(.*)-R-_}} { 
+        #var room_short %%1;
+        .onRoom;
+    } {0};
+
+	#alias {.onRoom} {
+		#var foundplayer 0;
+		#var foundmob 0;
+        .prompt;
+	};
+
+    #alias {.prompt} {
+        #act {^>$} {.onPrompt} {0};
+    };
+
+	#alias {.onPrompt} {
+        #nop show mob? $foundmob, $mobname, player? $foundplayer;
+
+        #if {$foundplayer || $dontAttack} {
+            .stop_prompt;
+            #path walk;
+        } {
+            #if {$foundmob} {
+                .stop_prompt;       
+                .pre_fight_check;
+                kill $mobname;
+            } {
+                #if {$foundobject} {#send $object_action} {
+                    #if {$check_room} {
+                        .stop_prompt;
+                        .check_room;
+                    } {
+                        .stop_prompt;
+                        #path walk;
+                    }
+                }
+            };
+        };
+
+        #if {$founditems} {
+            #if {$pickupAll} {#nop get all;}
+        };
+    };
+
+    #alias {.stop_prompt} {#unact {^>$}};
+    
+	glance;
+
+	#class {xbot} {close};
+};
+#alias {.bot} {#if {$halt == 0} {..}};
+
+
+
+
+#act {^%1 {screeches in agony|gurgles in (\w+) own blood|gasps for breath, then slumps}} {
+    #if $check_death {
+        .check_death;
+        .bot
+    } {
+        .bot;
+    };
+} {0};
+
+
+
+
+/* Signify there is a player in the room, if not in friends list */
+#act {{^-P-_(.*)}} {
+    #var foundplayer 1;
+} {1};
+
+/* Todo: make friends auto-defend list */
+#act {{(.*) (\!)?attacking Toren\!}} {defend toren};
+
+
+
+
+/* Bot end actions... */
+#act {#END OF PATH} {
+    #if {!$loop || !$repeat_path} {
+        #show \nBot finished.;
+        .stop;
+    } {
+        #show \nLooping bot...;
+        #path load botpath;
+        #var repeat_path 0;
+        .bot;
+    };
+};
+
+
+
+
+/* helpers */
+#function {botSetMobActions} {
+	#var mobname %1;
+    #var foundtimes %2;
+    #var foundmob 1;
+    #return {};
+};
+
+
+#class {bot} {close}
