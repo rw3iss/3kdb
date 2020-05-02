@@ -125,15 +125,12 @@
 #action {There are no corpses in the coffin!} {#var coffinFull 0};
 #action {The coffin is full!} {#var coffinFull 1};
 
-/* Get initial count on load */;
-#delay {1} {ci};
-
-@register_module{corpse_manager};
-@register_module_info{corpse_manager;{
+register_module {corpse_manager};
+register_module_info {corpse_manager} {
     #show How to use corpse manager:
     #show ci - recalcuate corpse inventory;
     #show recorpse - refill corpse\n;
     #show sortcorpse/sco - reorganize corpses;
-}};
+};
 
 #class {corpse_manager} {close}

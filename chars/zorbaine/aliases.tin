@@ -1,3 +1,11 @@
+#alias {load} {
+    deadman 30;
+    mipon;
+    loadmap;
+    postload;
+    #read common/draw.tin;
+};
+
 #alias {_player_deadmanActions} {
     .stop;
     #unact {%*};

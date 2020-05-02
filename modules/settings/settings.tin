@@ -18,12 +18,12 @@
 };
 
 
-@register_module{settings};
-@register_module_info{settings;{
+register_module {settings};
+register_module_info {settings} {
     #show Settings usage:;
     #show _set <key> <value>;
     #show _get <key>;
     #show settings: Shows all settings;
-}};
+};
 
 #class {settings} {close};

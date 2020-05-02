@@ -1,7 +1,6 @@
 #alias {debug} {#debug all on};
 #alias {debugoff} {#debug all off};
 
-/* enable/disable beep notifications */
 #var beepon 1;
 #alias {beep} {#if {$beepon == 1} { #bell; }};
 #alias {beepon} {#var beepon 1;#show Beep on.;};

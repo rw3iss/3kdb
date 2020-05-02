@@ -1,8 +1,2 @@
 #gag {^$} {1};
 #gag {^>$} {1};
-
-
-/* Professions */
-#gag {Your ambition overflows as you try to bring down the big game with a ferocious attack!}
-#gag {Your wild ambition drives you ever onward!};
-#gag {Your wild ambition takes a back seat to prudence.};

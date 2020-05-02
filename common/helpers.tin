@@ -3,7 +3,7 @@
 #function {isvar}
 {
     #if {"$%0" == "?%0"} {#var result 0} {#var result 1}
-}
+};
 
 #function {graph} {
 	#regex {%1} {\d} {

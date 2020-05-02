@@ -1,3 +1,7 @@
+#act {3Kingdoms welcomes you back from linkdeath} {
+    load;
+};
+
 #act {^\[PARTY\] Sock: go %1} {%1};
 #act {^\[PARTY\] Ser: go %1} {%1};
 #act {^\[PARTY\] Martyr: go %1} {%1};
@@ -15,12 +19,12 @@
 /* Temp fix to refresh stats until _heartbeat is fixed */
 #act {The power of your battlecry already flows through you} {hp};
 
-#action {Zorbaine's Esquire leaves} {esq l};
+#act {Zorbaine's Esquire leaves} {esq l};
 
 #nop Auto-focus after joust win;
-#action {{as Zorbaine unhorses him\.}} { mf; };
+#act {{as Zorbaine unhorses him\.}} { mf; };
 
-#action {{A (.+) (\w+) dragon \(dragon\)}} {
+#act {{A (.+) (\w+) dragon \(dragon\)}} {
 	#if {$autospork == 1} {
 		#var dragon[name] %2;
 		#var dragon[color] %3;
