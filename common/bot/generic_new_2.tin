@@ -28,6 +28,7 @@
 #act {^-P-_%*Martyr%*.$} {#NOP} {0};
 #act {^-P-_%*Zorbaine%*.$} {#NOP} {0};
 #act {^-P-_%*Ivy%*.$} {#NOP} {0};
+#act {^-P-_%*Mandragoran%*.$} {#NOP} {0};
 
 /* ignore these followers */
 #act {^-M-_%*Almodo%*.$} {#NOP} {0};
