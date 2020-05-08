@@ -29,8 +29,8 @@
 
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max NRG:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] NRG:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
-	#var prompt4 {Emit: $my[emit][level]  Blasts: $my[blasts] G2N: $my[g2n]  Idle: $idle_cap};
+	#var prompt3 {Emit: $my[emit][level]  Blasts: $my[blasts] G2N: $my[g2n]  Idle: $idle_cap};
+	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 
 	_player_heartbeat;
     _guild_heartbeat;
