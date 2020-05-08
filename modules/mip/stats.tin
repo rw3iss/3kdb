@@ -63,7 +63,6 @@
 
 #NOP ***** Guild Stats Line 1/2 *****
 #ALIAS {.mipProcessGline} {
-	#showme {processing gline};
 	#VAR {mip[gline][%1]} {%2};
 	#VAR {temp} {};
 
@@ -102,24 +101,19 @@
 }
 
 #ALIAS {.mipProcessGlineElemental} {
-	#showme {processing elemental};
 	#IF {%1 == 1} {
-		#REGEX {Emit> : <%w%d>}			{#VAR {my[emit][level]}		{&2}};
-		#REGEX {Equipollent}			{#VAR {my[equip]}		{on}}
-							{#VAR {my[equip]}		{off}};
-		#REGEX {Form>: <c%w>\(<r%d>\)}		{
-			#VAR {my[form][type]}		{&1};
-			#VAR {my[form][size]}		{&2}
-		};
-		#REGEX {Rating>: <r%d>}			{#VAR {my[rating]}		{&1}}
+		#REGEX {$mip[gline][1]}	{Emit> : <%w%d>} 			{#VAR {my[emit][level]}		{&2}};
+		#REGEX {$mip[gline][1]}	{Form>: <c%w>\(<r%d>\)}		{#VAR {my[form][type]}		{&1};
+															 #VAR {my[form][size]}		{&2};};
+		#REGEX {$mip[gline][1]}	{Rating>: <r%d>}			{#VAR {my[rating]}		{&1}};
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {Stones/Waves/Shrouds>: <%w%d>/<%w%d>/<%w%d>\(%d\%\)}
+		#REGEX {$mip[gline][2]} {Stones/Waves/Shrouds>: <%w%d>/<%w%d>/<%w%d>\(%d\%\)}
 			#VAR {my[blasts]		{&2};
 			#VAR {my[waves]}		{&4};
 			#VAR {my[shrouds]}		{&6};
 			#VAR {my[reset]}		{&7}
 		};
-		#REGEX {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
+		#REGEX {$mip[gline][2]} {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
