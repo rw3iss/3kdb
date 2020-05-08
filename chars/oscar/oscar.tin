@@ -17,6 +17,7 @@
 #read common/bot/bots.tin;
 
 /* load specific modules for this character */
+#read common/guilds/elemental/index.tin;
 #read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */
@@ -39,4 +40,4 @@
 }
 
 
-#alias {reload} {#kill all;#show \n;#read chars/$user/$user.tin;};
+#alias {reload} {#kill all;#show \n;#read chars/oscar/oscar.tin;};
