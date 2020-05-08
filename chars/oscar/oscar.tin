@@ -8,7 +8,7 @@
 #read chars/oscar/vars.tin;
 
 /* Set player specific variables */
-#var guild mage;
+#var guild elemental;
 #var user oscar;
 #var vaf_numbers 0;
 

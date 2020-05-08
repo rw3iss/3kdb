@@ -25,29 +25,10 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#if {$my[defs][ab] == 1} {#var ab_string {AB}} {#var ab_string {}};
-	#if {$my[defs][blink] == 1} {#var blink_string {B}} {#var blink_string {}};
-	#if {$my[defs][mb] == 1} {#var mb_string {MB}} {#var mb_string {}};
-	#if {$my[defs][ag] > 0} {#var ag_string {AG:$my[defs][ag]}} {#var ag_string {}};
-	#if {$my[defs][o] > 0}  {#var o_string {O:$my[defs][o]}} {#var o_string {}};
-	#if {$my[defs][pe] > 0} {#var pe_string {PE:$my[defs][pe]}} {#var pe_string {}};
-	#if {$my[defs][pg] > 0} {#var pg_string {PG:$my[defs][pg]}} {#var pg_string {}};
-	#if {$my[defs][pn] > 0} {#var pn_string {PN:$my[defs][pn]}} {#var pn_string {}};
-	#if {$my[defs][pf] > 0} {#var pf_string {PF:$my[defs][pf]}} {#var pf_string {}};
-	#if {$my[defs][ph] > 0} {#var ph_string {PH:$my[defs][ph]}} {#var ph_string {}};
-	#if {$my[defs][hs] > 0} {#var hs_string {HS:$my[defs][hs]}} {#var hs_string {}};
-	#if {$my[defs][es] > 0} {#var es_string {ES:$my[defs][es]}} {#var es_string {}};
-	
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
 
-	#var prot_string {Protections: $ag_string $o_string $ab_string $blink_string $pe_string $pg_string $pn_string $pf_string $ph_string $mb_string $hs_string $es_string};
-	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
-	#var eternal_string {Eternal Pwr: $ewell_string };
-
-	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth};
-	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {$prot_string $eternal_string};
-	#var prompt4 {$etc_string Idle: $idle_cap};
+	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max NRG:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
+	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] NRG:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 
 	_player_heartbeat;
     _guild_heartbeat;

@@ -1,0 +1,9 @@
+#class {elemental_aliases} {kill}
+#class {elemental_aliases} {open}
+
+#NOP --- ELEMENTAL ALIASES
+
+#alias {blast} {evoke create blast;activate blast;give blast to %1};
+
+
+#class {elemental_aliases} {close}
