@@ -1,0 +1,68 @@
+#class {bot} {kill}
+#class {bot} {open}
+
+#var {area} {Mahjong};
+#var check_room 0;
+#var check_death 0;
+
+#var bot_message_1 '---- MAHJONG STEPPER ----';
+#var bot_message_2 '---- ALL TARGETS ----';
+#show $bot_message_1;#show $bot_message_2;
+
+#alias {.pre_fight_check} {#nop};
+
+#if {{$guild} == {bard}} {
+	#nop - Turn on kill-em-all
+	#var kill_em_all 1
+
+	echo_divider1;
+	clear_prots;reflex_clear;
+	echo_divider2;
+	echo_reflex_header;
+	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
+	echo_divider2;
+
+	#alias {.pre_fight_check} {
+		#var defs[es] 1;
+		#var defs[blink] 1;
+	}	
+};
+
+#if {{$guild} == {gentech}} {
+	#alias .pre_fight_check {
+        repair;
+		repair;
+		tactical;
+    }
+};
+#var {botpath} {w;w;w;w;n;e;e;e;e;e;e;e;e;e;n;e;w;w;w;w;w;w;w;w;w;w;w;n;e;e;e;nw;w;w;nw;e;e;nw;n;s;se;se;se;e;n;se;ne;nw;s;n;n;w;ne;se;w;s;se;s;e;e;e;e;e;n;w;w;ne;e;e;nw;n;s;s;s;s;s;sw;s;w;w;w;w;w}
+
+
+
+#act {^-M-_{Winged Horse|Blue Dolphin|Green Chinese Dragon|White Tiger|Black Tiger|Purple Butterfly|Red Butterfly|Sea Serpent|Golden Phoenix|Leaping Rat|Lumbering Ox|Charging Ram|Jade Phoenix|Red Rabbit|Red Chinese Dragon|Black Chinese Dragon|Gold Chinese Dragon}} {	
+	#var foundtimes 1;
+    #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
+    #var mobname_long %1;
+
+  	#if {"Winged Horse"=="%1"} {@botSetMobActions{horse};};
+	#if {"Blue Dolphin"=="%1"} {@botSetMobActions{dolphin};};
+	#if {"Green Chinese Dragon"=="%1"} {@botSetMobActions{dragon};};
+	#if {"White Tiger"=="%1"} {@botSetMobActions{tiger};};
+	#if {"Black Tiger"=="%1"} {@botSetMobActions{tiger};};
+	#if {"Purple Butterfly"=="%1"} {@botSetMobActions{butterfly};};
+	#if {"Red Butterfly"=="%1"} {@botSetMobActions{butterfly};};
+	#if {"Sea Serpent"=="%1"} {@botSetMobActions{serpent};};
+	#if {"Golden Phoenix"=="%1"} {@botSetMobActions{phoenix};};
+	#if {"Leaping Rat"=="%1"} {@botSetMobActions{rat};};
+	#if {"Lumbering Ox"=="%1"} {@botSetMobActions{ox};};
+	#if {"Charging Ram"=="%1"} {@botSetMobActions{ram};};
+	#if {"Jade Phoenix"=="%1"} {@botSetMobActions{phoenix};};
+	#if {"Red Rabbit"=="%1"} {@botSetMobActions{rabbit};};
+	#if {"Red Chinese Dragon"=="%1"} {@botSetMobActions{dragon};};
+	#if {"Black Chinese Dragon"=="%1"} {@botSetMobActions{dragon};};
+	#if {"Gold Chinese Dragon"=="%1"} {@botSetMobActions{dragon};};
+	.check_monster
+ }
+
+#class {bot} {close}
+#read common/bot/generic.tin
