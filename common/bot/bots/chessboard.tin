@@ -1,0 +1,95 @@
+#class {bot} {kill}
+#class {bot} {open}
+
+#var {area} {Chessboard};
+#var check_room 0;
+#var check_death 0;
+
+#var bot_message_1 '---- CHESSBOARD STEPPER ----';
+#var bot_message_2 '---- ALL TARGETS ----';
+#show $bot_message_1;#show $bot_message_2;
+
+#if {{$guild} == {bard}} {
+	#nop - Turn on kill-em-all
+	#var kill_em_all 1
+
+	echo_divider1;
+	clear_prots;reflex_clear;
+	echo_divider2;
+	echo_reflex_header;
+	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
+	echo_divider2;
+
+	#alias {.pre_fight_check} {
+		#var defs[es] 1;
+		#var defs[blink] 1;
+	}	
+};
+
+#if {{$guild} == {gentech}} {
+	#alias .pre_fight_check {
+        repair;
+		repair;
+		tactical;
+    }
+};
+
+#var {botpath} {w;w;w;n;n;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;n;n;n;e;e;e}
+
+#act {^-M-_{Angry War Elephant|Angry Horse|A Refugee|A War Correspondent|Red Cross Medic|Red Charioteer|Red Counsellor|Red Foot Soldier|Red Horseman|Red King|Red Priest|White Charioteer|White Counsellor|White Foot Soldier|White Horseman|White King|White Priest}} {
+    #var foundtimes 1;
+    #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
+    #var mobname_long %1;
+    
+	#if {"%1" == "Angry War Elephant"} {@botSetMobActions{animal};};
+	#if {"%1" == "Angry Horse"} {@botSetMobActions{animal};};
+	#if {"%1" == "A Refugee"} {@botSetMobActions{human};};
+	#if {"%1" == "A War Correspondent"} {@botSetMobActions{human};};
+	#if {"%1" == "Red Cross Medic"} {@botSetMobActions{human};};
+	#if {"%1" == "Red Charioteer"} {@botSetMobActions{human};};
+	#if {"%1" == "Red Counsellor"} {@botSetMobActions{human};};
+	#if {"%1" == "Red Foot Soldier"} {@botSetMobActions{human};};
+	#if {"%1" == "Red Horseman"} {@botSetMobActions{human};};
+	#if {"%1" == "Red King"} {@botSetMobActions{human};};
+	#if {"%1" == "Red Priest"} {@botSetMobActions{human};};
+	#if {"%1" == "White Charioteer"} {@botSetMobActions{human};};
+	#if {"%1" == "White Counsellor"} {@botSetMobActions{human};};
+	#if {"%1" == "White Foot Soldier"} {@botSetMobActions{human};};
+	#if {"%1" == "White Horseman"} {@botSetMobActions{human};};
+	#if {"%1" == "White King"} {@botSetMobActions{human};};
+	#if {"%1" == "White Priest"} {@botSetMobActions{human};};
+	.check_monster
+	} {1};
+#act {You've killed} {#nop} {1};
+
+#class {bot} {close}
+#read common/bot/generic.tin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#class {bot} {open}
+
+
+#alias {che} {e;e;e;e;e;e;e;e;n;n;n;n;n;n;n;n;s;s;s;s;w;w;w;w;map chess};
+
+#class {bot} {close}
+
+#read common/bot/generic.tin
