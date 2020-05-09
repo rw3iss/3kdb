@@ -1,15 +1,15 @@
 #NOP - 3k Session
 
-#SESSION {3k - Oscar} {3k.org} {3000}
+#SESSION {3k - Mako} {3k.org} {3000}
 
 #conf pack 1;
 #conf color on;
 
-#read chars/oscar/vars.tin;
+#read chars/mako/vars.tin;
 
 /* Set player specific variables */
-#var guild elemental;
-#var user oscar;
+#var guild fremen;
+#var user mako;
 #var vaf_numbers 0;
 
 /* load common */
@@ -17,7 +17,7 @@
 #read common/bot/bots.tin;
 
 /* load specific modules for this character */
-#read common/guilds/elemental/index.tin;
+#read common/guilds/fremen/index.tin;
 #read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */
@@ -40,4 +40,4 @@
 }
 
 
-#alias {reload} {#kill all;#show \n;#read chars/oscar/oscar.tin;};
+#alias {reload} {#kill all;#show \n;#read chars/mako/mako.tin;};

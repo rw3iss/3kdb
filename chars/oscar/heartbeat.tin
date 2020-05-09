@@ -1,8 +1,13 @@
 #class {player_heartbeat} {kill}
 #class {player_heartbeat} {open}
 
+#var bot_toggle 1;
+
 #alias {_player_heartbeat} {
-    #nop;
+    #if !$idle_flag {
+        #if {$my[gp2][current] < 50} {#var halt 1;#var bot_toggle 1};
+        #if {$my[gp2][current] > 90} {#if $bot_toggle {..;#var bot_toggle 0}};
+    };
 };
 
 #class {player_heartbeat} {close}

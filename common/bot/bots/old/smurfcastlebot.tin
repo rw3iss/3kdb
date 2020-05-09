@@ -5,8 +5,8 @@
  {
 	#if {"%2" == "rat"} {#var mobname rat};
 	#if {"%2" == "spider"} {#var mobname spider};
-	#if {"%2" == "zreal"} {#var mobname azreal};
-	#if {"%2" == "argamel"} {#var mobname gargamel};
+	#if {"%2" == "azreal"} {#var mobname azreal};
+	#if {"%2" == "gargamel"} {#var mobname gargamel};
 	.check_monster
  } {1};
 #class {bot} {close}
