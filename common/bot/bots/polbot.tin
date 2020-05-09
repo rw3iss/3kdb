@@ -13,7 +13,7 @@
 
 #if {{$guild} == {bard}} {
 	#nop - Turn on kill-em-all
-	#var kill_em_all 1
+	#var kill_em_all 1;
 
 	echo_divider1;
 	clear_prots;reflex_clear;
