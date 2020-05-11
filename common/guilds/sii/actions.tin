@@ -1,0 +1,6 @@
+#class {sii_actions} {kill}
+#class {sii_actions} {open}
+
+#NOP --- SII ACTIONS;
+
+#class {sii_actions} {close}
