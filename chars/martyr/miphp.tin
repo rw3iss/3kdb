@@ -78,7 +78,7 @@
 
 #alias {tickhp} {
     #TICKER {update_status} {
-            #math {idle_time} {$idle_time + 1};
+            #math {idle} {$idle + 1};
             update_status;
     } {1}
 }
