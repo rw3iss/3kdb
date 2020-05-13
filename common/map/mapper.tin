@@ -183,7 +183,7 @@
 	}
 }
 
-#alias {go} {#map get roomvnum go_back;#map run };
+#alias {go} {.stop;#map get roomvnum go_back;#map run };
 
 #alias {go_back} {#map run $go_back};
 

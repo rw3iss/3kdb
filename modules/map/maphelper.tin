@@ -21,6 +21,7 @@
 };
 
 #alias {go} {
+		.stop;
         #map get roomvnum go_back;
         #map find {roomname} {%0%*};
         #path run;

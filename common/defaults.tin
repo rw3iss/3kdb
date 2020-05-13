@@ -1,12 +1,12 @@
-#sub {-M-_} {<119>};
-#sub {-P-_} {<129>};
-#sub {-R-_} {<088>};
-#sub {-D-_} {<cca>};
-#sub {-S-_} {<059>};
-#sub {-W-_} {<cff>};
-#sub {-A-_} {<add>}; #nop items, wearable;
-#sub {-O-_} {<eac>}; #nop I don't know??;
-#sub {-I-_} {<acb>}; #nop items, non-wearable;
+#sub {-M-_} {<119>}; #nop monster;
+#sub {-P-_} {<129>}; #nop player;
+#sub {-R-_} {<088>}; #nop room;
+#sub {-D-_} {<cca>}; #nop room description;
+#sub {-S-_} {<059>}; 
+#nop #sub {-w-} {<cff>}; #nop weapons;
+#nop #sub {-a-} {<add>}; #nop armors;
+#nop #sub {-o-} {<eac>}; #nop objects;
+#nop #sub {-i-} {<acb>}; #nop items, non-wearable;
 
 
 #nop More subtle/new-wave colors:
@@ -15,10 +15,10 @@
 #sub {-R-_} {<fff>};
 #sub {-D-_} {<cba>};
 #sub {-S-_} {<cbf>};
-#sub {-W-_} {<aef>};
-#sub {-A-_} {<add>}; #nop items, wearable;
-#sub {-O-_} {<eac>}; #nop I don't know??;
-#sub {-I-_} {<acb>}; #nop items, non-wearable;
+#nop #sub {-w-} {<aef>};
+#nop #sub {-a-} {<add>}; #nop items, wearable;
+#nop #sub {-o-} {<eac>}; #nop I don't know??;
+#nop #sub {-i-} {<acb>}; #nop items, non-wearable;
 
 /* tell tintin to repeat last command on enter */
 #config {repeat enter} on;

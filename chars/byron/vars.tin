@@ -17,7 +17,52 @@
      #delay {1} {hp}
 }
 
+#NOP -- Bot Config
+#alias {.pre_bot_check} {
+	echo_divider1;
+	clear_prots;reflex_clear;
+	echo_divider2;
+     
+     #NOP -- Kill-Em-All, Reflex, Spell, Song Settings based on area name here
+     #if {"$area" == "Night of Colour"} {
+          #nop - Turn off kill-em-all
+	     #var kill_em_all 0
+          echo_prots_header;
+          prots_pfe;prots_blink;prots_hs;prots_pfc;
+          echo_reflex_header;
+          reflex_critic $critic_sp;reflex_ow $karma_heal;reflex_ma $ma_minimum;
+          es;
+
+          #alias {.pre_fight_check} {
+               #var defs[pe] 1;
+               #var defs[blink] 1;
+               #var defs[hs] 1;
+               #var defs[pf] 1;
+          };
+     }
+
+
+     #if {"$area" == "Rimalkin Cave"}   {
+          kill_em_all;
+          echo_prots_header;
+          prots_pfn;prots_blink;prots_hs;
+          echo_reflex_header;
+          reflex_critic $critic_sp;reflex_ow $karma_heal;reflex_ma $ma_minimum;
+          es;
+
+          #alias {.pre_fight_check} {
+               #var defs[pn] 1;
+               #var defs[blink] 1;
+               #var defs[hs] 1;
+          };
+     }
+
+	echo_divider2;
+}
+
 #NOP -- Bard Settings
+#VARIABLE         {ma_minimum} {400};
+#VARIABLE         {karma_heal} {200};
 #VARIABLE         {ebolt_sp}  {200};
 #VARIABLE         {critic_sp}  {200};
 #VARIABLE         {shield}  {shield};

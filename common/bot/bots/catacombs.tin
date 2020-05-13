@@ -17,7 +17,7 @@
 	clear_prots;reflex_clear;
 	echo_divider2;
 	echo_reflex_header;
-	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
+	reflex_critic 200;reflex_ow 200;reflex_ma 400;
 	echo_divider2;
 
 	#alias {.pre_fight_check} {

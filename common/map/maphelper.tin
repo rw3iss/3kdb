@@ -24,6 +24,8 @@
 
 
 #alias {go} {
+	#nop - Kill the bot before going anywhere;
+		.stop;
         #map find {roomname} {%0%*};
         #path run;
 };

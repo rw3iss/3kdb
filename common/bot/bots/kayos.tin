@@ -13,7 +13,7 @@
 	clear_prots;reflex_clear;
 	echo_divider2;
 	echo_reflex_header;
-	reflex_critic 200;reflex_dirge 200;reflex_ma 400;
+	reflex_critic 200;reflex_ow 200;reflex_ma 400;
 	echo_divider2;
 
 	#alias {.pre_fight_check} {
@@ -68,7 +68,7 @@
 #act {^key: Taken.$} {#math kayos[key] {$kayos[key]+1}};
 #act {^You grab the power cell from the locker.$} {#math kayos[cell] {$kayos[cell] + 1}};
 
-#act {^-I-_A squat bunker.$} {
+#act {^-i-A squat bunker.$} {
 	#regex {$room_short} {enter} {#nop;} {
         #if {$kayos[key] > 0 && !$foundmob} {
                 #path save position {resume_path};
@@ -79,7 +79,7 @@
     }
 };
 
-#act {^-I-_A scorch-marked landing pad.$} {
+#act {^-i-A scorch-marked landing pad.$} {
     #if {$kayos[cell] == 3} {
             #3 insert cell;
             #path load spaceship_path;
@@ -87,7 +87,7 @@
     }
 }
 
-#act {^-I-_An intricate digital key%*$} { get key; }
+#act {^-i-An intricate digital key%*$} { get key; }
 
 #class {bot} {close}
 

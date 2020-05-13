@@ -6,15 +6,15 @@
 #showme {-------------------------------------------------------}
 
 #macro {y} {
-	aset look_monster_pref -M-_;
-	aset look_player -P-_;
-	aset room_short_pref -R-_;
-	aset room_short_suff -R-_;
-	aset room_long_pref <ESC>[33m-D-_;
-	aset look_weapon -W-_;
-	aset look_object -O-_;
-	aset look_armor -A-_;
-	aset look_other -I-_;
+	#send {aset look_monster_pref -M-_};
+	#send {aset look_player -P-_};
+	#send {aset room_short_pref -R-_};
+	#send {aset room_short_suff -R-_};
+	#send {aset room_long_pref <ESC>[33m-D-_};
+	#send {aset look_weapon -w-};
+	#send {aset look_object -o-};
+	#send {aset look_armor -a-};
+	#send {aset look_other -i-};
 	
 	prompt >$nl$;
 	#sub {^-M-_} {};#sub {^-P-_} {};#sub {^-R-_} {};#prompt {^>$} {>} {0};

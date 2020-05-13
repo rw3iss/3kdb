@@ -10,10 +10,10 @@
 	aset look_player -P-_;
 	aset room_short_pref -R-_;
 	aset room_long_pref <ESC>[33m-D-_;
-	aset look_weapon -W-_;
-	aset look_object -O-_;
-	aset look_armor -A-_;
-	aset look_other -I-_;
+	aset look_weapon -w-;
+	aset look_object -o-;
+	aset look_armor -a-;
+	aset look_other -i-;
 	
 	prompt >$nl$;
 	#sub {^-M-_} {};#sub {^-P-_} {};#sub {^-R-_} {};#prompt {^>$} {>} {0};

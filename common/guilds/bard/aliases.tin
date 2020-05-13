@@ -33,7 +33,7 @@
 
 #alias {reflex_clear} {reflex clear;echo_reflex_clear};
 #alias {reflex_critic %1} {reflex add sp >%1 cast caustic critic;echo_reflex_critic %1};
-#alias {reflex_dirge %1} {reflex add gp1 <%1 ow;echo_reflex_dirge %1};
+#alias {reflex_ow %1} {reflex add gp1 <%1 ow;echo_reflex_ow %1};
 #alias {reflex_ma %1} {reflex add gp1 >%1 martial assault;echo_reflex_ma %1};
 
 
@@ -59,7 +59,7 @@
 #alias {echo_reflex_clear}     {#echo {---------------  CLEARING REFLEX ACTIONS      --------------}};
 #alias {echo_reflex_header}    {#echo {+++++++++++++++  REFLEX ACTIONS INCLUDE:      ++++++++++++++}};
 #alias {echo_reflex_critic %1} {#echo {+++++++++++++++  CAUSTIC CRITIC  (>%1 sp)     ++++++++++++++}};
-#alias {echo_reflex_dirge %1}  {#echo {+++++++++++++++  DIRGE CORPSE    (<%1 karma)  ++++++++++++++}};
+#alias {echo_reflex_ow %1}  {#echo {+++++++++++++++  DIRGE CORPSE    (<%1 karma)  ++++++++++++++}};
 #alias {echo_reflex_ma %1}     {#echo {+++++++++++++++  MARTIAL ASSAULT (>%1 karma)  ++++++++++++++}};
 
 #NOP ---Song Buffs
