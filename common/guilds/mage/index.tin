@@ -1,0 +1,5 @@
+#read common/guilds/mage/aliases.tin;
+#read common/guilds/mage/actions.tin;
+#read common/guilds/mage/gags.tin;
+#read common/guilds/mage/heartbeat.tin;
+#read common/guilds/mage/tickers.tin;

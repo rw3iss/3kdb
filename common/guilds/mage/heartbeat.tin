@@ -1,0 +1,9 @@
+#class {mage_heartbeat} {kill}
+#class {mage_heartbeat} {open}
+
+#alias {_guild_heartbeat} {
+	#if !$idle_flag {
+	} {#NOP;};
+};
+
+#class {mage_heartbeat} {close}

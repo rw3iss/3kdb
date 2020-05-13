@@ -8,7 +8,7 @@
 #read chars/oscar/vars.tin;
 
 /* Set player specific variables */
-#var guild elemental;
+#var guild mage;
 #var user oscar;
 #var vaf_numbers 0;
 
@@ -17,7 +17,7 @@
 #read common/bot/bots.tin;
 
 /* load specific modules for this character */
-#read common/guilds/elemental/index.tin;
+#read common/guilds/mage/index.tin;
 #read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */

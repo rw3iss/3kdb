@@ -1,0 +1,6 @@
+#class {mage_actions} {kill}
+#class {mage_actions} {open}
+
+#NOP --- MAGE ACTIONS;
+
+#class {mage_actions} {close}

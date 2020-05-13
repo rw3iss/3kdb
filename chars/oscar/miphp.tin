@@ -27,9 +27,9 @@
 
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
 
-	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max NRG:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
-	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] NRG:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {Emit: $my[emit][level]  Blasts: $my[blasts] G2N: $my[g2n]  Idle: $idle_cap};
+	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
+	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
+	#var prompt3 {G2N: $my[g2n]  Idle: $idle_cap};
 	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 
 	_player_heartbeat;

@@ -5,8 +5,6 @@
 
 #alias {_player_heartbeat} {
     #if !$idle_flag {
-        #if {$my[gp2][current] < 50} {#var halt 1;#var bot_toggle 1};
-        #if {$my[gp2][current] > 90} {#if $bot_toggle {..;#var bot_toggle 0}};
     };
 };
 

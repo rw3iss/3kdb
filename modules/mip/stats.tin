@@ -75,6 +75,7 @@
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
 			#CASE {"bard"}			{.mipProcessGlineBard {%1}};
 			#CASE {"gentech"}		{.mipProcessGlineGentech {%1}};
+			#CASE {"mage"}			{.mipProcessGlineMage {%1}};
 		}
 	}
 }
@@ -95,6 +96,19 @@
 		}
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]}	{\[Bioplasts: %d\]} {#VAR {my[bioplasts]}	{&1}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineMage} {
+	#IF {%1 == 1} {
+		#NOP <rGem:0%> <gST:0/0>  <ySpells>: <y> <gA> <y<P>>;
+		
+	}; #ELSEIF {%1 == 2} {
+		#NOP G: 0/61%  S: 0/74%  I: 1  G2N:13% ;
+
+		#REGEX {$mip[gline][2]}	{G2N:%d\%}			{#VAR {my[g2n]}		{&1}};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
