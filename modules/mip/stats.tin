@@ -107,11 +107,9 @@
 		
 	}; #ELSEIF {%1 == 2} {
 		#NOP G: 0/61%  S: 0/74%  I: 1  G2N:13% ;
-	#REGEX {$mip[gline][2]}	{G: %d\/%d\%}			{
-														#VAR {my[golem][current]}		{&1};
-														#VAR {my[golem][reset]}		{&2}
-													};
-		#REGEX {$mip[gline][2]}	{G2N:%d\%}			{#VAR {my[g2n]}		{&1}};
+		#REGEX {$mip[gline][2]}	{G: %d\/%d\%}		{#VAR {my[golem][current]}		{&1};
+													 #VAR {my[golem][reset]}		{&2}};
+		#REGEX {$mip[gline][2]}	{G2N:%d\%}			{#VAR {my[g2n]}					{&1}};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
