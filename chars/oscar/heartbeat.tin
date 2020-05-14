@@ -7,7 +7,6 @@
     #if !$idle_flag {
         #if {$my[sp][current] < 50 || $my[gp1][current] > 45} {.pause;#var bot_toggle 1};
         #if {$my[sp][current] > 1000 && $bot_toggle} {..;#var bot_toggle 0};
-        #if {$my[g2n] == 100} {go mages_plat_star;study;go pol;-polbot};
     };
 };
 

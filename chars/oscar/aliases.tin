@@ -5,6 +5,8 @@
     .stop;
 };
 
+#alias {go_glvl} {go mages_plat_star;study;go pol;-polbot};
+
 #ALIAS {ld}
 {
      #class global open;
