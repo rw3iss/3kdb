@@ -5,7 +5,7 @@
     .stop;
 };
 
-#alias {go_glvl} {go mages_plat_star;study;go pol;-polbot};
+#alias {go_glvl} {go mages_plat_star;study;go pol;#delay 20 -polbot;#var gl_run 1};
 
 #ALIAS {ld}
 {
