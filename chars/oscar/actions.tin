@@ -2,7 +2,7 @@
 #class {player_actions} {open}
 
 #NOP --- Oscar specific actions
-#action {killing blow} {evoke corpse blast drain;get coins};
+#action {killing blow} {cast corpse drain;get coins};
 
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
 
