@@ -1,4 +1,4 @@
-#CLASS {global} OPEN
+#CLASS {global} OPEN;
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {4119}
@@ -10,4 +10,4 @@
 #VARIABLE         {splitWidthPerc}  {.45}
 #VARIABLE         {wielded}  {redaxe}
 
-#CLASS {global} CLOSE
+#CLASS {global} CLOSE;

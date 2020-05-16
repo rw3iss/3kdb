@@ -103,11 +103,8 @@
 
 #ALIAS {.mipProcessGlineMage} {
 	#IF {%1 == 1} {
-		#NOP <rGem:0%> <gST:0/0>  <ySpells>: <y> <gA> <y<P>>;
 		#REGEX {$mip[gline][1]}	{MC:%d}				{#VAR {my[mental_cognition]}	{&1}};
-		
 	}; #ELSEIF {%1 == 2} {
-		#NOP G: 0/61%  S: 0/74%  I: 1  G2N:13% ;
 		#REGEX {$mip[gline][2]}	{G: %d\/%d\%}		{#VAR {my[golem][current]}		{&1};
 													 #VAR {my[golem][reset]}		{&2}};
 		#REGEX {$mip[gline][2]}	{S: %d\/%d\%}		{#VAR {my[super][current]}		{&1};

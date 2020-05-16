@@ -33,7 +33,7 @@
 #split 0 4;
 
 #alias {defaults_on} {
-#NOP	mipon;
+	mipon;
 	loadmap;
     postload;
 	#read common/draw.tin
