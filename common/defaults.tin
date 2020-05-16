@@ -1,3 +1,5 @@
+#NOP -- Config stuff;
+
 /* tell tintin to repeat last command on enter */
 #config {repeat enter} on;
 

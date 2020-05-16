@@ -1,6 +1,6 @@
-#NOP - 3k Session
+#NOP - 3k Session;
 
-#SESSION {3k - Oscar} {3k.org} {3000}
+#SESSION {3k - Oscar} {3k.org} {3000};
 
 #conf pack 1;
 #conf color on;
@@ -33,7 +33,7 @@
 #split 0 4;
 
 #alias {defaults_on} {
-	mipon;
+#NOP	mipon;
 	loadmap;
     postload;
 	#read common/draw.tin

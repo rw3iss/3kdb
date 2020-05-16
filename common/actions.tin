@@ -1,3 +1,6 @@
+#class {default_actions} {kill}
+#class {default_actions} {open}
+
 #act {{(\w+) taps you on the shoulder\.}} { 
     #format followtarget {%l} {%2}; 
     follow $followtarget;
@@ -22,3 +25,5 @@
     #format healtarget {%l} {%2}; 
     hmheal $healtarget;
 };
+
+#class {default_actions} {close}

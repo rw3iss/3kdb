@@ -1,3 +1,6 @@
+#class {default_aliases} {kill}
+#class {default_aliases} {open}
+
 #alias {debug} {#debug all on};
 #alias {debugoff} {#debug all off};
 
@@ -18,3 +21,5 @@
     #class vars write chars/$user/vars.tin;
     #delay 1 {#end};
 };
+
+#class {default_aliases} {close}
