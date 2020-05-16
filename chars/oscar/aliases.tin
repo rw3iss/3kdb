@@ -7,17 +7,6 @@
 
 #alias {go_glvl} {go mages_plat_star;study;go pol;#delay 20 -polbot;#var gl_run 1};
 
-#ALIAS {ld}
-{
-     #class global open;
-     #map get roomvnum curvnum;
-     #variable shield $shield;
-     #variable wielded $wielded;
-     #class global close;
-     #class global write chars/$user/vars.tin;
-     #delay 1 {#end}
-};
-
 #ALIAS {postload}
 {
      #map flag static on;
@@ -27,7 +16,6 @@
      #map flag direction on;
      #delay {1} {hp}
 }
-
 
 #NOP ---MISC
 #alias {unbag_all} {#loop 1 %1 i {get all from bag $i;put all in box};get all from disc;put all in box;get all from buckler;put all in box;golem give all to byron;put all in box};

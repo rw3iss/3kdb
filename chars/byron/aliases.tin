@@ -6,17 +6,6 @@
     clear_prots;
 };
 
-#ALIAS {ld}
-{
-     #class global open;
-     #map get roomvnum curvnum;
-     #variable shield $shield;
-     #variable wielded $wielded;
-     #class global close;
-     #class global write chars/$user/vars.tin;
-     #delay 1 {#end}
-};
-
 #alias {_login} {watch mywho;playcult;cult join;first impression;c floating disc};
 #alias {kill_em_all} {#var kill_em_all 1;#ECHO {+++++++++++ KILL EM ALL MODE ACTIVATED +++++++++}}
 

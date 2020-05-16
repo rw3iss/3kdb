@@ -3,7 +3,7 @@
 #alias {maphelp} {
 	#show mapsave/mapload - save/load from map/3k_map.tin;
 	#show map <roomname> - set map at roomname;
-	#show mi - get current room info;
+	#show roominfo - get current room info;
 	#show mapundo - restores the last save point, when 'mapbackup' was called.;
 	#show mapexit <exit> <command> - tell the exit dir to execute command;
 	#show mapname <name> - rename current room;
@@ -14,7 +14,7 @@
 	#show mapdelete <exit> - deletes the exit (unlinks and deletes the room);
 	#show mapunlink <exit> - unlinks the exit from the room it points to;
 	#show maplink <exit> <room#> - link exit to a room;
-	#show mapinsert <room#> - insert a room?;
+	#show mapinsert <room#> - insert a room	?;
 	#show mapm <dir> - move the map in dir;
 	#show maparea <name> - set area name for the current room;
 	#show areamapped <area> - show which rooms are mapped in this area;
@@ -34,7 +34,7 @@
 };
 #alias {mapgo} {#map goto %0};
 
-#alias {mi} {#map info};
+#alias {roominfo} {#map info};
 
 #alias {mapbackup} {#map write common/map/3k_shared_BACKUP.tin;};
 #alias {maprestore} {#map read common/map/3k_shared_BACKUP.tin;};

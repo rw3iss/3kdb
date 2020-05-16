@@ -99,7 +99,7 @@
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
-}
+};
 
 #ALIAS {.mipProcessGlineMage} {
 	#IF {%1 == 1} {
@@ -117,7 +117,7 @@
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
-}
+};
 
 #ALIAS {.mipProcessGlineElemental} {
 	#IF {%1 == 1} {
@@ -136,7 +136,7 @@
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
-}
+};
 
 #ALIAS {.mipProcessGlineGentech} {
 	#var my[cpc][max] 10000;
@@ -156,7 +156,7 @@
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
-}
+};
 
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
