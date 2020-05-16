@@ -30,13 +30,13 @@
 	#if $my[prots][MS] {#var mag_string MS} {#var mag_string {}};
 	#if $my[prots][RS] {#var rs_string RS} {#var rs_string {}};
 	#if $my[prots][mg] {#var mg_string mg} {#var mg_string {}};
-	#if $my[prots][pg] {#var pg_string PG} {#var pgstring {}};
-	#if $my[prots][pe] {#var pe_string PE} {#var pestring {}};
+	#if $my[prots][pg] {#var pg_string PG} {#var pg_string {}};
+	#if $my[prots][pe] {#var pe_string PE} {#var pe_string {}};
 	
-	#var prots_string {Prots: $armor_string $mag_string $rs_string $mg_string $pg_string};
+	#var prots_string {Prots: $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string};
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  G2N: $my[g2n]%   };
+	#var prompt3 {$prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  G2N: $my[g2n]%   };
 	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])  Idle: $idle_cap};
 
 	_player_heartbeat;
