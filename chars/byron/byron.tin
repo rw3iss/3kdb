@@ -29,6 +29,7 @@
 /* load character-specific */
 #read chars/$user/actions.tin;
 #read chars/$user/aliases.tin;
+#read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
 #read chars/$user/styles.tin;
 #read chars/$user/vars.tin;

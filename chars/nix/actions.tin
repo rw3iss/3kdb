@@ -16,8 +16,15 @@
         wear shield;
 };
 
-#ACTION {From afar, Martyr stares at you in his Jesus Christ pose.} {hmheal martyr};
 #ACTION {The Abysmal Blade (enchanted): Ok.} {smuggle blade};	
+
+#act {There are no corpses in the freezer!}{unwrap;pd};
+#act {There is no reason to 'deslab' here.} {unwrap;pd};
+#act {The daemon hisses: Dost thou choose to graft with me Nix?} {say yes};
+#act {Hurinteon the Grand Master Mage (Deadly!!!) appears out of nowhere.} {view 1 study hurinteon;kill hurinteon};
+#act {The melting cheese finally evaporates from Nix.} {wield axe};
+#act {%1 offers to guard} {accept};
+
 
 
 #class {player_actions} {close}

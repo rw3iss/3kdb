@@ -1,0 +1,21 @@
+#class {player_config} {kill}
+#class {player_config} {open}
+
+#NOP -- Bot Config
+#alias {.pre_fight_check} {
+    #NOP -- run this before killing a mob (in reality it happens after a mob dies, so you're ready for the next fight)
+};
+
+#alias {.pre_bot_check} {
+     #if {"$area" == "<insert bot area name>"} {
+          #NOP -- Enter actions you want to do before beginning this bot
+
+          # Update what happens before every fight (and will be re-activated post deadmans)
+          #alias {.pre_fight_check} {
+               #NOP -- run this before killing a mob (in reality it happens after a mob dies, so you're ready for the next fight)
+          };
+     }
+}
+
+
+#class {player_config} {close}

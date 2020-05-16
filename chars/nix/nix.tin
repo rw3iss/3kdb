@@ -29,6 +29,7 @@
 /* load character-specific */
 #read chars/$user/actions.tin;
 #read chars/$user/aliases.tin;
+#read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
 #read chars/$user/vars.tin;
 
@@ -41,6 +42,22 @@
     postload;
 	#read common/draw.tin
 	#var autodmg 1;
+}
+
+/* Aliases to kill existing things and load other gobjs for gswap */
+#alias {load_mage} {
+	#var guild mage;
+	#class {bard_actions} {kill};
+	#class {bard_aliases} {kill};
+	#class {bard_gags} {kill};
+	#class {bard_heartbeat} {kill};
+	
+	#read chars/$user/$guild/actions.tin;
+	#read chars/$user/$guild/aliases.tin;
+	#read chars/$user/$guild/config.tin;
+	#read chars/$user/$guild/heartbeat.tin;
+	#read chars/$user/$guild/miphp.tin;
+
 }
 
 

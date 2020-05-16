@@ -1,0 +1,47 @@
+#class {player_aliases} {kill}
+#class {player_aliases} {open}
+
+#NOP -- GENERIC ALIASES
+#alias {_player_deadmanActions} {
+    .stop;
+};
+
+#ALIAS {ld}
+{
+     #class global open;
+     #map get roomvnum curvnum;
+     #variable shield $shield;
+     #variable wielded $wielded;
+     #class global close;
+     #class global write chars/$user/vars.tin;
+     #delay 1 {#end}
+};
+
+#ALIAS {postload}
+{
+     #map flag static on;
+     #map flag vtmap on;
+     #map flag unicodegraphics on;
+     #map flag terrain on;
+     #map flag direction on;
+     #delay {1} {hp}
+}
+
+
+#NOP -- Mage specific aliases
+
+#alias {rcost} {cast rcost};
+#alias {cac} {cast activate c};
+#alias {armor} {cast armor;cast contingency as armor#cast armor};
+#alias {shield} {cast shield;cast contingency as shield#cast shield};
+#alias {stoneskin} {cast rhino skin;cast contingency as stoneskin#cast stoneskin};
+#alias {corpsetrig} {cast corpse blast;divvy coins;xp;study spellbook}:
+
+#nop /MAGE SUMMONS\
+#alias {cms2} {cast monster summoning 2};
+#alias {sums} {say all, you are now in group slay/stfu/ibc/assist always};
+#alias {defend} {say slay, defend me};
+#alias {begone} {say slay, begone};
+
+
+#class {player_aliases} {close}

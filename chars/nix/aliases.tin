@@ -17,6 +17,16 @@
      #delay 1 {#end}
 };
 
+#ALIAS {postload}
+{
+     #map flag static on;
+     #map flag vtmap on;
+     #map flag unicodegraphics on;
+     #map flag terrain on;
+     #map flag direction on;
+     #delay {1} {hp}
+}
+
 #NOP ---THIS SECTION IS FOR BARD SPECIFIC ALIASES
 #alias {{hh}} {remove gloves;cast healing hands;wear gloves};
 #alias {{karma}} {unwrap corpse;dirge};
@@ -96,12 +106,6 @@
 #alias {zell1} {sr shelf;take gloves;n;n;w;w;w;s;get key from pool;drop gloves;n;e;e;e;s;s;e;e;e;n;e;e;e;n;n;n;n;w;w;w;w;s;s;s;s;unlock door;open door;w;take key;e;n;n;n;n;e;e;e;e;s;s;s;s;w;w;w;s;w;w;w;n;n;w;w;n;unlock door;open door;w;w;s;s;sw;w;w;w;n;nw;e;e;e;e;n;ne;e;e;e;n};
 #alias {zell2} {s;w;w;w;sw;s;w;w;w;w;se;s;e;e;e;ne;n;n;e;e;e;s;w;s;se;s;e;s;s;out;map zell}
 
-#act {There are no corpses in the freezer!}{unwrap;pd};
-#act {There is no reason to 'deslab' here.} {unwrap;pd};
-#act {The daemon hisses: Dost thou choose to graft with me Nix?} {say yes};
-#act {Hurinteon the Grand Master Mage (Deadly!!!) appears out of nowhere.} {view 1 study hurinteon;kill hurinteon};
-#act {The melting cheese finally evaporates from Nix.} {wield axe};
-#act {%1 offers to guard} {accept};
 
 
 #class {player_aliases} {close}

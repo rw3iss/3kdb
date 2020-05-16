@@ -7,15 +7,6 @@
     cassist $followtarget;
 };
 
-#act {{(\w+) begs you\.}} { 
-    #format defendtarget {%l} {%2}; 
-    defend $defendtarget;
-};
-
-#act {{(\w+) moos at you\.}} { 
-    unwrap corpse;
-};
-
 #act {{From afar, (\w+) stares at you in (\w+) Jesus Christ pose\.}} {
     #format healtarget {%l} {%2}; 
     hmheal $healtarget;
