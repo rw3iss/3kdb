@@ -47,7 +47,7 @@
 
 /* Aliases to kill existing things and load other gobjs for gswap */
 #alias {gswap_mage} {
-	#showme {========= MAGE GOBJ LOADED =========}
+	#showme {========= MAGE GOBJ LOADED =========};
 	#var guild mage;
 	#class {bard_actions} {kill};
 	#class {bard_aliases} {kill};
@@ -63,7 +63,7 @@
 }
 
 #alias {gswap_bard} {
-	#showme {========= BARD GOBJ LOADED =========}
+	#showme {========= BARD GOBJ LOADED =========};
 	#var guild bard;
 	#class {mage_actions} {kill};
 	#class {mage_aliases} {kill};
