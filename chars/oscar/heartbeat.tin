@@ -4,7 +4,7 @@
 #var bot_toggle 1;
 
 #alias {_player_heartbeat} {
-    #math sp_threshold {$my[sp][current] * .90};
+    #math sp_threshold {$my[sp][max] * .90};
     #math saturation_threshold {$saturation_max * .05};
     #if !$idle_flag {
         #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle} {.pause;study spellbook;#var bot_toggle 1};
