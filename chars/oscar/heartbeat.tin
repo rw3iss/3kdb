@@ -4,9 +4,11 @@
 #var bot_toggle 1;
 
 #alias {_player_heartbeat} {
+    #math sp_threshold {$my[sp][current] * .90};
+    #math saturation_threshold {$saturation_max * .05};
     #if !$idle_flag {
-        #if {($my[sp][current] < 50 || $my[gp1][current] > 45) && !$bot_toggle} {.pause;study spellbook;#var bot_toggle 1};
-        #if {$my[sp][current] > 1000 && $bot_toggle} {..;#var bot_toggle 0};
+        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle} {.pause;study spellbook;#var bot_toggle 1};
+        #if {$my[sp][current] > $sp_threshold && $my[gp1][current] < $saturation_threshold && $bot_toggle} {..;#var bot_toggle 0};
         #if {$my[g2n] == 100 && $gl_run} {#var gl_run 0;#delay 120 go_glvl};
     };
 };
