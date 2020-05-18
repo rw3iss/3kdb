@@ -105,6 +105,7 @@
 	#NOP -- clear the my[prots] variable before updating it
 	#var my[prots] 0;
 	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]}	{Gem:%d\%}			{#VAR {my[gem]}	{&1}};
 		#REGEX {$mip[gline][1]}	{MC:%d}				{#VAR {my[mental_cognition]}	{&1}};
 		#REGEX {$mip[gline][1]}	{A}					{#VAR {my[prots][A]}	{1}};
 		#REGEX {$mip[gline][1]}	{MS}				{#VAR {my[prots][MS]}	{1}};
@@ -118,6 +119,7 @@
 		#REGEX {$mip[gline][2]}	{S: %d\/%d\%}		{#VAR {my[super][current]}		{&1};
 													 #VAR {my[super][reset]}		{&2}};
 		#REGEX {$mip[gline][2]}	{G2N:%d\%}			{#VAR {my[g2n]}					{&1}};
+		#REGEX {$mip[gline][2]}	{I :%d}				{#VAR {my[immersion]}					{&1}};
 		
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}

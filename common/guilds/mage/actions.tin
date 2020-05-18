@@ -2,5 +2,8 @@
 #class {mage_actions} {open}
 
 #NOP --- MAGE ACTIONS;
+#ACTION {^Your magnificent shield is shattered from the force of the blow!$} {#if {$defs[ms] && !$idle_flag} {cast magnificent shield}} {5}
+#ACTION {^Your armor spell has dissipated!$} {#if {$defs[armor] && !$idle_flag} {cast armor}} {5}
+
 
 #class {mage_actions} {close}
