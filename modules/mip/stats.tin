@@ -111,8 +111,8 @@
 		#REGEX {$mip[gline][1]}	{MS}				{#VAR {my[prots][MS]}	{1}};
 		#REGEX {$mip[gline][1]}	{RS}				{#VAR {my[prots][RS]}	{1}};
 		#REGEX {$mip[gline][1]}	{mg}				{#VAR {my[prots][mg]}	{1}};
-		#REGEX {$mip[gline][1]}	{PG}				{#VAR {my[prots][pg]}	{1}};
-		#REGEX {$mip[gline][1]}	{PE}				{#VAR {my[prots][pe]}	{1}};
+		#REGEX {$mip[gline][1]}	{PG}				{#VAR {my[prots][PG]}	{1}};
+		#REGEX {$mip[gline][1]}	{PE}				{#VAR {my[prots][PE]}	{1}};
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]}	{G: %d\/%d\%}		{#VAR {my[golem][current]}		{&1};
 													 #VAR {my[golem][reset]}		{&2}};
