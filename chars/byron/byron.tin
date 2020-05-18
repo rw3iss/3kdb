@@ -41,7 +41,7 @@
 	mipon;
 	loadmap;
     postload;
-	#read common/draw.tin
+	#read common/draw.tin;
 	#var autodmg 1;
 }
 
