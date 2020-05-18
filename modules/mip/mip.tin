@@ -31,12 +31,12 @@
 }
 
 #alias {maproomoff} {
-    #class vars open;
+    #class global open;
     #var draw[room] off;
     #var draw[map] off;
     #var draw[canvas] off;
-    #class vars close;
-    #class vars write chars/$user/vars.tin;
+    #class global close;
+    #class global write chars/$user/vars.tin;
     init_screen;
     draw_all;
     #class {draw} {kill};
@@ -44,12 +44,12 @@
 }
 
 #alias {maproomon} {
-    #class vars open;
+    #class global open;
     #var draw[room] on;
     #var draw[map] on;
     #var draw[canvas] on;
-    #class vars close;
-    #class vars write chars/$user/vars.tin;
+    #class global close;
+    #class global write chars/$user/vars.tin;
     #read common/draw.tin;
     #show Map and room details on.;
 }
