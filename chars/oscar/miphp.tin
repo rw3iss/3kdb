@@ -1,3 +1,4 @@
+#class {miphp} {kill}
 #class {miphp} {open}
 
 #alias {update_status} {
@@ -30,8 +31,8 @@
 	#if $my[prots][MS] {#var mag_string MS} {#var mag_string {}};
 	#if $my[prots][RS] {#var rs_string RS} {#var rs_string {}};
 	#if $my[prots][mg] {#var mg_string mg} {#var mg_string {}};
-	#if $my[prots][pg] {#var pg_string PG} {#var pg_string {}};
-	#if $my[prots][pe] {#var pe_string PE} {#var pe_string {}};
+	#if $my[prots][PG] {#var pg_string PG} {#var pg_string {}};
+	#if $my[prots][PE] {#var pe_string PE} {#var pe_string {}};
 	
 	#var prots_string {Prots: $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string};
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
