@@ -5,11 +5,11 @@
 #conf pack 1;
 #conf color on;
 
-#read chars/byron/vars.tin;
 
 /* Set player specific variables */
 #var guild bard;
 #var user byron;
+#read chars/$user/vars.tin;
 #var vaf_numbers 1;
 #var scaler[tacos] 91;
 #var scaler[hotel] 150;
@@ -32,7 +32,6 @@
 #read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
 #read chars/$user/styles.tin;
-#read chars/$user/vars.tin;
 
 /* create space for static hpbar at bottom and reset map position */
 #split 0 4;
