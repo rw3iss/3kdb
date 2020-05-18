@@ -1,9 +1,8 @@
-#NOP --- ALIASES
 #class {bard_aliases} {kill}
 #class {bard_aliases} {open}
 
 
-#NOP ---THIS SECTION IS FOR SONG ALIASES
+#NOP ---THIS SECTION IS FOR SONG ALIASES;
 #alias {clear_prots} {#var defs 0};
 #alias {vamp} {remove shield;perform vampire};
 #alias {it %1} {remove shield;perform invigorating tune for %1};
@@ -37,7 +36,7 @@
 #alias {reflex_ma %1} {reflex add gp1 >%1 martial assault;echo_reflex_ma %1};
 
 
-#NOP ---THIS SECTION IS FOR FORMATTING FOR SPELL/SONG MAINTENANCE
+#NOP ---THIS SECTION IS FOR FORMATTING FOR SPELL/SONG MAINTENANCE;
 #alias {echo_divider1} {#echo {========================================================}};
 #alias {echo_clear_prots} {#echo {--------------- CLEARING DEFENSE VARIABLES --------------}};
 #alias {echo_divider2} {#echo {+++++++++++++++++++++++++++++++++++++++++++++++++++++++++}};
@@ -62,7 +61,7 @@
 #alias {echo_reflex_ow %1}  {#echo {+++++++++++++++  DIRGE CORPSE    (<%1 karma)  ++++++++++++++}};
 #alias {echo_reflex_ma %1}     {#echo {+++++++++++++++  MARTIAL ASSAULT (>%1 karma)  ++++++++++++++}};
 
-#NOP ---Song Buffs
+#NOP ---Song Buffs;
 #alias {buffup} {
 	#math buff_son_of_man {40*2};
 	#math buff_delay_1 {40*2};

@@ -24,14 +24,14 @@
 #ACTION {^The coffin is full!$} {#if {$autodmg} {damage-on} {#nop}} {2};
 #ACTION {^There are no corpses in the coffin!} {damage-off} {1};
 
-#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {5}
-#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {5}
+#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {5};
+#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {5};
 
 #NOP -- BELOCH BOT;
 #ACTION {^Beloch storms out to do battle!$} {
 	#if {$auto_beloch} {
 		challenge_all;
-		itf
+		itf;
 	}
 }
 

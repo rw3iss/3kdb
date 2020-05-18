@@ -46,4 +46,4 @@
 }
 
 
-#alias {reload} {#kill all;#show \n;#read chars/$user/$user.tin;};
+#alias {reload} {#kill all;#show \n;#read chars/byron/byron.tin;};

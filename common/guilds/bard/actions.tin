@@ -1,15 +1,15 @@
 #class {bard_actions} {kill}
 #class {bard_actions} {open}
 
-#NOP --------------------------------------- BARD SPECIFIC ACTIONS ------------------------------------------
+#NOP --------------------------------------- BARD SPECIFIC ACTIONS ------------------------------------------;
 
-#NOP --- BARD DEFENSIVE SONGS AND SPELLS
-#ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[grace] && !$idle_flag} {ag}} {5}
-#ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$idle_flag} {perform o muse}} {5}
-#ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$idle_flag} {cast hardened skin}} {5}
-#ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$idle_flag} {cast protection from evil}} {5}
-#ACTION {^Your protection from neutral is beginning to fade.$} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral}} {5}
-#ACTION {^Your protection from good is beginning to fade.$} {#if {$defs[pg] && !$idle_flag} {cast protection from good}} {5}
+#NOP --- BARD DEFENSIVE SONGS AND SPELLS;
+#ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[grace] && !$idle_flag} {ag}} {5};
+#ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$idle_flag} {perform o muse}} {5};
+#ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$idle_flag} {cast hardened skin}} {5};
+#ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$idle_flag} {cast protection from evil}} {5};
+#ACTION {^Your protection from neutral is beginning to fade.$} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral}} {5};
+#ACTION {^Your protection from good is beginning to fade.$} {#if {$defs[pg] && !$idle_flag} {cast protection from good}} {5};
 #action {^Your protection from heat is beginning to fade.$} {#if {$defs[ph] && !$idle_flag} {cast protection from heat}} {5};
 #action {^Your protection from frost is beginning to fade.$} {#if {$defs[pf] && !$idle_flag} {cast protection from frost}} {5};
 #ACTION {^Your empowered strikes have faded.} {#if {$defs[es] && !$idle_flag && $my[karma][current] > 300} {empowered strikes}} {5};
@@ -21,8 +21,8 @@
 #ACTION {^You reach into the pouch of} {wear gloves} {1};
 
 
-#ACTION {^You cease your} {wear $shield} {5}
-#ACTION {^You finish your performance with a bow.$} {wear $shield} {5}
-#ACTION {^You have exceeded the usefulness of this song.$} {wear $shield} {5}
+#ACTION {^You cease your} {wear $shield} {5};
+#ACTION {^You finish your performance with a bow.$} {wear $shield} {5};
+#ACTION {^You have exceeded the usefulness of this song.$} {wear $shield} {5};
 
 #class {bard_actions} {close}
