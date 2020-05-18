@@ -39,7 +39,7 @@
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {$prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $my[immersion]  G2N: $my[g2n]%   };
-	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer]) Gem: $my[gem] MC: $my[mental_cognition] Idle: $idle_cap};
+	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer]) Gem: $my[gem]% MC: $my[mental_cognition]% Idle: $idle_cap};
 
 	_player_heartbeat;
     _guild_heartbeat;
