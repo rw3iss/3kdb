@@ -103,13 +103,13 @@
 
 #ALIAS {.mipProcessGlineMage} {
 	#NOP -- clear the my[prots] variable before updating it
-	#VAR {my[prots][A]}	{0}};
-	#VAR {my[prots][B]}	{0}};
-	#VAR {my[prots][MS]}	{0}};
-	#VAR {my[prots][RS]}	{0}};
-	#VAR {my[prots][mg]}	{0}};
-	#VAR {my[prots][PG]}	{0}};
-	#VAR {my[prots][PE]}	{0}};
+	#VAR my[prots][A]	0;
+	#VAR my[prots][B]	0;
+	#VAR my[prots][MS]	0;
+	#VAR my[prots][RS]	0;
+	#VAR my[prots][mg]	0;
+	#VAR my[prots][PG]	0;
+	#VAR my[prots][PE]	0;
 	
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]}	{Gem:%d\%}			{#VAR {my[gem]}	{&1}};
