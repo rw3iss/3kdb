@@ -3,13 +3,13 @@
 
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
-		#if {$my[prots][mg] > 0} {#NOP} {#if $defs[mg] {cast minor globe} {#nop}};
-		#if {$my[prots][MS] > 0} {#NOP} {#if $defs[ms] {cast magnificent shield} {#nop}};
-		#if {$my[prots][RS] > 0} {#NOP} {#if $defs[rs] {cast rhino skin} {#nop}};
-		#if {$my[prots][PE] > 0} {#NOP} {#if $defs[pe] {cast protection from evil} {#nop}};
-		#if {$my[prots][PG] > 0} {#NOP} {#if $defs[pg] {cast protection from good} {#nop}};
-		#if {$my[prots][A] > 0} {#NOP} {#if $defs[armor] {cast armor} {#nop}};
-		#if {$my[prots][blink] > 0} {#NOP} {#if $defs[blink] {cast blink} {#nop}};
+		#if $defs[mg] {#NOP} {#if {$my[prots][mg] > 0} {cast minor globe} {#nop}};
+		#if $defs[ms] {#NOP} {#if {$my[prots][MS] > 0} {cast magnificent shield} {#nop}};
+		#if $defs[rs] {#NOP} {#if {$my[prots][RS] > 0} {cast rhino skin} {#nop}};
+		#if $defs[pe] {#NOP} {#if {$my[prots][PE] > 0} {cast protection from evil} {#nop}};
+		#if $defs[pg] {#NOP} {#if {$my[prots][PG] > 0} {cast protection from good} {#nop}};
+		#if $defs[armor] {#NOP} {#if {$my[prots][A] > 0} {cast armor} {#nop}};
+		#if $defs[blink] {#NOP} {#if {$my[prots][blink] > 0} {cast blink} {#nop}};
 	} {#NOP;};
 };
 
