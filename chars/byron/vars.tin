@@ -1,4 +1,5 @@
-#CLASS {global} OPEN
+#class {global} {kill}
+#class {global} {open}
 
 #NOP -- Bard Settings;
 #VARIABLE         {ma_minimum} {400};
@@ -16,4 +17,4 @@
 #VARIABLE         {splitWidthPerc}  {.45}
 #VARIABLE         {wielded}  {redaxe}
 
-#CLASS {global} CLOSE
+#class {global} {close}
