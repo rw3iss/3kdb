@@ -3,6 +3,7 @@
 
 #NOP --- MAGE ALIASES
 #alias {clear_align} {#var defs[pe] 0;#var defs[pg] 0};
+#alias {clear_prots} {#unvar defs};
 
 #alias {prots_mg} {cast minor globe;#var defs[mg] 1;echo_prots_mg};
 #alias {prots_ms} {cast magnificent shield;#var defs[ms] 1;echo_prots_ms};
