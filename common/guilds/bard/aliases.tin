@@ -1,6 +1,6 @@
 #NOP --- ALIASES
-#class {aliases} {kill}
-#class {aliases} {open}
+#class {bard_aliases} {kill}
+#class {bard_aliases} {open}
 
 
 #NOP ---THIS SECTION IS FOR SONG ALIASES
@@ -82,4 +82,4 @@
 	#delay $buff_delay_4 {remove shield;perform grinch's hero for %1};
 }
 
-#class {aliases} {close}
+#class {bard_aliases} {close}

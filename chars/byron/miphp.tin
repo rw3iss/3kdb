@@ -1,3 +1,4 @@
+#class {miphp} {kill}
 #class {miphp} {open}
 
 #alias {update_status} {

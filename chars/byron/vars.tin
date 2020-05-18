@@ -5,7 +5,6 @@
 #VARIABLE         {karma_heal} {200};
 #VARIABLE         {ebolt_sp}  {200};
 #VARIABLE         {critic_sp}  {200};
-#VARIABLE         {shield}  {shield};
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {4119}
