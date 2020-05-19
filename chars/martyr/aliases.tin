@@ -1,17 +1,9 @@
-#class {global} {kill}
-#class {global} {open}
+#class {player_aliases} {kill}
+#class {player_aliases} {open}
 
 #alias {_player_deadmanActions} {
     .stop;
 } {0};
 
-#ALIAS {ld}
-{
-     #class global open;
-     #map get roomvnum curvnum;
-     #class global close;
-     #class global write chars/$user/vars.tin;
-     #delay 1 {#end}
-}
 
-#class {global} {close}
+#class {player_aliases} {close}

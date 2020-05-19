@@ -6,8 +6,7 @@
 #ACTION {{%1 appears out of nowhere\.}} {pt CHECK MYSTIC EYES - MOB SPAWN!!!};
 #ACTION {{(\w+) eeps\.}} {dh %1};
 #ACTION {{(\w+) tugs on your sleeve persistently\.}} {itunes %1};
-#ACTION {{(\w+) taps you on the shoulder\.}} {defend %1};
-#ACTION {{A flash of energy emanates from Shansabyk's body\.}} {pt Shansabitch down a life!!};                                                  
+#ACTION {{A flash of energy emanates from Shansabyk's body\.}} {pt Shansabitch down a life!!};
 
 #ACTION {{The coffin is full!}} {
         get coins from corpse;

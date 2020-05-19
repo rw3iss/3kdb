@@ -1,21 +1,4 @@
-#CLASS {global} OPEN
-
-#ALIAS {_player_deadmanActions}
-{
-     .stop;
-     clear_prots
-}
-{0}
-
-#ALIAS {postload}
-{
-     #map flag static on;
-     #map flag vtmap on;
-     #map flag unicodegraphics on;
-     #map flag terrain on;
-     #map flag direction on;
-     #delay {1} {hp}
-}
+#CLASS {global} {open};
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {4119}
@@ -28,4 +11,4 @@
 #VARIABLE         {room}  {{bottom}{28}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{13}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{20}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}
 
-#CLASS {global} CLOSE
+#CLASS {global} {close}
