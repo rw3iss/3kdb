@@ -5,7 +5,7 @@
 #action {killing blow} {corpse_trig};
 
 #NOP -- Summon specific actions;
-#action {%* seems to slow down...} {c haste on summons};
+
 
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
 
