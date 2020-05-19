@@ -1,6 +1,20 @@
 #class {player_aliases} {kill}
 #class {player_aliases} {open}
 
+#alias corpse_trig {
+  slab all;
+  cast corpse blast;
+  get coins;
+  repeat combat/cast slow/1;
+  study spellbook;
+};
+
+#alias summon_buff {
+     say all, you are now in group summons;
+     c haste on summons;
+     c giant strength on summons;
+}
+
 #alias {_player_deadmanActions} {
     .stop;
 };

@@ -1,8 +1,11 @@
 #class {player_actions} {kill}
 #class {player_actions} {open}
 
-#NOP --- Oscar specific actions
-#action {killing blow} {cast corpse blast;get coins;repeat combat/cast slow/1;study spellbook};
+#NOP --- Oscar specific actions;
+#action {killing blow} {corpse_trig};
+
+#NOP -- Summon specific actions;
+#action {%* seems to slow down...} {c haste on summons};
 
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
 
