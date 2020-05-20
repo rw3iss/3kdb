@@ -10,6 +10,7 @@
 #alias {prots_pfe} {cast protection from evil;clear_align;#var defs[pe] 1;echo_prots_pfe};
 #alias {prots_pfg} {cast protection from good;clear_align;#var defs[pg] 1;echo_prots_pfg};
 #alias {prots_rs} {cast rhino skin;clear_align;#var defs[rs] 1;echo_prots_rs};
+#alias {prots_shield} {cast shield;#var defs[shield] 1;echo_prots_shield};
 #alias {prots_armor} {cast armor;#var defs[armor] 1;echo_prots_armor};
 #alias {prots_blink} {cast blink;#var defs[blink] 1;echo_prots_blink};
 
@@ -25,6 +26,7 @@
 #alias {echo_prots_pfg} {#echo {+++++++++++++++  PROTECTION FROM GOOD      ++++++++++++++}};
 #alias {echo_prots_blink} {#echo {+++++++++++++++  BLINK                     ++++++++++++++}};
 #alias {echo_prots_armor} {#echo {+++++++++++++++  ARMOR                      ++++++++++++++}};
+#alias {echo_prots_shield} {#echo {+++++++++++++++  SHIELD                      ++++++++++++++}};
 
 
 

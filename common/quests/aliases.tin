@@ -1,4 +1,4 @@
-#alias {quest_newbie_academy} {
+#alias {quest_newbie} {
     read 1;
     answer rastafan;
     answer yes;
