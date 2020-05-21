@@ -3,6 +3,7 @@
 
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
+		#if (!$my[summon][golem] && $my[golem][current]) {#5 {cast create golem}} {#nop}};
 		#if $defs[MG] {#if !$my[prots][MG] {cast major globe} {#nop}};
 		#if $defs[mg] {#if !$my[prots][mg] {cast minor globe} {#nop}};
 		#if $defs[ms] {#if !$my[prots][MS] {cast magnificent shield} {#nop}};
