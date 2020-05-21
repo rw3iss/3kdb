@@ -27,18 +27,18 @@
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
-	#if $my[prots][S]  {#var shield_string <DFA><ccd>S<088>} {#var shield_string <EAA><ddd>S<088>};
-	#if $my[prots][B]  {#var blink_string <DFA><ccd>B<088>} {#var blink_string <EAA><ddd>B<088>};
-	#if $my[prots][A]  {#var armor_string <DFA><ccd>A<088>} {#var armor_string <EAA><ddd>A<088>};
-	#if $my[prots][MS] {#var mag_string <DFA><ccd>MS<088>} {#var mag_string <EAA><ddd>MS<088>};
-	#if $my[prots][RS] {#var rs_string <DFA><ccd>RS<088>} {#var rs_string <EAA><ddd>RS<088>};
-	#if $my[prots][SS] {#var ss_string <DFA><ccd>SS<088>} {#var ss_string <EAA><ddd>SS<088>};
-	#if $my[prots][mg] {#var mg_string <DFA><ccd>mg<088>} {#var mg_string <EAA><ddd>mg<088>};
-	#if $my[prots][MG] {#var MG_string <DFA><ccd>MG<088>} {#var MG_string <EAA><ddd>MG<088>};
-	#if $my[prots][PG] {#var pg_string <DFA><ccd>PG<088>} {#var pg_string <EAA><ddd>PG<088>};
-	#if $my[prots][PE] {#var pe_string <DFA><ccd>PE<088>} {#var pe_string <EAA><ddd>PE<088>};
+	#if $my[prots][S]  {#var shield_string <ccd>S} {#var shield_string <ddd>S};
+	#if $my[prots][B]  {#var blink_string <ccd>B} {#var blink_string <ddd>B};
+	#if $my[prots][A]  {#var armor_string <ccd>A} {#var armor_string <ddd>A};
+	#if $my[prots][MS] {#var mag_string <ccd>MS} {#var mag_string <ddd>MS};
+	#if $my[prots][RS] {#var rs_string <ccd>RS} {#var rs_string <ddd>RS};
+	#if $my[prots][SS] {#var ss_string <ccd>SS} {#var ss_string <ddd>SS};
+	#if $my[prots][mg] {#var mg_string <ccd>mg} {#var mg_string <ddd>mg};
+	#if $my[prots][MG] {#var MG_string <ccd>MG} {#var MG_string <ddd>MG};
+	#if $my[prots][PG] {#var pg_string <ccd>PG} {#var pg_string <ddd>PG};
+	#if $my[prots][PE] {#var pe_string <ccd>PE} {#var pe_string <ddd>PE};
 	
-	#var prots_string {Prots: <DFA><ddd>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
+	#var prots_string {Prots: <DFA>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {$prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $my[immersion]  G2N: $my[g2n]%   };
