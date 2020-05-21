@@ -122,7 +122,7 @@
 													 #VAR {my[super][reset]}		{&2}};
 		#REGEX {$mip[gline][2]}	{G2N:%d\%}			{#VAR {my[g2n]}					{&1}};
 		#REGEX {$mip[gline][2]}	{I: %d}				{#VAR {my[immersion]}			{&1}};
-		#REGEX {$mip[gline][2]}	{golem:%+0..1w}		{#VAR {my[summon][golem]}		{&1}} {#VAR {my[summon][golem]}		{0}};
+		#REGEX {$mip[gline][2]}	{golem:%+0..5p}		{#VAR {my[summon][golem]}		{&1}} {#VAR {my[summon][golem]}		{0}};
 		
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
