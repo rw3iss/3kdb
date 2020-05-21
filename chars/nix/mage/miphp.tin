@@ -6,14 +6,6 @@
 	#math   {idle_hr}       {$idle / 3600};
 	#math   {idle_min}      {$idle % 3600 / 60};
 	#math   {idle_sec}      {$idle % 60};
-	#if     {$idle_hr < 10#class {miphp} {kill}
-#class {miphp} {open}
-
-#alias {update_status} {
-
-	#math   {idle_hr}       {$idle / 3600};
-	#math   {idle_min}      {$idle % 3600 / 60};
-	#math   {idle_sec}      {$idle % 60};
 	#if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
 	#if     {$idle_min < 10}{#var idle_min 0$idle_min};
 	#if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
