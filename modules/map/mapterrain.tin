@@ -4,4 +4,13 @@
 #map terrain Mountain ⛰;
 #map terrain Store 🏪;
 
+#NOP -- General shapes / common letters for terrains;
+#alias map_terrain_cave {
+    #map terrain cave_0 ;
+    #map terrain cave_1 x;
+    #map terrain cave_2 <ada>X;
+    #map terrain cave_3 x;
+    #map set roomflag terrain cave_2;  #NOP -- cant figure this syntax out atm
+}
+
 #show Map terrain configurations loaded.\n;

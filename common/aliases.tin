@@ -28,5 +28,4 @@
      #delay {1} {hp}
 };
 
-
 #class {default_aliases} {close}

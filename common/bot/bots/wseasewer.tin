@@ -13,9 +13,12 @@
 
 #var {botpath} {d;w;w;w;w;sw;se;s;se;s;w;w;w;w;nw;w;w;nw;w;w;w;nw;w;w;sw;ne;n;nw;se;s;e;e;se;e;e;e;ne;ne;e;e;e;e;ne;w;w;nw;w;nw;n;e;nw;ne;e;w;w;w;w;w;w;sw;sw;e;e;se;e;w;nw;w;w;w;w;nw;n;w;w;w;e;e;e;s;se;se;w;w;sw;sw;w;w;w;w;e;e;e;e;e;w;ne;ne;e;e;nw;e;e;ne;ne;e;e;e;e;e;sw;se;w;s;se;e;se;e;e;e;e;e;e;u};
 
-#act {{(meat|leg|scale)( \{\d\})?.}} {get all}
+#NOP -- Turn it off after the first get all so you don't spam the room if you can't carry it.;
+#act {{(meat|leg|scale)( \{\d\})?.}} {get all};
+#unaction {{(meat|leg|scale)( \{\d\})?.}};
+#delay 3 {#act {{(meat|leg|scale)( \{\d\})?.}} {get all};};
 
-#act {^-M-_{A small cockroach|A large black snake|An irradiated crocodile|An oddly glowing rat|A medium sized glowing rat|A furry spider|Longtooth}} {	
+#act {^-M-_{A small cockroach|A large black snake|An irradiated crocodile|An oddly glowing rat|A medium sized glowing rat|A furry spider}} {	
 	#var foundtimes 1;
     #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
     #var mobname_long %1;
@@ -26,7 +29,6 @@
         #if {"%1" == "An oddly glowing rat"} {@botSetMobActions{rat};};
         #if {"%1" == "A medium sized glowing rat"} {@botSetMobActions{rat};};
         #if {"%1" == "A furry spider"} {@botSetMobActions{spider};};
-        #if {"%1" == "Longtooth"} {@botSetMobActions{longtooth};};
 	.check_monster
  }
 
