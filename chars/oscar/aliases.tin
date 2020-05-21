@@ -33,26 +33,27 @@
 
 
 #alias {go_glvl} {
-     #switch {"$area"}
+     #switch {"$area"} {
           #case "Westersea Sewer" {
                go mages_plat_star;
                study;
                go wsea;#delay 5 -wseasewer;#var gl_run 1;
           };
-          #case "Portal of Life"} {
+          #case "Portal of Life" {
                go mages_plat_star;
                study;
                go pol;#delay 5 -polbot;#var gl_run 1;
           };
           #case "Mahjong" {
-                    go mages_plat_star;
-                    study;
-                    go mahjong;#delay 5 -mahjong;#var gl_run 1;
-               };
+               go mages_plat_star;
+               study;
+               go mahjong;#delay 5 -mahjong;#var gl_run 1;
+          };
           #default {
                go mages_plat_star;
                study;
-          }
+          };
+     }
 };
 
 #ALIAS {postload}
