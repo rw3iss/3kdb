@@ -33,17 +33,26 @@
 
 
 #alias {go_glvl} {
-     go mages_plat_star;
-     study;
      #if {"$area" == "Westersea Sewer"} {
+          go mages_plat_star;
+          study;
           go wsea;#delay 5 -wseasewer;#var gl_run 1;
      };
      #if {"$area" == "Portal of Life"} {
+          go mages_plat_star;
+          study;
           go pol;#delay 5 -polbot;#var gl_run 1;
      };
      #if {"$area" == "Mahjong"} {
+          go mages_plat_star;
+          study;
           go mahjong;#delay 5 -mahjong;#var gl_run 1;
      };
+     #else {
+          go mages_plat_star;
+          study;
+     }
+     
 };
 
 #ALIAS {postload}
