@@ -28,21 +28,23 @@
 
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
 
-	#if $my[prots][S]  {#if $[defs][shield] {#var shield_string <ACA>S<088>} {#var shield_string S} } {#var shield_string {}};
-	#if $my[prots][B]  {#if $[defs][blink] {#var blink_string <ACA>B<088>} {#var blink_string B} } {#var blink_string {}};
-	#if $my[prots][A]  {#if $[defs][armor] {#var armor_string <ACA>A<088>} {#var armor_string A} } {#var armor_string {}};
-	#if $my[prots][MS] {#if $[defs][MS] {#var mag_string <ACA>MS<088>} {#var mag_string MS} } {#var mag_string {}};
-	#if $my[prots][RS] {#if $[defs][RS] {#var rs_string <ACA>RS<088>} {#var rs_string RS} } {#var rs_string {}};
-	#if $my[prots][SS] {#if $[defs][SS] {#var ss_string <ACA>SS<088>} {#var ss_string SS} } {#var ss_string {}};
-	#if $my[prots][mg] {#if $[defs][mg] {#var mg_string <ACA>mg<088>} {#var mg_string mg} } {#var mg_string {}};
-	#if $my[prots][MG] {#if $[defs][MG] {#var MG_string <ACA>MG<088>} {#var MG_string MG} } {#var MG_string {}};
-	#if $my[prots][PG] {#if $[defs][PG] {#var pg_string <ACA>PG<088>} {#var pg_string PG} } {#var pg_string {}};
-	#if $my[prots][PE] {#if $[defs][PE] {#var pe_string <ACA>PE<088>} {#var pe_string PE} } {#var pe_string {}};
+	#if $my[prots][S]  {#if $defs[shield] {#var shield_string <ACA>*S*<088>} {#var shield_string *S*} } {#var shield_string {}};
+	#if $my[prots][B]  {#if $defs[blink] {#var blink_string <ACA>*B*<088>} {#var blink_string *B*} } {#var blink_string {}};
+	#if $my[prots][A]  {#if $defs[armor] {#var armor_string <ACA>*A*<088>} {#var armor_string *A*} } {#var armor_string {}};
+	#if $my[prots][MS] {#if $defs[MS] {#var mag_string <ACA>*MS*<088>} {#var mag_string *MS*} } {#var mag_string {}};
+	#if $my[prots][RS] {#if $defs[RS] {#var rs_string <ACA>*RS*<088>} {#var rs_string *RS*} } {#var rs_string {}};
+	#if $my[prots][SS] {#if $defs[SS] {#var ss_string <ACA>*SS*<088>} {#var ss_string *SS*} } {#var ss_string {}};
+	#if $my[prots][mg] {#if $defs[mg] {#var mg_string <ACA>*mg*<088>} {#var mg_string *mg*} } {#var mg_string {}};
+	#if $my[prots][MG] {#if $defs[MG] {#var MG_string <ACA>*MG*<088>} {#var MG_string *MG*} } {#var MG_string {}};
+	#if $my[prots][PG] {#if $defs[PG] {#var pg_string <ACA>*PG*<088>} {#var pg_string *PG*} } {#var pg_string {}};
+	#if $my[prots][PE] {#if $defs[PE] {#var pe_string <ACA>*PE*<088>} {#var pe_string *PE*} } {#var pe_string {}};
 	
-	#var prots_string {Prots: <fff>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
+	#var prots_string {<fff>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
+	#replace prots_string  { } {};
+	#replace prots_string  {*} { };
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {$prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $my[immersion]  G2N: $my[g2n]%   };
+	#var prompt3 {Prots: $prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $my[immersion]  G2N: $my[g2n]%   };
 	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer]) Gem: $my[gem]% MC: $my[mental_cognition]% Idle: $idle_cap};
 
 	_player_heartbeat;

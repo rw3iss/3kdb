@@ -3,15 +3,16 @@
 
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
-		#if $defs[blink] {#if !$my[prots][B] {cast blink} {#nop}};
+		#if $defs[MG] {#if !$my[prots][MG] {cast major globe} {#nop}};
 		#if $defs[mg] {#if !$my[prots][mg] {cast minor globe} {#nop}};
 		#if $defs[ms] {#if !$my[prots][MS] {cast magnificent shield} {#nop}};
+		#if $defs[SS] {#if !$my[prots][SS] {cast stoneskin} {#nop}};
 		#if $defs[rs] {#if !$my[prots][RS] {cast rhino skin} {#nop}};
 		#if $defs[pe] {#if !$my[prots][PE] {cast protection from evil} {#nop}};
 		#if $defs[pg] {#if !$my[prots][PG] {cast protection from good} {#nop}};
 		#if $defs[shield] {#if !$my[prots][S] {cast shield} {#nop}};
 		#if $defs[armor] {#if !$my[prots][A] {cast armor} {#nop}};
-		#if $defs[blink] {#if !$my[prots][blink] {cast blink} {#nop}};
+		#if $defs[blink] {#if !$my[prots][B] {cast blink} {#nop}};
 	} {#NOP;};
 };
 
