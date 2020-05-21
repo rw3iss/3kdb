@@ -27,6 +27,7 @@
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
+
 	#if $my[prots][S]  {#var shield_string <ccd>S} {#var shield_string <ddd>S};
 	#if $my[prots][B]  {#var blink_string <ccd>B} {#var blink_string <ddd>B};
 	#if $my[prots][A]  {#var armor_string <ccd>A} {#var armor_string <ddd>A};
@@ -38,7 +39,7 @@
 	#if $my[prots][PG] {#var pg_string <ccd>PG} {#var pg_string <ddd>PG};
 	#if $my[prots][PE] {#var pe_string <ccd>PE} {#var pe_string <ddd>PE};
 	
-	#var prots_string {Prots: <DFA>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
+	#var prots_string {Prots: <ACA>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {$prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $my[immersion]  G2N: $my[g2n]%   };
