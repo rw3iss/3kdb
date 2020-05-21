@@ -28,16 +28,16 @@
 
 	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
 
-	#if $my[prots][S]  {#var shield_string <ccd>S} {#var shield_string <ddd>S};
-	#if $my[prots][B]  {#var blink_string <ccd>B} {#var blink_string <ddd>B};
-	#if $my[prots][A]  {#var armor_string <ccd>A} {#var armor_string <ddd>A};
-	#if $my[prots][MS] {#var mag_string <ccd>MS} {#var mag_string <ddd>MS};
-	#if $my[prots][RS] {#var rs_string <ccd>RS} {#var rs_string <ddd>RS};
-	#if $my[prots][SS] {#var ss_string <ccd>SS} {#var ss_string <ddd>SS};
-	#if $my[prots][mg] {#var mg_string <ccd>mg} {#var mg_string <ddd>mg};
-	#if $my[prots][MG] {#var MG_string <ccd>MG} {#var MG_string <ddd>MG};
-	#if $my[prots][PG] {#var pg_string <ccd>PG} {#var pg_string <ddd>PG};
-	#if $my[prots][PE] {#var pe_string <ccd>PE} {#var pe_string <ddd>PE};
+	#if $my[prots][S]  {#var shield_string <faa>S} {#var shield_string <ddd>S};
+	#if $my[prots][B]  {#var blink_string <faa>B} {#var blink_string <ddd>B};
+	#if $my[prots][A]  {#var armor_string <faa>A} {#var armor_string <ddd>A};
+	#if $my[prots][MS] {#var mag_string <faa>MS} {#var mag_string <ddd>MS};
+	#if $my[prots][RS] {#var rs_string <faa>RS} {#var rs_string <ddd>RS};
+	#if $my[prots][SS] {#var ss_string <faa>SS} {#var ss_string <ddd>SS};
+	#if $my[prots][mg] {#var mg_string <faa>mg} {#var mg_string <ddd>mg};
+	#if $my[prots][MG] {#var MG_string <faa>MG} {#var MG_string <ddd>MG};
+	#if $my[prots][PG] {#var pg_string <faa>PG} {#var pg_string <ddd>PG};
+	#if $my[prots][PE] {#var pe_string <faa>PE} {#var pe_string <ddd>PE};
 	
 	#var prots_string {Prots: <ACA>$MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
