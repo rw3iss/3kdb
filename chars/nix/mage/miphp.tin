@@ -38,7 +38,7 @@
 
 	#if $my[prots][S]  {#if $[defs][shield] {#var shield_string <ACA>S<088>} {#var shield_string S} } {#var shield_string {}};
 	#if $my[prots][B]  {#if $[defs][blink] {#var blink_string <ACA>B<088>} {#var blink_string B} } {#var blink_string {}};
-	#if $my[prots][A]  {#if $[defs][A] {#var armor_string <ACA>A<088>} {#var armor_string A} } {#var armor_string {}};
+	#if $my[prots][A]  {#if $[defs][armor] {#var armor_string <ACA>A<088>} {#var armor_string A} } {#var armor_string {}};
 	#if $my[prots][MS] {#if $[defs][MS] {#var mag_string <ACA>MS<088>} {#var mag_string MS} } {#var mag_string {}};
 	#if $my[prots][RS] {#if $[defs][RS] {#var rs_string <ACA>RS<088>} {#var rs_string RS} } {#var rs_string {}};
 	#if $my[prots][SS] {#if $[defs][SS] {#var ss_string <ACA>SS<088>} {#var ss_string SS} } {#var ss_string {}};
