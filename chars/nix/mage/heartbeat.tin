@@ -4,7 +4,7 @@
 #alias {_player_heartbeat} {
         #if !$idle_flag {
             #if {$my[gem] < 80} {ffetch gem};
-            #if {$my[immersion] && $my[golem][reset] > 95} {cast mystic immersion};
+            #if {$my[immersion][count] && $my[golem][reset] > 95} {cast mystic immersion};
     };
 };
 
