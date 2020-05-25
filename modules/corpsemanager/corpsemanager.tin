@@ -14,9 +14,9 @@
 };
 
 #alias corpse_select {
-        i;
-        #if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]} {smuggle remove corpse;drop corpse;};
-        #if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {unkeep corpse;drop corpse;}}
+	#if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]} {smuggle remove corpse;drop corpse;};
+	#if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {unkeep corpse;drop corpse;}};
+	i;
 }
 
 #NOP -- Inventory overrides.  These actions update the count when you check inventory;
