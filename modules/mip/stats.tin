@@ -106,7 +106,6 @@
 		#REGEX {$mip[gline][1]}	{Gem:%d\%}  	{#VAR {my[gem]}				   {&1}	}	{#VAR {my[gem]}					{0}	};
 		#REGEX {$mip[gline][1]}	{MC:%d}			{#VAR {my[mental_cognition]}   {&1}	}	{#VAR {my[mental_cognition]}	{0}	};
 		#REGEX {$mip[gline][1]}	{SS>}			{#VAR {my[prots][SS]}		   {1}	}	{#VAR {my[prots][SS]}			{0}	};
-		#REGEX {$mip[gline][1]}	{%!{(?<!R)}S>}	{#VAR {my[prots][S]}		   {1}	}	{#VAR {my[prots][S]}			{0}	};
 		#REGEX {$mip[gline][1]}	{A}				{#VAR {my[prots][A]}		   {1}	}	{#VAR {my[prots][A]}			{0}	};
 		#REGEX {$mip[gline][1]}	{B}				{#VAR {my[prots][B]}		   {1}	}	{#VAR {my[prots][B]}			{0}	};
 		#REGEX {$mip[gline][1]}	{MS}			{#VAR {my[prots][MS]}		   {1}	}	{#VAR {my[prots][MS]}			{0}	};

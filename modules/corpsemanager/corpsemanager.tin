@@ -6,7 +6,12 @@
 #NOP -- Override the alias for inventory to reset the variables and set alias to pick which corpse to use;
 #NOP -- If you have a corpse smuggled, but none elsewhere - smuggle remove it.  Otherwise, use coffin first, then freezer, then inventory;
 
-#alias {i} {#var corpses[inventory] 0;#send i};
+#alias {i} {
+	#var corpses[inventory] 0;
+	#var corpses[coffin] 0;
+	#var corpses[freezer] 0;
+	#send i
+};
 
 #alias corpse_select {
         i;
@@ -24,24 +29,25 @@
 	}
 };
 
-#act {^ 1 An enchanted coffin (%1 %w)%*.$} {
-	#if {%1 != $corpses[coffin]} {
-		#delay {1} {#echo {<169>Coffin:  Number of corpses thought $corpses[coffin], corrected to %1.};
-		#var corpses[coffin] %1};
+#action {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}} {
+	#if {%%3 != $corpses[coffin]} {
+	#delay {1} {#echo {<169>Coffin:  Number of corpses thought $corpses[coffin], corrected to %%3.};
+		#var corpses[coffin] %%3};
 	} {
 		#delay {0.1} {#echo {<169>Coffin:  Correct number of corpses found, $corpses[coffin].}}
 	}
 };
 
+
 #NOP -- Corpse Management COFFIN / FREEZER;
 #var corpses[coffin] 0;
 #var corpses[freezer] 0;
-#act {^You pick up} {#line gag;#echo {<169>Coffin: +1 corpse};#math {corpses[coffin]} {$corpses[coffin] + 1}} {5}
-#act {wrap it up into the coffin's protective hold!$} {#line gag}
-#act {^The coffin expels} {#line gag;#echo {<169>Coffin: -1 corpse};#math {corpses[coffin]} {$corpses[coffin] -1}}
-#act {^You shake the frame and out drops} {#line gag;#echo {<169>Freezer: -1 corpse};#math {corpses[freezer]} {$corpses[freezer] -1}}
-#act {^You pick up %* and touch} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {4}
-#act {^There are no corpses in the coffin!$} {#var corpses[coffin] 0};
+#act {^You pick up %*} {#line gag} {5};
+#act {wrap it up into the coffin's protective hold!$} {#line gag;#echo {<169>Coffin: +1 corpse};#math {corpses[coffin]} {$corpses[coffin] + 1}} {5};
+#act {touch it to the frame causing it to get sucked in!$} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {5};
+#act {^The coffin expels} {#line gag;#echo {<169>Coffin: -1 corpse};#math {corpses[coffin]} {$corpses[coffin] -1}};
+#act {^You shake the frame and out drops} {#line gag;#echo {<169>Freezer: -1 corpse};#math {corpses[freezer]} {$corpses[freezer] -1}};
+#act {^There are no corpses in the coffin!$} {#var corpses[coffin] 0};;
 
 
 #NOP -- Corpse Management INVENTORY
@@ -56,6 +62,10 @@
 #NOP -- Corpse Management SMUGGLE
 #var corpses[smuggle] 0;
 #act {^Items you are currently smuggling (%*):} {#var corpses[smuggle] 0;};
+#action {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}} {
+	#math corpses[smuggle] {$corpses[smuggle] + 1};
+};
+
 #act {^> %* corpse of %*} {#math {corpses[smuggle]} {$corpses[smuggle] + 1}};
 #act {^You smuggle away: ~%* corpse of %w} {
 	#math {corpses[smuggle]} {$corpses[smuggle] + 1};
