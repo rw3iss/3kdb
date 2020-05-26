@@ -73,8 +73,8 @@
         prots_ms;
         prots_ss;
         prots_blink;
-        prots_MG
-        prots_pa;
+        prots_MG;
+        prots_PA;
         };
 
 
