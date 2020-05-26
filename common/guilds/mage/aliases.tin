@@ -5,6 +5,7 @@
 #alias {clear_align} {#var defs[pe] 0;#var defs[pg] 0};
 #alias {clear_prots} {#unvar defs};
 
+#alias {prots_pa} {cast prismatic aura;#var defs[PA] 1;echo prots_pa};
 #alias {prots_MG} {cast major globe;#var defs[MG] 1;echo_prots_MG};
 #alias {prots_mg} {cast minor globe;#var defs[mg] 1;echo_prots_mg};
 #alias {prots_ms} {cast magnificent shield;#var defs[ms] 1;echo_prots_ms};
@@ -21,6 +22,7 @@
 #alias {echo_clear_prots} {#echo {--------------- CLEARING DEFENSE VARIABLES --------------}};
 #alias {echo_divider2} {#echo {+++++++++++++++++++++++++++++++++++++++++++++++++++++++++}};
 #alias {echo_prots_header} {#echo {+++++++++++++++  ACTIVE DEFENSES INCLUDE:  ++++++++++++++}};
+#alias {echo_prots_pa} {#echo {+++++++++++++++  PRISMATIC AURA           ++++++++++++++}};
 #alias {echo_prots_MG} {#echo {+++++++++++++++  MAJOR GLOBE              ++++++++++++++}};
 #alias {echo_prots_mg} {#echo {+++++++++++++++  MINOR GLOBE              ++++++++++++++}};
 #alias {echo_prots_ms} {#echo {+++++++++++++++  MAGNIFICENT SHIELD       ++++++++++++++}};
