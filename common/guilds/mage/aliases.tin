@@ -6,7 +6,7 @@
 #alias {clear_prots} {#unvar defs};
 
 #alias {check_extension} {
-    #if {$my[sp] > 500} {
+    #if {$my[sp][current] > 500} {
         cast extension 3;
     }
 };
