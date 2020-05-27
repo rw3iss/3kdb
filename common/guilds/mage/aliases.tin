@@ -1,7 +1,10 @@
 #class {mage_aliases} {kill}
 #class {mage_aliases} {open}
 
-#NOP --- MAGE ALIASES
+#NOP --- MAGE SUMMONING ALIASES;
+#alias {create_golem} {say golem, begone;#delay 2 {#30 cast create golem};}
+
+#NOP --- MAGE ALIASES;
 #alias {clear_align} {#var defs[pe] 0;#var defs[pg] 0};
 #alias {clear_prots} {#unvar defs};
 

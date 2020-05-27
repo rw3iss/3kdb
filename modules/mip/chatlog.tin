@@ -1,8 +1,8 @@
 #class {mipchatlog} {open}
 
 
-#VAR ignoreEmotes {whinnies as Xaris pets his head.;rubs its head on Xaris's chest with affection as Xaris pets him.;licks Xaris's face as he pats him on the neck.;That hurt!;Arruns Thelton;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
-#VAR ignoreMisc {[PARTY] All gold divvied, total;[PARTY] GOLD divvy called by};
+#VAR ignoreEmotes {wounds close rapidly.;whinnies as Xaris pets his head.;rubs its head on Xaris's chest with affection as Xaris pets him.;licks Xaris's face as he pats him on the neck.;That hurt!;Arruns Thelton;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
+#VAR ignoreMisc {All gold divvied;GOLD divvy called by};
 
 #NOP ***** Broadcast Communication (Chat/Shout) *****
 #ALIAS {.mipProcessCAA} {
@@ -15,7 +15,7 @@
 
 		#var ignore 0;
 		#foreach {$ignoreMisc} {item} {
-			#if {"&4" == "%*$item%*"} {
+			#if {"&5" == "%*$item%*"} {
 				#var ignore 1;
 			}
 		}

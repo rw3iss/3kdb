@@ -6,7 +6,10 @@
 #ACTION {^Your armor spell has dissipated!$} {#if {$defs[armor] && !$idle_flag} {cast armor}} {5}
 
 #NOP --- SUMMONING ACTIONS;
-#ACTION {^You throw your golem construction materials to the ground and} {say all, you are now in group summons/assist always};
+#ACTION {^You throw your golem construction materials to the ground and} {
+    say all, you are now in group summons/assist always;
+};
+
 #ACTION {^You wave your hands calling forth summoning magics and draw} {say all, you are now in group summons/assist always};
 #ACTION {^A %* seems to slow down...$} {cast haste on summons};
 
