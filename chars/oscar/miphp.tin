@@ -49,6 +49,7 @@
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {Prots: $prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $immersion_string  G2N: $my[g2n]%   };
 	#var prompt4 {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer]) Gem: $my[gem]% MC: $my[mental_cognition]% Idle: $idle_cap};
+	#var prompt5 {Golem: $my[summon][golem]};
 
 	_player_heartbeat;
     _guild_heartbeat;
@@ -84,7 +85,7 @@
 
 #alias {draw_hpbar} {
     #if {"$draw[hpbar]" == "on"} {
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3}\n${prompt4} };
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3}\n${prompt4}\n${prompt5} };
     }
 }
 
