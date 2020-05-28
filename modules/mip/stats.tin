@@ -125,7 +125,7 @@
 		#REGEX {$mip[gline][2]}	{I: %d}				{#VAR {my[immersion][count]}	{&1}};
 		
 		#REGEX {$mip[gline][2]}	{{golem|Straw|Rope|Wood|Flesh|Clay|Stone|Iron|Crystal}:%+0..5p}
-													{#VAR {my[summon][golem]}		{&1}} {#VAR {my[summon][golem]}		{0}};
+													{#VAR {my[summon][golem]}		{&2}} {#VAR {my[summon][golem]}		{0}};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
