@@ -2,9 +2,14 @@
 #class {mage_aliases} {open}
 
 #NOP --- MAGE SUMMONING ALIASES;
-#alias {create_golem} {say golem, begone;#delay 2 {#30 cast create golem};}
+#alias {create_golem} {
+    say golem, begone;
+    #action {^There's bits of the following materials remaining:$} {
+        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem2 as %%1;} {1};
+    };
+}
 
-#NOP --- MAGE ALIASES;
+#NOP --- MAGE DEFENSE ALIASES;
 #alias {clear_align} {#var defs[pe] 0;#var defs[pg] 0};
 #alias {clear_prots} {#unvar defs};
 
