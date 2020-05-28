@@ -1,7 +1,7 @@
 #class {mipchatlog} {open}
 
 
-#VAR ignoreEmotes {wounds close rapidly.;whinnies as Xaris pets his head.;rubs its head on Xaris's chest with affection as Xaris pets him.;licks Xaris's face as he pats him on the neck.;That hurt!;Arruns Thelton;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
+#VAR ignoreEmotes {performs a rather incomprehensible action on the corpse.;wounds close rapidly.;whinnies as;rubs its head on;face as he pats him on the neck.;That hurt!;cries 'OW;takes a deep breath;ceases his performance;briefly closes his eyes;wraps his arms around;bows and bids you};
 #VAR ignoreMisc {All gold divvied;GOLD divvy called by};
 
 #NOP ***** Broadcast Communication (Chat/Shout) *****

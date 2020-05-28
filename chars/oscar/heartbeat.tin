@@ -9,14 +9,18 @@
     #math saturation_threshold {$saturation_max * .15};
     #math saturation_danger {$saturation_max * .9};
     #if !$idle_flag {
-        #if {$my[immersion][count] && $my[golem][reset] > 95} {cast mystic immersion};
-        #if {$my[super][current] && $my[gp1][current] < 10 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
+        #if {$my[immersion][count] && $my[golem][reset] > 80} {cast mystic immersion};
+        #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
         #if {!$my[super][current] && $my[gp1][current] > 50 && $ash_toggle} {ash off;#var ash_toggle 0;};
         #if {$my[immersion][count] && $my[sp][current] < $sp_min} {cast mystic immersion};
         #if {$my[super][current] && $my[gp1][current] > 60} {cast explosive release};
         #if {$my[gp1][current] > $saturation_danger && $corpses[total] > 0} {corpse_select;#delay 4 {cast corpse blast;cast corpse blast}};
-        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle} {.pause;study spellbook;#var bot_toggle 1};
-        #if {$my[sp][current] > $sp_threshold && $my[gp1][current] < $saturation_threshold && $bot_toggle} {..;#var bot_toggle 0};
+        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle} {
+            #ECHO {Stopping:  SP: $my[sp][current] Saturation: $my[gp1][current]};
+            .pause;study spellbook;#var bot_toggle 1};
+        #if {$my[sp][current] > $sp_threshold && $my[gp1][current] < $saturation_threshold && $bot_toggle} {
+            #ECHO {Resuming:  SP: $my[sp][current] Saturation: $my[gp1][current]};
+            ..;#var bot_toggle 0};
         #if {$my[g2n] == 100 && $gl_run} {#var gl_run 0;#delay 120 go_glvl};
     };
 };
