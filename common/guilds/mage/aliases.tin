@@ -6,7 +6,7 @@
     say golem, begone;
     examine materials;
     #action {^There's bits of the following materials remaining:$} {
-        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem2 %%%%1;} {1};
+        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem2 %%%1;} {1};
     };
 }
 
