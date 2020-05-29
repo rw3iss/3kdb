@@ -3,16 +3,18 @@
 
 #var bot_toggle 1;
 #var ash_toggle 0;
+#var golem_toggle 1;
 
 #alias {_player_heartbeat} {
     #math sp_threshold {$my[sp][max] * .90};
     #math saturation_threshold {$saturation_max * .15};
     #math saturation_danger {$saturation_max * .9};
     #if !$idle_flag {
+        #if {$golem_toggle && !$my[summon][golem]} {create_golem;#var golem_toggle 0;#delay 3 {#var golem_toggle 1}};
         #if {$my[immersion][count] && $my[golem][reset] > 80} {cast mystic immersion};
-        #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
-        #if {!$my[super][current] && $my[gp1][current] > 50 && $ash_toggle} {ash off;#var ash_toggle 0;};
         #if {$my[immersion][count] && $my[sp][current] < $sp_min} {cast mystic immersion};
+        #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
+        #if {!$my[super][current] && $my[gp1][current] > $saturation_danger && $ash_toggle} {ash off;#var ash_toggle 0;};
         #if {$my[super][current] && $my[gp1][current] > 60} {cast explosive release};
         #if {$my[gp1][current] > $saturation_danger && $corpses[total] > 0} {corpse_select;#delay 4 {cast corpse blast;cast corpse blast}};
         #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle} {

@@ -2,12 +2,18 @@
 #class {mage_actions} {open}
 
 #NOP --- MAGE ACTIONS;
-#ACTION {^Your magnificent shield is shattered from the force of the blow!$} {#if {$defs[ms] && !$idle_flag} {cast magnificent shield}} {5}
-#ACTION {^Your armor spell has dissipated!$} {#if {$defs[armor] && !$idle_flag} {cast armor}} {5}
+#ACTION {^You are no longer allowing your SP to be healed.} {#var ash 0};
+#ACTION {^You are now allowing your SP to be healed from local} {#var ash 1};
+#ACTION {^You are now allowing your SP to be healed from any source} {#var ash 2};
 
 #NOP --- SUMMONING ACTIONS;
 #ACTION {^You throw your golem construction materials to the ground and} {
     say all, you are now in group summons/assist always;
+};
+
+#ACTION {^You don't have any basic construction materials for a crystal!} {
+    ffetch materials;
+    #delay 5 {create_golem};
 };
 
 #ACTION {^You wave your hands calling forth summoning magics and draw} {say all, you are now in group summons/assist always};
