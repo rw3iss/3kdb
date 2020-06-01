@@ -3,7 +3,6 @@
 
 #NOP --- MAGE SUMMONING ALIASES;
 #alias {create_golem} {
-    say golem, begone;
     examine materials;
     #action {^There's bits of the following materials remaining:$} {
         #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem2 %%%1;} {1};
@@ -20,6 +19,7 @@
     }
 };
 
+#alias {prots_mb} {check_extension;cast mindblank;#var defs[MB] 1;echo_prots_mb};
 #alias {prots_pa} {check_extension;cast prismatic aura;#var defs[PA] 1;echo_prots_pa};
 #alias {prots_MG} {check_extension;cast major globe;#var defs[MG] 1;echo_prots_MG};
 #alias {prots_mg} {check_extension;cast minor globe;#var defs[mg] 1;echo_prots_mg};
@@ -37,6 +37,7 @@
 #alias {echo_clear_prots} {#echo {--------------- CLEARING DEFENSE VARIABLES --------------}};
 #alias {echo_divider2} {#echo {+++++++++++++++++++++++++++++++++++++++++++++++++++++++++}};
 #alias {echo_prots_header} {#echo {+++++++++++++++  ACTIVE DEFENSES INCLUDE:  ++++++++++++++}};
+#alias {echo_prots_mb} {#echo {+++++++++++++++  MIND BLANK               ++++++++++++++}};
 #alias {echo_prots_pa} {#echo {+++++++++++++++  PRISMATIC AURA           ++++++++++++++}};
 #alias {echo_prots_MG} {#echo {+++++++++++++++  MAJOR GLOBE              ++++++++++++++}};
 #alias {echo_prots_mg} {#echo {+++++++++++++++  MINOR GLOBE              ++++++++++++++}};

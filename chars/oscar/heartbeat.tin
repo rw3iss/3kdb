@@ -4,6 +4,7 @@
 #var bot_toggle 1;
 #var ash_toggle 0;
 #var golem_toggle 1;
+#var immersion_casts 1;
 
 #alias {_player_heartbeat} {
     #math sp_threshold {$my[sp][max] * .90};
@@ -26,6 +27,13 @@
         #if {$my[g2n] == 100 && $gl_run} {#var gl_run 0;#delay 120 go_glvl};
         #if {$my[gem] < 80} {ffetch gem};
     };
+
+    #if {$!idle_flag && $my[immersion][rounds] > 0 && immersion_casts} {
+        cast haste on summons;
+        cast haste on oscar;
+        cast giant strength on summons;
+        cast giant strength on oscar;
+    }
 };
 
 #class {player_heartbeat} {close}

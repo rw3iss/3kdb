@@ -13,6 +13,6 @@
     #map set roomterrain cave_2;  #NOP -- cant figure this syntax out atm
 }
 
-#NOP -- #map set roomterrain Forest
+#NOP -- #map set roomterrain Forest;
 
 #show Map terrain configurations loaded.\n;
