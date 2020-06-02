@@ -20,7 +20,7 @@
             ..;#var bot_toggle 0};
     };
 
-    #NOP -- Heartbeat actions that should only be attempted once per round
+    #NOP -- Heartbeat actions that should only be attempted once per round;
     #if {!$idle_flag && $action_round < $mip[round]} {
         #if {$my[gp1][current] > $saturation_danger && $corpses[total] > 0} {corpse_select;#delay 4 {cast corpse blast;cast corpse blast}};
         #if {$my[golem][current] && $golem_toggle && !$my[summon][golem]} {#var golem_toggle 0;create_golem;#delay 20 {#var golem_toggle 1}};
