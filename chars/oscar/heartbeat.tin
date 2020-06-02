@@ -38,9 +38,9 @@
             cast giant strength on summons;
             cast giant strength on oscar;
         }
-        #var action_round $mip[round];
-    };   
-
+    };
+    
+    #var action_round $mip[round];
 };
 
 #class {player_heartbeat} {close}
