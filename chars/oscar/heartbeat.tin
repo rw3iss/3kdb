@@ -35,8 +35,6 @@
         #if {$my[immersion][rounds] > 0 && $immersion_casts} {
             cast haste on summons;
             cast haste on oscar;
-            cast giant strength on summons;
-            cast giant strength on oscar;
         }
     };
     
