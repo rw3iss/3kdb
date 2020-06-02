@@ -26,11 +26,11 @@
 #var dmgt[dmg] 0;
 
 
-#act {^The disintegrate %*! \{(\d+)\}$} {
+#act {{^The disintegrate (.*)! \{(\d+)\}$}} {
     #var incombat 1;
-    #math {spell_dmg[ravg]} {($spell_dmg[ravg] + %2) / 2};
-    #var spell_dmg[curr] %2;
-    #math spell_dmg[dmg] {$spell_dmg[dmg] + %2};
+    #math {spell_dmg[ravg]} {($spell_dmg[ravg] + %3) / 2};
+    #var spell_dmg[curr] %3;
+    #math spell_dmg[dmg] {$spell_dmg[dmg] + %3};
     #math spell_dmg[rnd] {$spell_dmg[rnd] + 1};
     #math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};
 } {1};
@@ -45,11 +45,10 @@
     #math {cmbt[avg]} {$cmbt[dmg] / $cmbt[rnd]};
 } {1};
 
-#act {^El Jefe %* hit for (\d+) damage\.$} {
+#act {{^El Jefe (.*) hit for (\d+) damage.$}} {
     #var incombat 1;
-    #math {summon_dmg[ravg]} {($summon_dmg[ravg] + %2) / 2};
-    #var summon_dmg[curr] %2;
-    #math summon_dmg[dmg] {$summon_dmg[dmg] + %2};
+    #math {summon_dmg[ravg]} {($summon_dmg[ravg] + %3) / 2};
+    #var summon_dmg[curr] %3;#math summon_dmg[dmg] {$summon_dmg[dmg] + %3};
     #math summon_dmg[rnd] {$summon_dmg[rnd] + 1};
     #math {summon_dmg[avg]} {$summon_dmg[dmg] / $summon_dmg[rnd]};
 } {1};
@@ -72,6 +71,10 @@
     
 #alias {dstats} {
     #show {\nAverage damage : $cmbt[avg] over $cmbt[rnd] rounds.  Total: $cmbt[dmg] damage.};
+    #if {$guild == "mage"} {
+        #show {\nAverage Spell damage : $spell_dmg[avg] over $spell_dmg[rnd] rounds.  Total: $spell_dmg[dmg] damage.};
+        #show {\nAverage Golem damage : $summon_dmg[avg] over $summon_dmg[rnd] rounds.  Total: $summon_dmg[dmg] damage.};
+    }
     #show {Damage taken   : $dmgt[avg] over $dmgt[rnd] rounds.  Total: $dmgt[dmg] damage.\n};
 
     #math {dog[avg]} {$dog[dmg] / $dog[rnd]};
