@@ -9,6 +9,9 @@
 #ACTION {^You are now allowing your SP to be healed from local} {#var ash 1};
 #ACTION {^You are now allowing your SP to be healed from any source} {#var ash 2};
 
+#ACTION {^A %* darts out of the room.$} {#var go_fetch 1};
+#ACTION {^A %* darts into the room.$} {#var go_fetch 0};
+
 #NOP --- SUMMONING ACTIONS;
 #ACTION {^You throw your golem construction materials to the ground and} {
     say all, you are now in group summons/assist always;
