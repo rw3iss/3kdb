@@ -18,6 +18,7 @@
 
 /* load specific modules for this character */
 #read modules/corpsemanager/corpsemanager.tin;
+#read modules/dmgtracker/dmgtracker.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;

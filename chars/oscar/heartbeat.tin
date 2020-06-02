@@ -28,7 +28,7 @@
         #if {$my[gem] < 80} {ffetch gem};
     };
 
-    #if {$!idle_flag && $my[immersion][rounds] > 0 && $immersion_casts} {
+    #if {!$idle_flag && $my[immersion][rounds] > 0 && $immersion_casts} {
         cast haste on summons;
         cast haste on oscar;
         cast giant strength on summons;

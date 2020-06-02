@@ -3,8 +3,5 @@
 
 #NOP --- Nix Mage specific actions
 #act {dealt the killing blow to} {cast corpse blast;divvy coins;study spellbook;repeat add combat/cast slow/1}:
-#act {Your deeppocket begins to fade} {#if !$idle_flag {cast deeppockets}};
-
-
 
 #class {player_actions} {close}

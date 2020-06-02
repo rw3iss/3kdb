@@ -1,6 +1,9 @@
 #class {mage_actions} {kill}
 #class {mage_actions} {open}
 
+#NOP --- MAINTENCE ACTIONS;
+#ACTION {Your deeppocket begins to fade} {#if !$idle_flag {cast deeppockets}};
+
 #NOP --- MAGE ACTIONS;
 #ACTION {^You are no longer allowing your SP to be healed.} {#var ash 0};
 #ACTION {^You are now allowing your SP to be healed from local} {#var ash 1};
