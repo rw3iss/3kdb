@@ -84,6 +84,10 @@
 #alias {ds} {dstats};
 
 #alias {dreset} {
+    #var {spell_dmg[dmg]} 0;
+    #var {spell_dmg[rnd]} 0;
+    #var {summon_dmg[dmg]} 0;
+    #var {summon_dmg[rnd]} 0;
     #var {cmbt[dmg]} 0;
     #var {cmbt[rnd]} 0;
     #var {dmgt[dmg]} 0;
