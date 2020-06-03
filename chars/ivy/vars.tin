@@ -1,7 +1,6 @@
 #CLASS {global} OPEN
 
 #var username ivy;
-#var password monage;
 
 #ALIAS {_player_deadmanActions}
 {
