@@ -47,11 +47,11 @@
 	#replace prots_string  { } {};
 	#replace prots_string  {*} { };
 
-	#var corpse_string {Corpses: $corpses[total] (C: $corpses[coffin]};
-	#if {$corpses[inventory] > 0} {#var corpse_string {$corpse_string I: $corpses[inventory]};};
-	#if {$corpses[smuggle] > 0} {#var corpse_string {$corpse_string S: $corpses[smuggle]};};
-	#if {$corpses[freezer] > 0} {#var corpse_string {$corpse_string F: $corpses[freezer]};};
-	#if {$corpses[cooler] > 0} {#var corpse_string {$corpse_string Clr: $corpses[cooler]};};
+	#var corpse_string Corpses: $corpses[total] (C: $corpses[coffin];
+	#if {$corpses[inventory] > 0} {#var corpse_string $corpse_string I: $corpses[inventory];};
+	#if {$corpses[smuggle] > 0} {#var corpse_string $corpse_string S: $corpses[smuggle];};
+	#if {$corpses[freezer] > 0} {#var corpse_string $corpse_string F: $corpses[freezer];};
+	#if {$corpses[cooler] > 0} {#var corpse_string $corpse_string Clr: $corpses[cooler];};
 	
 	#var corpse_string {$corpse_string )}
 
