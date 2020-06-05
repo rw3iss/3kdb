@@ -15,7 +15,7 @@
 
 #alias corpse_select {
 	#if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]} {smuggle remove corpse;drop corpse;};
-	#if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {unkeep corpse;drop corpse;}};
+	#if $corpses[coffin] {unwrap;} {#if $corpses[freezer] {deslab;} {#if {$corpses[cooler]} {uncooler corpse;}{unkeep corpse;drop corpse;}}};
 	i;
 }
 
@@ -49,6 +49,11 @@
 #act {^You shake the frame and out drops} {#line gag;#echo {<169>Freezer: -1 corpse};#math {corpses[freezer]} {$corpses[freezer] -1}};
 #act {^There are no corpses in the coffin!$} {#var corpses[coffin] 0};;
 
+
+#NOP -- Corpse Management Tech Ultra-Cooler
+#var corpses[cooler] 0;
+#act {^You activate the Ultra-Cooler to retrieve the corpse.$} {#math {corpses[cooler]} {$corpses[cooler] - 1}}
+#act {^You place the corpse into the Ultra-Cooler and seal the lid$} {#math {corpses[cooler]} {$corpses[cooler] + 1}}
 
 #NOP -- Corpse Management INVENTORY
 #var corpses[inventory] 0;
