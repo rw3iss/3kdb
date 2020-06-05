@@ -53,7 +53,7 @@
 	#if {$corpses[freezer] > 0} {#var corpse_string $corpse_string F: $corpses[freezer];};
 	#if {$corpses[cooler] > 0} {#var corpse_string $corpse_string Clr: $corpses[cooler];};
 	
-	#var corpse_string {$corpse_string )}
+	#var corpse_string {$corpse_string )};
 
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
