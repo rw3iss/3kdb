@@ -1,6 +1,7 @@
 #class {mage_heartbeat} {kill}
 #class {mage_heartbeat} {open}
 
+
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
 		#if (!$my[summon][golem] && $my[golem][current]) {#5 {cast create golem}} {#nop};

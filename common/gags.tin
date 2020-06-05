@@ -2,3 +2,8 @@
 
 #gag {^$} {1};
 #gag {^>$} {1};
+
+
+#gag {^You grasp the band of beads and immediately you feel the sound of a$};
+#gag {^thousand voices pecking at your mental power. In return they give you a$};
+#gag {^brief increase of health.$};

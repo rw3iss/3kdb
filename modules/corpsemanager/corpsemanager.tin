@@ -22,7 +22,7 @@
 #NOP -- Inventory overrides.  These actions update the count when you check inventory;
 #act {^ %*Death's Freezer (%1 corpses).$} {
 	#if {%1 != $corpses[freezer]} {
-		#delay {1} {#echo {<169>Freezer:  Number of corpses thought $corpses[freezer], corrected to %1.};
+		#delay {0.3} {#echo {<169>Freezer:  Number of corpses thought $corpses[freezer], corrected to %1.};
 		#var corpses[freezer] %1};
 	} {
 		#delay {0.1} {#echo {<169>Freezer:  Correct number of corpses found, $corpses[freezer].}}
@@ -30,9 +30,9 @@
 };
 
 #action {{^ (\d+) An enchanted coffin \((\d+) corpses\)(.*)}} {
-	#if {%%3 != $corpses[coffin]} {
-	#delay {1} {#echo {<169>Coffin:  Number of corpses thought $corpses[coffin], corrected to %%3.};
-		#var corpses[coffin] %%3};
+	#if {%3 != $corpses[coffin]} {
+	#delay {0.3} {#echo {<169>Coffin:  Number of corpses thought $corpses[coffin], corrected to %3.};
+		#var corpses[coffin] %3};
 	} {
 		#delay {0.1} {#echo {<169>Coffin:  Correct number of corpses found, $corpses[coffin].}}
 	}
