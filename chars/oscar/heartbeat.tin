@@ -38,24 +38,6 @@
         }
     };
 
-    #NOP -- If you have low sp, and it's safe to spelltap to renew your defense - do so.
-    #if {!$idle_flag && $action_round < $mip[round]} {
-		#if {$my[sp][current] > 100 && $my[sp][current] < 400 && $my[gp1][current] < 80} {
-			#if {{$defs[MB] && !$my[prots][MB]} || 
-			 	{$defs[PA] && !$my[prots][PA]} || 
-			 	{$defs[MG] && !$my[prots][MG]} || 
-			 	{$defs[mg] && !$my[prots][mg]} || 
-			 	{$defs[ms] && !$my[prots][MS]} || 
-			 	{$defs[SS] && !$my[prots][SS]} || 
-			 	{$defs[rs] && !$my[prots][RS]} || 
-			 	{$defs[pe] && !$my[prots][PE]} || 
-			 	{$defs[pg] && !$my[prots][PG]} || 
-			 	{$defs[shield] && !$my[prots][S]} ||
-			 	{$defs[armor] && !$my[prots][A]} || 
-			 	{$defs[blink] && !$my[prots][B]}} {cast spell tap}
-		}
-	};
-
     #var action_round $mip[round];
 };
 
