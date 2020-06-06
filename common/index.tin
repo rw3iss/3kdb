@@ -1,5 +1,6 @@
 #NOP -- files read in;
 
+#read common/areas/index.tin;
 #read common/defaults.tin;
 #read common/aliases.tin;
 #read common/actions.tin;

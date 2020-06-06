@@ -12,7 +12,7 @@
     #math saturation_danger {$saturation_max * .8};
 
     #if !$idle_flag {
-        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle} {
+        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle && $corpses[total] < 5} {
             #ECHO {Stopping:  SP: $my[sp][current] Saturation: $my[gp1][current]};
             .pause;study spellbook;#var bot_toggle 1};
         #if {$my[sp][current] > $sp_threshold && $my[gp1][current] < $saturation_threshold && $bot_toggle} {
