@@ -1,5 +1,7 @@
 #class {mipstats} {open};
 
+#VAR bardSongs {Amazing Grace;Rainbow of Death};
+
 #NOP ***** Combined Stats Data *****
 #ALIAS {.mipProcessFFF} {
 	#VAR {mip[FFF][flag]} {0};
@@ -239,8 +241,14 @@
 		#nop Smile, GXP, Song Performing, Rounds left;
 		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
 		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
-		#REGEX {$mip[gline][2]} { S: %1% %2: %3 NGL:}	{#VAR {my[song][&2]}	{&3}};
-	
+		#REGEX {$mip[gline][2]} { %w\: %d} {
+			#foreach {$bardSongs} {song} {
+				#if {"$song" == "&1"} {
+					#var my[song][title] &1;
+					#var my[song][rounds] &2
+				}
+			}
+		} {#var my[song][rounds] 0};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>};
 	}

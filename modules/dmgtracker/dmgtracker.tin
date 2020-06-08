@@ -35,6 +35,24 @@
     #math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};
 } {1};
 
+#act {{^You unleash a torrent of destruction against (.*)! \{(\d+)\}$}} {
+    #var incombat 1;
+    #math {spell_dmg[ravg]} {($spell_dmg[ravg] + %3) / 2};
+    #var spell_dmg[curr] %3;
+    #math spell_dmg[dmg] {$spell_dmg[dmg] + %3};
+    #math spell_dmg[rnd] {$spell_dmg[rnd] + 1};
+    #math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};
+} {1};
+
+#act {{^The implosion (.*)! \{(\d+)\}$}} {
+    #var incombat 1;
+    #math {spell_dmg[ravg]} {($spell_dmg[ravg] + %3) / 2};
+    #var spell_dmg[curr] %3;
+    #math spell_dmg[dmg] {$spell_dmg[dmg] + %3};
+    #math spell_dmg[rnd] {$spell_dmg[rnd] + 1};
+    #math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};
+} {1};
+
 
 #act {{^You hit (.*) (\d+) (time|times) for (\d+) damage\.$}} {
     #var incombat 1;

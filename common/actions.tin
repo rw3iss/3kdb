@@ -1,6 +1,30 @@
 #class {default_actions} {kill}
 #class {default_actions} {open}
 
+
+#action {^%1 begins to follow %2\.$} {#format {follower} {%l} {%1};#if {"$user" == "$follower"} {#format {following} {%n} {%2}}};
+#action {^You stop following %1} {#unvar following};
+#action {^%1 leaves %2\.$} {
+    #if {"%1" == "$following"} {
+        #format {follow_target} {%l} {%1};
+        #local follow_dir %2;
+        #switch {"$follow_dir"} {
+            #case {"north"}     {#map move n};
+            #case {"northeast"} {#map move ne};
+            #case {"northwest"} {#map move nw};
+            #case {"south"}     {#map move s};
+            #case {"southeast"} {#map move se};
+            #case {"southwest"} {#map move sw};
+            #case {"east"}      {#map move e};
+            #case {"west"}      {#map move w};
+            #case {"down"}      {#map move d};
+            #case {"up"}        {#map move u};
+            #default            {#map move $follow_dir};
+        };
+    }
+}; 
+
+
 #act {{(\w+) taps you on the shoulder\.}} { 
     #format followtarget {%l} {%2}; 
     follow $followtarget;

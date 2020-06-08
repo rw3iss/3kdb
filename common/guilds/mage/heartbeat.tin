@@ -17,6 +17,8 @@
 		#if $defs[shield] {#if !$my[prots][S] {cast shield} {#nop}};
 		#if $defs[armor] {#if !$my[prots][A] {cast armor} {#nop}};
 		#if $defs[blink] {#if !$my[prots][B] {cast blink} {#nop}};
+
+		#if !$deeppocket {#if {$my[sp][current] > 150} {cast deeppockets}};
 	} {#NOP;};
 };
 

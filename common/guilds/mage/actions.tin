@@ -2,12 +2,18 @@
 #class {mage_actions} {open}
 
 #NOP --- MAINTENCE ACTIONS;
-#ACTION {Your deeppocket begins to fade} {#if !$idle_flag {cast deeppockets}};
+#ACTION {Your deeppocket begins to fade} {#var deeppocket 0};
+#ACTION {^You reinforce the magic within your deeppocket.$} {#var deeppocket 1};
+
 
 #NOP --- MAGE ACTIONS;
 #ACTION {^You are no longer allowing your SP to be healed.} {#var ash 0};
 #ACTION {^You are now allowing your SP to be healed from local} {#var ash 1};
 #ACTION {^You are now allowing your SP to be healed from any source} {#var ash 2};
+
+#ACTION {^You will cast spell tap every round in combat.$} {#var spelltap 1};
+#ACTION {^You will not cast spell tap every round in combat.$} {#var spelltap 0};
+
 
 #ACTION {^A %* darts out of the room.$} {#var go_fetch 1};
 #ACTION {^A %* darts into the room.$} {#var go_fetch 0};
