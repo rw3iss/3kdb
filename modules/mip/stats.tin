@@ -241,7 +241,7 @@
 		#nop Smile, GXP, Song Performing, Rounds left;
 		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
 		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
-		#REGEX {$mip[gline][2]} { %w\: %d} {
+		#REGEX {$mip[gline][2]} { %2: %d} {
 			#foreach {$bardSongs} {song} {
 				#if {"$song" == "&1"} {
 					#var my[song][title] &1;

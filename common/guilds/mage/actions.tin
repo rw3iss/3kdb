@@ -1,6 +1,12 @@
 #class {mage_actions} {kill}
 #class {mage_actions} {open}
 
+#NOP --- MOB STATUS TRACKING;
+#ACTION {%w seems to speed up...$} {#var mob_slow 0};
+#ACTION {^You raise your arms and suddenly %* is moving much slower!$} {#var mob_slow 1};
+#ACTION {%w is already slowed.$} {#var mob_slow 1};
+#ACTION {^That creature cannot be affected!$} {#var mob_slow 2};
+
 #NOP --- MAINTENCE ACTIONS;
 #ACTION {Your deeppocket begins to fade} {#var deeppocket 0};
 #ACTION {^You reinforce the magic within your deeppocket.$} {#var deeppocket 1};
