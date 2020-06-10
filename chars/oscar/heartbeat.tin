@@ -24,17 +24,22 @@
     #if {!$idle_flag && $action_round < $mip[round]} {
         #if {$my[gp1][current] > $saturation_danger && $corpses[total] > 0} {corpse_select;#delay 4 {cast spell tap on corpse;cast corpse blast;cast spell tap on corpse;cast corpse blast}};
         #if {$my[golem][current] && $golem_toggle && !$my[summon][golem]} {#var golem_toggle 0;create_golem;#delay 20 {#var golem_toggle 1}};
-        #if {$my[immersion][count] && $my[golem][reset] > 80} {cast mystic immersion};
-        #if {$my[immersion][count] && $my[sp][current] < $sp_min} {cast mystic immersion};
+        #if {$my[immersion][count] && !$my[immersion][rounds] && ($my[golem][reset] > 80 || $my[sp][current] < $sp_min)} {cast mystic immersion};
         #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
         #if {!$my[super][current] && $my[gp1][current] > $saturation_danger && $ash_toggle} {ash off;#var ash_toggle 0;};
         #if {$my[super][current] && $my[gp1][current] > 60} {cast explosive release};
         #if {$my[g2n] == 100 && $gl_run} {#var gl_run 0;#delay 120 go_glvl};
         #if {$my[gem] < 80 && !$go_fetch} {#var go_fetch 1;ffetch gem};
 
+        #if {$mob_slow <1} {
+            cast slow;
+        }
+
         #if {$my[immersion][rounds] > 0 && $immersion_casts} {
             cast haste on summons;
             cast haste on oscar;
+            cast haste on broodlings;
+            cast haste on dog;
         }
     };
 

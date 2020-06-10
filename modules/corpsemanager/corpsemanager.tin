@@ -56,16 +56,16 @@
 #var corpses[freezer] 0;
 #act {^You pick up %*} {#line gag} {5};
 #act {wrap it up into the coffin's protective hold!$} {#line gag;#echo {<169>Coffin: +1 corpse};#math {corpses[coffin]} {$corpses[coffin] + 1}} {5};
-#act {touch it to the frame causing it to get sucked in!$} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {5};
 #act {^The coffin expels} {#line gag;#echo {<169>Coffin: -1 corpse};#math {corpses[coffin]} {$corpses[coffin] -1}};
+#act {touch it to the frame causing it to get sucked in!$} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {5};
 #act {^You shake the frame and out drops} {#line gag;#echo {<169>Freezer: -1 corpse};#math {corpses[freezer]} {$corpses[freezer] -1}};
 #act {^There are no corpses in the coffin!$} {#var corpses[coffin] 0};;
 
 
 #NOP -- Corpse Management Tech Ultra-Cooler
 #var corpses[cooler] 0;
-#act {^You activate the Ultra-Cooler to retrieve the corpse.$} {#math {corpses[cooler]} {$corpses[cooler] - 1}}
-#act {^You place the corpse into the Ultra-Cooler and seal the lid$} {#math {corpses[cooler]} {$corpses[cooler] + 1}}
+#act {^You activate the Ultra-Cooler to retrieve the %*.$} {#math {corpses[cooler]} {$corpses[cooler] - 1}}
+#act {^You place the %* into the Ultra-Cooler and seal the lid$} {#math {corpses[cooler]} {$corpses[cooler] + 1}}
 
 #NOP -- Corpse Management INVENTORY
 #var corpses[inventory] 0;

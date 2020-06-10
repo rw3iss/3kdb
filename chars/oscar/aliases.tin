@@ -3,9 +3,10 @@
 
 #alias corpse_trig {
   slab all;
+  cast spell tap on corpse;
   cast corpse blast;
   get coins;
-  repeat combat/cast slow/1;
+  #var mob_slow 0;
   study spellbook;
 };
 
