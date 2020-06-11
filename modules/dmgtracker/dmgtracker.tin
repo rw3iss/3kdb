@@ -26,16 +26,9 @@
 #var dmgt[dmg] 0;
 
 
-#act {{^The disintegrate (.*)! \{(\d+)\}$}} {
-    #var incombat 1;
-    #math {spell_dmg[ravg]} {($spell_dmg[ravg] + %3) / 2};
-    #var spell_dmg[curr] %3;
-    #math spell_dmg[dmg] {$spell_dmg[dmg] + %3};
-    #math spell_dmg[rnd] {$spell_dmg[rnd] + 1};
-    #math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};
-} {1};
 
-#act {{^You unleash a torrent of destruction against (.*)! \{(\d+)\}$}} {
+
+#act {{^The disintegrate (.*)! \{(\d+)\}$}} {
     #var incombat 1;
     #math {spell_dmg[ravg]} {($spell_dmg[ravg] + %3) / 2};
     #var spell_dmg[curr] %3;
@@ -52,6 +45,9 @@
     #math spell_dmg[rnd] {$spell_dmg[rnd] + 1};
     #math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};
 } {1};
+
+
+#act {{^The shatter (.*)! \{(\d+)\}$|^You unleash a torrent of destruction against (.*)! \{(\d+)\}$(.*) is nearly erased from the force of your shatter! \{(\d+)\}$|^The ground shakes as (.*) is torn asunder by your shatter!! \{(\d+)\}$|^A resounding wave of energy blasts from (.*), ripped to shreds by your shatter! \{(\d+)\}$|^Your shatter (.*)! \{(\d+)\}$}} {say damage is %2;#var incombat 1;#math {spell_dmg[ravg]} {($spell_dmg[ravg] + %%2) / 2};#var spell_dmg[curr] %%2;#math spell_dmg[dmg] {$spell_dmg[dmg] + %%2};#math spell_dmg[rnd] {$spell_dmg[rnd] + 1};#math {spell_dmg[avg]} {$spell_dmg[dmg] / $spell_dmg[rnd]};} {1};
 
 
 #act {{^You hit (.*) (\d+) (time|times) for (\d+) damage\.$}} {
