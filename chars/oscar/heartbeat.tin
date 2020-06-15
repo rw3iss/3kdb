@@ -36,10 +36,12 @@
         }
 
         #if {$my[immersion][rounds] > 0 && $immersion_casts} {
-            cast haste on summons;
-            cast haste on oscar;
-            cast haste on broodlings;
-            cast haste on dog;
+            #if !$golem_haste {
+                cast haste on summons
+            }
+            #if !haste {
+                cast haste;
+            }
         }
     };
 

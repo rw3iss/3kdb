@@ -1,6 +1,7 @@
 #class {player_actions} {kill}
 #class {player_actions} {open}
 
+
 #NOP --- Oscar specific actions;
 #action {killing blow} {corpse_trig};
 

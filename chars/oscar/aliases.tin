@@ -12,8 +12,7 @@
 
 #alias summon_buff {
      say all, you are now in group summons;
-     c haste on summons;
-     c giant strength on summons;
+     cast haste on summons;
 }
 
 #alias {_player_deadmanActions} {

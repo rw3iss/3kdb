@@ -10,7 +10,32 @@
 #NOP --- MAINTENCE ACTIONS;
 #ACTION {Your deeppocket begins to fade} {#var deeppocket 0};
 #ACTION {^You reinforce the magic within your deeppocket.$} {#var deeppocket 1};
+#ACTION {^You feel slower as the haste wears off.$} {#var haste 0};
 
+#ACTION {----*> Your prismatic_aura greater contingency has dissipated!<*----} {
+    cast greater contingency as prismatic_aura#cast prismatic aura
+};
+#ACTION {----*> Your prismatic_aura contingency has dissipated!<*----} {
+    cast contingency as prismatic_aura#cast prismatic aura
+};
+#ACTION {----*> Your stoneskin greater contingency has dissipated!<*----} {
+    cast greater contingency as stoneskin#cast stoneskin
+};
+#ACTION {----*> Your stoneskin contingency has dissipated!<*----} {
+    cast contingency as stoneskin#cast stoneskin
+};
+#ACTION {----*> Your blink greater contingency has dissipated!<*----} {
+    cast greater contingency as blink#cast blink
+};
+#ACTION {----*> Your blink contingency has dissipated!<*----} {
+    cast contingency as blink#cast blink
+};
+#ACTION {----*> Your major_globe greater contingency has dissipated!<*----} {
+    cast greater contingency as major_globe#cast major globe
+};
+#ACTION {----*> Your major_globe contingency has dissipated!<*----} {
+    cast contingency as major_globe#cast major globe
+};
 
 #NOP --- MAGE ACTIONS;
 #ACTION {^You are no longer allowing your SP to be healed.} {#var ash 0};
@@ -25,8 +50,23 @@
 #ACTION {^A %* darts into the room.$} {#var go_fetch 0};
 
 #NOP --- SUMMONING ACTIONS;
+
+#var golemTypes {Straw;Wood;Flesh;Clay;Stone;Rope;Iron;Crystal};
+
 #ACTION {^You throw your golem construction materials to the ground and} {
     say all, you are now in group summons/assist always;
+};
+
+#ACTION {%w is already hasted.$} {
+    #foreach $golemTypes {golem} {
+        #if {"%1" == "$golem"} {
+            #var golem_haste 1;
+        }
+    }    
+};
+
+#ACTION {^El Jefe %* seems to slow down...$} {
+    #var golem_haste 0;
 };
 
 #ACTION {^You don't have any basic construction materials for a crystal!} {
@@ -34,8 +74,8 @@
     #delay 5 {create_golem};
 };
 
+
 #ACTION {^You wave your hands calling forth summoning magics and draw} {say all, you are now in group summons/assist always};
 #ACTION {^A %* seems to slow down...$} {cast haste on summons};
-
 
 #class {mage_actions} {close}
