@@ -1,2 +1,17 @@
 #alias {spider2} {search waterfall;remove slate;place hand on print;search dust;knock on door};
 #act {A voice says: What is the PASSWORD?} {say black swan};
+
+
+#alias firebat_west {e;e;n;n;w;w;n;w;w;n;n;n;};
+#alias firebat_return {e;s;e;e;s;s;s;e;e;s;s;w;w;};
+
+
+#alias {alien_queen} {e;ne;n;n;n;topple stacks;enter duct;e;n;nw;ne;n;lift grate;d;drop into hole;s};
+
+#NOP -- RAVENLOFT
+#alias {de_carriage} {out;s;w;door;jump;w;w;d;s;westdoor;brief;u;s;s;e;u;e;nw;sw;w;carriage};
+#alias {de_stones} {open box;get stone from hand;get stone from hand 2;get stone from hand 3;get stone from hand 4;get stone from hand 5;get stone from hand 6;get stone from hand 7;get stone from hand 8;put opal stone in brazier;put red stone in brazier;put blue stone in brazier;put black stone in brazier};
+#alias {carriage_de} {enter;enter;e;s;w;w;s;e;e;d;w;n;n;n;brief;d;d;de_stones;centerdoor;u;e;e;jump;e;e;stairs;n};
+#alias {carriage_demon} {enter;enter;e;s;w;w;s;e;e;d;w;n;n;n;}
+#alias {demon_de} {d;d;de_stones;centerdoor;u;e;e;jump;e;e;stairs;n};
+

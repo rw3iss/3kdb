@@ -6,7 +6,7 @@
 #action {killing blow} {corpse_trig};
 
 #NOP -- Summon specific actions;
-
+#action {That is not here or it is uninteresting. (materials?)} {ffetch materials};
 
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
 

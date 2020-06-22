@@ -9,6 +9,7 @@
 #alias {_player_heartbeat} {
     #math sp_threshold {$my[sp][max] * .90};
     #math saturation_threshold {$saturation_max * .15};
+    #math saturation_warning {$saturation_max * .6};
     #math saturation_danger {$saturation_max * .8};
 
     #if !$idle_flag {
@@ -22,7 +23,7 @@
 
     #NOP -- Heartbeat actions that should only be attempted once per round;
     #if {!$idle_flag && $action_round < $mip[round]} {
-        #if {$my[gp1][current] > $saturation_danger && $corpses[total] > 0} {corpse_select;#delay 4 {cast spell tap on corpse;cast corpse blast;cast spell tap on corpse;cast corpse blast}};
+        #if {$my[gp1][current] > $saturation_warning && $corpses[total] > 0} {corpse_select;#delay 4 {cast spell tap on corpse;cast corpse blast;cast spell tap on corpse;cast corpse blast}};
         #if {$my[golem][current] && $golem_toggle && !$my[summon][golem]} {#var golem_toggle 0;create_golem;#delay 20 {#var golem_toggle 1}};
         #if {$my[immersion][count] && !$my[immersion][rounds] && ($my[golem][reset] > 80 || $my[sp][current] < $sp_min)} {cast mystic immersion};
         #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};

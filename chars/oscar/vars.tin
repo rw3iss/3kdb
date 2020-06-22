@@ -1,7 +1,7 @@
 #CLASS {global} OPEN;
 
 #NOP -- Mage settings;
-#VARIABLE         {saturation_max} {75};
+#VARIABLE         {saturation_max} {100};
 #VARIABLE         {sp_min}         {100};
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}

@@ -22,4 +22,54 @@
 	} {#NOP;};
 };
 
+#NOP --- MAGE MIP IS WHACKY - SO THIS IS A CAPTURE TO GET SOME REDUNDANT OR BETTER VARIABLES;
+#NOP ---					  EX, G2N IS A % FROM MIP BUT A # IN AUTOHP;
+
+{ HP: 1368/569 SP: 6398/8388/97%/70% Sat: 26% Cnc: 11% G:3/81% S:0/87% G2N:234496 SS PA B MG MB <P> ST}
+{^  --> Crystal:B, Phoenix:+, Frost giant:+ }
+
+#action {^  --> %+} { #var hp_summons %1 }
+
+yields
+#VARIABLE {hp_summons} {Crystal:B, Phoenix:+, Frost giant:+ }
+
+#replace hp_summons {, } {;}
+
+yields
+#var hp_summons
+#VARIABLE {hp_summons} {Crystal:B;Phoenix:+;Frost giant:+ }
+
+#foreach {$hp_summons} {summon} { #echo {Summon: $summon} }
+
+yields
+Summon: Crystal:B
+Summon: Phoenix:+
+Summon: Frost giant:+
+
+but instead, we do:
+#foreach {$hp_summons} {summon} {#regex {$summon} {{([A-Za-z ]+)}:{(.)}} {#echo {&1 has health &3}}}
+
+which outputs:
+Crystal has health B
+Phoenix has health +
+Frost giant has health +
+
+
+or we can do:
+#foreach {$hp_summons} {summon} {#regex {$summon} {{([A-Za-z ]+)}:{(.)}} {#var my_summons[&1] &3}}}
+
+which creates:
+#VARIABLE {my_summons}
+{
+     {Crystal} {B}
+     {Frost giant} {+}
+     {Phoenix} {+}
+}
+
+and is then available as:
+#foreach {*my_summons[]} {summon} {#echo {Summon $summon has health ${my_summons[$summon]}}}
+Summon Crystal has health B
+Summon Frost giant has health +
+Summon Phoenix has health +
+
 #class {mage_heartbeat} {close}
