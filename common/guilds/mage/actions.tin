@@ -5,7 +5,7 @@
 #ACTION {%w seems to speed up...$} {#var mob_slow 0};
 #ACTION {^You raise your arms and suddenly %* is moving much slower!$} {#var mob_slow 1};
 #ACTION {%w is already slowed.$} {#var mob_slow 1};
-#ACTION {^That creature cannot be affected!$} {#var mob_slow 2};
+#ACTION {^That creature cannot be affected} {#var mob_slow 2};
 
 #NOP --- MAINTENCE ACTIONS;
 #ACTION {Your deeppocket begins to fade} {#var deeppocket 0};

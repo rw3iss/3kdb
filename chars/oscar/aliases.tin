@@ -2,9 +2,10 @@
 #class {player_aliases} {open}
 
 #alias corpse_trig {
-  slab all;
   cast spell tap on corpse;
   cast corpse blast;
+  slab;
+  wrap;
   get coins;
   #var mob_slow 0;
   study spellbook;

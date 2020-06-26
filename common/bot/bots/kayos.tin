@@ -5,32 +5,6 @@
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#if {{$guild} == {bard}} {
-	#nop - Turn on kill-em-all
-	#var kill_em_all 1
-
-	echo_divider1;
-	clear_prots;reflex_clear;
-	echo_divider2;
-	echo_reflex_header;
-	reflex_critic 200;reflex_ow 200;reflex_ma 400;
-	echo_divider2;
-
-	#alias {.pre_fight_check} {
-		#var defs[es] 1;
-		#var defs[blink] 1;
-		#var defs[pn] 1;
-	}
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
-
 #var check_death 1;
 #var kayos[key] 0;
 #var kayos[cell] 0;
