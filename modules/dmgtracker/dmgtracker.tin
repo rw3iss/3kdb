@@ -1,6 +1,11 @@
 #class {dmgtracker} {kill}
 #class {dmgtracker} {open}
 
+#var big_game_hunter 0;
+#var assassin 0;
+#var tactician 0;
+#var magician 0;
+
 #var cmbt[curr] 0;
 #var cmbt[avg] 0;
 #var cmbt[rnd] 0;
@@ -26,7 +31,9 @@
 #var dmgt[dmg] 0;
 
 
-
+#NOP -- Toggles for profession boosts;
+#act {^Your crazed ambition overflows!$} {#var big_game_hunter 1;};
+#act {^Your wild ambition takes a back seat to prudence.$} {#var big_game_hunter 0;};
 
 #act {{^The disintegrate (.*)! \{(\d+)\}$}} {
     #var incombat 1;

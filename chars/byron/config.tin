@@ -24,7 +24,7 @@
           #NOP -- Turn off kill-em-all;
 	     #var kill_em_all 0;
           echo_prots_header;
-          prots_grace;prots_muse;prots_pfe;prots_blink;prots_hs;prots_pfc;
+          prots_pfe;prots_blink;prots_hs;prots_pfc;
           echo_reflex_header;
           reflex_critic $critic_sp;reflex add hp <$heal_hp remove gloves;reflex add hp <$heal_hp cast healing hands;
           
@@ -32,6 +32,24 @@
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
                #var defs[pe] 1;
+               #var defs[blink] 1;
+               #var defs[hs] 1;
+               #var defs[pf] 1;
+          };
+     };
+
+     #if {"$area" == "Treehouse"} {
+          #NOP -- Turn off kill-em-all;
+	     #var kill_em_all 0;
+          echo_prots_header;
+          prots_pfn;prots_blink;prots_hs;
+          echo_reflex_header;
+          reflex_critic $critic_sp;reflex add hp <$heal_hp cast cure;
+          
+
+          #NOP -- Update what happens before every fight and will be re-activated post deadmans;
+          #alias {.pre_fight_check} {
+               #var defs[pn] 1;
                #var defs[blink] 1;
                #var defs[hs] 1;
                #var defs[pf] 1;
