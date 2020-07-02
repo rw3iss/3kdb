@@ -7,7 +7,6 @@
 #var foundobject 0;
 #var founditems 0;
 #var repeat_path 0;
-#var check_death 0;
 
 #var prevMobName 0;
 #var mobname 0;
