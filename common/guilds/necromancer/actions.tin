@@ -1,1 +1,5 @@
 #NOP --------------------------------------- NECROMANCER SPECIFIC ACTIONS ------------------------------------------
+#act {^You charge forward and close your jaws on %*} {#var mob_rabies 1};
+#act {%* has overcome the effects of your rabies.$} {#var mob_rabies 0};
+
+#act {^Your blood boils and you call together all of the fleas that reside} {#var mob_infest 1};

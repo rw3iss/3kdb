@@ -1,9 +1,12 @@
-#class {necro_triggers} {kill}
-#class {necro_triggers} {open}
+#class {necro_actions} {kill}
+#class {necro_actions} {open}
+
+#NOP -- Corpse trig;
+#act {Toren dealt the killing blow} {corpse_trig}
 
 #NOP -- NECRO POWERS;
 #act {You must assume your beast form to do that master.} {alter beast};
 #act {Zorbaine attacks} {#delay 6 {fury;rabies;infest rimalkin;infest zombie}};
 #act {Nix attacks} {#delay 6 {fury;rabies;infest rimalkin;infest zombie}};
 
-#class {necro_triggers} {close}
+#class {necro_actions} {close}
