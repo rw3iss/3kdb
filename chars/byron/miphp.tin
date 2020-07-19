@@ -30,6 +30,9 @@
 	#if {$my[defs][blink] == 1}	{#if $defs[blink]	{#var blink_string <ACA><fff>*B*<088>} 				{#var blink_string *B*}} 			 {#var blink_string {}};
 	#if {$my[defs][mb] == 1}	{#if $defs[mb]		{#var mb_string <ACA><fff>*MB*<088>}   				{#var mb_string *MB*}}   			 {#var mb_string {}};
 	#if {$my[defs][ag] > 0}		{#if $defs[ag]		{#var ag_string <ACA><fff>*AG:$my[defs][ag]*<088>}	{#var ag_string *AG:$my[defs][ag]*}} {#var ag_string {}};
+	#if {$my[defs][hr] == 1}		{#if $defs[hr]		{#var hr_string <ACA><fff>*HR*<088>}			{#var hr_string *HR*}} 				 {#var hr_string {}};
+	#if {$my[defs][fr] > 0}		{#if $defs[fr]		{#var fr_string <ACA><fff>*FR:$my[defs][fr]*<088>}	{#var fr_string *FR:$my[defs][fr]*}} {#var fr_string {}};
+	#if {$my[defs][v] > 0}		{#if $defs[v]		{#var v_string <ACA><fff>*V:$my[defs][v]*<088>}		{#var v_string *V:$my[defs][v]*}} 	 {#var v_string {}};
 	#if {$my[defs][o] > 0}		{#if $defs[o]		{#var o_string <ACA><fff>*O:$my[defs][o]*<088>}		{#var o_string *O:$my[defs][o]*}} 	 {#var o_string {}};
 	#if {$my[defs][pe] > 0}		{#if $defs[pe]		{#var pe_string <ACA><fff>*PE:$my[defs][pe]*<088>}	{#var pe_string *PE:$my[defs][pe]*}} {#var pe_string {}};
 	#if {$my[defs][pg] > 0}		{#if $defs[pg]		{#var pg_string <ACA><fff>*PG:$my[defs][pg]*<088>}	{#var pg_string *PG:$my[defs][pg]*}} {#var pg_string {}};
@@ -39,9 +42,10 @@
 	#if {$my[defs][hs] > 0}		{#if $defs[hs]		{#var hs_string <ACA><fff>*HS:$my[defs][hs]*<088>}	{#var hs_string *HS:$my[defs][hs]*}} {#var hs_string {}};
 	#if {$my[defs][es] > 0}		{#if $defs[es]		{#var es_string <ACA><fff>*ES:$my[defs][es]*<088>}	{#var es_string *ES:$my[defs][es]*}} {#var es_string {}};
 
-	#var prot_string {$ag_string $o_string $ab_string $blink_string $pe_string $pg_string $pn_string $pf_string $ph_string $mb_string $hs_string $es_string};
+	#var prot_string {$hr_string $fr_string $v_string $ag_string $o_string $ab_string $blink_string $pe_string $pg_string $pn_string $pf_string $ph_string $mb_string $hs_string $es_string};
 	#replace prot_string  { } {};
 	#replace prot_string  {*} { };
+	#replace prot_string  {  } { };
 	
 	#if {$my[song][rounds] > 0} {#var song_string Singing: $my[song][title] - $my[song][rounds];} {#var song_string {}};
 	

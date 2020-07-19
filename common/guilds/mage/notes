@@ -1,3 +1,10 @@
+Wisdom : spell damage
+Int    : spell points, gps, no impact on spell dmg
+Con    : total saturation pool
+Dex    : Affects blinking and maybe other defense spells that phase you out of existence
+
+Amount of sps healed from spell tap doesn't seem to be affected by anything
+
 Average Spell damage : 420 per round (3 spell dmg emotes)
 Gxp Rate : ~30k/hour
 
