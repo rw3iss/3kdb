@@ -225,7 +225,6 @@
 	#IF {%1 == 1} {
 		#nop Protection Info;
 		#REGEX {$mip[gline][1]} { FR:%d}	{#VAR {my[defs][fr]}		{&1}}   {#var {my[defs][fr]}    {0}};
-		#REGEX {$mip[gline][1]} { HR}		{#VAR {my[defs][hr]}		{&1}}   {#var {my[defs][hr]}    {0}};
 		#REGEX {$mip[gline][1]} { PE:%d}	{#VAR {my[defs][pe]}		{&1}}   {#var {my[defs][pe]}    {0}};
 		#REGEX {$mip[gline][1]} { PN:%d}	{#VAR {my[defs][pn]}		{&1}}   {#var {my[defs][pn]}    {0}};
 		#REGEX {$mip[gline][1]} { PG:%d}	{#VAR {my[defs][pg]}		{&1}}   {#var {my[defs][pg]}    {0}};
@@ -236,6 +235,7 @@
 		#REGEX {$mip[gline][1]} { V:%d}		{#VAR {my[defs][v]}			{&1}}	{#var {my[defs][v]}		{0}};
 		#REGEX {$mip[gline][1]} { AG:%d}	{#VAR {my[defs][ag]}		{&1}}	{#var {my[defs][ag]}	{0}};
 		#REGEX {$mip[gline][1]} { ES:%d}	{#VAR {my[defs][es]}		{&1}}	{#var {my[defs][es]}	{0}};
+		#REGEX {$mip[gline][1]} { HR}		{#VAR {my[defs][hr]}		{1}}   {#var {my[defs][hr]}    {0}};
 		#REGEX {$mip[gline][1]} { B}		{#VAR {my[defs][blink]}		 {1}}	{#var {my[defs][blink]} {0}};
 		#REGEX {$mip[gline][1]} { MB}		{#VAR {my[defs][mb]}		 {1}}	{#var {my[defs][mb]}    {0}};
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
@@ -246,13 +246,16 @@
 		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
 		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
 		#REGEX {$mip[gline][2]} { %*: %d} {
+			#var song_match 0;
 			#foreach {$bardSongs} {song} {
 				#if {"$song" == "&1"} {
+					#var song_match 1;
 					#var my[song][title] &1;
 					#var my[song][rounds] &2
 				};
 			};
-		} {#unvar my[song]};
+			#if !$song_match {#unvar my[song]};
+		};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>};
 	};

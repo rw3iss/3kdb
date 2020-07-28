@@ -7,6 +7,6 @@
 #NOP -- NECRO POWERS;
 #act {You must assume your beast form to do that master.} {alter beast};
 #act {Zorbaine attacks} {#delay 6 {fury;rabies;infest rimalkin;infest zombie}};
-#act {Nix attacks} {#delay 6 {fury;rabies;infest rimalkin;infest zombie}};
+#act {Nix attacks} {#delay 6 {fury;rabies;infest colour;infest rimalkin;infest zombie}};
 
 #class {necro_actions} {close}

@@ -115,7 +115,7 @@
 	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
 	#if {"$draw[chat]" == "on"} {
 		#line sub {var} #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
-	}
+	};
 }
 #ALIAS {update_chat} {
 	#if {&chat[log][] > $chat[max]} {
@@ -131,13 +131,13 @@
 	     $chat[rows]*{$chat[page]+1} <= &chat[log][]} {
 		#math chat[page] {$chat[page]+1};
 		show_chat
-	}
+	};
 }
 #ALIAS {chatdown} {
 	#if {$chat[page] > 1} {
 		#math chat[page] {$chat[page]-1};
 		show_chat
-	}
+	};
 }
 #ALIAS {chatend} {
 	#math chat[page] 1;
