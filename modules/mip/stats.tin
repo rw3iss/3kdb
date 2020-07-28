@@ -1,6 +1,6 @@
 #class {mipstats} {open};
 
-#VAR bardSongs {Amazing Grace;Rainbow of Death;Vampire};
+#VAR bardSongs {Amazing Grace;Rainbow of Death;Vampire;Hammer Smashed Face;};
 
 #NOP ***** Combined Stats Data *****
 #ALIAS {.mipProcessFFF} {
