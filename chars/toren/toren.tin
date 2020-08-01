@@ -26,7 +26,7 @@
 
 /* load character-specific */
 #read chars/$user/aliases.tin;
-#read chars/$user/triggers.tin;
+#read chars/$user/actions.tin;
 #read chars/$user/vars.tin;
 
 /* create space for static hpbar at bottom and reset map position */

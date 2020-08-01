@@ -95,7 +95,11 @@
             #if {$foundmob} {
                 .stop_prompt;   
                 .pre_fight_check;
-                kill $mobname;
+                #if {$mob_kill_actions} {
+                    .mob_kill_action;
+                } {
+                    kill $mobname;
+                };
             } {
                 #if {$foundobject} {#send $object_action} {
                     #if {$check_room} {

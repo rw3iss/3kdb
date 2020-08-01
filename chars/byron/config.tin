@@ -12,12 +12,21 @@
 };
 
 #NOP -- Bot Config;
+#var mob_kill_actions 1;
 #alias {.pre_fight_check} {#nop};
+#alias {.mob_kill_action} {
+     cast mystic venom on redaxe;
+     hide in shadows;
+     backstab $mobname;
+     kill $mobname;
+}
 
 #alias {.pre_bot_check} {
 	echo_divider1;
 	clear_prots;reflex_clear;
 	echo_divider2;
+
+     
      
      #NOP -- Kill-Em-All, Reflex, Spell, Song Settings based on area name here;
      #if {"$area" == "Night of Colour"} {

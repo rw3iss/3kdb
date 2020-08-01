@@ -211,7 +211,7 @@
     #var dmg_amount %2;
     #math result {$dmg_count * $dmg_amount};
     #return $result;
-}
+};
 
 #alias {calcDmgStats} {
     #math {dc[total_misses][count]} {$dc[deflected][count] + $dc[ineffective][count] + $dc[bobble][count] + $dc[missed][count]};
