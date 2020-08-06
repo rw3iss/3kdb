@@ -11,7 +11,7 @@
 
 #var {botpath} {n;w;n;s;e;n;e;n;s;w;n;w;w;n;curtain;e;e;n;e;w;w;e;s;s;s;s;w;w;n;n;s;s;w;u;e;n;e;w;n;n;e;n;w;e;e;w;s;e;e;n;s;w;s;w;e;s;s;w;e;e;n;n;s;s;e;u;w;w;n;enter;n;n;w;w;s;s;e;e;s;e;n;climb window;s;ndown;s;d;n;n;s;s;u;w;s;w;w;w;w;u;e;enter;out;e;n;s;w;w;d;d;e;e;e}
 
-#act {^-M-_{Zachary Sheen|A male midget whore|A midget whore|A mentally disturbed homeless man|A bitter homeless man|A New York pigeon|An expensive-looking whore|Guardian Whore|An awfully tough whore|A big fat whore|A cheap-looking whore|An old, wrinkled whore|Savon the Adept|A naked female customer|An undressed male customer|A skinny whore|A rich customer|Bertolo the Master Pimp|Netta the CyberWhore|Candi the PleasureMaster}}
+#act {^-M-_{Zachary Sheen|A male midget whore|A midget whore|A mentally disturbed homeless man|A bitter homeless man|A New York pigeon|An expensive-looking whore|Guardian Whore|An awfully tough whore|A big fat whore|A cheap-looking whore|An old, wrinkled whore|A naked female customer|An undressed male customer|A skinny whore|A rich customer|Netta the CyberWhore|Candi the PleasureMaster}}
     {
         #if {"%1" == "A midget whore"} {@botSetMobActions{whore};};
         #if {"%1" == "A male midget whore"} {@botSetMobActions{whore};};
@@ -24,7 +24,6 @@
         #if {"%1" == "A cheap-looking whore"} {@botSetMobActions{whore};};
         #if {"%1" == "An old, wrinkled whore"} {@botSetMobActions{whore};};
         #if {"%1" == "A skinny whore"} {@botSetMobActions{whore};};
-        #if {"%1" == "Savon the Adept"} {@botSetMobActions{savon};};
         #if {"%1" == "A naked female customer"} {@botSetMobActions{customer};};
         #if {"%1" == "A rich customer"} {@botSetMobActions{customer};};
         #if {"%1" == "An undressed male customer"} {@botSetMobActions{customer};};

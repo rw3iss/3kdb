@@ -1,6 +1,6 @@
 #nop - heartbeat actions
 
-#alias {_heartbeat} {
+#alias {_guild_heartbeat} {
 	#echo heartbeat from necro/heartbeat.tin;
 };
 

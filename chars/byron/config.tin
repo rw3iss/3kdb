@@ -14,32 +14,27 @@
 #NOP -- Bot Config;
 #var mob_kill_actions 1;
 #alias {.pre_fight_check} {#nop};
-#alias {.mob_kill_action} {
-     cast mystic venom on redaxe;
-     hide in shadows;
-     backstab $mobname;
-     kill $mobname;
-}
 
 #alias {.pre_bot_check} {
 	echo_divider1;
 	clear_prots;reflex_clear;
 	echo_divider2;
 
-     
-     
      #NOP -- Kill-Em-All, Reflex, Spell, Song Settings based on area name here;
+     #NOP -- Songs aren't added in the initial alias so you're not singing and blocking all your spells from casting;
+     #NOP -- Add songs via the aliases before you kick off the stepper;
+
      #if {"$area" == "Night of Colour"} {
           #NOP -- Turn off kill-em-all;
 	     #var kill_em_all 0;
           echo_prots_header;
-          prots_pfe;prots_blink;prots_hs;prots_pfc;
+          prots_pfg;prots_pfe;prots_blink;prots_hs;prots_pfc;
           echo_reflex_header;
-          reflex_critic $critic_sp;reflex_ow 200;
-          
+          reflex_critic $dmg_spell_sp;reflex_ow 200;
 
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
+               #var defs[pg] 1;
                #var defs[pe] 1;
                #var defs[blink] 1;
                #var defs[hs] 1;
@@ -53,7 +48,7 @@
           echo_prots_header;
           prots_pfn;prots_blink;prots_hs;
           echo_reflex_header;
-          reflex_critic $critic_sp;reflex_ow 200;reflex_ma 400;
+          reflex_critic $dmg_spell_sp;reflex_ow 200;reflex_ma 400;
 
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
@@ -69,7 +64,7 @@
           echo_prots_header;
           prots_pfn;prots_blink;prots_hs;
           echo_reflex_header;
-          reflex_critic $critic_sp;reflex_ow 200;reflex_ma 400;
+          reflex_critic $dmg_spell_sp;reflex_ow 200;reflex_ma 400;
 
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
@@ -96,7 +91,6 @@
                #var defs[pn] 1;
           }
      };
-
 
 	echo_divider2;
 }

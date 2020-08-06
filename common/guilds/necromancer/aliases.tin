@@ -2,5 +2,35 @@
 #class {aliases} {kill}
 #class {aliases} {open}
 
+#alias {topup} {
+    #action {%sginseng:%d%sblack pearls:%d%sspider web:%d%sgoldenrod:%d} {
+        #math ginseng {999 - %%2};
+        #math black_pearls {999 - %%4};
+        #math spider_web {999 - %%6};
+        #math goldenrod {999 - %%8};
+    };
+    #action {%smandrake:%d%spine needles:%d%snightshade:%d%sbloodmoss:%d} {
+        #math mandrake {999 - %%2};
+        #math pine_needles {999 - %%4};
+        #math nightshade {999 - %%6};
+        #math bloodmoss {999 - %%8};
+    };
+    gs;
+    #showme {<dfa>-------- Restocking Reagents --------<088>};
+    #delay .5 {
+        #if $ginseng {buy $ginseng ginseng;};
+        #if $black_pearls {buy $black_pearls black pearls;};
+        #if $spider_web {buy $spider_web spider web;};
+        #if $goldenrod {buy $goldenrod goldenrod;};
+        #if $mandrake {buy $mandrake mandrake;};
+        #if $pine_needles {buy $pine_needles pine needles;};
+        #if $nightshade {buy $nightshade nightshade;};
+    };
+    
+    #delay 1 {
+        #unaction {%sginseng:%d%sblack pearls:%d%sspider web:%d%sgoldenrod:%d};
+        #unaction {%smandrake:%d%spine needles:%d%snightshade:%d%sbloodmoss:%d};
+    };
+}
 
 #class {aliases} {close}

@@ -42,13 +42,9 @@
 	#showme {$etc_string} {-3};
 	#showme {$eternal_string Idle: $idle_cap} {-2};
 
-	_heartbeat;
+	_player_heartbeat;
     
 	draw_hpbar;
-}
-    
-#alias {_heartbeat} {
-	#NOP
 }
 
 #if {"$draw[hpbar]" == "on"} {

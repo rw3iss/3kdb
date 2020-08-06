@@ -15,12 +15,6 @@
 #ACTION {^Your empowered strikes have faded.} {#if {$defs[es] && !$idle_flag && $my[karma][current] > 300} {empowered strikes}} {5};
 #ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {cast blink}} {5}
 
-
-#ACTION {Uttering a few words of power you touch} {wear gloves} {1};
-#ACTION {^You utter a few words of power and then touch your wounds,} {wear gloves} {1};
-#ACTION {^You reach into the pouch of} {wear gloves} {1};
-
-
 #ACTION {^You cease your} {wear $shield} {5};
 #ACTION {^You finish your performance with a bow.$} {wear $shield} {5};
 #ACTION {^You have exceeded the usefulness of this song.$} {wear $shield} {5};

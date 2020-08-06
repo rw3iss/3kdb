@@ -9,6 +9,6 @@ logs/
 # don't commit any password files
 password.tin
 
-byrons_stuff/
+chars/byron/private.tin
 
 notes/

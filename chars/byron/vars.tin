@@ -4,8 +4,7 @@
 #NOP -- Bard Settings;
 #VARIABLE         {ma_minimum} {400};
 #VARIABLE         {karma_heal} {200};
-#VARIABLE         {ebolt_sp}  {200};
-#VARIABLE         {critic_sp}  {200};
+#VARIABLE         {dmg_spell_sp}  {200};
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {4119}

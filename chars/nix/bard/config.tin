@@ -18,7 +18,7 @@
           echo_prots_header;
           prots_grace;prots_muse;prots_pfe;prots_blink;prots_hs;prots_pfc;
           echo_reflex_header;
-          reflex_critic $critic_sp;reflex add hp <$heal_hp remove gloves;reflex add hp <$heal_hp cast healing hands;
+          reflex_critic $dmg_spell_sp;reflex add hp <$heal_hp remove gloves;reflex add hp <$heal_hp cast healing hands;
           
 
           # Update what happens before every fight (and will be re-activated post deadmans)
@@ -37,7 +37,7 @@
           echo_prots_header;
           prots_pfn;prots_blink;prots_hs;
           echo_reflex_header;
-          reflex_critic $critic_sp;reflex add hp <$heal_hp remove gloves;reflex add hp <$heal_hp cast healing hands;
+          reflex_critic $dmg_spell_sp;reflex add hp <$heal_hp remove gloves;reflex add hp <$heal_hp cast healing hands;
 
           # Update what happens before every fight (and will be re-activated post deadmans)
           #alias {.pre_fight_check} {

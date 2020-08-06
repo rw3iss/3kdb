@@ -16,29 +16,22 @@
 #var pickupAll 0;
 #var justItems 0;
 
-/* ignore these players */
-#act {^-P-_%*Nix%*.$} {#NOP} {0};
-#act {^-P-_%*Roor%*.$} {#NOP} {0};
-#act {^-P-_%*Void%*.$} {#NOP} {0};
-#act {^-P-_%*Mako%*.$} {#NOP} {0};
-#act {^-P-_%*A vicious bear%*.$} {#nop} {0};
-#act {^-P-_%*Toren%*.$} {#NOP} {0};
-#act {^-P-_%*Byron%*.$} {#NOP} {0};
-#act {^-P-_%*Martyr%*.$} {#NOP} {0};
-#act {^-P-_%*Zorbaine%*.$} {#NOP} {0};
-#act {^-P-_%*Ivy%*.$} {#NOP} {0};
 
-/* ignore these followers */
-#act {^-M-_%*Almodo%*.$} {#NOP} {0};
-#act {^-M-_%*Packy%*.$} {#NOP} {0};
-#act {^-M-_%*Roor%*.$} {#NOP} {0};
-#act {^-M-_%*Ivy%*.$} {#NOP} {0};
-#act {^-M-_%*Martyr%*.$} {#NOP} {0};
-#act {^-M-_El Jefe%*.$} {#NOP} {0};
-#act {^-M-_A fluffy persian cat.$} {#NOP} {0};
+/* Read in the whitelist of players or followers to ignore */
+#read common/bot/whitelist.tin;
 
 /* load the selected bot's path into ready state */
 #path load botpath;
+
+/* 
+    If gobj is necro, run the check death check 
+    This is primarily a delay to let the corpse split / preserve both if you have mask
+*/
+
+#if {$guild == 'necromancer'} {
+    #var check_death 1;
+}
+
 
 /* pause the bot */
 #alias {.pause} {
@@ -126,19 +119,20 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
-
-
-
 #act {^%1 {screeches in agony|gurgles in (\w+) own blood|gasps for breath, then slumps}} {
     #if $check_death {
-        .check_death;
-        .bot
+        #if {'$guild' == 'necromancer'} {
+            #delay 3 {.check_death};
+            #delay 4 {.bot};
+        } {
+            .check_death;
+            .bot;
+        }
+        
     } {
         .bot;
     };
 } {0};
-
-
 
 
 /* Signify there is a player in the room, if not in friends list */
@@ -148,8 +142,6 @@
 
 /* Todo: make friends auto-defend list */
 #act {{(.*) (\!)?attacking Toren\!}} {defend toren};
-
-
 
 
 /* Bot end actions... */
@@ -164,8 +156,6 @@
         .bot;
     };
 };
-
-
 
 
 /* helpers */

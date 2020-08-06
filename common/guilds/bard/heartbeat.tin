@@ -1,21 +1,34 @@
 #nop - heartbeat actions
 
 #var es_override 0;
-#ticker {es_toggle} {#var es_override 0;#unticker es_toggle} {6}
 
 #alias {_guild_heartbeat} {
-	#if {$my[karma][current] < $my[karma][min]} {unwrap;pd};
-	#if {$my[defs][hs] > 0} {#NOP} {#if {$defs[hs] && !$idle_flag} {cast hardened skin} {#nop}};
-	#if {$my[defs][es] > 0} {#NOP} {#if {$defs[es] && !$idle_flag && $my[gp1][current] > 400 && !$es_override} {#var es_override 1;empowered strikes} {#nop}};
-	#if {$my[defs][mb] > 0} {#NOP} {#if {$defs[mb] && !$idle_flag} {cast mind blank} {#nop}};
-	#if {$my[defs][pe] > 0} {#NOP} {#if {$defs[pe] && !$idle_flag} {cast protection from evil} {#nop}};
-	#if {$my[defs][pn] > 0} {#NOP} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral} {#nop}};
-	#if {$my[defs][pg] > 0} {#NOP} {#if {$defs[pg] && !$idle_flag} {cast protection from good} {#nop}};
-	#if {$my[defs][pf] > 0} {#NOP} {#if {$defs[pf] && !$idle_flag} {cast protection from frost} {#nop}};
-	#if {$my[defs][ph] > 0} {#NOP} {#if {$defs[ph] && !$idle_flag} {cast protection from heat} {#nop}};
-	#if {$my[defs][blink] > 0} {#NOP} {#if {$defs[blink] && !$idle_flag} {cast blink} {#nop}};
-	#if {$my[defs][ag] > 0} {#NOP} {#if {$defs[ag] && !$idle_flag} {remove shield;perform amazing grace} {#nop}};
-	#if {$my[defs][o] > 0}  {#NOP} {#if {$defs[o] && !$idle_flag}  {perform o muse} {#nop}};
+	#if !$idle_flag {
+		#if {$my[karma][current] < $my[karma][min]} {unwrap;pd};
+		#if {$my[defs][hs] > 0} {#NOP} {#if {$defs[hs]} {cast hardened skin} {#nop}};
+		#if {$my[defs][es] > 0} {#NOP} {#if {$defs[es] && $my[gp1][current] > 400 && !$es_override} {#var es_override 1;empowered strikes;#ticker {es_toggle} {#var es_override 0;#unticker es_toggle} {6}} {#nop}};
+		#if {$my[defs][mb] > 0} {#NOP} {#if {$defs[mb]} {cast mind blank} {#nop}};
+		#if {$my[defs][pe] > 0} {#NOP} {#if {$defs[pe]} {cast protection from evil} {#nop}};
+		#if {$my[defs][pn] > 0} {#NOP} {#if {$defs[pn]} {cast protection from neutral} {#nop}};
+		#if {$my[defs][pg] > 0} {#NOP} {#if {$defs[pg]} {cast protection from good} {#nop}};
+		#if {$my[defs][pf] > 0} {#NOP} {#if {$defs[pf]} {cast protection from frost} {#nop}};
+		#if {$my[defs][ph] > 0} {#NOP} {#if {$defs[ph]} {cast protection from heat} {#nop}};
+		#if {$my[defs][blink] > 0} {#NOP} {#if {$defs[blink]} {cast blink} {#nop}};
+		#if {$my[defs][ag] > 0} {#NOP} {#if {$defs[ag]} {remove shield;perform amazing grace} {#nop}};
+		#if {$my[defs][o] > 0}  {#NOP} {#if {$defs[o]}  {perform o muse} {#nop}};
+		#if {$my[defs][hr] > 0} {#NOP} {#if {$defs[hr]} {cast harmonic regeneration} {#nop}};
+
+		#if $rod_bot {
+			#if !$my[song] {perform rainbow of death};
+			#if !$my[defs][fr] {cast focus the rainbow};
+		};
+
+		#if $ham_bot {
+			#if !$my[song] {perform hammer smashed face};
+		};
+
+	}
+	
 };
 
 

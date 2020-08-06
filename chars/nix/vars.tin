@@ -1,12 +1,10 @@
 #CLASS {global} OPEN
 
 #NOP -- Bard Settings
-#VARIABLE         {heal_karma} {300};
+#VARIABLE         {karma_heal} {300};
+#VARIABLE         {dmg_spell_sp}  {400};
 #VARIABLE         {heal_hp}   {4600};
-#VARIABLE         {ebolt_sp}  {400};
-#VARIABLE         {critic_sp}  {400};
-#VARIABLE         {shield}  {shield};
-
+#VARIABLE         {shield}  {aurothon shield};
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}};
 #VARIABLE         {curvnum}  {24666};

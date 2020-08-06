@@ -10,6 +10,7 @@
 #NOP --- MAINTENCE ACTIONS;
 #ACTION {Your deeppocket begins to fade} {#var deeppocket 0};
 #ACTION {^You reinforce the magic within your deeppocket.$} {#var deeppocket 1};
+#ACTION {^You already have a deeppockets spell functioning.$} {#var deeppocket 1};
 #ACTION {^You feel slower as the haste wears off.$} {#var haste 0};
 
 #ACTION {----*> Your prismatic_aura greater contingency has dissipated!<*----} {

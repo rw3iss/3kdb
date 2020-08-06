@@ -98,7 +98,7 @@
 		{$hpbar[spmsg]} 
 		{$hpbar[npmsg]}
 		{$hpbar[enemy_msg]};
-        _heartbeat;
+        _player_heartbeat;
 } {0};
 
 #act {^Status[w%11\%|p%12|v%13|r%14\%] Cr[%15\%] TG[%16|%17] \$[%18] Moon[%19]$} {

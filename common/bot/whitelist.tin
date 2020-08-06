@@ -1,0 +1,26 @@
+#class {whitelist} {kill}
+#class {whitelist} {open}
+
+#NOP -- Player whitelist
+/* ignore these players */
+#act {^-P-_%*Nix%*.$} {#NOP} {0};
+#act {^-P-_%*Roor%*.$} {#NOP} {0};
+#act {^-P-_%*Void%*.$} {#NOP} {0};
+#act {^-P-_%*Mako%*.$} {#NOP} {0};
+#act {^-P-_%*A vicious bear%*.$} {#nop} {0};
+#act {^-P-_%*Toren%*.$} {#NOP} {0};
+#act {^-P-_%*Byron%*.$} {#NOP} {0};
+#act {^-P-_%*Martyr%*.$} {#NOP} {0};
+#act {^-P-_%*Zorbaine%*.$} {#NOP} {0};
+#act {^-P-_%*Ivy%*.$} {#NOP} {0};
+
+/* ignore these followers */
+#act {^-M-_%*Almodo%*.$} {#NOP} {0};
+#act {^-M-_%*Packy%*.$} {#NOP} {0};
+#act {^-M-_%*Roor%*.$} {#NOP} {0};
+#act {^-M-_%*Ivy%*.$} {#NOP} {0};
+#act {^-M-_%*Martyr%*.$} {#NOP} {0};
+#act {^-M-_El Jefe%*.$} {#NOP} {0};
+#act {^-M-_A fluffy persian cat.$} {#NOP} {0};
+
+#class {whitelist} {close}

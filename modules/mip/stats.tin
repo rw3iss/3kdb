@@ -1,6 +1,6 @@
 #class {mipstats} {open};
 
-#VAR bardSongs {Amazing Grace;Rainbow of Death;Vampire;Hammer Smashed Face;};
+#VAR bardSongs {Amazing Grace;Rainbow of Death;Vampire;Hammer Smashed Face;O Muse;Into the Fire;Sands of Time;Death March;Who Wants To Live Forever;Devil Went Down To Georgia;};
 
 #NOP ***** Combined Stats Data *****
 #ALIAS {.mipProcessFFF} {

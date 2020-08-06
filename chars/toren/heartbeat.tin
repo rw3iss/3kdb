@@ -1,50 +1,10 @@
-#nop - heartbeat actions
-
 #class {heartbeat} {kill}
 #class {heartbeat} {open}
 
-#var mask 0;
+#var make_con 1;
 
-#alias corpse_select {
-	i;
-	#if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]}
-	{
-		smuggle remove corpse;
-		drop corpse;
-	};
-	
-	#if $corpses[coffin] {
-		unwrap;
-	} {
-		#if $corpses[freezer] {
-			deslab;
-		} {
-			unkeep corpse;
-			drop corpse;
-		}
-	}
-
-}
-#alias {set_defaults} {
-	#var corpses[coffin] 0;
-	#var corpses[inventory] 0;
-	#var corpses[smuggle] 0;
-	set_xp_tracker;
-	dmg_tracker;
-	#delay 1 {i;smuggle};
-	set_ticker;
-	mask_on;	
-}
-
-#alias {mask_on} {
-	#var mask 1;
-	#ECHO {+++++++ MASK ON FUCK IT MASK ON ++++++}
-}
-
-#alias {_heartbeat} {
-	#if {!$idle_flag && $my[worth] < 125} {con 100} {#NOP};
+#alias {_player_heartbeat} {
+	#if {!$idle_flag && $make_con && $my[worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}} {#NOP};
 };
-
-
 
 #class {heartbeat} {close}

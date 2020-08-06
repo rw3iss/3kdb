@@ -2,14 +2,31 @@
 #class {necro_aliases} {open}
 
 #alias corpse_trig {
-    absorb remains;
-    get all;
+    #if $check_death {
+        #NOP -- do nothing
+    } {
+    #if {$my[hp][current] < 600} {
+        absorb remains;
+        get all;
+    } {
+        preserve remains;
+        get preservation;
+        get all;
+    }}
+}
+
+#alias .check_death {
+    preserve remains;preserve remains;get all
 }
 
 #alias {_player_deadmanActions} {
     .stop;
 } {0};
 
+#alias {.mob_kill_action} {
+     kill $mobname;
+     #delay 4 {rabies;infest $mobname;=kill $mobname;call};
+}
 
 #ALIAS {ld}
 {
@@ -21,7 +38,6 @@
      #class global write chars/$user/vars.tin;
      #delay 1 {#end}
 };
-
 
 #NOP ---THIS SECTION IS FOR NECRO SPECIFIC ALIASES
 #alias {set_ticker} {#ticker {con} {#if !$idle_flag {con 100} {#nop}} {90}};

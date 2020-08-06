@@ -25,8 +25,9 @@
 #read common/guilds/$guild/index.tin;
 
 /* load character-specific */
-#read chars/$user/aliases.tin;
 #read chars/$user/actions.tin;
+#read chars/$user/aliases.tin;
+#read chars/$user/heartbeat.tin;
 #read chars/$user/vars.tin;
 
 /* create space for static hpbar at bottom and reset map position */
