@@ -1,6 +1,6 @@
 #class {deadman} {open}
 
-#var deadmanIdleTimeout 1800;
+#var deadmanIdleTimeout 900;
 #var deadmanEnabled 0;
 
 #alias deadman {
