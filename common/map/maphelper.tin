@@ -3,7 +3,7 @@
 #nop map helpers;
 #alias {mh} {maphelp}
 #alias {maphelp} {
-	#show mapsave/mapload - save/load from map/3k_map.tin;
+	#show mapsave/mapload - save/load from map/3k_shared.map;
 	#show map <roomname> - set map at roomname;
 	#show mi - get current room info;
 	#show mapundo - restores the last save point, when 'mapbackup' was called.;
@@ -70,10 +70,8 @@
 #alias {mapinsert} {#map insert {%1};#show Room inserted: %1;,mapsave};
 #alias {mapm} {#map move %0};
 #alias {maparea} {#map set areaname %0;mapsave};
-#alias {areamapmapped %1} {
-	#map list {} {} {} {%1} {variable} {area_mapped};
-	#showme {&area_mapped[] rooms mapped.};
-};
+
+
 #alias {maplm} {#map landmark {%0} {$curvnum}};
 
 #alias {mapfind} {

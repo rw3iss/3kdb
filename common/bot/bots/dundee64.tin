@@ -1,0 +1,80 @@
+#class {bot} {kill}
+#class {bot} {open}
+
+#var {area} {Dundee Swamp};
+#var check_death 0;
+#var check_room 0;
+
+#var bot_message_1 '---- DUNDEE STEPPER ----';
+#var bot_message_2 '----  ALL TARGETS   ----';
+
+
+#var {botpath} {w;w;w;e;e;e;e;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;w;w;n;n;w;w;
+w;w;s;e;e;e;e;s;w;w;w;w;s;e;e;e;e;s;w;w;w;w;n;n;w;w;w;s;s;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;e;e;e;e;e;e;e;e;e;e;e;e;e;e;e}
+
+#alias .pre_fight_check {#nop;};
+
+#if {{$guild} == {bard}} {
+	.pre_bot_check;
+    
+	#alias .pre_fight_check {
+        #var defs[pn] 1;
+        #var defs[blink] 1;
+        #var defs[es] 1;
+    }
+};
+
+#act {^[MoNSTaR]{Crocodile Dundee|Mutated Crocodile|Hippo}} {
+	#if {$inventory[coffin] < 15} {#nop} {
+		#if {"%1" == "Crocodile Dundee"} {@botSetMobActions{dundee};};
+		#if {"%1" == "Mutated Crocodile"} {@botSetMobActions{crocodile};};
+		#if {"%1" == "Hippo"} {@botSetMobActions{hippo};};
+		.check_monster;
+	}
+}
+
+#act {^Encircling %1 in a yellowy haze of mystic adrenaline, } {(energy well;#delay 6 {(fry}};
+
+#act {^-M-_{Alligator|Beastly Crocodile|Swamp Harrier|Banded Bullfrog|Greater Siren|Dark-Spotted Anaconda|Beaver|Barred Owl|Brown Bear|Carrion|Red Tailed Hawk|Newt|Exotic Swamp Crocodile|Mature Swamp Crocodile|Great Egret|Salamander|Crane|Anaconda|Swamp Crocodile|Red-bellied Watersnake|Drop bear|Cane Toad|Marbled Reed Frog|Swamp Sparrow|Tricolored Heron|Caecilian|Marsh Rat|Anhinga|Short-tailed Shrew|Marsh Snake|Marsh Frog|Armadillo|Platypus|Black-bellied Snake|Osprey}} {
+	#var mobname_long %1;
+	#if {"%1" == "Red Tailed Hawk"} {@botSetMobActions{hawk};};
+	#if {"%1" == "Greater Siren"} {@botSetMobActions{siren};};
+	#if {"%1" == "Newt"} {@botSetMobActions{newt};};
+	#if {"%1" == "Alligator"} {@botSetMobActions{alligator};};
+	#if {"%1" == "Beastly Crocodile"} {@botSetMobActions{crocodile};};
+	#if {"%1" == "Dark-Spotted Anaconda"} {@botSetMobActions{anaconda};};
+	#if {"%1" == "Swamp Harrier"} {@botSetMobActions{harrier};};
+	#if {"%1" == "Banded Bullfrog"} {@botSetMobActions{bullfrog};};
+	#if {"%1" == "Beaver"} {@botSetMobActions{beaver};};
+	#if {"%1" == "Barred Owl"} {@botSetMobActions{owl};};
+	#if {"%1" == "Brown Bear"} {@botSetMobActions{bear};};
+	#if {"%1" == "Carrion"} {@botSetMobActions{carrion};};
+	#if {"%1" == "Exotic Swamp Crocodile"} {@botSetMobActions{crocodile};};
+	#if {"%1" == "Red-bellied Watersnake"} {@botSetMobActions{snake};};
+	#if {"%1" == "Drop Bear"} {@botSetMobActions{bear};};
+	#if {"%1" == "Cane Toad"} {@botSetMobActions{toad};};
+	#if {"%1" == "Marbled Reed Frog"} {@botSetMobActions{frog};};
+	#if {"%1" == "Swamp Sparrow"} {@botSetMobActions{sparrow};};
+	#if {"%1" == "Tricolored Heron"} {@botSetMobActions{heron};};
+	#if {"%1" == "Swamp Crocodile"} {@botSetMobActions{crocodile};};
+	#if {"%1" == "Marsh Rat"} {@botSetMobActions{rat};};
+	#if {"%1" == "Caecilian"} {@botSetMobActions{caecilian};};
+	#if {"%1" == "Anhinga"} {@botSetMobActions{anhinga};};
+	#if {"%1" == "Short-tailed Shrew"} {@botSetMobActions{shrew};};
+	#if {"%1" == "Marsh Snake"} {@botSetMobActions{snake};};
+	#if {"%1" == "Marsh Frog"} {@botSetMobActions{frog};};
+	#if {"%1" == "Armadillo"} {@botSetMobActions{armadillo};};
+	#if {"%1" == "Platypus"} {@botSetMobActions{platypus};};
+	#if {"%1" == "Black-bellied Snake"} {@botSetMobActions{snake};};
+	#if {"%1" == "Osprey"} {@botSetMobActions{osprey};};
+	#if {"%1" == "Mature Swamp Crocodile"} {@botSetMobActions{crocodile};};
+	#if {"%1" == "Great Egret"} {@botSetMobActions{egret};};
+	#if {"%1" == "Salamander"} {@botSetMobActions{salamander};};
+	#if {"%1" == "Crane"} {@botSetMobActions{crane};};
+	#if {"%1" == "Anaconda"} {@botSetMobActions{snake};};
+	.check_monster;
+	}
+
+#class {bot} {close}
+
+#read common/bot/generic.tin

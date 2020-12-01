@@ -1,5 +1,24 @@
+#class {guild_actions} {kill}
+#class {guild_actions} {open}
+
 #NOP --------------------------------------- NECROMANCER SPECIFIC ACTIONS ------------------------------------------
 #act {^You charge forward and close your jaws on %*} {#var mob_rabies 1};
 #act {%* has overcome the effects of your rabies.$} {#var mob_rabies 0};
-
+#act {^"Fox %w" a mean mutha if there ever was one, strolls past you.$} {#50 preserve remains};
 #act {^Your blood boils and you call together all of the fleas that reside} {#var mob_infest 1};
+
+#act {In ecstasy, your body contorts into a sleek, beastly form.}{#var {my[necromancer][altered]}{1}}
+#act {You alter into the embodimental spirit of the devil!}{#var {my[necromancer][altered]}{1}}
+#act {You are already altered into beast form master.}{#var {my[necromancer][altered]}{1}}
+#act {You return to your normal were form.}{#var {my[necromancer][altered]}{0}}
+#act {You alter back to your normal, human form.}{#var {my[necromancer][altered]}{0}}
+#act {You can only alter your form into beast form master.}{#var {my[necromancer][altered]}{0}}
+
+#act {^You currently have %d/%d open memory globes,} {
+    #var powers[globes][open] %1;
+}
+
+#act {///The protective spirits break away from your body, fading into nothingness.$} {#if !$idle_flag {protection}};
+
+
+#class {guild_actions} {close}

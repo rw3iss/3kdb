@@ -1,7 +1,6 @@
 #class {player_actions} {kill}
 #class {player_actions} {open}
 
-
 #NOP --- Oscar specific actions;
 #action {killing blow} {corpse_trig};
 
@@ -9,5 +8,18 @@
 #action {That is not here or it is uninteresting. (materials?)} {ffetch materials};
 
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
+#action {^With great magical precision you tap directly into the rivers of magical} {
+    #NOP -- Reset contingencies;
+    #if {$my[sp][current] > 2230} {
+        clear_gc;
+        clear_c;
+        setup_gc;
+        setup_c;
+    };
+    #NOP -- if you have beads, burn your sps down to about 20%, each grasp takes 100 sps and heals 33 hps;
+    #if $beads {check_beads};
+    repeat always/cast power word stun/0/1
+};
+#action {^Your immersion has expired.$} {repeat always/off};
 
 #class {player_actions} {close}

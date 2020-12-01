@@ -46,9 +46,8 @@
 #ACTION {^You will cast spell tap every round in combat.$} {#var spelltap 1};
 #ACTION {^You will not cast spell tap every round in combat.$} {#var spelltap 0};
 
-
-#ACTION {^A %* darts out of the room.$} {#var go_fetch 1};
-#ACTION {^A %* darts into the room.$} {#var go_fetch 0};
+#ACTION {^%* darts out of the room.$} {#var go_fetch 1};
+#ACTION {^%* darts into the room.$} {#var go_fetch 0};
 
 #NOP --- SUMMONING ACTIONS;
 
@@ -56,7 +55,14 @@
 
 #ACTION {^You throw your golem construction materials to the ground and} {
     say all, you are now in group summons/assist always;
+    #if $golem_tank {
+        say golem, defend me
+    };
 };
+
+#ACTION {dealt the killing blow to %* golem.$} {
+    create_golem;
+}
 
 #ACTION {%w is already hasted.$} {
     #foreach $golemTypes {golem} {

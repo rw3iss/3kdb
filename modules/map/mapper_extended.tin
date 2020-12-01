@@ -122,13 +122,6 @@
 
 
 /* Aliases */
-#NOP count the # of rooms mapped;
-#alias {area_mapped %1} {
-	#unvar area_mapped;
-	#map list {} {} {} {%1} {variable} {area_mapped};
-	#showme {&area_mapped[] rooms mapped.};
-}
-
 #NOP Color rooms that have no area set (unexplored);
 #alias nacolor {
 	#loop 1 20000 {cnt} {

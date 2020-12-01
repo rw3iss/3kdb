@@ -12,6 +12,8 @@
     #math saturation_warning {$saturation_max * .6};
     #math saturation_danger {$saturation_max * .8};
 
+    #math sp_percent {$my[sp][current] / $my[sp][max]};
+
     #if !$idle_flag {
         #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle && $corpses[total] < 5} {
             #ECHO {Stopping:  SP: $my[sp][current] Saturation: $my[gp1][current]};
@@ -36,6 +38,10 @@
             cast slow;
         }
 
+        #if {$sp_percent > .7} {
+            #if $beads check_beads;
+        }
+
         #if {$my[immersion][rounds] > 0 && $immersion_casts} {
             #if !$golem_haste {
                 cast haste on summons
@@ -43,6 +49,8 @@
             #if !haste {
                 cast haste;
             }
+
+            #if $beads {check_beads};
         }
     };
 

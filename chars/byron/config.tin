@@ -24,6 +24,42 @@
      #NOP -- Songs aren't added in the initial alias so you're not singing and blocking all your spells from casting;
      #NOP -- Add songs via the aliases before you kick off the stepper;
 
+     #if {"$area" == "Turkey Farm"} {
+	     #var kill_em_all 0;
+          echo_prots_header;
+          prots_pfg;prots_blink;prots_hs;prots_pfc;prots_pfh;prots_mb;
+          echo_reflex_header;
+          reflex_critic $dmg_spell_sp;reflex_ow 200;
+          reflex combat;
+
+          #NOP -- Update what happens before every fight and will be re-activated post deadmans;
+          #alias {.pre_fight_check} {
+               #var defs[blink] 1;
+               #var defs[hs] 1;
+               #var defs[pf] 1;
+               #var defs[ph] 1;
+               #var defs[mb] 1;
+               #var defs[pg] 1;
+          };
+     };
+
+     #if {"$area" == "Dundee Swamp"} {
+          #NOP -- Turn on kill-em-all;
+	     #var kill_em_all 1;
+          echo_prots_header;
+          prots_pfn;prots_blink;prots_hs;
+          echo_reflex_header;
+          reflex_critic $dmg_spell_sp;reflex_ow 200;
+          reflex combat;
+
+          #NOP -- Update what happens before every fight and will be re-activated post deadmans;
+          #alias {.pre_fight_check} {
+               #var defs[pn] 1;
+               #var defs[blink] 1;
+               #var defs[hs] 1;
+          };
+     };
+
      #if {"$area" == "Night of Colour"} {
           #NOP -- Turn off kill-em-all;
 	     #var kill_em_all 0;
@@ -31,6 +67,7 @@
           prots_pfg;prots_pfe;prots_blink;prots_hs;prots_pfc;
           echo_reflex_header;
           reflex_critic $dmg_spell_sp;reflex_ow 200;
+          reflex combat;
 
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
@@ -48,7 +85,8 @@
           echo_prots_header;
           prots_pfn;prots_blink;prots_hs;
           echo_reflex_header;
-          reflex_critic $dmg_spell_sp;reflex_ow 200;reflex_ma 400;
+          reflex_critic $dmg_spell_sp;reflex_ow 200;
+          reflex combat;
 
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
@@ -65,6 +103,7 @@
           prots_pfn;prots_blink;prots_hs;
           echo_reflex_header;
           reflex_critic $dmg_spell_sp;reflex_ow 200;reflex_ma 400;
+          reflex combat;
 
           #NOP -- Update what happens before every fight and will be re-activated post deadmans;
           #alias {.pre_fight_check} {
@@ -83,12 +122,31 @@
           echo_divider2;
           echo_reflex_header;
           reflex_critic 200;reflex_ow 200;reflex_ma 400;
+          reflex combat;
           echo_divider2;
 
           #alias {.pre_fight_check} {
                #var defs[es] 1;
                #var defs[blink] 1;
                #var defs[pn] 1;
+          }
+     };
+
+     #if {"$area" == "Hotel Transylvania"} {
+          #nop - Turn off kill-em-all
+          #var kill_em_all 0
+
+          echo_divider1;
+          clear_prots;reflex_clear;
+          echo_divider2;
+          echo_reflex_header;
+          reflex_critic 200;reflex_ow 200;reflex_ma 400;
+          echo_divider2;
+
+          #alias {.pre_fight_check} {
+               #var defs[es] 1;
+               #var defs[blink] 1;
+               #var defs[pe] 1;
           }
      };
 

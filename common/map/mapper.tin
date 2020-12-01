@@ -18,9 +18,7 @@
 	#format {roomdesc_len}	{%L} {$roomdesc};
 	#math {name_len} {42-$roomvnum_len-3};
 	#format {name_trunc} {%.${name_len}s} {$roomname};
-	#unvar area_mapped;
-	#map list {} {} {} {$roomarea} {variable} {area_mapped};
-	#var {room_cnt} {&area_mapped[]};
+	
 	#if {"$draw[map]" == "on"} {
 		#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
 		#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
@@ -160,12 +158,7 @@
 
 
 /* Aliases */
-#NOP count the # of rooms mapped
-#alias {area_mapped %1} {
-	#unvar area_mapped;
-	#map list {} {} {} {%1} {variable} {area_mapped};
-	#showme {&area_mapped[] rooms mapped.};
-}
+
 
 #NOP Color rooms that have no area set (unexplored)
 #alias nacolor {

@@ -23,10 +23,12 @@
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
+#read common/guilds/eternal/eternal.tin;
 
 /* load character-specific */
 #read chars/$user/actions.tin;
 #read chars/$user/aliases.tin;
+#read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
 #read chars/$user/vars.tin;
 

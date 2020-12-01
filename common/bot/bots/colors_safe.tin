@@ -48,12 +48,12 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
 #alias {.check_room} {
     consider shadow;
 	#var foundshadow 0;
-    #act {^Shadow} {
+    #act {^Monster class: Really Big (18).$} {
         @botSetMobActions{shadow;1};
         #var mobname_long Shadow;
         .stop_prompt;
         kill $mobname;
-        #unaction {^Shadow}
+        #unaction {^Monster class: Really Big (18).$}
     };
 	#delay {.4} {#if {!$foundshadow && !$foundmob} {#path walk};}
 }

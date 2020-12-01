@@ -1,7 +1,10 @@
 #class {default_actions} {kill}
 #class {default_actions} {open}
 
+#action {^You lift the drink to your mouth, but in your stomach} {#var my[drunk] 1};
+#action {^You drink the wine and feel healed.$} {#var my[drunk] 0};
 
+#action {The daemon hisses: Dost thou choose to graft with me %1?} {#format {graft} {%n} {%1};#if {"$user" == "$graft"} {say yes}};
 #action {^%1 begins to follow %2\.$} {#format {follower} {%l} {%1};#if {"$user" == "$follower"} {#format {following} {%n} {%2}}};
 #action {^You stop following %1} {#unvar following};
 #action {^%1 leaves %2\.$} {
@@ -26,19 +29,31 @@
 
 
 #act {{(\w+) taps you on the shoulder\.}} { 
-    #format followtarget {%l} {%2}; 
-    follow $followtarget;
-    cassist $followtarget;
+    #if !$idle_flag {
+        #format followtarget {%l} {%2}; 
+        follow $followtarget;
+        cassist $followtarget;
+    };
 };
 
 #act {{From afar, (\w+) stares at you in (\w+) Jesus Christ pose\.}} {
-    #format healtarget {%l} {%2}; 
-    hmheal $healtarget;
+    #if !$idle_flag {
+        #format healtarget {%l} {%2}; 
+        hmheal $healtarget;
+    };
 };
 
 #act {{(\w+) stares at you in (\w+) Jesus Christ pose\.}} { 
-    #format healtarget {%l} {%2}; 
-    hmheal $healtarget;
+    #if !$idle_flag {
+        #format healtarget {%l} {%2}; 
+        hmheal $healtarget;
+    };
+};
+
+#act {{(\w+) says, 'Greetings, Comrade!' to you.$}} { 
+    #if !$idle_flag {
+        #10 corpse_select
+    };
 };
 
 #class {default_actions} {close}

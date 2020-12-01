@@ -1,6 +1,8 @@
-#nop - heartbeat actions
+#class {guild_heartbeat} {kill}
+#class {guild_heartbeat} {open}
 
 #var es_override 0;
+#var ham_toggle 0;
 
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
@@ -15,7 +17,7 @@
 		#if {$my[defs][ph] > 0} {#NOP} {#if {$defs[ph]} {cast protection from heat} {#nop}};
 		#if {$my[defs][blink] > 0} {#NOP} {#if {$defs[blink]} {cast blink} {#nop}};
 		#if {$my[defs][ag] > 0} {#NOP} {#if {$defs[ag]} {remove shield;perform amazing grace} {#nop}};
-		#if {$my[defs][o] > 0}  {#NOP} {#if {$defs[o]}  {perform o muse} {#nop}};
+		#if {$my[defs][o] > 0}  {#NOP} {#if {$defs[om]}  {perform o muse} {#nop}};
 		#if {$my[defs][hr] > 0} {#NOP} {#if {$defs[hr]} {cast harmonic regeneration} {#nop}};
 
 		#if $rod_bot {
@@ -23,12 +25,13 @@
 			#if !$my[defs][fr] {cast focus the rainbow};
 		};
 
-		#if $ham_bot {
-			#if !$my[song] {perform hammer smashed face};
+		#if {$ham_bot && !$ham_toggle} {
+			#if !$my[song] {
+				#var ham_toggle 1;
+				#delay 20 {perform hammer smashed face;#var ham_toggle 0;};
+				};
 		};
-
-	}
-	
+	};	
 };
 
-
+#class {guild_heartbeat} {close}

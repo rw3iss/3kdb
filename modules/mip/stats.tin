@@ -48,7 +48,7 @@
 		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
 		#CASE {"L"} {#NOP Mob Health;#VAR {enemy[hp]} {%2}};
 		#CASE {"M"} {#NOP Mob Image File};
-		#CASE {"N"} {#NOP Combat Round Counter;#VAR {mip[round]} {%2}};
+		#CASE {"N"} {#NOP Combat Round Counter;#VAR {mip[round]} {%2};#if !$total_rounds {#var total_rounds 1} {#MATH total_rounds {$total_rounds + 1}}};
 		#DEFAULT {#NOP Every other non-handled flag}
 	}
 }
@@ -109,9 +109,10 @@
 		#REGEX {$mip[gline][1]}	{MC:%d}				{#VAR {my[mental_cognition]}   {&1}	}	{#VAR {my[mental_cognition]}	{0}	};
 		#REGEX {$mip[gline][1]}	{SS>}				{#VAR {my[prots][SS]}		   {1}	}	{#VAR {my[prots][SS]}			{0}	};
 		#REGEX {$mip[gline][1]}	{PA}				{#VAR {my[prots][PA]}		   {1}	}	{#VAR {my[prots][PA]}			{0}	};
-		#REGEX {$mip[gline][1]}	{{%!{(?<!P)}A>}}	{#VAR {my[prots][A]}		   {1}	}	{#VAR {my[prots][A]}			{0}	};
+		#REGEX {$mip[gline][1]}	{{<gA|<yA}}			{#VAR {my[prots][A]}		   {1}	}	{#VAR {my[prots][A]}			{0}	};
 		#REGEX {$mip[gline][1]}	{B}					{#VAR {my[prots][B]}		   {1}	}	{#VAR {my[prots][B]}			{0}	};
 		#REGEX {$mip[gline][1]}	{MS}				{#VAR {my[prots][MS]}		   {1}	}	{#VAR {my[prots][MS]}			{0}	};
+		#REGEX {$mip[gline][1]}	{{M>|M!>}}			{#VAR {my[prots][M]}		   {1}	}	{#VAR {my[prots][M]}			{0}	};
 		#REGEX {$mip[gline][1]}	{RS}				{#VAR {my[prots][RS]}		   {1}	}	{#VAR {my[prots][RS]}			{0}	};
 		#REGEX {$mip[gline][1]}	{MG>}				{#VAR {my[prots][MG]}		   {1}	}	{#VAR {my[prots][MG]}			{0}	};
 		#REGEX {$mip[gline][1]}	{mg}				{#VAR {my[prots][mg]}		   {1}	}	{#VAR {my[prots][mg]}			{0}	};
@@ -199,19 +200,27 @@
 #ALIAS {.mipProcessGlineNecromancer} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {C:%d}		{#VAR {corpses[inventory]}	{&1}};
-		#REGEX {$mip[gline][1]} {Worth:%d}	{#VAR {my[worth]}		{&1}};
+		#REGEX {$mip[gline][1]} {Worth:%d}	{#VAR {my[necromancer][worth]}		{&1}};
 		#REGEX {$mip[gline][1]} {Tport:%d/%d}	{
-			#VAR {my[ports][current]}	{&1};
-			#VAR {my[ports][max]}		{&2}
+			#VAR {my[necromancer][teleports][current]}	{&1};
+			#VAR {my[necromancer][teleports][max]}		{&2}
+		};
+		#REGEX {$mip[gline][1]} {Fury:%d/%d}	{
+			#VAR {my[necromancer][glamors][current]}	{&1};
+			#VAR {my[necromancer][glamors][max]}		{&2};
 		};
 		#REGEX {$mip[gline][1]} {Sprk:%d/%d}	{
-			#VAR {my[sparks][current]}	{&1};
-			#VAR {my[sparks][max]}		{&2};
+			#VAR {my[necromancer][glamors][current]}	{&1};
+			#VAR {my[necromancer][glamors][max]}		{&2};
 		};
 		#REGEX {$mip[gline][1]} {Prot:%wX}	{#VAR {my[prot]}		{&1}};
 		#REGEX {$mip[gline][1]} {Circle:%d}	{#VAR {my[gxp]}			{&1}};
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]}	{Undead:%w}	{#VAR {my[undead]}		{&1}};
+		#REGEX {$mip[gline][2]}	{HPf:%d/%d}	{
+			#VAR {my[hp][fuse][current]}	{&1};
+			#VAR {my[hp][fuse][max]}	{&2}
+		}
 		#REGEX {$mip[gline][2]}	{SPf:%d/%d}	{
 			#VAR {my[sp][fuse][current]}	{&1};
 			#VAR {my[sp][fuse][max]}	{&2}

@@ -6,6 +6,7 @@
     #read common/draw.tin;
 };
 
+
 #alias {_player_deadmanActions} {
     .stop;
     #unact {%*};

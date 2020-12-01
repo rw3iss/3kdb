@@ -1,9 +1,38 @@
 #NOP -- Gags;
 
+#NOP -- Generic Gags;
 #gag {^$} {1};
 #gag {^>$} {1};
+#gag {^Your shield blocks %* attack!$};
+#gag {^***THAWHACK*** You critically hit %*!$};
+#gag {^**THWACK** You critically hit %*!$};
 
 
-#gag {^You grasp the band of beads and immediately you feel the sound of a$};
-#gag {^thousand voices pecking at your mental power. In return they give you a$};
-#gag {^brief increase of health.$};
+#NOP -- Chessboard Gags;
+#gag {^The %* crushes you with a mighty swipe of his};
+#gag {^trunk!$};
+#gag {^%* whips out a brightly glowing book and somehow};
+#gag {^blasts you with pure energy!$};
+#gag {^The %* opens his palm and a ray of frost erupts};
+#gag {^from it at you!$};
+#gag {^The A War Correspondent nearly blinds you with a powerful flash};
+#gag {^from his camera!$};
+#gag {^The %* rolls his chariot over you, slicing deeply!$};
+#gag {^The %* holds up his sceptre and it begins to glow eerily.$};
+#gag {^The Angry Horse rears up and slashes you with his sharpened};
+#gag {^horseshoes!$};
+#gag {^The %* preaches at you. Blood gushes from your ears!$};
+#gag {^The A Refugee smacks you with a befouled rag!$};
+#gag {^The %* throws a vial of burning acid at you!$};
+#gag {^The %* sword bursts into flame as he viciously};
+#gag {^slices into you!$};
+#gag {^into you!$};
+
+#NOP -- Hotel Gags;
+#gag {^The cook grunts and glares, suddenly a sharp knife flies towards you!$};
+
+
+#NOP -- Item Gags;
+#gag {^The sword pulses in your grasp!$};
+#gag {%*Your body quakes violently as a sickly, mutated arm$};
+#gag {%*spears forth from your torso and smashes%*!$};

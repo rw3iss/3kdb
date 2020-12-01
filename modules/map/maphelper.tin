@@ -68,10 +68,7 @@
 #alias {mapinsert} {#map insert {%1};#show Room inserted: %1;,mapsave};
 #alias {mapm} {#map move %0};
 #alias {maparea} {#map set areaname %0;mapsave};
-#alias {areamapmapped %1} {
-	#map list {} {} {} {%1} {variable} {area_mapped};
-	#showme {&area_mapped[] rooms mapped.};
-};
+
 
 #alias {mapfind} {
 	#show <129>Desc matches<088>;

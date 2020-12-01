@@ -1,17 +1,16 @@
 #CLASS {global} OPEN
 
-#NOP -- Bard Settings
-#VARIABLE         {karma_heal} {300};
-#VARIABLE         {dmg_spell_sp}  {400};
-#VARIABLE         {heal_hp}   {4600};
-#VARIABLE         {shield}  {aurothon shield};
-
-#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}};
-#VARIABLE         {curvnum}  {24666};
-#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}};
-#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{32}};
-#VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}};
-#VARIABLE         {room}  {{bottom}{31}{exits}{n}{height}{14}{heightperc}{.4}{name}{Beside a dark chasm (n)}{top}{22}{width}{91}{widthperc}{.45}};
-#VARIABLE         {splitWidthPerc}  {.45};
+#VARIABLE         {canvas}  {{width}{95}{widthperc}{.45}}
+#VARIABLE         {curvnum}  {24174}
+#VARIABLE         {dmg_spell_sp}  {400}
+#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
+#VARIABLE         {heal_hp}  {3900}
+#VARIABLE         {hpbar}  {{bottom}{42}{enabledheight}{4}{height}{4}{left}{0}{right}{211}{top}{39}}
+#VARIABLE         {karma_heal}  {300}
+#VARIABLE         {map}  {{height}{25}{heightperc}{.6}{width}{94}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{38}{exits}{n~out}{height}{17}{heightperc}{.4}{name}{Along a wall (n,out)}{top}{26}{width}{94}{widthperc}{.45}}
+#VARIABLE         {shield}  {aurothon shield}
+#VARIABLE         {splitWidthPerc}  {.45}
+#VARIABLE         {wielded}  {$wielded}
 
 #CLASS {global} CLOSE

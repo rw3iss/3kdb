@@ -11,13 +11,15 @@
 
 /* load guild */
 #read common/guilds/knights/index.tin;
+#read common/guilds/eternal/eternal.tin;
 
 /* load character-specific */
-#read chars/zorbaine/config.tin;
 #read chars/zorbaine/actions.tin;
 #read chars/zorbaine/aliases.tin;
+#read chars/zorbaine/config.tin;
 #read chars/zorbaine/gags.tin;
 #read chars/zorbaine/global.tin;
+#read chars/zorbaine/heartbeat.tin;
 #read chars/zorbaine/misc_clean.tin;
 #read chars/zorbaine/info.tin;
 

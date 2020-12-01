@@ -1,0 +1,15 @@
+#class {player_aliases} {kill}
+#class {player_aliases} {open}
+
+#alias .mob_kill_action {
+    kill $mobname;
+}
+
+#alias {_player_deadmanActions} {
+    .pause;
+};
+
+
+#NOP ---MISC;
+
+#class {player_aliases} {close}

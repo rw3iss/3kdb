@@ -4,8 +4,9 @@
 #alias {_player_heartbeat} {
         #if !$idle_flag {
             #if {$my[gem] < 80} {ffetch gem};
-            #if {$my[immersion][count] && $my[golem][reset] > 95} {cast mystic immersion};
+            #if {$my[immersion][count] && $my[golem][reset] > 80} {cast mystic immersion};
             #if {$my[gp1][current] > 75 && $my[super][current]} {cast explosive release};
+            #if {$my[gp1][current] > 75 && !$my[super][current] && $corpses[total] > 0} {deslab;cast corpse blast};
     };
 };
 

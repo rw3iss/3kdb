@@ -21,6 +21,6 @@
 #act {^-M-_%*Ivy%*.$} {#NOP} {0};
 #act {^-M-_%*Martyr%*.$} {#NOP} {0};
 #act {^-M-_El Jefe%*.$} {#NOP} {0};
-#act {^-M-_A fluffy persian cat.$} {#NOP} {0};
+#act {^-M-_Señor Meow-meow the fluffy persian cat.$} {#NOP} {0};
 
 #class {whitelist} {close}

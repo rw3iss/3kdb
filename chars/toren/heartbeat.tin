@@ -2,9 +2,13 @@
 #class {heartbeat} {open}
 
 #var make_con 1;
+#var party_actions 1;
 
 #alias {_player_heartbeat} {
-	#if {!$idle_flag && $make_con && $my[worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}} {#NOP};
+	#if {!$idle_flag} {
+		#if {$make_con && $my[necromancer][worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}};
+		#if {$party_actions && $mip[round] == 2} {rabies;call}
+	}
 };
 
 #class {heartbeat} {close}

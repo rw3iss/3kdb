@@ -6,9 +6,14 @@
 
 logs/
 
+
+# don't commit the map
+**3k_shared.map
+**3k_shared.map.bak
+
 # don't commit any password files
 password.tin
-
-chars/byron/private.tin
+private.tin
+statboosts.tin
 
 notes/

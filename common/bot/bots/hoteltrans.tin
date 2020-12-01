@@ -10,31 +10,7 @@
 
 #alias .pre_fight_check {#nop;};
 
-#if {{$guild} == {bard}} {
-	#nop - Turn off kill-em-all
-	#var kill_em_all 0
-
-	echo_divider1;
-	clear_prots;reflex_clear;
-	echo_divider2;
-	echo_reflex_header;
-	reflex_critic 200;reflex_ow 200;reflex_ma 400;
-	echo_divider2;
-
-	#alias {.pre_fight_check} {
-		#var defs[es] 1;
-		#var defs[blink] 1;
-		#var defs[pe] 1;
-	}
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
+.pre_bot_check;
 
 #var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s};
 #act {-M-_{A zombie bell hop waiting to carry your things|A zombie waiter offering drinks|A zombie cook looking for something to chop}%*} {

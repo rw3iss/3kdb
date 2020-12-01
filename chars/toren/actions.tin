@@ -1,5 +1,7 @@
-#class {necro_actions} {kill}
-#class {necro_actions} {open}
+#class {player_actions} {kill}
+#class {player_actions} {open}
+
+#act {Too heavy.} {#var inventory_full 1};
 
 #NOP -- Corpse trig;
 #act {Toren dealt the killing blow} {corpse_trig}
@@ -9,4 +11,4 @@
 #act {Zorbaine attacks} {#delay 6 {fury;rabies;infest rimalkin;infest zombie}};
 #act {Nix attacks} {#delay 6 {fury;rabies;infest colour;infest rimalkin;infest zombie}};
 
-#class {necro_actions} {close}
+#class {player_actions} {close}

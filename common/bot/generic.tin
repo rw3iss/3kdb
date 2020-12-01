@@ -79,7 +79,7 @@
     };
 
 	#alias {.onPrompt} {
-        #nop show mob? $foundmob, $mobname, player? $foundplayer;
+        #NOP #showme show mob? $foundmob, $mobname, player? $foundplayer, object? $foundobject;
 
         #if {$foundplayer || $dontAttack} {
             .stop_prompt;
@@ -88,26 +88,26 @@
             #if {$foundmob} {
                 .stop_prompt;   
                 .pre_fight_check;
+                #unact {{^-R-_(.*)-R-_}};
                 #if {$mob_kill_actions} {
                     .mob_kill_action;
                 } {
                     kill $mobname;
                 };
             } {
-                #if {$foundobject} {#send $object_action} {
+                #if {$item_collector} {
+                    get all;
+                };
+                #if {$foundobject} {#send $object_action;#var foundobject 0} {
                     #if {$check_room} {
                         .stop_prompt;
                         .check_room;
                     } {
                         .stop_prompt;
                         #path walk;
-                    }
-                }
+                    };
+                };
             };
-        };
-
-        #if {$founditems} {
-            #if {$pickupAll} {#nop get all;}
         };
     };
 

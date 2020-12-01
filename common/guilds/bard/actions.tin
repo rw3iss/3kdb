@@ -4,7 +4,7 @@
 #NOP --------------------------------------- BARD SPECIFIC ACTIONS ------------------------------------------;
 
 #NOP --- BARD DEFENSIVE SONGS AND SPELLS;
-#ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[grace] && !$idle_flag} {ag}} {5};
+#ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[ag] && !$idle_flag} {ag}} {5};
 #ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$idle_flag} {perform o muse}} {5};
 #ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$idle_flag} {cast hardened skin}} {5};
 #ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$idle_flag} {cast protection from evil}} {5};

@@ -2,7 +2,7 @@
 #class {player_aliases} {open}
 
 #alias {_player_deadmanActions} {
-    .stop;
+    .pause;
     clear_prots;
 };
 
@@ -28,7 +28,7 @@
 }
 
 #NOP ---THIS SECTION IS FOR BARD SPECIFIC ALIASES
-#alias {{hh}} {remove gloves;cast healing hands;wear gloves};
+#alias {{hh}} {cast healing hands};
 #alias {{karma}} {unwrap corpse;dirge};
 #alias {boost} {
         perform hero for %1;
@@ -40,8 +40,47 @@
 
 
 #NOP ---THIS SECTION IS FOR SONG ALIASES
-#alias {if} {remove shield;perform into the fire};
-#alias {meyes} {remove shield;perform mystic eyes};
+#alias {clear_prots} {#var defs 0};
+#alias {vamp} {perform vampire};
+#alias {it %1} {perform invigorating tune for %1};
+#alias {pd} {perform dirge};
+#alias {ag} {perform amazing grace};
+#alias {om} {perform o muse};
+#alias {rod} {cast focus the rainbow;perform rainbow of death};
+#alias {lotb} {perform leader of the band};
+#alias {if} {perform into the fire};
+#alias {meyes} {perform mystic eyes};
+
+#alias {critic} {reflex remove sp >400;reflex add sp >400 cast caustic critic};
+#alias {blade} {reflex remove sp >400;reflex add sp >400 cast blade dance};
+#alias {ebolt} {reflex remove sp >400;reflex add sp >400 cast energy bolt};
+#alias {firestorm} {reflex remove sp >400;reflex add sp >400 cast fire storm};
+#alias {damage-on} {reflex remove gp1 >250;reflex add gp1 >250 martial assault;reflex add gp1 >250 martial assault;#var dmg_on 1};
+#alias {damage-off} {reflex remove gp1 >250;#var dmg_on 0};
+#alias {prots_pfe} {cast protection from evil;#var defs[pe] 1;echo_prots_pfe};
+#alias {prots_pfg} {cast protection from good;#var defs[pg] 1;echo_prots_pfg};
+#alias {prots_pfn} {cast protection from neutral;#var defs[pn] 1;echo_prots_pfn};
+#alias {prots_pfc} {cast protection from frost;#var defs[pf] 1};
+#alias {prots_hs} {cast hardened skin;#var defs[hs] 1;echo_prots_hs};
+#alias {prots_blink} {cast blink;#var defs[blink] 1;echo_prots_blink};
+#alias {prots_grace} {perform amazing grace;#var defs[ag] 1;echo_prots_grace};
+#alias {prots_muse} {perform o muse;#var defs[muse] 1;echo_prots_muse};
+#alias {prots_ice} {cast protection from frost;#var defs[ice] 1};
+#alias {prots_pfh} {cast protection from heat;#var defs[pfh] 1};
+#alias {prots_mind} {cast mind blank;#var defs[mind] 1};
+
+#NOP ---THIS SECTION IS FOR FORMATTING FOR SPELL/SONG MAINTENANCE
+#alias {echo_divider1} {#echo {========================================================}};
+#alias {echo_clear_prots} {#echo {--------------- CLEARING DEFENSE VARIABLES --------------}};
+#alias {echo_divider2} {#echo {+++++++++++++++++++++++++++++++++++++++++++++++++++++++++}};
+#alias {echo_prots_header} {#echo {+++++++++++++++  ACTIVE DEFENSES INCLUDE:  ++++++++++++++}};
+#alias {echo_prots_pfe} {#echo {+++++++++++++++  PROTECTION FROM EVIL      ++++++++++++++}};
+#alias {echo_prots_pfg} {#echo {+++++++++++++++  PROTECTION FROM GOOD      ++++++++++++++}};
+#alias {echo_prots_pfn} {#echo {+++++++++++++++  PROTECTION FROM NEUTRAL   ++++++++++++++}};
+#alias {echo_prots_hs} {#echo {+++++++++++++++  HARDENED SKIN             ++++++++++++++}};
+#alias {echo_prots_blink} {#echo {+++++++++++++++  BLINK                     ++++++++++++++}};
+#alias {echo_prots_grace} {#echo {+++++++++++++++  AMAZING GRACE             ++++++++++++++}};
+#alias {echo_prots_muse} {#echo {+++++++++++++++  O'MUSE                    ++++++++++++++}};
 
 
 #NOP -- THIS SECTION IS FOR OTHER ALIASES
@@ -61,8 +100,7 @@
 #alias {heals} {
         cast mystic guardian at hp/500/(heal;
         setpanic hmheal at 1500;
-        reflex add hp 4600 remove gloves;
-        reflex add hp 4600 cast healing hands};
+        reflex add hp 3900 cast healing hands};
 
 #alias {dmgoff} {reflex remove sp >400};
 #alias {es} {empowered strikes};
@@ -106,6 +144,57 @@
 #alias {zell1} {sr shelf;take gloves;n;n;w;w;w;s;get key from pool;drop gloves;n;e;e;e;s;s;e;e;e;n;e;e;e;n;n;n;n;w;w;w;w;s;s;s;s;unlock door;open door;w;take key;e;n;n;n;n;e;e;e;e;s;s;s;s;w;w;w;s;w;w;w;n;n;w;w;n;unlock door;open door;w;w;s;s;sw;w;w;w;n;nw;e;e;e;e;n;ne;e;e;e;n};
 #alias {zell2} {s;w;w;w;sw;s;w;w;w;w;se;s;e;e;e;ne;n;n;e;e;e;s;w;s;se;s;e;s;s;out;map zell}
 
+#NOP - BARD THOUGHT WAVE
+#class {eval} kill
+#class {eval} open
+
+#var bardEval[cols] 28;
+#var bardEval[Poor] 1;
+#var bardEval[Fair] 2;
+#var bardEval[Decent] 3;
+#var bardEval[Average] 4;
+#var bardEval[Great] 5;
+#var bardEval[Superb] 6;
+#var bardEval[Outstanding] 7;
+#var bardEval[Heroic] 8;
+#var bardEval[Godly] 9;
+#var bardEval[Legendary] 10;
+#var bardEval[Edged] <060>;
+#var bardEval[Blunt] <170>;
+#var bardEval[Fire] <110>;
+#var bardEval[Ice] <140>;
+#var bardEval[Acid] <120>;
+#var bardEval[Electric] <130>;
+#var bardEval[Mind] <050>;
+#var bardEval[Energy] <150>;
+#var bardEval[Poison] <020>;
+#var bardEval[Radiation] <160>;
+
+
+#alias {bardEvalPrint} {
+  #format bardEvalType1Len {%L} {%1};
+  #format bardEvalType2Len {%L} {%2};
+  #math bardEvalType1fmt $bardEval[cols] - $bardEvalType1Len;
+  #math bardEvalType2fmt $bardEval[cols] - $bardEvalType2Len;
+  #echo {$bardEval[%1]%1<170>%+${bardEvalType1fmt}s<100> | $bardEval[%2]%2<170>%+${bardEvalType2fmt}s} {$bardEval[$bardEval[mob][%1]] <170>\/ 10} {$bardEval[$bardEval[mob][%2]] <170>\/ 10};
+};
+
+#action {^      - D E F E N S I V E   E V A L U A T I O N -} {
+  #var bardEval[mob] {}
+};
+
+#action {^{Edged|Blunt|Fire|Ice|Acid|Electric|Mind|Energy|Poison|Radiation}%s: {Poor|Fair|Decent|Average|Great|Superb|Outstanding|Heroic|Godly|Legendary|Immune}} {
+  #line gag;
+  #var bardEval[mob][%1] %3;
+};
+
+#action {^This %+ is best defended against} {
+  bardEvalPrint {Edged} {Electric};
+  bardEvalPrint {Blunt} {Mind};
+  bardEvalPrint {Fire} {Energy};
+  bardEvalPrint {Ice} {Poison};
+  bardEvalPrint {Acid} {Radiation};
+};
 
 
 #class {player_aliases} {close}

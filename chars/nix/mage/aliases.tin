@@ -36,7 +36,7 @@
 #alias {shield} {cast magnificent shield;cast contingency as shield#cast magnificent shield};
 #alias {stoneskin} {cast stoneskin;cast contingency as stoneskin#cast stoneskin};
 #alias {blink} {cast blink;cast contingency as blink#cast blink};
-#alias {corpsetrig} {cast corpse blast;divvy coins;xp;study spellbook;repeat combat/cast slow/1/0};
+#alias {corpsetrig} {cast corpse blast;divvy coins;xp;study spellbook};
 #alias {enthrall} {cast charm monster};
 
 
@@ -69,7 +69,6 @@
 };
 
 #alias {defense} {
-        prots_armor;
         prots_ms;
         prots_ss;
         prots_blink;

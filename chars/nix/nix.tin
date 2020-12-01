@@ -31,6 +31,7 @@
 #read chars/$user/$guild/aliases.tin;
 #read chars/$user/$guild/config.tin;
 #read chars/$user/$guild/heartbeat.tin;
+#read chars/$user/$guild/private.tin;
 #read chars/$user/vars.tin;
 
 /* create space for static hpbar at bottom and reset map position */
@@ -71,11 +72,11 @@
 	#class {mage_heartbeat} {kill};
 	#read common/guilds/$guild/index.tin;
 	
-	#read chars/$user/actions.tin;
-	#read chars/$user/aliases.tin;
-	#read chars/$user/config.tin;
-	#read chars/$user/heartbeat.tin;
-	#read chars/$user/miphp.tin;
+	#read chars/$user/$guild/actions.tin;
+	#read chars/$user/$guild/aliases.tin;
+	#read chars/$user/$guild/config.tin;
+	#read chars/$user/$guild/heartbeat.tin;
+	#read chars/$user/$guild/miphp.tin;
 	
 }
 

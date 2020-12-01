@@ -26,7 +26,7 @@
 #alias {prots_hs} {cast hardened skin;#var defs[hs] 1;echo_prots_hs};
 #alias {prots_blink} {cast blink;#var defs[blink] 1;echo_prots_blink};
 #alias {prots_hr} {#var defs[hr] 1;echo_prots_hr};
-#alias {prots_grace} {remove shield;perform amazing grace;#var defs[grace] 1;echo_prots_grace};
+#alias {prots_grace} {remove shield;perform amazing grace;#var defs[ag] 1;echo_prots_grace};
 #alias {prots_muse} {perform o muse;#var defs[muse] 1;echo_prots_muse};
 
 #alias {reflex_clear} {reflex clear;echo_reflex_clear};

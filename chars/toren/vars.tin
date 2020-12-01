@@ -2,7 +2,7 @@
 
 #ALIAS {_player_deadmanActions}
 {
-     .stop
+     .pause;
 }
 {0}
 

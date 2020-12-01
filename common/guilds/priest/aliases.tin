@@ -1,0 +1,12 @@
+#class {priest_aliases} {kill}
+#class {priest_aliases} {open}
+
+#alias {gxp_reset} {
+    #var total_gxp 0;
+    #var average_total_gxp 0;
+    #var total_fight_gxp 0;
+    #var average_fight_gxp 0;
+    #var total_rounds 0;
+}
+
+#class {priest_aliases} {close}

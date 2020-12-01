@@ -1,0 +1,22 @@
+#class {priest_hpbar} {kill}
+#class {priest_hpbar} {open}
+
+#act {HP: %d/%d SP: %d/%d MANA: %d/%d GXP%: [%d\%] <DGX>: %d} {
+    #var my[g2n] %7;
+    #var my[round_gxp] %8;
+    #math total_gxp {$total_gxp + $my[round_gxp]};
+    #math average_total_gxp {$total_gxp / $total_rounds};
+
+    #math total_fight_gxp {$total_fight_gxp + $my[round_gxp]};
+    #math average_fight_gxp {$total_fight_gxp / $mip[round]};
+}
+#act {BARK: %w HASTE: %w PROT: %w VEST: %w} {
+    #var my[effects][barkskin] %1;
+    #var my[effects][haste] %2;
+    #var my[effects][protection] %3;
+    #var my[effects][vestment] %4;
+}
+#GAG {BARK: %w HASTE: %w PROT: %w VEST: %w}
+#GAG {HP: %d/%d SP: %d/%d MANA: %d/%d GXP%: [%d\%] <DGX>: %d}
+
+#class {priest_hpbar} {close}

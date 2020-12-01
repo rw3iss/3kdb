@@ -32,14 +32,11 @@
 
 	#if {$ewell} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
-
-	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 	#var eternal_string {Eternal Pwr: $ewell_string };
 
 	#showme {HP:$hp/$hp_max SP:$sp/$sp_max NP:$gp1/$gp1_max  E:$ehealth} {-5};
 	#showme {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]} {-4};
-	#showme {$etc_string} {-3};
+	#showme {$corpse_string} {-3};
 	#showme {$eternal_string Idle: $idle_cap} {-2};
 
 	_player_heartbeat;

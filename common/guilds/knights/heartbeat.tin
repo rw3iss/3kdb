@@ -37,140 +37,142 @@
     };
 };
 
-#alias {_heartbeat} {
-	#if {$my[hp][current] < 3400} {st;};
-	#if {$my[hp][current] < 3200} {st;};
-	#if {$my[hp][current] < 3000} {st;};
-	#if {$my[hp][current] < 2800} {st;};
-	#if {$my[hp][current] < 2600} {st;};
-	#if {$my[hp][current] < 2400} {st;};
-	#if {$my[hp][current] < 2200} {st;};
-	#if {$my[hp][current] < 2000} {st;};
-	#if {$my[hp][current] < 1800} {st;};
-	#if {$my[hp][current] < 1600} {st;};
+#alias {_guild_heartbeat} {
+	#if !$idle_flag {
+		#if {$my[hp][current] < 3400} {st;};
+		#if {$my[hp][current] < 3200} {st;};
+		#if {$my[hp][current] < 3000} {st;};
+		#if {$my[hp][current] < 2800} {st;};
+		#if {$my[hp][current] < 2600} {st;};
+		#if {$my[hp][current] < 2400} {st;};
+		#if {$my[hp][current] < 2200} {st;};
+		#if {$my[hp][current] < 2000} {st;};
+		#if {$my[hp][current] < 1800} {st;};
+		#if {$my[hp][current] < 1600} {st;};
 
-    #nop stop when strain is too high;
-	#if {$my[gp2][current] > 180} {
-        #if {$botting == 1} {
-            .pause;tr;tr;tr;rest;
-            #delay {2} {tr;tr;tr;.pause;rest};
-            #delay {60} {..};
-        }
-    };
+		#nop stop when strain is too high;
+		#if {$my[gp2][current] > 180} {
+			#if {$botting == 1} {
+				.pause;tr;tr;tr;rest;
+				#delay {2} {tr;tr;tr;.pause;rest};
+				#delay {60} {..};
+			}
+		};
 
-	#nop will when spork enabled;
-	#if {$incombat == 1} {
-		
-        #nop STAMINA ----------;
-		#if {$my[stam][current] < $my[stam][safetycheck] || $my[stam][current] < $my[stam][emergency]} {
-			#if {$my[secondwind][current] >= 50} {
-				secondwind;
-			} {
-				#if {$corpses[total] > 0} {
-					buryCorpseForRegen;
+		#nop will when spork enabled;
+		#if {$incombat == 1} {
+			
+			#nop STAMINA ----------;
+			#if {$my[stam][current] < $my[stam][safetycheck] || $my[stam][current] < $my[stam][emergency]} {
+				#if {$my[secondwind][current] >= 50} {
+					secondwind;
 				} {
-                    #show \nNo corpses! Must truce...\n;
-
-					#if {$FORCE_WIMPY_ON_LOW_STAMINA == 1} {
-						#if {$wimpystratenabled == 1} {
-							wimpystrat;
-						} {
-							truceTrigger;
-						}
+					#if {$corpses[total] > 0} {
+						buryCorpseForRegen;
 					} {
-						#show  ----- <119>EMERGENCY STAMINA!<099> -----;
-						truceTrigger;
-						#if {$wimpystratenabled == 1} {
-							wimpystrat;
+						#show \nNo corpses! Must truce...\n;
+
+						#if {$FORCE_WIMPY_ON_LOW_STAMINA == 1} {
+							#if {$wimpystratenabled == 1} {
+								wimpystrat;
+							} {
+								truceTrigger;
+							}
+						} {
+							#show  ----- <119>EMERGENCY STAMINA!<099> -----;
+							truceTrigger;
+							#if {$wimpystratenabled == 1} {
+								wimpystrat;
+							};
 						};
 					};
 				};
 			};
-		};
 
-        #nop STRAIN ----------;
-		#if {$my[strain][current] > 170} {
-			#nop use chalice for -strain if we have it, otherwise truce;
-			#if {$chalice == 1} {
-				quaff chalice;
-			} {
-				#if {$my[secondwind][current] > 50} {
-					secondwind;
+			#nop STRAIN ----------;
+			#if {$my[strain][current] > 170} {
+				#nop use chalice for -strain if we have it, otherwise truce;
+				#if {$chalice == 1} {
+					quaff chalice;
 				} {
-                    #if {$corpses[total] > 0} {
-                        buryCorpseForRegen;
-                    } {
-                        #show \n----- <119>STRAIN TOO HIGH, TRUCING <088> -----\n;
-                        truceTrigger;
-                    };
-                };
-			};
-		};
-
-        #nop SP ----------;
-		#if {$my[sp][current] < 100} {
-			#if {$my[stam][current] > 500} {
-				peace;
-			} {
-				#show ----- <119>LOW SP<088> -----;
-				#if {$my[secondwind][current] < 50} {
-					#show ----- SP too low, trucing -----;
-					truceTrigger
-					#delay {2} {rest};
+					#if {$my[secondwind][current] > 50} {
+						secondwind;
+					} {
+						#if {$corpses[total] > 0} {
+							buryCorpseForRegen;
+						} {
+							#show \n----- <119>STRAIN TOO HIGH, TRUCING <088> -----\n;
+							truceTrigger;
+						};
+					};
 				};
 			};
-		};
 
-	    #if {"$my[battlecry]" != "Y" && "$my[stance][curr]" == "Off"} {
-            bcc;
-            hp;
-        };
+			#nop SP ----------;
+			#if {$my[sp][current] < 100} {
+				#if {$my[stam][current] > 500} {
+					peace;
+				} {
+					#show ----- <119>LOW SP<088> -----;
+					#if {$my[secondwind][current] < 50} {
+						#show ----- SP too low, trucing -----;
+						truceTrigger
+						#delay {2} {rest};
+					};
+				};
+			};
 
-        #if {$repeatInCombat != 0} {
-            #show RPC: $repeatInCombat;
-            $repeatInCombat;
-        };
+			#if {"$my[battlecry]" != "Y" && "$my[stance][curr]" == "Off"} {
+				bcc;
+				hp;
+			};
 
-		#if {$hasspork == 1 && $my[stam][current] < $STAMINA_EMERGENCY_CHECK && $my[sp][current] > $WILL_WITH_SPORK_WITH_SP} { 
-			will;
-		};
+			#if {$repeatInCombat != 0} {
+				#show RPC: $repeatInCombat;
+				$repeatInCombat;
+			};
 
-		#if {$repeatInCombat != ""} {
-			$repeatInCombat;
-		};
-
-		#if {$my[stam][current] < 1000 && $my[sp][current] > $my[sp][max]} { 
-			will;
-			#if {$my[stam][current] < 700} { 
+			#if {$hasspork == 1 && $my[stam][current] < $STAMINA_EMERGENCY_CHECK && $my[sp][current] > $WILL_WITH_SPORK_WITH_SP} { 
 				will;
-			}
+			};
+
+			#if {$repeatInCombat != ""} {
+				$repeatInCombat;
+			};
+
+			#if {$my[stam][current] < 1000 && $my[sp][current] > $my[sp][max]} { 
+				will;
+				#if {$my[stam][current] < 700} { 
+					will;
+				}
+			};
+
 		};
 
-	};
+		
 
-    
-
-	#if {"$my[method][current]" == "Standard"} {
-		#show \n ||| IN STANDARD |||\n\n;
-        mmc;hp;
-		method $my[method][desired];
-	};
-
-	#if {"$my[prepared]" == "n"} {prepare on};
-
-	#if {$my[hp][current] < 500} {
-		#if {$botting == 1} {
-			#show WARNING!!!!!!!\n\n;
-			.stop;
-            wimpystrat;
+		#if {"$my[method][current]" == "Standard"} {
+			#show \n ||| IN STANDARD |||\n\n;
+			mmc;hp;
+			method $my[method][desired];
 		};
-	};
 
-	#if {$hasdog == 1} {
-		#if {$dog[happy][current] < 95} {
-			dog pet;
+		#if {"$my[prepared]" == "n"} {prepare on};
+
+		#if {$my[hp][current] < 500} {
+			#if {$botting == 1} {
+				#show WARNING!!!!!!!\n\n;
+				.stop;
+				wimpystrat;
+			};
 		};
-	};
+
+		#if {$hasdog == 1} {
+			#if {$dog[happy][current] < 95} {
+				dog pet;
+			};
+		};
+	}
 };
 
 #alias {killTriggerAlways} {

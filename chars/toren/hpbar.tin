@@ -40,7 +40,7 @@
         #if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
         #format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
 	
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
+	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler]};
 	#showme {Idle:  $idle_cap } {-5};
 	#showme {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])} {-4};
 	#showme {$prompt_1} {-3};

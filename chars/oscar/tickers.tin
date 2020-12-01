@@ -1,12 +1,6 @@
 #class player_tickers kill
 #class player_tickers open
 
-#nop -- freeway;
-#ticker bear {#if !$idle_flag {cuddle bear}} 1800;
-
-#nop -- pipe;
-#ticker pipe {#if !$idle_flag {smoke pipe}} 63;
-#ticker pipe2 {#if !$idle_flag {smoke pipe}} 75;
 
 
 #class player_tickers close

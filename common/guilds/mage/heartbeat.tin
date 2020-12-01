@@ -7,7 +7,9 @@
 		#if (!$my[summon][golem] && $my[golem][current]) {#5 {cast create golem}} {#nop};
 		#if $defs[MB] {#if !$my[prots][MB] {cast mindblank} {#nop}};
 		#if $defs[PA] {#if !$my[prots][PA] {cast prismatic aura} {#nop}};
+		#if $defs[A]  {#if !$my[prots][A]  {cast armor} {#nop}};
 		#if $defs[MG] {#if !$my[prots][MG] {cast major globe} {#nop}};
+		#if $defs[M]  {#if !$my[prots][M]  {cast mantle} {#nop}};
 		#if $defs[mg] {#if !$my[prots][mg] {cast minor globe} {#nop}};
 		#if $defs[ms] {#if !$my[prots][MS] {cast magnificent shield} {#nop}};
 		#if $defs[SS] {#if !$my[prots][SS] {cast stoneskin} {#nop}};
@@ -15,61 +17,10 @@
 		#if $defs[pe] {#if !$my[prots][PE] {cast protection from evil} {#nop}};
 		#if $defs[pg] {#if !$my[prots][PG] {cast protection from good} {#nop}};
 		#if $defs[shield] {#if !$my[prots][S] {cast shield} {#nop}};
-		#if $defs[armor] {#if !$my[prots][A] {cast armor} {#nop}};
 		#if $defs[blink] {#if !$my[prots][B] {cast blink} {#nop}};
 
 		#if !$deeppocket {#if {$my[sp][current] > 150} {cast deeppockets}};
 	} {#NOP;};
 };
-
-#NOP --- MAGE MIP IS WHACKY - SO THIS IS A CAPTURE TO GET SOME REDUNDANT OR BETTER VARIABLES;
-#NOP ---					  EX, G2N IS A % FROM MIP BUT A # IN AUTOHP;
-
-{ HP: 1368/569 SP: 6398/8388/97%/70% Sat: 26% Cnc: 11% G:3/81% S:0/87% G2N:234496 SS PA B MG MB <P> ST}
-{^  --> Crystal:B, Phoenix:+, Frost giant:+ }
-
-#action {^  --> %+} { #var hp_summons %1 }
-
-yields
-#VARIABLE {hp_summons} {Crystal:B, Phoenix:+, Frost giant:+ }
-
-#replace hp_summons {, } {;}
-
-yields
-#var hp_summons
-#VARIABLE {hp_summons} {Crystal:B;Phoenix:+;Frost giant:+ }
-
-#foreach {$hp_summons} {summon} { #echo {Summon: $summon} }
-
-yields
-Summon: Crystal:B
-Summon: Phoenix:+
-Summon: Frost giant:+
-
-but instead, we do:
-#foreach {$hp_summons} {summon} {#regex {$summon} {{([A-Za-z ]+)}:{(.)}} {#echo {&1 has health &3}}}
-
-which outputs:
-Crystal has health B
-Phoenix has health +
-Frost giant has health +
-
-
-or we can do:
-#foreach {$hp_summons} {summon} {#regex {$summon} {{([A-Za-z ]+)}:{(.)}} {#var my_summons[&1] &3}}}
-
-which creates:
-#VARIABLE {my_summons}
-{
-     {Crystal} {B}
-     {Frost giant} {+}
-     {Phoenix} {+}
-}
-
-and is then available as:
-#foreach {*my_summons[]} {summon} {#echo {Summon $summon has health ${my_summons[$summon]}}}
-Summon Crystal has health B
-Summon Frost giant has health +
-Summon Phoenix has health +
 
 #class {mage_heartbeat} {close}

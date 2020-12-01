@@ -9,10 +9,9 @@
 #ACTION {{A flash of energy emanates from Shansabyk's body\.}} {pt Shansabitch down a life!!};
 
 #ACTION {{The coffin is full!}} {
-        get coins from corpse;
-        remove shield;
+        slab corpse;
+	get coins from corpse;
         dirge;
-        wear shield;
 };
 
 #ACTION {The Abysmal Blade (enchanted): Ok.} {smuggle blade};	
@@ -23,7 +22,7 @@
 #act {Hurinteon the Grand Master Mage (Deadly!!!) appears out of nowhere.} {view 1 study hurinteon;kill hurinteon};
 #act {The melting cheese finally evaporates from Nix.} {wield axe};
 #act {%1 offers to guard} {accept};
-
+#act {You are already attacking} {#delay {2} cast noxious cloud};
 
 
 #class {player_actions} {close}

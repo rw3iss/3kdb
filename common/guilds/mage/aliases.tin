@@ -5,8 +5,9 @@
 #alias {create_golem} {
     examine materials;
     #action {^There's bits of the following materials remaining:$} {
-        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem2 %%%1;} {1};
+        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem %%%1;} {1};
     };
+    #delay 2 {say golem, you are now in group golem/assist always/ibc}
 }
 
 #NOP --- MAGE DEFENSE ALIASES;
@@ -29,7 +30,7 @@
 #alias {prots_rs} {check_extension;cast rhino skin;clear_align;#var defs[rs] 1;echo_prots_rs};
 #alias {prots_ss} {check_extension;cast stoneskin;#var defs[SS] 1;echo_prots_ss};
 #alias {prots_shield} {check_extension;cast shield;#var defs[shield] 1;echo_prots_shield};
-#alias {prots_armor} {check_extension;cast armor;#var defs[armor] 1;echo_prots_armor};
+#alias {prots_armor} {check_extension;cast armor;#var defs[A] 1;echo_prots_armor};
 #alias {prots_blink} {check_extension;cast blink;#var defs[blink] 1;echo_prots_blink};
 
 #NOP ---THIS SECTION IS FOR FORMATTING FOR SPELL/ETC MAINTENANCE

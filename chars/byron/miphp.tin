@@ -34,7 +34,7 @@
 	#if {$my[defs][ag] > 0}		{#if $defs[ag]		{#var ag_string <ACA><fff>AG:$my[defs][ag]*<088>}	{#var ag_string AG:$my[defs][ag]*}} {#var ag_string {}};
 	#if {$my[defs][fr] > 0}		{#if $defs[fr]		{#var fr_string <ACA><fff>FR:$my[defs][fr]*<088>}	{#var fr_string FR:$my[defs][fr]*}} {#var fr_string {}};
 	#if {$my[defs][v] > 0}		{#if $defs[v]		{#var v_string <ACA><fff>V:$my[defs][v]*<088>}		{#var v_string V:$my[defs][v]*}} 	 {#var v_string {}};
-	#if {$my[defs][o] > 0}		{#if $defs[o]		{#var o_string <ACA><fff>O:$my[defs][o]*<088>}		{#var o_string O:$my[defs][o]*}} 	 {#var o_string {}};
+	#if {$my[defs][o] > 0}		{#if $defs[om]		{#var o_string <ACA><fff>O:$my[defs][o]*<088>}		{#var o_string O:$my[defs][o]*}} 	 {#var o_string {}};
 	#if {$my[defs][pe] > 0}		{#if $defs[pe]		{#var pe_string <ACA><fff>PE:$my[defs][pe]*<088>}	{#var pe_string PE:$my[defs][pe]*}} {#var pe_string {}};
 	#if {$my[defs][pg] > 0}		{#if $defs[pg]		{#var pg_string <ACA><fff>PG:$my[defs][pg]*<088>}	{#var pg_string PG:$my[defs][pg]*}} {#var pg_string {}};
 	#if {$my[defs][pn] > 0}		{#if $defs[pn]		{#var pn_string <ACA><fff>PN:$my[defs][pn]*<088>}	{#var pn_string PN:$my[defs][pn]*}} {#var pn_string {}};
@@ -51,15 +51,12 @@
 	
 	#if {$ewell} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer]};
-
-	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 	#var eternal_string {Eternal: $ewell_string };
 
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {Prots: $prot_string $song_string $eternal_string};
-	#var prompt4 {$etc_string Idle: $idle_cap};
+	#var prompt4 {$corpse_string Idle: $idle_cap};
 
 	_player_heartbeat;
     _guild_heartbeat;

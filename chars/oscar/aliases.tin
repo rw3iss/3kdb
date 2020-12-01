@@ -17,9 +17,50 @@
 }
 
 #alias {_player_deadmanActions} {
-    .stop;
+    .pause;
 };
 
+#alias {setup_c} {
+     cast contingency as prismatic aura#cast prismatic aura;
+     cast contingency as shield#cast magnificent shield;
+     cast contingency as armor#cast armor;
+}
+
+#alias {setup_gc} {
+     cast greater contingency as stoneskin#cast stoneskin;
+     cast greater contingency as major globe#cast major globe;
+}
+
+#alias {clear_c} {
+     #6 {cast remove contingency as 1};
+}
+
+#alias {clear_gc} {
+     #7 {cast remove greater contingency as 1};
+}
+
+#alias ms7 {
+     cast monster summoning 7 as 10-headed Hydra;
+     #delay 2 {}
+}
+
+#alias {check_beads} {
+     #math hp_overmax_max {$my[hp][max] * 5};
+     #math hp_overmax_shortfall {$hp_overmax_max - $my[hp][current]};
+     #math grasps_needed {$hp_overmax_shortfall / 33};
+
+     #math sp_threshold {$my[sp][max] * .20};
+     #math sp_extra {$my[sp][current] - $sp_threshold};
+     #math grasps_possible {$sp_extra / 100};
+
+     #if {$grasps_needed < $grasps_possible} {
+          #var grasp_beads $grasps_needed;
+     } {
+          #var grasp_beads $grasps_possible;
+     };
+
+     #$grasp_beads {grasp beads};
+}
 
 #ALIAS {ld}
 {
@@ -57,15 +98,6 @@
      }
 };
 
-#ALIAS {postload}
-{
-     #map flag static on;
-     #map flag vtmap on;
-     #map flag unicodegraphics on;
-     #map flag terrain on;
-     #map flag direction on;
-     #delay {1} {hp}
-}
 
 #NOP ---MISC
 #alias {bag_all %1} {#loop 1 %1 i {put all in bag $i}};

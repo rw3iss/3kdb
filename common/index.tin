@@ -6,6 +6,7 @@
 #read common/actions.tin;
 #read common/gags.tin;
 #read common/helpers.tin;
+#read common/private.tin;
 
 #read modules/modules/modules.tin;
 #read modules/deadman/deadman.tin;

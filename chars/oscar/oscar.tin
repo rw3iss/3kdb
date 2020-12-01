@@ -18,17 +18,19 @@
 
 /* load specific modules for this character */
 #read modules/corpsemanager/corpsemanager.tin;
-#read modules/dmgtracker/dmgtracker.tin;
+#read modules/dmgtracker/dmgtracker_old.tin;
 #read modules/professions/transmuter.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
+#read common/guilds/eternal/eternal.tin;
 
 /* load character-specific */
 #read chars/$user/actions.tin;
 #read chars/$user/aliases.tin;
 #read chars/$user/heartbeat.tin;
 #read chars/$user/tickers.tin;
+#read chars/$user/config.tin;
 
 /* create space for static hpbar at bottom and reset map position */
 #split 0 5;

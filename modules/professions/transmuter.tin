@@ -5,18 +5,18 @@
         stash all;
     };
     #if {"%1" == "average"} {
-        #3 unstash average %2;
-        transmute 3 %2 quality to good;
+        #2 unstash average %2;
+        transmute 2 %2 quality to good;
         stash all;
     };
     #if {"%1" == "good"} {
-        #4 unstash good %2;
-        transmute 4 %2 quality to superior;
+        #3 unstash good %2;
+        transmute 3 %2 quality to superior;
         stash all;
     };
     #if {"%1" == "superior"} {
-        #5 unstash superior %2;
-        transmute 5 %2 quality to legendary;
+        #4 unstash superior %2;
+        transmute 4 %2 quality to legendary;
         stash all;
     };
 };
