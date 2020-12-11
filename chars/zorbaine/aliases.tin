@@ -56,7 +56,7 @@
 	wield lance;
 	mmc;
 }
-{5};
+{6};
 
 #alias {ex} {examine %0;search %0;};
 #alias {exr} {examine %0 in room;search %0 in room};
@@ -253,7 +253,7 @@
 	soff;
 	aoff
 }
-{5}
+{6}
 
 #ALIAS {aa}
 {
@@ -264,25 +264,25 @@
 	#class {ZORBAINE_ALIASES} {close};
 	sa
 }
-{5}
+{6}
 
 #ALIAS {ar}
 {
 	arepair all
 }
-{5}
+{6}
 
 #ALIAS {bew}
 {
 	break east wall
 }
-{5}
+{6}
 
 #ALIAS {bnw}
 {
 	break north wall
 }
-{5}
+{6}
 
 #ALIAS {fc}
 {
@@ -290,7 +290,7 @@
 	esq goshop tack carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot;
 	#delay {3} {ge;#12 give carrot to almodo;send away}
 }
-{5}
+{6}
 
 #ALIAS {fcc}
 {
@@ -298,7 +298,7 @@
 	esq goshop tack carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot/carrot;
 	#delay {2} {ge;#15 give carrot to almodo;send away}
 }
-{5}
+{6}
 
 #ALIAS {gh}
 {
@@ -309,55 +309,55 @@
 	mch;
 	send away
 }
-{5}
+{6}
 
 #ALIAS {is}
 {
 	impale head on stake
 }
-{5}
+{6}
 
 #ALIAS {mmc}
 {
 	method charge
 }
-{5}
+{6}
 
 #ALIAS {ms}
 {
 	mountstats
 }
-{5}
+{6}
 
 #ALIAS {ph}
 {
 	#200 pet horse
 }
-{5}
+{6}
 
 #ALIAS {pl}
 {
 	push
 }
-{5}
+{6}
 
 #ALIAS {rcb}
 {
 	#delay {4000} {-cb;rcb}
 }
-{5}
+{6}
 
 #ALIAS {rp}
 {
 	#25 rescue puppy
 }
-{5}
+{6}
 
 #ALIAS {rr}
 {
 	#delay 4800 {-cb;rr;efm;sb}
 }
-{5}
+{6}
 
 #ALIAS {sb}
 {
@@ -367,13 +367,13 @@
 	unkeep bag;
 	give bag to horse
 }
-{5}
+{6}
 
 #ALIAS {skn}
 {
 	sknights
 }
-{5}
+{6}
 
 
 #alias {.=} {#var repeatCommand %0;#show Repeat command set to: %0};

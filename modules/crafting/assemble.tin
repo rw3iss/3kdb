@@ -1,6 +1,6 @@
 #class {autoassemble} {open}
 
-#var {craft[quality]} {{1}{legendary}{2}{superior}{3}{good}{4}{average}{5}{poor}{6}{crude}{7}{worthless}};
+#var {craft[quality]} {{1}{legendary}{2}{superior}{3}{good}{4}{average}{6}{poor}{6}{crude}{7}{worthless}};
 
 #act {%1 Of %2 %s\|%s%3%s\|%s%4%s\|%s%5%s\|%s%6%s\|%s%7%s\|%s%8%s\|%s%9%s\|%s%10%s\|}
 {

@@ -23,8 +23,8 @@
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
 
 #NOP --- BARD MISC;
-#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {5};
-#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {5};
+#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {6};
+#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {6};
 
 
 

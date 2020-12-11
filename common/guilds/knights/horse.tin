@@ -27,7 +27,7 @@
     #if {$checkHorseStam == 1 && $my[mnt][stm][cur] < 300} {
         #var checkHorseStam 0;
         efc 20;
-        #delay {5} {#var checkHorseStam 1};
+        #delay {6} {#var checkHorseStam 1};
     };
 };
 
