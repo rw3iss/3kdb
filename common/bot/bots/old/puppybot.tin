@@ -5,7 +5,7 @@
  {
 	#var mobname human;
 	.check_monster
- } {1};
+ } {2};
 
 #class {bot} {close}
 #read common/bot/generic.tin

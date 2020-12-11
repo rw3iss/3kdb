@@ -51,7 +51,7 @@
 	#if {"Vomit-splattered zombie"=="%1"} {@botSetMobActions{zombie};};
 	#if {"Aegis Sentry Model 62-CC"=="%1"} {@botSetMobActions{sentry};};
 	.check_monster
- } {1}
+ } {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

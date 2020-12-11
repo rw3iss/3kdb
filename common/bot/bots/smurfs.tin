@@ -12,7 +12,7 @@
 	#if {"%2" == "quirrel"} {#var mobname squirrel};
 	#if {"%2" == "Smurf-Eater"} {#var mobname eater};
 	.check_monster
- } {1};
+ } {2};
 #act {-M-_Papa Smurf <?>} {mission ask};
 #act {-M-_Papa Smurf <!>} {mission return};
 #act {-M-_Papa Smurf <.>} {#nop};

@@ -55,7 +55,7 @@
 	#if {"%1" == "Crikey"} {@botSetMobActions{crikey};};
 	#if {"%1" == "Anaconda"} {@botSetMobActions{snake};};
 	.check_monster;
-} {1};
+} {2};
 
 #class {bot} {close}
 

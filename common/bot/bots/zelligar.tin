@@ -14,7 +14,7 @@
 #act {^-M-_%*{Golem}} {
 	@botSetMobActions{golem};
 	.check_monster;
-	} {1};
+	} {2};
 
 #class {bot} {close}
 

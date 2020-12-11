@@ -12,7 +12,7 @@
 	#if {"%1" == "Ice Woman"} {@botSetMobActions{ice;$foundtimes};};
 	#if {"%1" == "Ice Youth"} {@botSetMobActions{ice;$foundtimes};};
 	#if {"%1" == "Ice Child"} {@botSetMobActions{ice;$foundtimes};};
-	.check_monster} {1};
+	.check_monster} {2};
 
 #class {bot} {close}
 

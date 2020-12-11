@@ -285,7 +285,7 @@
 	#format guessTarget {%l} {$targetNameList[&targetNameList[]]};
 
 	#if {"$killing" == "-"} { #var killing $guessTarget; };
-} {1};
+} {2};
 
 #nop /* Hamstring success notification */;
 #action {{completely crippling (her|him)!}} { #show  +++++ <119>HAMSTRUNG<099> +++++;};
@@ -308,7 +308,7 @@
 	};
 	
 	#var resting 0;
-} {1};
+} {2};
 
 #nop /* Ensure we're out of combat */;
 #action {{You will now begin recuperating from battle\.}} { #var incombat 0;#var resting 1; };

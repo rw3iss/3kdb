@@ -26,7 +26,7 @@
 	#if {"Sylvan Elf"=="%1"} {@botSetMobActions{elf};};
 	#if {"Wyvern"=="%1"} {@botSetMobActions{wyvern};};
 	.check_monster
- } {1}
+ } {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

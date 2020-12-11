@@ -7,7 +7,7 @@
  {
   #var mobname human;
   .check_monster;
- } {1};
+ } {2};
 
 #var largeushers 1;
 #alias {largeusherson} {#var largeushers 1;#show Enabling Large Ushers.};

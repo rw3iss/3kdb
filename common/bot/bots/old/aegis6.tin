@@ -12,7 +12,7 @@
 #nop	aegis43;
 #nop	aegis32;
 #nop	aegis21
-#nop	} {1}
+#nop	} {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

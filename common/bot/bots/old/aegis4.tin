@@ -15,7 +15,7 @@ e;e;e;e;s;w;w;w;w;w;w;w;w;w;n;n;n;n;n;n;n;n;e;e;e;e;e;e;e}
 	aegis43;
 	aegis32;
 	aegis21
-	} {1}
+	} {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

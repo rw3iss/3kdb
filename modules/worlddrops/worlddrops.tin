@@ -20,10 +20,10 @@
 	#regexp {%1} {{[iI]ridescent}} {#var worldDropName {incense}};
 
 	#show ===========> WORLD DROP %1 <============;
-	#if {$botting == 1} {.stop;#delay {1} {.stop}};
+	#if {$botting == 1} {.stop;#delay {2} {.stop}};
 	.stop;
 	#unvar {worldDropName};
-} {1}; 
+} {2}; 
 
 #act {^[A-z] Potion of Experience} {get potion};
 

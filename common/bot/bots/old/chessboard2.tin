@@ -23,7 +23,7 @@
 	#if {"%1" == "A troll"} {#var mobname troll};
 	.check_monster}
 
-#act {Your bite crushed} {#nop} {1};
+#act {Your bite crushed} {#nop} {2};
 #class {bot} {close}
 
 #read common/bot/generic.tin

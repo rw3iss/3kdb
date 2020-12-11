@@ -49,8 +49,8 @@
 	#if {"Aegis Sentry Model 60-FT"=="%1"} {@botSetMobActions{sentry};};
 
 	.check_monster
-	} {1};
-#act {You've killed} {#nop} {1};
+	} {2};
+#act {You've killed} {#nop} {2};
 
 #class {bot} {close}
 #read common/bot/generic.tin

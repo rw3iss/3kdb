@@ -80,7 +80,7 @@
 		#unact {%%1};
 		#map set roomdesc {$long}
 	}
-} {1}
+} {2}
 
 
 /* Aliases */

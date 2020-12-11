@@ -23,7 +23,7 @@
 	#var incombat 0;
 	#var truced 0;
 	#if {$botting == 1} {..};
-} {1};
+} {2};
 
 
 #act {^You wheel past} { #var incombat 1; };

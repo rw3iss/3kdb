@@ -50,7 +50,7 @@
     #if {"%1" == "A wandering vampire"} {@botSetMobActions{vampire};};
     #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};};
 	.check_monster;
-} {1};
+} {2};
 
 #class {bot} {close}
 #read common/bot/generic.tin

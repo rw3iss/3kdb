@@ -61,8 +61,8 @@
 	#if {"%1" == "White King"} {@botSetMobActions{human};};
 	#if {"%1" == "White Priest"} {@botSetMobActions{human};};
 	.check_monster
-	} {1};
-#act {You've killed} {#nop} {1};
+	} {2};
+#act {You've killed} {#nop} {2};
 
 #class {bot} {close}
 #read common/bot/generic.tin

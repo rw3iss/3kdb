@@ -36,7 +36,7 @@
 	#if {"%1" == "Minor Earth Elemental"} {@botSetMobActions{elemental};};
 	#if {"%1" == "Terra, Knight of Earth"} {@botSetMobActions{terra};};
 	.check_monster
- } {1}
+ } {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

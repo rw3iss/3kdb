@@ -138,7 +138,7 @@
 /* Signify there is a player in the room, if not in friends list */
 #act {{^-P-_(.*)}} {
     #var foundplayer 1;
-} {1};
+} {2};
 
 /* Todo: make friends auto-defend list */
 #act {{(.*) (\!)?attacking Toren\!}} {defend toren};

@@ -14,7 +14,7 @@
 		} {
 			#IF {"$i" == "~"} {
 				#IF {"$mip[FFF][toggle]" == "0"} {
-					#VAR {mip[FFF][toggle]} {1};
+					#VAR {mip[FFF][toggle]} {2};
 				} {
 					.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]};
 					#VAR {mip[FFF][flag]} {0};
@@ -43,7 +43,7 @@
 		#CASE {"F"} {#NOP Guild Points1 Maximum;#VAR {my[gp1][max]} {%2}};
 		#CASE {"G"} {#NOP Guild Points2;#VAR {my[gp2][current]} {%2} };
 		#CASE {"H"} {#NOP Guild Points2 Maximum;#VAR {my[gp2][max]} {%2}};
-		#CASE {"I"} {#NOP Primary Guild Line;.mipProcessGline {1} {%2}};
+		#CASE {"I"} {#NOP Primary Guild Line;.mipProcessGline {2} {%2}};
 		#CASE {"J"} {#NOP Secondary Guild Line;.mipProcessGline {2} {%2}};
 		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
 		#CASE {"L"} {#NOP Mob Health;#VAR {enemy[hp]} {%2}};

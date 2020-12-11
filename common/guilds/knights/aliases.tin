@@ -176,10 +176,10 @@
 		#delay {ewatch_scan} {
 			#unact {Your esquire sees:};
 			#undelay {ewatch_scan};
-			#act {$static[ewatch][trig]} {#bell;#bell;#bell;} {1};
+			#act {$static[ewatch][trig]} {#bell;#bell;#bell;} {2};
 			#delay {ewatch} {_checkitem} {60};
-		} {1};
-	} {1}; 
+		} {2};
+	} {2}; 
 }
 
 #alias {_checkwait} {
@@ -220,7 +220,7 @@
 	}
 };
 
-#alias {{k(?:ill)? (.*)}} {#var kill[last] %2;!kill ${kill[last]};} {1};
+#alias {{k(?:ill)? (.*)}} {#var kill[last] %2;!kill ${kill[last]};} {2};
 
 #alias {bb} {
 	#if {$bouncebot == 1} {
