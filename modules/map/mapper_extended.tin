@@ -68,7 +68,7 @@
 					} {
 						#var long {${long}%%1 }
 				}
-			} {2}
+			} {3}
 		};
 		#delay 0 mapupdate
 	}
@@ -94,7 +94,7 @@
 					} {
 						#var long {${long}%%1 }
 				}
-			} {2}
+			} {3}
 		};
 		#map get {roomvnum} {gonum};
 		#map goto $gonum;

@@ -32,7 +32,7 @@
 			#var roomexits %%%3;
 
 			@makenewroom{};
-		} {2};
+		} {3};
 
 		#ACTION {%%%0} 
 	    { 

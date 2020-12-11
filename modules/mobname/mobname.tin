@@ -36,7 +36,7 @@
         #show no match &1;
     };      
 } 
-{2};
+{3};
 
 #alias {kk} {
     kill $lastMobName;
