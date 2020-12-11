@@ -65,7 +65,7 @@
 	};
 	kill $killing;
 	#delay {.25} {#unact {There is no $killing here}}
-} {0};
+} {1};
 
 
 

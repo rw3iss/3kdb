@@ -75,7 +75,7 @@
 	};
 }
 
-#act {dealt the killing blow to} {grab $tacoTarget;} {0};
+#act {dealt the killing blow to} {grab $tacoTarget;} {1};
 
 #nop _enableCheeseStrat;
 

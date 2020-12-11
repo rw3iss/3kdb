@@ -10,9 +10,9 @@
 #act {In ecstasy, your body contorts into a sleek, beastly form.}{#var {my[necromancer][altered]}{2}}
 #act {You alter into the embodimental spirit of the devil!}{#var {my[necromancer][altered]}{2}}
 #act {You are already altered into beast form master.}{#var {my[necromancer][altered]}{2}}
-#act {You return to your normal were form.}{#var {my[necromancer][altered]}{0}}
-#act {You alter back to your normal, human form.}{#var {my[necromancer][altered]}{0}}
-#act {You can only alter your form into beast form master.}{#var {my[necromancer][altered]}{0}}
+#act {You return to your normal were form.}{#var {my[necromancer][altered]}{1}}
+#act {You alter back to your normal, human form.}{#var {my[necromancer][altered]}{1}}
+#act {You can only alter your form into beast form master.}{#var {my[necromancer][altered]}{1}}
 
 #act {^You currently have %d/%d open memory globes,} {
     #var powers[globes][open] %1;

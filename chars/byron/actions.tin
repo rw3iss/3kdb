@@ -16,7 +16,7 @@
 		#delay {4} {pd;pd;wrap};
 		#delay {4} {#var corpse_delay 0};
 	}
-} {0};
+} {1};
 
 
 #NOP --- GENERAL MISC;

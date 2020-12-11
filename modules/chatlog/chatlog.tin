@@ -104,7 +104,7 @@
 /* ignore capturing of mob says */
 #act {{(Mircarla|Sumaren|Alaren|Brainy|Smelly|Crafty|Tracker|Eater|Gargamel|Rex|Ayla|Guardswoman|Bess|Child|Bodyguard|Graktah|Candi|Bertolo|Netta|Waldo|Zachary)( says:)}} {#nop;} {-5}
 
-#act {Solaris tells} {#nop;} {0}
+#act {Solaris tells} {#nop;} {1}
 
 
 

@@ -99,7 +99,7 @@
 		{$hpbar[npmsg]}
 		{$hpbar[enemy_msg]};
         _player_heartbeat;
-} {0};
+} {1};
 
 #act {^Status[w%11\%|p%12|v%13|r%14\%] Cr[%15\%] TG[%16|%17] \$[%18] Moon[%19]$} {
 	#var my[worth] %11;
@@ -115,7 +115,7 @@
 	#format {hpbar[status_msg]} {Status[w%s|p%s|v%s|r%s]} {$my[worth]} {$my[protection]} {$my[veil]} {$my[reset]};
 	#format {hpbar[status_msg_2]} {Cr[%s] TG[%s|%s] $[%s] Moon[%s]} {$my[g2n]} {$my[teleports]} {$my[glamors]} {$my[coins]} {$my[moon]};
 	#format {prompt_2} {%s %s} {$hpbar[status_msg]} {$hpbar[status_msg_2]};
-} {0};
+} {1};
 
 
 #gag {^HP[%1(%2)/%3] SP[%4/%5] NP[%6/%7|%8c] E[%9:%10]};
