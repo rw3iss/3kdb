@@ -72,7 +72,7 @@
 		#map get {roomvnum} {gonum};
 		#map goto $gonum;
 	}
-} {6}
+} {7}
 
 #act {=X={.*}} {
 	#if {"$longcap" == "on"} {
