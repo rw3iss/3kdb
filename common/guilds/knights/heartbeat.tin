@@ -269,7 +269,7 @@
 	#var resting 0;
 	#var truced 0;
 	#if {"$my[battlecry]" == "n"} {bcc};
-} {4};
+} {5};
 
 #high {You hit} {light yellow};
 

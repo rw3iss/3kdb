@@ -18,7 +18,7 @@
 	#if {"$follower" == "$world" && %2 == "$following"} {
 		#map move $foldir
 	}
-} {4}
+} {5}
 
 /* Data Grab Trigger */
 #var longcap off
@@ -220,7 +220,7 @@
 #act {AREA NAME: Ashridge Acres} {
 	#map get {roomvnum} {ashridge_room};
 	#map goto 22486
-} {4}
+} {5}
 
 #NOP Calvin and Hobbes
 #act {^on the snow calls to you, and you dread another day at school.} {#map goto 23824}
@@ -233,17 +233,17 @@
 		#map get {roomvnum} {tvroom};
 		#map goto 8315;
 	}
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Lostar]} {
 	#var {area} {Simpsons};
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Frank]} {
 	#var {area} {Simpsons Expansion};
 	#map get {roomvnum} {tvroom};
 	#map goto 8227
-} {4}
+} {5}
 #act {^   You dive cleanly through the computer screen!} {
 	#map goto $tvroom
 }

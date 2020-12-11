@@ -30,7 +30,7 @@
     #class {corpse_run} {kill};
 };
 
-#macro {4} {
+#macro {5} {
     #echo {--------  Land2 Selected       --------};
     go land2_animals;
     #delay 2 {e;kill animal};

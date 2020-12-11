@@ -94,10 +94,10 @@
 #nop #act {{^[A-z] \[HELPER\]}} {-cl};
 
 #nop Ignore certain tells;
-#act {{^(Jim)( tells you:)?}} {#nop;} {4}
+#act {{^(Jim)( tells you:)?}} {#nop;} {5}
 
 /* Ignore auction and tells from Benny (3s) and Robert (3k) */
-#act {{^(\[Auction\] )?(Benny|Robert)( tells you:)?}} {#nop;} {4}
+#act {{^(\[Auction\] )?(Benny|Robert)( tells you:)?}} {#nop;} {5}
 #act {{^(\[Auction\] )?(Robert : Up for bids:)}} {-cl;} {3}
 #act {{^(\[Auction\] )?(Robert : Sold to)}} {-clnobeep;} {3}
 

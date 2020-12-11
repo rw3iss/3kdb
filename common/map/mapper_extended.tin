@@ -148,17 +148,17 @@
 		#map get {roomvnum} {tvroom};
 		#map goto 8315;
 	}
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Lostar]} {
 	#var {area} {Simpsons};
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Frank]} {
 	#var {area} {Simpsons Expansion};
 	#map get {roomvnum} {tvroom};
 	#map goto 8227
-} {4}
+} {5}
 #act {^   You dive cleanly through the computer screen!} {
 	#map goto $tvroom
 }
