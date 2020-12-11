@@ -48,7 +48,7 @@
 
 /* PARTY (Until they add timestamps) */
 #act {{^(.*)?\[PARTY\] ([A-z]+):}} {-cl};
-#act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop;} {3}
+#act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop;} {4}
 #alias {p -h} {
     #unact {{^(.*)?\[PARTY\] ([A-z]+):}};
     #send p -h;
@@ -98,8 +98,8 @@
 
 /* Ignore auction and tells from Benny (3s) and Robert (3k) */
 #act {{^(\[Auction\] )?(Benny|Robert)( tells you:)?}} {#nop;} {5}
-#act {{^(\[Auction\] )?(Robert : Up for bids:)}} {-cl;} {3}
-#act {{^(\[Auction\] )?(Robert : Sold to)}} {-clnobeep;} {3}
+#act {{^(\[Auction\] )?(Robert : Up for bids:)}} {-cl;} {4}
+#act {{^(\[Auction\] )?(Robert : Sold to)}} {-clnobeep;} {4}
 
 /* ignore capturing of mob says */
 #act {{(Mircarla|Sumaren|Alaren|Brainy|Smelly|Crafty|Tracker|Eater|Gargamel|Rex|Ayla|Guardswoman|Bess|Child|Bodyguard|Graktah|Candi|Bertolo|Netta|Waldo|Zachary)( says:)}} {#nop;} {-5}

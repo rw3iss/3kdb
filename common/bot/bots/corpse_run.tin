@@ -23,7 +23,7 @@
     #class {corpse_run} {kill};
 };
 
-#macro {3} {
+#macro {4} {
     #echo {--------  Aegis Lvl 4 Selected --------};
     go aegis4;
     #delay 3 {e;e;n;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e};
