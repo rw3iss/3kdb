@@ -20,7 +20,7 @@
 	#regexp {%1} {{[iI]ridescent}} {#var worldDropName {incense}};
 
 	#show ===========> WORLD DROP %1 <============;
-	#if {$botting == 1} {.stop;#delay {2} {.stop}};
+	#if {$botting == 1} {.stop;#delay {1} {.stop}};
 	.stop;
 	#unvar {worldDropName};
 } {2}; 

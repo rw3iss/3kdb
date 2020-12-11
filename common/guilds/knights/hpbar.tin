@@ -17,7 +17,7 @@ PPD(Y) Stud(Y) Batt(n) Braw(n) Dodg(Y) Defl(Y) Shie(Y) Endu(Y) Parr(Y) |
         #case {1} {#return <119>};
         #case {2} {#return <119>};
         #case {3} {#return <139>};
-        #case {5} {#return <139>};
+        #case {4} {#return <139>};
         #case {5} {#return <139>};
         #case {6} {#return <139>};
         #case {7} {#return <169>};

@@ -1,6 +1,6 @@
 #CLASS {vars} OPEN
 
-#VARIABLE         {canvas}  {{width}{1}{widthperc}{.4}}
+#VARIABLE         {canvas}  {{width}{0}{widthperc}{.4}}
 #VARIABLE         {character}  {zorbaine}
 #VARIABLE         {characterName}  {Zorbaine}
 #VARIABLE         {curvnum}  {4119}

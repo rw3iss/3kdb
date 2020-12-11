@@ -22,7 +22,7 @@
 #act {Hurinteon the Grand Master Mage (Deadly!!!) appears out of nowhere.} {view 1 study hurinteon;kill hurinteon};
 #act {The melting cheese finally evaporates from Nix.} {wield axe};
 #act {%1 offers to guard} {accept};
-#act {You are already attacking} {#delay {3} cast noxious cloud};
+#act {You are already attacking} {#delay {2} cast noxious cloud};
 
 
 #class {player_actions} {close}

@@ -8,7 +8,7 @@
 	#if !$idle_flag {
 		#if {$my[karma][current] < $my[karma][min]} {unwrap;pd};
 		#if {$my[defs][hs] > 0} {#NOP} {#if {$defs[hs]} {cast hardened skin} {#nop}};
-		#if {$my[defs][es] > 0} {#NOP} {#if {$defs[es] && $my[gp1][current] > 400 && !$es_override} {#var es_override 1;empowered strikes;#ticker {es_toggle} {#var es_override 0;#unticker es_toggle} {7}} {#nop}};
+		#if {$my[defs][es] > 0} {#NOP} {#if {$defs[es] && $my[gp1][current] > 400 && !$es_override} {#var es_override 1;empowered strikes;#ticker {es_toggle} {#var es_override 0;#unticker es_toggle} {6}} {#nop}};
 		#if {$my[defs][mb] > 0} {#NOP} {#if {$defs[mb]} {cast mind blank} {#nop}};
 		#if {$my[defs][pe] > 0} {#NOP} {#if {$defs[pe]} {cast protection from evil} {#nop}};
 		#if {$my[defs][pn] > 0} {#NOP} {#if {$defs[pn]} {cast protection from neutral} {#nop}};
