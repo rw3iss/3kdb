@@ -7,7 +7,7 @@
      .stop;
      clear_prots
 }
-{0}
+{1}
 
 #ALIAS {postload}
 {

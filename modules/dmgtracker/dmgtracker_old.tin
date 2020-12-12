@@ -49,7 +49,7 @@
 
     #math new_best {$spell_dmg[curr] > $spell_dmg[high]};
     #if $new_best {#var spell_dmg[high] %3};
-} {1};
+} {2};
 
 #act {{^The implosion (.*)! \{(\d+)\}$}} {
     #var incombat 1;
@@ -61,7 +61,7 @@
     
     #math new_best {$spell_dmg[curr] > $spell_dmg[high]};
     #if $new_best {#var spell_dmg[high] $spell_dmg[curr]};
-} {1};
+} {2};
 
 
 #ACTION {%* shatter%* \{%d\}$} {
@@ -74,7 +74,7 @@
 
     #math new_best {$spell_dmg[curr] > $spell_dmg[high]};
     #if $new_best {#var spell_dmg[high] $spell_dmg[curr]};
-} {1};
+} {2};
 
 #ACTION {%* mind warp%* \{%d\}$} {
     #var incombat 1;
@@ -86,7 +86,7 @@
 
     #math new_best {$spell_dmg[curr] > $spell_dmg[high]};
     #if $new_best {#var spell_dmg[high] $spell_dmg[curr]};
-} {1};
+} {2};
     
 #act {{^You hit (.*) (\d+) (time|times) for (\d+) damage\.$}} {
     #var incombat 1;
@@ -98,7 +98,7 @@
 
     #math new_best {$cmbt[curr] > $cmbt[high]};
     #if $new_best {#var cmbt[high] $cmbt[curr]};
-} {1};
+} {2};
 
 #act {{^El Jefe (.*) hit for (\d+) damage.$}} {
     #var incombat 1;
@@ -109,14 +109,14 @@
 
     #math new_best {$summon_dmg[curr] > $summon_dmg[high]};
     #if $new_best {#var summon_dmg[high] $summon_dmg[curr]};
-} {1};
+} {2};
     
 #act {^Your blow was deflected. (.*)$} {
     #var incombat 1;
     #var cmbt[curr] 0;
     #math cmbt[rnd] {$cmbt[rnd] + 1};
     #math {cmbt[avg]} {$cmbt[dmg] / $cmbt[rnd]};
-} {1};
+} {2};
 
 #act {{^(.*) hits you for (\d+) damage\!$}} {
     #var incombat 1;
@@ -125,7 +125,7 @@
     #math dmgt[dmg] {$dmgt[dmg] + %3};
     #math dmgt[rnd] {$dmgt[rnd] + 1};
     #math {dmgt[avg]} {$dmgt[dmg] / $dmgt[rnd]};
-} {1};
+} {2};
     
 #alias {dstats} {
     #show {\nAverage damage : $cmbt[avg] over $cmbt[rnd] rounds.  Total: $cmbt[dmg] damage.};

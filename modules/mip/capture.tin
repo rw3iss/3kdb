@@ -57,7 +57,7 @@ associated aliases related to each mip message, which are generally handles in t
 	#IF {"$mip[echo]" != "on"} {
 		#LINE GAG
 	}
-} {1};
+} {2};
 
 #NOP ***** Individual Data Sections *****
 #ALIAS {.mipProcessFlag} {

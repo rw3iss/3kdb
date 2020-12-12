@@ -43,7 +43,7 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
     #if {"%1" == "Snare"} {@botSetMobActions{snare;$foundtimes};};
     
     .check_monster;
-} {3}
+} {4}
 
 #alias {.check_room} {
     consider shadow;
@@ -64,7 +64,7 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
     } {
         #path walk;.bot
     };
-} {2}
+} {3}
 
 #act {^Vibrations shake the web, and fade to stillness.} {
     #if {$foundmob} {
@@ -72,14 +72,14 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
     } {
         #path walk;
         .bot
-    }} {0};
+    }} {1};
 
 #act {^Vibrations shake the web, the owner pounces!} {
 	@botSetMobActions{furtive;1};
 	#var mobname_long Furtive;
 	kill furtive;
 	ewell;
-} {0}
+} {1}
 
 #alias {.check_death} {
     wrap;get all;put all in disc

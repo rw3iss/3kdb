@@ -36,7 +36,7 @@
 	#regex {%1} {velociraptor} {@botSetMobActions{velociraptor;$foundtimes};};
 	#regex {%1} {the} {@botSetMobActions{mob;$foundtimes};};
 	.check_monster;
-} {1};
+} {2};
 
 #act {^An intricate digital key: Ok.$} {#math kayos[key] {$kayos[key]+1}};
 #act {^key: Taken.$} {#math kayos[key] {$kayos[key]+1}};

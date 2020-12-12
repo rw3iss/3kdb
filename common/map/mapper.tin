@@ -59,7 +59,7 @@
 	#if {"$follower" == "$world" && %2 == "$following"} {
 		#map move $foldir
 	}
-} {4}
+} {5}
 
 /* Data Grab Trigger */
 #var longcap off
@@ -109,7 +109,7 @@
 					} {
 						#var long {${long}%%1 }
 				}
-			} {2}
+			} {3}
 		};
 		#delay 0 mapupdate
 	}
@@ -135,12 +135,12 @@
 					} {
 						#var long {${long}%%1 }
 				}
-			} {2}
+			} {3}
 		};
 		#map get {roomvnum} {gonum};
 		#map goto $gonum;
 	}
-} {6}
+} {7}
 
 #act {=X={.*}} {
 	#if {"$longcap" == "on"} {
@@ -150,7 +150,7 @@
 			#map set roomdesc {$long}
 		}
 	}
-} {1}
+} {2}
 
 #act {AREA NAME: %1 [%2]} {
 	#var area %1
@@ -267,7 +267,7 @@
 
 /* Transports */
 #NOP Abyss
-#act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
+#act {Abyssmal Portal (s,portal)} {#map goto 5159} {2}
 
 #NOP Android
 #act {BING! The button light goes off and the elevator doors open.} {enter elevator}
@@ -275,16 +275,16 @@
 #act {The elevator is already here. How about you enter it?} {enter elevator}
 
 #NOP Ao
-#act {** The Docks of Ao ** (se)} {#map goto 15463} {1}
+#act {** The Docks of Ao ** (se)} {#map goto 15463} {2}
 
 #NOP Ascended
-#act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {1}
+#act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {2}
 
 #NOP Ashridge Acres
 #act {AREA NAME: Ashridge Acres} {
 	#map get {roomvnum} {ashridge_room};
 	#map goto 22486
-} {4}
+} {5}
 
 #NOP Calvin and Hobbes
 #act {^on the snow calls to you, and you dread another day at school.} {#map goto 23824}
@@ -297,17 +297,17 @@
 		#map get {roomvnum} {tvroom};
 		#map goto 8315;
 	}
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Lostar]} {
 	#var {area} {Simpsons};
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Frank]} {
 	#var {area} {Simpsons Expansion};
 	#map get {roomvnum} {tvroom};
 	#map goto 8227
-} {4}
+} {5}
 #act {^   You dive cleanly through the computer screen!} {
 	#map goto $tvroom
 }

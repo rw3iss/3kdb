@@ -107,7 +107,7 @@
 #gag {^You feel uneasy carrying Deacern's Amulet\.};
 
 #nop mantis swamp follow;
-#act {leaves into the wormhole.} {#if {!$entered_wormhole}{enter wormhole;#var entered_wormhole 1;#del {5} {#var entered_wormhole 0}}};
+#act {leaves into the wormhole.} {#if {!$entered_wormhole}{enter wormhole;#var entered_wormhole 1;#del {6} {#var entered_wormhole 0}}};
 
 #nop Hell cow king eq removal curse 
 #act {^The Cow King brushes you, and electricity arcs from him to you!} {get all;wear all;wield {$wielded}}

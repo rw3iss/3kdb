@@ -3,6 +3,6 @@
 
 #NOP --- Nix Mage specific actions
 #act {dealt the killing blow to} {cast corpse blast;divvy coins;study spellbook;repeat add combat/cast slow/1}:
-#act {-M-_Roadkill the swift red squirrel.} {#NOP} {0};
+#act {-M-_Roadkill the swift red squirrel.} {#NOP} {1};
 
 #class {player_actions} {close}

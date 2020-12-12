@@ -38,7 +38,7 @@ n;w;n;w;e;n;w;n;w;};
     } {
         #show Skipping dragon color: %5.;
     }
-} {1};
+} {2};
 
 #act {You cannot get past the dragon guards.} {
     .pause;zz;

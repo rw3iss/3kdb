@@ -23,7 +23,7 @@
 	#var incombat 0;
 	#var truced 0;
 	#if {$botting == 1} {..};
-} {1};
+} {2};
 
 
 #act {^You wheel past} { #var incombat 1; };
@@ -90,7 +90,7 @@
 	#if {"%2" == "southwest"} {#var wimpyreturn northeast};
 	#echo {%2 return set to $wimpyreturn};
 	#delay {wimpyrest} {_checkwimpy} {2};
-} {0};
+} {1};
 
 #action {{^You feel your stamina returning as you rest your battle-weary}} {#var my[truceing] 0; #var my[incombat] 0; #var my[battlecry] 0;#var my[resting] 1};
 #action {{^You will now begin recuperating from battle\.}} {#var my[resting] 1;};

@@ -5,7 +5,7 @@
 #alias {create_golem} {
     examine materials;
     #action {^There's bits of the following materials remaining:$} {
-        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem %%%1;} {1};
+        #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem %%%1;} {2};
     };
     #delay 2 {say golem, you are now in group golem/assist always/ibc}
 }

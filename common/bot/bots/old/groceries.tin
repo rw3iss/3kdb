@@ -40,7 +40,7 @@
 	#if {"%1" == "Snuggles the Bear"} {#var mobname bear};
 	.check_monster}
 
-#act {Your bite crushed} {#nop} {1}
+#act {Your bite crushed} {#nop} {2}
 #class {bot} {close}
 
 #read common/bot/generic.tin

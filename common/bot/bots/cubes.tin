@@ -22,7 +22,7 @@
 	#if {"%1" == "A small gelatinous cube"} {@botSetMobActions{cube};};
 	#if {"%1" == "A massive ochre jelly"} {@botSetMobActions{jelly};};
 	.check_monster;
-} {1};
+} {2};
 
 #class {bot} {close}
 

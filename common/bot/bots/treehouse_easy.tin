@@ -32,7 +32,7 @@
 	#if {"%1" == "A Guardian Branch"} {@botSetMobActions{guardian};};
 	#if {"%1" == "Tree Guardian"} {@botSetMobActions{guardian};};
 	.check_monster
- } {1}
+ } {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

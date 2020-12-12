@@ -70,10 +70,10 @@
 #NOP -- Corpse Management COFFIN / FREEZER;
 #var corpses[coffin] 0;
 #var corpses[freezer] 0;
-#act {^You pick up %*} {#line gag} {5};
-#act {wrap it up into the coffin's protective hold!$} {#line gag;#echo {<169>Coffin: +1 corpse};#math {corpses[coffin]} {$corpses[coffin] + 1}} {5};
+#act {^You pick up %*} {#line gag} {6};
+#act {wrap it up into the coffin's protective hold!$} {#line gag;#echo {<169>Coffin: +1 corpse};#math {corpses[coffin]} {$corpses[coffin] + 1}} {6};
 #act {^The coffin expels} {#line gag;#echo {<169>Coffin: -1 corpse};#math {corpses[coffin]} {$corpses[coffin] -1}};
-#act {touch it to the frame causing it to get sucked in!$} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {5};
+#act {touch it to the frame causing it to get sucked in!$} {#line gag;#echo {<169>Freezer: +1 corpse};#math {corpses[freezer]} {$corpses[freezer] + 1}} {6};
 #act {^You shake the frame and out drops} {#line gag;#echo {<169>Freezer: -1 corpse};#math {corpses[freezer]} {$corpses[freezer] -1}};
 #act {^There are no corpses in the coffin!$} {#var corpses[coffin] 0};;
 

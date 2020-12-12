@@ -44,7 +44,7 @@
 #act {You plummet, and SLAM into the ground!} {w;w};
 #act {The taco squirts guacamole all over you, coating you with a slick} {#5 resist;st};
 #act {You FREEZE from the cold guacamole coating you} {#7 resist;wear all;wield $wielded;pp;st;tr;wstrat e;w;#delay {1} {wear all;pp}};
-#act {The melting cheese sizzles on your flesh and makes your fingers sticky} {#7 resist;wield $wielded;#delay {3} {mmc};#4 st};
+#act {The melting cheese sizzles on your flesh and makes your fingers sticky} {#7 resist;wield $wielded;#delay {4} {mmc};#4 st};
 #act {The taco suddenly opens up, revealing its moist, gristly meaty} {#5 resist;st};
 #act {A jagged fragment of the taco shell breaks off and IMPALES you} {#5 resist;st};
 #act {The taco SPRAYS vinegary hot sauce all over everybody} {#5 resist;wield $wielded;st};
@@ -75,7 +75,7 @@
 	};
 }
 
-#act {dealt the killing blow to} {grab $tacoTarget;} {0};
+#act {dealt the killing blow to} {grab $tacoTarget;} {1};
 
 #nop _enableCheeseStrat;
 

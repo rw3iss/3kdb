@@ -17,7 +17,7 @@
 	#send {aset look_other -i-};
 	
 	prompt >$nl$;
-	#sub {^-M-_} {};#sub {^-P-_} {};#sub {^-R-_} {};#prompt {^>$} {>} {0};
+	#sub {^-M-_} {};#sub {^-P-_} {};#sub {^-R-_} {};#prompt {^>$} {>} {1};
 	#showme {-------------------------------------------------------};
 	#showme {Place these in your character files:			};
 	#showme { (You can insert color codes or leave empty -- Color	};

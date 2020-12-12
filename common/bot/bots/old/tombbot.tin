@@ -6,7 +6,7 @@
 #act {-M-_A Captain of the Arovian Honor Guard} {#var mobname hengst;.check_monster}
 #act {-M-_An Arovian honor guard} {#var mobname guard;.check_monster}
 #act {-M-_Harakir, Champion of King Alaren} {#var mobname harakir;.check_monster}
-#act {-M-_Mircarla, High priestess to King Alaren} {#var mobname mircarla;#delay {2} {k mircarla};.check_monster}
+#act {-M-_Mircarla, High priestess to King Alaren} {#var mobname mircarla;#delay {3} {k mircarla};.check_monster}
 #act {-M-_Sumaren, Vizier to King Alaren} {#var mobname sumaren;.check_monster}
 #act {-M-_Harakir, Champion of King Alaren} {#var mobname harakir;.check_monster}
 

@@ -166,12 +166,12 @@
 		#var halt 1;
 		k $guessTarget;
 	};
-} {4};
+} {5};
 
 #act {There is no {$guessTarget} here\.} {#show NO TARGET;#var foundmob 0;#var foundroom 1;#var halt 0;xx};
 
-#action {{^-M-_Thread, Zorbaine's Komondor.}} {#nop;} {1};
-#action {{^-M-_A manshi under the control of Zorbaine.}} {#nop;} {1};
+#action {{^-M-_Thread, Zorbaine's Komondor.}} {#nop;} {2};
+#action {{^-M-_A manshi under the control of Zorbaine.}} {#nop;} {2};
 
 #alias xx {
 	#if {$foundmob==0 && $foundroom==1 && $halt==0}

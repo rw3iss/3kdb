@@ -7,7 +7,7 @@
 	{
 	#var mobname dragon;
 	.check_monster
-	} {1};
+	} {2};
 
 #class {bot} {close}
 

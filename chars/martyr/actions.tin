@@ -19,15 +19,15 @@
 	#if {$my[pu][current] > 1600} {#var timeslide_able 1} {#var timeslide_able 0};
 }
 
-#ACTION {[[ Timeslide circuits overpowered.  Recovery time needed. ]]} {say timeslide (personal) on cooldown.} {5}
+#ACTION {[[ Timeslide circuits overpowered.  Recovery time needed. ]]} {say timeslide (personal) on cooldown.} {6}
 
-#ACTION {%1 offers to guard} {accept} {5}
+#ACTION {%1 offers to guard} {accept} {6}
 
 #NOP --- Martyr specific actions
 #act {^Owie. That hurt!} {unwrap;deslab;smuggle remove corpse;drop corpse;=drop corpse;reclaim};
 
 #NOP -------------------------------- ACTIONS TO SUPPORT OTHER PLAYERS ---------------------------------------		
-#ACTION {^Nix pokes you with a cattle prod.} {timeslide emergency} {5}
-#ACTION {^Nix gives you a low-five!} {timeslide} {5}
+#ACTION {^Nix pokes you with a cattle prod.} {timeslide emergency} {6}
+#ACTION {^Nix gives you a low-five!} {timeslide} {6}
 
 #class {player_actions} {close}

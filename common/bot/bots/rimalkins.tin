@@ -45,7 +45,7 @@
 #act {-M-_A {small|large|very large} Rimalkin} {
 	@botSetMobActions{rimalkin};
 	.check_monster;
-} {1};
+} {2};
 
 #class {bot} {close}
 

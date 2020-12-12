@@ -6,7 +6,7 @@
 #act {-M-_A {Huge|small|young|young adult|baby|medium\-sized|large} {O|o}gre} {
 	@setMobName{ogre};
 	.check_monster;
-} {1};
+} {2};
 
 #class {bot} {close}
 

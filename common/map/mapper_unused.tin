@@ -143,12 +143,12 @@
 #act {^You have exited the simulation, thank you for playing.} {#map goto 15144}
 
 #NOP Abyss
-#act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
+#act {Abyssmal Portal (s,portal)} {#map goto 5159} {2}
 
 #NOP Ao
-#act {** The Docks of Ao ** (se)} {#map goto 15463} {1}
+#act {** The Docks of Ao ** (se)} {#map goto 15463} {2}
 
 #NOP Ascended
-#act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {1}
+#act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {2}
 
 #class {mapper_unused} {close};

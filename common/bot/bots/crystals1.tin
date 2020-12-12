@@ -19,7 +19,7 @@
     #var mobname_long %1;
     @botSetMobActions{beast;$foundtimes};
 	.check_monster;
-} {1};
+} {2};
 
 #class {bot} {close}
 #read common/bot/generic.tin

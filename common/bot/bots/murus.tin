@@ -52,7 +52,7 @@
     #if {"%1" == "Starling"} {@botSetMobActions{starling;$foundtimes};};
     #if {"%1" == "Dark jaguarundi hunting in the dark"} {@botSetMobActions{jaguarundi;$foundtimes};};
 	.check_monster
- } {1}
+ } {2}
 
 #class {bot} {close}
 #read common/bot/generic.tin

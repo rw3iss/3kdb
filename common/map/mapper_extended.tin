@@ -41,7 +41,7 @@
 					} {
 						#var long {${long}%%1 }
 				}
-			} {2}
+			} {3}
 		};
 		#delay 0 mapupdate
 	}
@@ -67,12 +67,12 @@
 					} {
 						#var long {${long}%%1 }
 				}
-			} {2}
+			} {3}
 		};
 		#map get {roomvnum} {gonum};
 		#map goto $gonum;
 	}
-} {6}
+} {7}
 
 #act {=X={.*}} {
 	#if {"$longcap" == "on"} {
@@ -80,7 +80,7 @@
 		#unact {%%1};
 		#map set roomdesc {$long}
 	}
-} {1}
+} {2}
 
 
 /* Aliases */
@@ -148,17 +148,17 @@
 		#map get {roomvnum} {tvroom};
 		#map goto 8315;
 	}
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Lostar]} {
 	#var {area} {Simpsons};
-} {4}
+} {5}
 
 #act {AREA NAME: Simpsons Expansion [Frank]} {
 	#var {area} {Simpsons Expansion};
 	#map get {roomvnum} {tvroom};
 	#map goto 8227
-} {4}
+} {5}
 #act {^   You dive cleanly through the computer screen!} {
 	#map goto $tvroom
 }

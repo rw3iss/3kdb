@@ -23,7 +23,7 @@
 	#if {$botting == 1} {.stop;#delay {1} {.stop}};
 	.stop;
 	#unvar {worldDropName};
-} {1}; 
+} {2}; 
 
 #act {^[A-z] Potion of Experience} {get potion};
 
