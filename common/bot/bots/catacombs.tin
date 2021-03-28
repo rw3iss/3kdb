@@ -9,31 +9,6 @@
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#if {{$guild} == {bard}} {
-	#nop - Turn on kill-em-all
-	#var kill_em_all 1
-
-	echo_divider1;
-	clear_prots;reflex_clear;
-	echo_divider2;
-	echo_reflex_header;
-	reflex_critic 200;reflex_ow 200;reflex_ma 400;
-	echo_divider2;
-
-	#alias {.pre_fight_check} {
-		#var defs[es] 1;
-		#var defs[blink] 1;
-	}	
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
-
 #var {botpath} {n;n;n;n;e;e;n;d;w;w;s;s;s;w;d;s;s;e;e;e;e;e;n;n;n;w;d;e;e;n;w;e;n;s;e;w;s;e;s;w;s;e;w;s;e;w;n;w;n;s;w;n;n;w;w;s;s;e;w;w;w;n;e;n;n;e;e;n;e;s;s;u;e;s;s;s;w;w;w;w;w;n;n;u;e;e;e;e;n;n;w;n;u;s;w;w;s;s;s;s};
 
 #act {^-M-_A Guide of Catacombs.$} {#NOP} {1};
@@ -51,6 +26,7 @@
     #if {"%1" == "A Vampire"} {@botSetMobActions{vampire};};
 	.check_monster;
 } {2};
+
 
 #class {bot} {close}
 #read common/bot/generic.tin

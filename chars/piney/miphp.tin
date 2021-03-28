@@ -26,14 +26,11 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler]};
-
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max NRG:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
-	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] NRG:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {Emit: $my[emit][level] Blasts: $my[blasts]($my[reset]%) Form: $my[form][type]($my[form][size]) G2N: $my[g2n]};
-	#var prompt4 {$etc_string Idle: $idle_cap};
+	#var prompt4 {$corpse_string Idle: $idle_cap};
 
 	_player_heartbeat;
     _guild_heartbeat;

@@ -2,8 +2,27 @@
 #class {player_aliases} {open}
 
 #alias track_gxp {
-    #act {Next Circle:[%*]} {#var new_gxp %1;#math gxp_rounds {$gxp_rounds + 1};#if {$old_gxp != $new_gxp} {#var old_gxp %1;tell toren gxp rounds are $gxp_rounds;#var gxp_rounds 0}}
+    #if $tracking_gxp {
+        #showme ----- NOW TRACKING GXP -----;
+        #var tracking_gxp 0;
+        #unact {Next Circle:[%*]};
+    } {
+        #showme ----- NOW TRACKING GXP -----;
+        #act {Next Circle:[%*]} {#var tracking_gxp 1;#var new_gxp %1;#math gxp_rounds {$gxp_rounds + 1};#if {$old_gxp != $new_gxp} {#var old_gxp %1;tell toren gxp rounds are $gxp_rounds;#var gxp_rounds 0}}
+    };
 };
+
+#alias toggle_frenzy {
+    #var strategy[frenzy] 1;
+    #var strategy[invoke] 0;
+    comtrance frenzy;
+}
+
+#alias toggle_invoke {
+    #var strategy[frenzy] 0;
+    #var strategy[invoke] 1;
+    comtrance invoke power;
+}
 
 #alias {corpse_trig} {
     #if $check_death {
@@ -31,9 +50,18 @@
 };
 
 #alias {.mob_kill_action} {
-     kill $mobname;
-     #delay 4 {rabies;infest $mobname;=kill $mobname;call};
-}
+    #unvar tempVar;
+    #var tempVar kill $mobname;
+    #switch {"$area"} {
+        #case {"Whorehouse"} {
+            #cat tempVar {;rabies;maim;unholy ground}
+        };
+        #case {"Catacombs"} {
+            #cat tempVar {;rabies;maim;unholy ground}
+        };
+    };
+    #delay 4 {$tempVar;call};
+};
 
 #ALIAS {ld}
 {

@@ -1,2 +1,5 @@
-#read common/guilds/necromancer/aliases.tin;
 #read common/guilds/necromancer/actions.tin;
+#read common/guilds/necromancer/aliases.tin;
+#read common/guilds/necromancer/gags.tin;
+#read common/guilds/necromancer/heartbeat.tin;
+#read common/guilds/necromancer/hpbar.tin;

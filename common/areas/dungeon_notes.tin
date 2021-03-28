@@ -1,17 +1,17 @@
-#alias {dungeon_notes} {
+#alias {3kdb dungeons} {
     #showme {<FAB><fff>---------------------------------------------<088>};
     #showme {<FAB><fff>---------      DUNGEON NOTES        ---------<088>};
     #showme {<FAB><fff>---------------------------------------------<088>};
     #showme {            };
     #showme {            };
-    dungeon_notes_chessboard;
+    3kdb dungeons_chessboard;
     #showme {            };
     #showme {            };
-    dungeon_notes_hotel;
+    3kdb dungeons_hotel;
     
 };
 
-#alias {dungeon_notes_chessboard} {
+#alias {3kdb dungeons_chessboard} {
     #showme {<AAF><fff>---------------------------------------------<088>};
     #showme {<AAF>---------  Chessboard               ---------<088>};
     #showme {<AAF><fff>---------------------------------------------<088>};
@@ -31,7 +31,7 @@
     #showme {---------     130:  5.0 mil         ---------};
 };
 
-#alias {dungeon_notes_hotel} {
+#alias {3kdb dungeons_hotel} {
     #showme {<AAF><fff>---------------------------------------------<088>};
     #showme {<AAF>---------  Hotel Transylvania       ---------<088>};
     #showme {<AAF><fff>---------------------------------------------<088>};

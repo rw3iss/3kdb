@@ -15,6 +15,14 @@
 	#if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
 	#format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
 
+	#math   {deadManTimeLeft_hr}       {$deadManTimeLeft / 3600};
+	#math   {deadManTimeLeft_min}      {$deadManTimeLeft % 3600 / 60};
+	#math   {deadManTimeLeft_sec}      {$deadManTimeLeft % 60};
+	#if     {$deadManTimeLeft_hr < 10} {#var deadManTimeLeft_hr  0$deadManTimeLeft_hr};
+	#if     {$deadManTimeLeft_min < 10}{#var deadManTimeLeft_min 0$deadManTimeLeft_min};
+	#if     {$deadManTimeLeft_sec < 10}{#var deadManTimeLeft_sec 0$deadManTimeLeft_sec};
+	#format {deadManTimeLeft_cap}      {%+4s}  {<268>[<128>$deadManTimeLeft_hr<268>:<128>$deadManTimeLeft_min<268>:<128>$deadManTimeLeft_sec<268>]<088>};
+
 	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
 	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
 	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
@@ -30,17 +38,13 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#if {$ewell} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
-
-	#var eternal_string {Eternal Pwr: $ewell_string };
-
-	#showme {HP:$hp/$hp_max SP:$sp/$sp_max NP:$gp1/$gp1_max  E:$ehealth} {-5};
-	#showme {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]} {-4};
-	#showme {$corpse_string} {-3};
-	#showme {$eternal_string Idle: $idle_cap} {-2};
+	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max NP:$gp1/$gp1_max E:$ehealth};
+	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] NP:$my[gp1][graph]  E:$enemy[graph]};
+	#var prompt3 {Status[w$my[necromancer][worth]%|p$my[necromancer][protection]|v$my[necromancer][veil]|r$my[gp2][current]%] Cr[$my[necromancer][progress]%] TG[$my[necromancer][teleports][current]|$my[necromancer][glamors][current]] $[$my[coins]]};
+	#var prompt4 {$corpse_string Idle: $idle_cap};
 
 	_player_heartbeat;
-    
+	_guild_heartbeat;
 	draw_hpbar;
 }
 
@@ -64,26 +68,23 @@
     #math hpbar[right] {$hpbar[left] + $screen[width]}; 
 
     #if {"$draw[hpbar]" == "on"} {
-    #draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
-    }
+    	#draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
+    };
 
     tickhp;
 };
 
 #alias {draw_hpbar} {
     #if {"$draw[hpbar]" == "on"} {
-        #var hpStr {<088>H:$my[hp][graph] S:$my[sp][graph] G:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]};
-
-        #nop TODO: add jousts, gxp/hr, avg dmg, xp/hr stats...;
-
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3} };
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {$hpStr\n$prompt2\n$prompt3\n$prompt4\n };
     }
 }
 
 #alias {tickhp} {
     #TICKER {update_status} {
             #math {idle} {$idle + 1};
-            update_status;
+			#math {deadManTimeLeft} {$deadManTimeLeft - 1};
+			#if {"$draw[status]" == "on"} {draw_status;};
     } {1}
 }
 

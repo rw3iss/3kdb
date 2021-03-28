@@ -75,8 +75,6 @@
 	};
 }
 
-#act {dealt the killing blow to} {grab $tacoTarget;} {1};
-
 #nop _enableCheeseStrat;
 
 #act {^{Death Taco (.*) you}} {staunch};

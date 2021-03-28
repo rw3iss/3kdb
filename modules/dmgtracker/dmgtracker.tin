@@ -419,8 +419,10 @@
 
 #NOP -- NUMBERS CAPTURE
 #ACTION {^You hit %1 times for %2 damage.$} {
-    #math mobrounds {$mobrounds + 1};
+    #var roundhits %1; 
     #var dc[numbers_dmg] %2;
+
+    #math mobrounds {$mobrounds + 1};
     #math dc[numbers_dmg_total] {$dc[numbers_dmg_total] + %2};
     #math dc[round_count] {$dc[round_count] + 1};
     calcDmgStats;

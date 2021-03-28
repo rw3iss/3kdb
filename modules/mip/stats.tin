@@ -1,7 +1,5 @@
 #class {mipstats} {open};
 
-#VAR bardSongs {Amazing Grace;Rainbow of Death;Vampire;Hammer Smashed Face;O Muse;Into the Fire;Sands of Time;Death March;Who Wants To Live Forever;Devil Went Down To Georgia;};
-
 #NOP ***** Combined Stats Data *****
 #ALIAS {.mipProcessFFF} {
 	#VAR {mip[FFF][flag]} {0};
@@ -78,6 +76,7 @@
 			#CASE {"bard"}			{.mipProcessGlineBard {%1}};
 			#CASE {"gentech"}		{.mipProcessGlineGentech {%1}};
 			#CASE {"mage"}			{.mipProcessGlineMage {%1}};
+			#CASE {"sii"}			{.mipProcessGlineSii {%1}};
 		}
 	}
 }
@@ -109,8 +108,10 @@
 		#REGEX {$mip[gline][1]}	{MC:%d}				{#VAR {my[mental_cognition]}   {&1}	}	{#VAR {my[mental_cognition]}	{0}	};
 		#REGEX {$mip[gline][1]}	{SS>}				{#VAR {my[prots][SS]}		   {1}	}	{#VAR {my[prots][SS]}			{0}	};
 		#REGEX {$mip[gline][1]}	{PA}				{#VAR {my[prots][PA]}		   {1}	}	{#VAR {my[prots][PA]}			{0}	};
+		#REGEX {$mip[gline][1]}	{{PS|PS!}}			{#VAR {my[prots][PS]}		   {1}	}	{#VAR {my[prots][PS]}			{0}	};
 		#REGEX {$mip[gline][1]}	{{<gA|<yA}}			{#VAR {my[prots][A]}		   {1}	}	{#VAR {my[prots][A]}			{0}	};
-		#REGEX {$mip[gline][1]}	{B}					{#VAR {my[prots][B]}		   {1}	}	{#VAR {my[prots][B]}			{0}	};
+		#REGEX {$mip[gline][1]}	{{<gB|<yB}}			{#VAR {my[prots][B]}		   {1}	}	{#VAR {my[prots][B]}			{0}	};
+		#REGEX {$mip[gline][1]}	{MB}				{#VAR {my[prots][MB]}		   {1}	}	{#VAR {my[prots][MB]}			{0}	};
 		#REGEX {$mip[gline][1]}	{MS}				{#VAR {my[prots][MS]}		   {1}	}	{#VAR {my[prots][MS]}			{0}	};
 		#REGEX {$mip[gline][1]}	{{M>|M!>}}			{#VAR {my[prots][M]}		   {1}	}	{#VAR {my[prots][M]}			{0}	};
 		#REGEX {$mip[gline][1]}	{RS}				{#VAR {my[prots][RS]}		   {1}	}	{#VAR {my[prots][RS]}			{0}	};
@@ -158,9 +159,9 @@
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]}	{CPC:\<%?%d\>} {#VAR {my[cpc][current]} {&2}};
 		#REGEX {$mip[gline][1]}	{G2N:%d} {#VAR {my[g2n]} {&1}};
-		#REGEX {$mip[gline][1]}	{TS:%d} {#VAR {my[timeslide_personal]} {&1}};
-		#REGEX {$mip[gline][1]}	{Reset\(\<%?%d\%\>\)} {#VAR {my[timeslide_reset]} {&2}};
-		#REGEX {$mip[gline][1]}	{E-TS:%d} {#VAR {my[timeslide_emergency]} {&1}};
+		#REGEX {$mip[gline][1]}	{TS:%d} {#VAR {my[timeslide][personal]} {&1}};
+		#REGEX {$mip[gline][1]}	{Reset\(\<%?%d\%\>\)} {#VAR {my[timeslide][reset]} {&2}};
+		#REGEX {$mip[gline][1]}	{E-TS:%d} {#VAR {my[timeslide][emergency]} {&1}};
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]}	{Bias\[\<%?%w\>\]} {#VAR {my[bias][status]} {&2}};
 		#REGEX {$mip[gline][2]}	{Atk\(\<%?%d\%\>\)} {#VAR {my[bias][attack]} {&2}};
@@ -250,6 +251,31 @@
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
 		#REGEX {$mip[gline][1]} { RF}		{#VAR {my[defs][rf]}		 {1}}	{#var {my[defs][rf]}    {0}};
 
+	}; #ELSEIF {%1 == 2} {
+		#nop Smile, GXP, Song Performing, Rounds left;
+		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
+		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
+		#REGEX {$mip[gline][2]} { %*: %d} {
+			#var song_match 0;
+			#foreach {$bardSongs} {song} {
+				#if {"$song" == "&1"} {
+					#var song_match 1;
+					#var my[song][title] &1;
+					#var my[song][rounds] &2
+				};
+			};
+			#if !$song_match {#unvar my[song]};
+		};
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>};
+	};
+}
+
+#ALIAS {.mipProcessGlineSii} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {GXP:%d}			{#VAR {my[gxp][round]}		{&1}};
+		#REGEX {$mip[gline][1]} {CL:%d.%d}			{#VAR {my[gxp][g2n]}		{&1.&2}};
+		#REGEX {$mip[gline][1]} {Regen:%w}			{#VAR {my[regen]}			{&1}};
 	}; #ELSEIF {%1 == 2} {
 		#nop Smile, GXP, Song Performing, Rounds left;
 		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};

@@ -1,73 +1,24 @@
-#CLASS {global} OPEN
+#CLASS {global} OPEN;
 
-#ALIAS {_player_deadmanActions}
-{
-     .pause;
-}
-{1}
+#NOP -- Necro settings;
+#VARIABLE         {sp_min}         {1000};
 
-#ALIAS {go_study}
-{
-     go were;
-     u;
-     nw;
-     nw;
-     path;
-     sw;
-     sw;
-     w;
-     study alter 10;
-     study rabies 90;
-     study infest 90;
-     e;
-     ne;
-     ne;
-     path;
-     se;
-     se;
-     d;
-     go $go_back
-}
+#NOP -- General Player Settings;
+#VARIABLE         {bear}            {0};
 
-#ALIAS {house_donate}
-{
-     r;
-     get all from box;
-     bank;
-     go necro;
-     #6 n;
-     #6 w;
-     donate all;
-     e;
-     d;
-     w;
-     store all;
-     go home;
-     recover;
-     i
-}
+#NOP -- Strategy Settings;
+#VARIABLE strategy[rabies]  1;
+#VARIABLE strategy[invoke]  1;
+#VARIABLE strategy[frenzy]  0;
+#VARIABLE strategy[call]  1;
 
-#ALIAS {postload}
-{
-     #map flag static on;
-     #map flag vtmap on;
-     #map flag unicodegraphics on;
-     #map flag terrain on;
-     #map flag direction on;
-     #delay {1} {hp}
-}
-
-#ALIAS {set_ticker}
-{
-     #ticker {con} {#if !$idle_flag {con 100} {#nop}} {90}
-}
-
+#NOP -- Map Drawing Settings;
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {4119}
-#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{32}{enabledheight}{3}{height}{3}{left}{0}{right}{204}{top}{30}}
-#VARIABLE         {map}  {{height}{19}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {room}  {{bottom}{29}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{13}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{20}{width}{91}{widthperc}{.45}}
+#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{off}{status}{on}}
+#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{6}{height}{6}{left}{0}{right}{204}{top}{30}}
+#VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}}
+#VARIABLE         {room}  {{bottom}{29}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{14}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{22}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}
 
-#CLASS {global} CLOSE
+#CLASS {global} CLOSE;

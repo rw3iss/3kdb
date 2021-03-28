@@ -6,14 +6,21 @@
 #VARIABLE         {karma_heal} {200};
 #VARIABLE         {dmg_spell_sp}  {200};
 
-#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
-#VARIABLE         {curvnum}  {4119}
-#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{32}}
-#VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {room}  {{bottom}{31}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{14}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{22}{width}{91}{widthperc}{.45}}
-#VARIABLE         {shield}  {aurothon shield}
-#VARIABLE         {splitWidthPerc}  {.45}
-#VARIABLE         {wielded}  {redaxe}
+#VARIABLE         {strategy[backstab]}  {1};
+#VARIABLE         {strategy[cloud]}  {1};
+#VARIABLE         {strategy[vortex]}  {1};
+#VARIABLE         {strategy[hammer]}  {0};
+#VARIABLE         {strategy[rainbow]}  {0};
+#VARIABLE         {strategy[assault]}  {0};
+
+#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}};
+#VARIABLE         {curvnum}  {4119};
+#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{off}{status}{on}};
+#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{32}};
+#VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}};
+#VARIABLE         {room}  {{bottom}{31}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{14}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{22}{width}{91}{widthperc}{.45}};
+#VARIABLE         {shield}  {aurothon shield};
+#VARIABLE         {splitWidthPerc}  {.45};
+#VARIABLE         {wielded}  {redaxe};
 
 #class {global} {close}

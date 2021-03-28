@@ -4,7 +4,7 @@
 #action {^You lift the drink to your mouth, but in your stomach} {#var my[drunk] 1};
 #action {^You drink the wine and feel healed.$} {#var my[drunk] 0};
 
-#action {The daemon hisses: Dost thou choose to graft with me %1?} {#format {graft} {%n} {%1};#if {"$user" == "$graft"} {say yes}};
+#action {^The daemon hisses: Dost thou choose to graft with me %w?} {#format {graft} {%l} {%1};#if {"$user" == "$graft"} {say yes}};
 #action {^%1 begins to follow %2\.$} {#format {follower} {%l} {%1};#if {"$user" == "$follower"} {#format {following} {%n} {%2}}};
 #action {^You stop following %1} {#unvar following};
 #action {^%1 leaves %2\.$} {
@@ -55,5 +55,40 @@
         #10 corpse_select
     };
 };
+
+#NOP -- 3kdb reporting stuff;
+
+#act {^[PARTY] %*: 3kdb bot status} {
+    #if {!$idle_flag && $botting} {
+        #delay .2 {ptell Bot Status : $bot_current_room/$bot_total_rooms ($bot_progress%)};
+    };
+};
+
+#act {^[PARTY] %*: 3kdb bot path-find} {
+    #if {!$idle_flag && $botting} {
+        #unvar tempPath;
+        #unvar 3kdbPath;
+        #path get position position;
+        #path save forward tempPath;
+        #list tempPath create {$tempPath};
+        #foreach {$tempPath[+1..$position]} {dir} {#cat 3kdbPath {$dir;}}
+        #delay .2 {ptell Path to find me is : $3kdbPath};
+    };
+};
+
+#act {^[PARTY] %*: 3kdb bot help} {
+    #if {!$idle_flag && $botting} {
+        #delay .2 {
+            ptell ---------------------------------------------------;
+            ptell -----            3kdb Bot Helpers             -----;
+            ptell -----                                         -----;
+            ptell -----  status: Current Room & Progress        -----;
+            ptell -----  path-find: Directions to find leader   -----;
+            ptell -----                                         -----;
+            ptell ---------------------------------------------------;
+        };
+    };
+};
+
 
 #class {default_actions} {close}

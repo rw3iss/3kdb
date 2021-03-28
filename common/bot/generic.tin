@@ -1,20 +1,18 @@
 #class {bot} {open}
 
 #var botting 1;
+#var loop 1;
+#var playercheck 1;
+#var bot_ticker 1;
 
 #var foundmob 0;
 #var foundplayer 0;
 #var foundobject 0;
-#var founditems 0;
 #var repeat_path 0;
-
 #var prevMobName 0;
 #var mobname 0;
 
-#var loop 1;
 #var dontAttack 0;
-#var pickupAll 0;
-#var justItems 0;
 
 
 /* Read in the whitelist of players or followers to ignore */
@@ -32,6 +30,16 @@
     #var check_death 1;
 }
 
+
+#alias playercheck {
+    #if $playercheck {
+        #var playercheck 0;
+        #delay .2 {#showme <BAF><ffe>------ PLAYERCHECK IS NOW OFF --------<088>};
+    } {
+        #var playercheck 1;
+        #delay .2 {#showme <BAF><ffe>------ PLAYERCHECK IS NOW ON --------<088>};
+    }
+};
 
 /* pause the bot */
 #alias {.pause} {
@@ -84,6 +92,7 @@
         #if {$foundplayer || $dontAttack} {
             .stop_prompt;
             #path walk;
+            #var bot_walking 1;
         } {
             #if {$foundmob} {
                 .stop_prompt;   
@@ -105,13 +114,14 @@
                     } {
                         .stop_prompt;
                         #path walk;
+                        #var bot_walking 1;
                     };
                 };
             };
         };
     };
 
-    #alias {.stop_prompt} {#unact {^>$}};
+    #alias {.stop_prompt} {#unact {^>$};#var bot_walking 0;};
     
 	glance;
 
@@ -119,7 +129,30 @@
 };
 #alias {.bot} {#if {$halt == 0} {..}};
 
-#act {^%1 {screeches in agony|gurgles in (\w+) own blood|gasps for breath, then slumps}} {
+#action {%*dealt the killing blow%*} {#var foundmob 0;} {1};
+
+#NOP #action {You give Byron a high-five!} {
+#NOP     #echo {----- BOT REGISTERED KILL -----};
+#NOP     #var foundmob 0;
+#NOP     #if $check_death {
+#NOP         #if {'$guild' == 'necromancer'} {
+#NOP             #delay 3 {.check_death};
+#NOP             #delay 4 {.bot};
+#NOP         } {
+#NOP             .check_death;
+#NOP             .bot;
+#NOP         }
+#NOP     } {
+#NOP         corpse_trig;
+#NOP         .bot;
+#NOP     };
+#NOP } {1};
+
+
+
+#action {{screeches in agony and falls to the ground, dead.|gasps for breath, then slumps into death.|gurgles in his own blood as he dies.|gurgles in her own blood as she dies.|gurgles in its own blood as it dies.}%*} {
+    #echo {----- BOT REGISTERED KILL -----};
+    #var foundmob 0;
     #if $check_death {
         #if {'$guild' == 'necromancer'} {
             #delay 3 {.check_death};
@@ -128,8 +161,8 @@
             .check_death;
             .bot;
         }
-        
     } {
+        corpse_trig;
         .bot;
     };
 } {1};
@@ -137,7 +170,9 @@
 
 /* Signify there is a player in the room, if not in friends list */
 #act {{^-P-_(.*)}} {
-    #var foundplayer 1;
+    #if $playercheck {
+        #var foundplayer 1;
+    }
 } {2};
 
 /* Todo: make friends auto-defend list */
@@ -148,6 +183,9 @@
 #act {#END OF PATH} {
     #if {!$loop || !$repeat_path} {
         #show \nBot finished.;
+        #format bot_end_time {%T};
+        #math bot_run_time {$bot_end_time - $bot_start_time};
+        #show \nBot R;
         .stop;
     } {
         #show \nLooping bot...;
@@ -165,6 +203,9 @@
     #var foundmob 1;
     #return {};
 };
+
+/* Bot Stats */
+#format bot_start_time {%T};
 
 
 #class {bot} {close}

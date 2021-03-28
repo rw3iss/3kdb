@@ -2,7 +2,6 @@
 #class {guild_heartbeat} {open}
 
 #var es_override 0;
-#var ham_toggle 0;
 
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
@@ -16,22 +15,24 @@
 		#if {$my[defs][pf] > 0} {#NOP} {#if {$defs[pf]} {cast protection from frost} {#nop}};
 		#if {$my[defs][ph] > 0} {#NOP} {#if {$defs[ph]} {cast protection from heat} {#nop}};
 		#if {$my[defs][blink] > 0} {#NOP} {#if {$defs[blink]} {cast blink} {#nop}};
-		#if {$my[defs][ag] > 0} {#NOP} {#if {$defs[ag]} {remove shield;perform amazing grace} {#nop}};
+		#if {$my[defs][ag] > 0} {#NOP} {#if {$defs[ag]} {perform amazing grace} {#nop}};
 		#if {$my[defs][o] > 0}  {#NOP} {#if {$defs[om]}  {perform o muse} {#nop}};
 		#if {$my[defs][hr] > 0} {#NOP} {#if {$defs[hr]} {cast harmonic regeneration} {#nop}};
 
-		#if $rod_bot {
-			#if !$my[song] {perform rainbow of death};
-			#if !$my[defs][fr] {cast focus the rainbow};
-		};
+		#NOP -- actions that should only be attempted once per round;
+		#if {$action_round < $mip[round]} {
+			#if {$strategy[rainbow] && $rod_bot} {
+				#if !$my[song][rounds] {perform rainbow of death};
+				#if !$my[defs][fr] {cast focus the rainbow};
+			};
 
-		#if {$ham_bot && !$ham_toggle} {
-			#if !$my[song] {
-				#var ham_toggle 1;
-				#delay 20 {perform hammer smashed face;#var ham_toggle 0;};
-				};
+			#if {$strategy[hammer] && $ham_bot && $my[gp2][current] > 20} {
+				#if {!$my[song][rounds] && $mip[round] > 10} {perform hammer smashed face};
+			};
 		};
 	};	
+
+	#var action_round $mip[round];
 };
 
 #class {guild_heartbeat} {close}

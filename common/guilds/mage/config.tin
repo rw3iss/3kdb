@@ -1,7 +1,0 @@
-#NOP --- SPELL COSTS;
-#var spellcosts[extension_3] 95;
-#var spellcosts[SS] 115;
-#var spellcosts[MG] 160;
-#var spellcosts[blink] 150;
-#var spellcosts[PA] 115;
-#var spellcosts[armor] 15;

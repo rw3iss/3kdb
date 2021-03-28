@@ -1,6 +1,16 @@
 #class {eval} kill
 #class {eval} open
 
+#NOP Offensive summary;
+#NOP Level - This <> has God-Like knowledge and power
+#NOP Damage This <> attacks with Immortal accuracy and power
+#NOP Stun - This <> will anticipate every blow
+#NOP Dodge/Dr - This <> has mystical defenses.
+#NOP Fearable - this <> has the heart of a lion.
+
+
+
+
 #var bardEval[cols] 28;
 #var bardEval[Poor] 1;
 #var bardEval[Fair] 2;

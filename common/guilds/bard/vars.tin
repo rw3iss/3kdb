@@ -1,0 +1,17 @@
+#class {guild_vars} kill
+#class {guild_vars} open
+
+#VAR bardSongs {Amazing Grace;Rainbow of Death;Vampire;Hammer Smashed Face;O Muse;Into the Fire;Sands of Time;Death March;Who Wants To Live Forever;Devil Went Down To Georgia;};
+#VARIABLE {testSongs} {
+    {Hammer Smashed Face}{
+        {karma} {100}{voice} {15}
+    }
+    {Rainbow of Death}{
+        {karma} {50}{voice} {0}
+    }
+};
+
+#NOP #foreach *bardSongs[] test {#showme $test}
+#NOP #foreach *bardSongs[] songName {#if {"$songname[karma]" < "100"} {do stuff}} 
+
+#class {guild_vars} close

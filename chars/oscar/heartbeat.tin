@@ -1,57 +1,118 @@
 #class {player_heartbeat} {kill}
 #class {player_heartbeat} {open}
 
-#var bot_toggle 1;
+#var bot_toggle 0;
 #var ash_toggle 0;
-#var golem_toggle 1;
+#var golem_toggle 0;
 #var immersion_casts 1;
+#var ms7_toggle 0;
+#var corpse_toggle 0;
 
 #alias {_player_heartbeat} {
+    #var mc_threshold 90;
+    #var mc_danger 60;
     #math sp_threshold {$my[sp][max] * .90};
-    #math saturation_threshold {$saturation_max * .15};
-    #math saturation_warning {$saturation_max * .6};
-    #math saturation_danger {$saturation_max * .8};
+    #math sp_percent {$my[sp][current] * 100 / $my[sp][max]};
+    #math hp_percent {$my[hp][current] * 100 / $my[hp][max]};
+    #math summon_sp_minimum {$my[sp][max] * .4};
 
-    #math sp_percent {$my[sp][current] / $my[sp][max]};
+    #if $botting {
+        #if $halt {
+            #var bot_string Bot: <DAA><aaa>PAUSED<088>;
+        } {
+            #var bot_string Bot: <ACA><fff>ACTIVE<088>;
+        };
+    } {
+        #var bot_string Bot: <fff>OFF<088>;
+    };
 
     #if !$idle_flag {
-        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $saturation_max) && !$bot_toggle && $corpses[total] < 5} {
-            #ECHO {Stopping:  SP: $my[sp][current] Saturation: $my[gp1][current]};
-            .pause;study spellbook;#var bot_toggle 1};
-        #if {$my[sp][current] > $sp_threshold && $my[gp1][current] < $saturation_threshold && $bot_toggle} {
-            #ECHO {Resuming:  SP: $my[sp][current] Saturation: $my[gp1][current]};
-            ..;#var bot_toggle 0};
+        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $monitors[saturation-stop] || $hpbar_mc < $mc_danger) && $corpses[total] < 5 && !$bot_toggle && $botting} {
+            ptell {Stopping:  SP: $my[sp][current] Saturation: $my[gp1][current] Conc: $hpbar_mc};
+            #var bot_toggle 1;
+            .pause;
+            study spellbook;
+        };
+        #if {($my[sp][current] > $sp_threshold && $my[gp1][current] < $monitors[saturation-start] && $hpbar_mc > $mc_threshold) && $bot_toggle && $botting} {
+            ptell {Resuming:  SP: $my[sp][current] Saturation: $my[gp1][current] Conc: $hpbar_mc};
+            #var bot_toggle 0;
+            #var halt 0;
+            ..;
+        };
+    };
+
+    #NOP -- Wake the bot up if it stopped for whatever reason;
+    #if {!$bot_walking && $botting && !$idle_flag && !$mip[round] && !$bot_toggle} {
+         #delay 5 {#if {!$mip[round] && !$bot_walking} {..}};
     };
 
     #NOP -- Heartbeat actions that should only be attempted once per round;
     #if {!$idle_flag && $action_round < $mip[round]} {
-        #if {$my[gp1][current] > $saturation_warning && $corpses[total] > 0} {corpse_select;#delay 4 {cast spell tap on corpse;cast corpse blast;cast spell tap on corpse;cast corpse blast}};
-        #if {$my[golem][current] && $golem_toggle && !$my[summon][golem]} {#var golem_toggle 0;create_golem;#delay 20 {#var golem_toggle 1}};
-        #if {$my[immersion][count] && !$my[immersion][rounds] && ($my[golem][reset] > 80 || $my[sp][current] < $sp_min)} {cast mystic immersion};
+        #if {!$defense_mode && $hp_percent < 200} {#var golem_tank 1;} {#var golem_tank 0;};
+
+        #if {$my[immersion][count] && !$my[immersion][rounds] && ($my[golem][reset] > 80 || $my[sp][current] < $sp_min)} {
+            cast mystic immersion;
+            #if $summoner {summon_str;cast haste on summons;};
+        };
+        
+        #if $summoner {
+            #if {$num_summons < $summons_desired && !$ms7_toggle} {
+                #var ms7_toggle 1;
+                ms7;
+                #NOP -- #math summons_short {13 - $num_summons};
+                #NOP -- #math summon_sp_required {455 * $summons_short};
+                #NOP -- #math summon_attempts {($my[sp][current] - $summon_sp_minimum) / 455 };
+                #NOP -- #loop 1 $summon_attempts i {
+                #NOP --     #math summon_delay {$i * 2};
+                #NOP --     #delay {$summon_delay} {ms7};
+                #NOP -- };
+            };
+        }
+		
+
+        #if {$my[gp1][current] > $monitors[saturation-corpse] && $corpses[total] > 0 && !$my[super][current] && !$corpse_toggle} {#var corpse_toggle 1;corpse_select;#delay 4 {cast spell tap on corpse;cast corpse blast;cast spell tap on corpse;cast corpse blast;#var corpse_toggle 0}};
+        #if {$my[golem][current] && $golem_toggle && $strategy[golem]} {create_golem};
+        
         #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
-        #if {!$my[super][current] && $my[gp1][current] > $saturation_danger && $ash_toggle} {ash off;#var ash_toggle 0;};
-        #if {$my[super][current] && $my[gp1][current] > 60} {cast explosive release};
-        #if {$my[g2n] == 100 && $gl_run} {#var gl_run 0;#delay 120 go_glvl};
+        #if {!$my[super][current] && $my[gp1][current] > $monitors[saturation-stop] && $ash_toggle} {ash off;#var ash_toggle 0;};
+        #if {$my[super][current] && $my[gp1][current] > 75} {cast explosive release};
         #if {$my[gem] < 80 && !$go_fetch} {#var go_fetch 1;ffetch gem};
 
-        #if {$mob_slow <1} {
+        #if {$strategy[slow] && $mob_slow < 1} {
             cast slow;
-        }
+        };
+        
+        #if {$strategy[edrain] && $mob_drain < 1} {
+            cast energy drain;
+        };
 
-        #if {$sp_percent > .7} {
-            #if $beads check_beads;
-        }
+        #if {$strategy[atrophy] && $mob_atrophy < 1} {
+            cast mystic atrophy;
+        };
+
+        #if {$summoner && !$summons_haste && $sp_percent > 30} {
+            cast haste on summons;
+        };
+
+        #if {!$self_haste && $sp_percent > 30 && $strategy[haste]} {
+            cast haste;
+            #var self_haste 1;
+        };
+
+        #if {!$golem_haste && "$my[summon][golem]" != "0" && $strategy[haste]} {
+            cast haste on golem;
+        };
+
+        #if {$my[sp][current] < $sp_min && $my[eternal][heal] && !$my[immersion][count]} {
+            (heal oscar;
+        };
 
         #if {$my[immersion][rounds] > 0 && $immersion_casts} {
-            #if !$golem_haste {
-                cast haste on summons
-            }
-            #if !haste {
-                cast haste;
-            }
-
-            #if $beads {check_beads};
-        }
+            #if $summoner {
+                #if !$summons_haste {cast haste on summons;};
+                #if {$num_summons < $summons_desired && !$ms7_toggle} {_update_summons;};
+            };
+        };
     };
 
     #var action_round $mip[round];

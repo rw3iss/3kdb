@@ -26,8 +26,6 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler]};
-
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Mana:$gp1/$gp1_max  Piety:$gp2/$gp2_max  E:$ehealth};
 
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Mana:$my[gp1][graph] Piety:$my[gp2][graph] E:$enemy[graph]};

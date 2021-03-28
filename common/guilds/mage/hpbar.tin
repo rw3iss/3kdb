@@ -1,0 +1,35 @@
+#class {mage_hpbar} {kill}
+#class {mage_hpbar} {open}
+
+
+#alias reset_gxp {
+    dreset;
+    #var gxp_gained 0;
+    #var total_gxp_gained 0;
+    #var average_gxp 0;
+    #var gxp_round_count 0;
+}
+
+
+#gag {^-hp-%*};
+#act {^-hp-HP: %d\/%d SP: %d\/%d/%d\%\/%d\% Sat: %d\% Cnc: %d\% G:%d\/%d\% S:%d\/%d\% G2N:%d Prots: %* MI: %d ST: %* Cof: %d\/%d} {
+    #var hpbar_mc %5;
+    #var hpbar_gem %6;
+    #var hpbar_prots %14;
+    #if {!$g2n_last_round} {#var g2n_last_round %13};
+    #if {!$gxp_round_count} {#var gxp_round_count 0};
+
+    #regex {$hpbar_prots} {PS!} {cast prismatic sphere};
+    
+    #math {gxp_gained} {$g2n_last_round - %13};
+    #math {gxp_round_count} {$gxp_round_count + 1};
+    #math {total_gxp_gained} {$total_gxp_gained + $gxp_gained};
+    #math {average_gxp} {$total_gxp_gained / $cmbt[rnd]};
+
+    #var g2n_last_round %13;
+} {1};
+
+#gag {^  --> %*-hp-};
+
+
+#class {mage_hpbar} {close}

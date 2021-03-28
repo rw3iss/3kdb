@@ -1,6 +1,9 @@
 #class {priest_hpbar} {kill}
 #class {priest_hpbar} {open}
 
+#NOP --- HPBAR CONFIG;
+#NOP hpbar hp#sp#mana#pgx#dgxp#NL#bark#haste#prot#vest
+
 #act {HP: %d/%d SP: %d/%d MANA: %d/%d GXP%: [%d\%] <DGX>: %d} {
     #var my[g2n] %7;
     #var my[round_gxp] %8;

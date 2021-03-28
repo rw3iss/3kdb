@@ -1,12 +1,79 @@
 #class {mage_heartbeat} {kill}
 #class {mage_heartbeat} {open}
 
+#var dismiss_toggle 0;
+#var pref_summon 0;
+
+#act {^-M-_%* [summons] \(%d\%\).$} {
+	#if $update_summons {
+		#math num_summons {$num_summons + 1};
+		#foreach {$hp_summon_types} {summon} {
+			#regexp {%1} {$summon} {
+				#list active_summons add {{ {name}{$summon} {health}{%2} {count}{1} {avg_dmg}{$summon_damage[$summon][avg_dmg]} {accuracy}{$summon_damage[$summon][accuracy]} }};
+				#if {"$summon" != "$preferred_summon" && !$dismiss_toggle && $pref_summon} {
+					say $summon, begone;
+					ms7;
+					#var dismiss_toggle 1;
+				};
+			};
+		};
+	};
+} {1};
+
+#act {^-M-_%* [summons] \(%d\%\) \{%d\}.$} {
+	#if $update_summons {
+		#math num_summons {$num_summons + %3};
+		#foreach {$hp_summon_types} {summon} {
+			#regexp {%1} {$summon} {
+				#list active_summons add {{{name} {$summon} {health}{%2} {count}{%3} {avg_dmg}{$summon_damage[$summon][avg_dmg]} {accuracy}{$summon_damage[$summon][accuracy]} }};
+				#if {"$summon" != "$preferred_summon" && !$dismiss_toggle && $pref_summon} {
+					say $summon, begone;
+					ms7;
+					#var dismiss_toggle 1;
+				};
+			};
+		};
+	};
+} {1};
+
+#act {^-M-_%* [$summon_string] \(%d\%\) \{%d\}.$} {
+	#if $update_summons {
+		#math num_summons {$num_summons + %3};
+		#foreach {$hp_summon_types} {summon} {
+			#regexp {%1} {$summon} {
+				#list active_summons add {{{name} {$summon} {health}{%2} {count}{%3}}};
+				#if {"$summon" != "$preferred_summon" && !$dismiss_toggle && $pref_summon} {
+					say $summon, begone;
+					ms7;
+					#var dismiss_toggle 1;
+				};
+			};
+		};
+	};
+} {1};
+
+#alias {_update_summons} {
+	#var ms7_toggle 1;
+	#var update_summons 1;
+	#var num_summons 0;
+	#unvar active_summons;
+	#var dismiss_toggle 0;
+	look;
+	#delay 2 {#var update_summons 0;};
+	#if {$my[immersion[rounds] > 0} {
+		#delay 10 {#var ms7_toggle 0};
+	} {
+		#delay 3 {#var ms7_toggle 0};
+	};
+}
+
+#ticker summons {#if {!$idle_flag && $summoner} {_update_summons}} 60;
 
 #alias {_guild_heartbeat} {
 	#if !$idle_flag {
-		#if (!$my[summon][golem] && $my[golem][current]) {#5 {cast create golem}} {#nop};
 		#if $defs[MB] {#if !$my[prots][MB] {cast mindblank} {#nop}};
 		#if $defs[PA] {#if !$my[prots][PA] {cast prismatic aura} {#nop}};
+		#if $defs[PS] {#if !$my[prots][PS] {cast prismatic sphere} {#nop}};
 		#if $defs[A]  {#if !$my[prots][A]  {cast armor} {#nop}};
 		#if $defs[MG] {#if !$my[prots][MG] {cast major globe} {#nop}};
 		#if $defs[M]  {#if !$my[prots][M]  {cast mantle} {#nop}};

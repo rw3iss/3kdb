@@ -10,25 +10,7 @@
 
 #alias .pre_fight_check {#nop;};
 
-#if {{$guild} == {bard}} {
-	.pre_bot_check;
-    
-	#alias .pre_fight_check {
-        #var defs[pn] 1;
-        #var defs[blink] 1;
-        #var defs[es] 1;
-    }
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
-
-#var {botpath} {e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;e;e;e;e;e;e;e;e;e;e;e;e;n;n;ne;e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;w;sw;s;s;w;w;w;w;w;w;w;w;w;w;w;w;w;}
+#var {botpath} {e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;e;e;e;e;e;e;e;e;e;e;e;e;n;n;ne;e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;w;sw;s;s;w;w;w;w;w;w;w;w;w;w;w;w;w}
 
 #act {^-M-_{Mature Swamp Crocodile|Great Egret|Salamander|Crane|Anaconda|Swamp Crocodile|Red-bellied Watersnake|Drop bear|Cane Toad|Marbled Reed Frog|Swamp Sparrow|Tricolored Heron|Caecilian|Marsh Rat|Anhinga|Short-tailed Shrew|Marsh Snake|Marsh Frog|Armadillo|Platypus|Black-bellied Snake|Osprey}} {
 	#if {"%1" == "Red-bellied Watersnake"} {@botSetMobActions{snake};};

@@ -35,6 +35,7 @@
     #var draw[room] off;
     #var draw[map] off;
     #var draw[canvas] off;
+    #var draw[status] on;
     #class global close;
     #class global write chars/$user/vars.tin;
     init_screen;
@@ -48,6 +49,7 @@
     #var draw[room] on;
     #var draw[map] on;
     #var draw[canvas] on;
+    #var draw[status] off;
     #class global close;
     #class global write chars/$user/vars.tin;
     #read common/draw.tin;

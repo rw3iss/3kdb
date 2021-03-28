@@ -1,28 +1,32 @@
 #class {player_actions} {kill}
 #class {player_actions} {open}
 
-#NOP --- Nix specific actions
+#var corpse_delay 0;
 
+#NOP --- Nix specific actions;
 #ACTION {{%1 appears out of nowhere\.}} {pt CHECK MYSTIC EYES - MOB SPAWN!!!};
-#ACTION {{(\w+) eeps\.}} {dh %1};
-#ACTION {{(\w+) tugs on your sleeve persistently\.}} {itunes %1};
 #ACTION {{A flash of energy emanates from Shansabyk's body\.}} {pt Shansabitch down a life!!};
+#ACTION {Hurinteon the Grand Master Mage (Deadly!!!) appears out of nowhere.} {view 1 study hurinteon;kill hurinteon};
 
 #ACTION {{The coffin is full!}} {
-        slab corpse;
-	get coins from corpse;
-        dirge;
+    slab corpse;
+	coins from corpse;
+    dirge;
 };
 
 #ACTION {The Abysmal Blade (enchanted): Ok.} {smuggle blade};	
 
 #act {There are no corpses in the freezer!}{unwrap;pd};
 #act {There is no reason to 'deslab' here.} {unwrap;pd};
-#act {The daemon hisses: Dost thou choose to graft with me Nix?} {say yes};
-#act {Hurinteon the Grand Master Mage (Deadly!!!) appears out of nowhere.} {view 1 study hurinteon;kill hurinteon};
+
 #act {The melting cheese finally evaporates from Nix.} {wield axe};
 #act {%1 offers to guard} {accept};
 #act {You are already attacking} {#delay {2} cast noxious cloud};
 
+
+
+#NOP --- BARD MISC;
+#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {6};
+#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {6};
 
 #class {player_actions} {close}

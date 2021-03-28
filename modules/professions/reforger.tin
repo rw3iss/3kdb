@@ -1,79 +1,20 @@
 #class {reforger} {open}
 
-#nop REFORGING;
+#var reforger 1;
+#act {You can currently reforge %d items.} {#var my[reforger] %1};
 
 #alias {refk} {
 	buy knife;
-	reforge knife little edged critical;
+	reforge knife with little from edged to critical;
 	dispose knife;
 };
 
 #alias {ref} {
-	reforge %1 lots %3 %2;
-	reforge %1 some %3 %2;
+	reforge %1 with loads from %2 to defense;
+	reforge %1 with lots from %2 to defense;
+    reforge %1 with some from %2 to defense;
+    reforge %1 with little from %2 to defense;
 };
-
-#alias {ref2} {
-	reforge %1 lots %3 %2;
-	reforge %1 some %3 %2;
-	reforge %1 little %3 %2;
-};
-
-#alias {ref3} {
-	reforge %1 lots poison %2;
-	reforge %1 lots electric %2;
-	reforge %1 lots acid %2;
-	reforge %1 lots energy %2;
-	reforge %1 lots radiation %2;
-	reforge %1 lots mind %2;
-	reforge %1 lots ice %2;
-	reforge %1 lots fire %2;
-	reforge %1 some poison %2;
-    reforge %1 some electric %2;
-    reforge %1 some acid %2;
-    reforge %1 some energy %2;
-    reforge %1 some radiation %2;
-    reforge %1 some mind %2;
-    reforge %1 some ice %2;
-    reforge %1 some fire %2;
-	reforge %1 little poison %2;
-    reforge %1 little electric %2;
-    reforge %1 little acid %2;
-    reforge %1 little energy %2;
-    reforge %1 little radiation %2;
-    reforge %1 little mind %2;
-    reforge %1 little ice %2;
-    reforge %1 little fire %2;
-};
-
-#alias {refall} {
-	ref3 helmet defense;
-	ref3 amulet defense;
-	ref3 armour defense;
-	ref3 greaves defense;
-	ref3 cloak defense;
-	ref3 gloves defense;
-	ref3 boots defense;
-	ref3 ring defense;
-	ref3 other defense;
-	ref3 shield defense;
-    drop ring 2;
-    get ring;
-    ref3 ring defense;
-    wear ring;
-    drop ring 3;
-    get ring;
-    ref3 ring defense;
-    drop ring 4;
-    get ring;
-    ref3 ring defense;
-    drop ring 5;
-    get ring;
-    ref3 ring defense;
-    wear all;
-    pp;
-};
-
 
 register_module {reforger};
 register_module_info {reforger} {

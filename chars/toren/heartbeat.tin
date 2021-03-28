@@ -7,8 +7,8 @@
 #alias {_player_heartbeat} {
 	#if {!$idle_flag} {
 		#if {$make_con && $my[necromancer][worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}};
-		#if {$party_actions && $mip[round] == 2} {rabies;call}
-	}
+		#if {$party_actions && $mip[round] == 2} {fury;rabies;call;};
+	};
 };
 
 #class {heartbeat} {close}

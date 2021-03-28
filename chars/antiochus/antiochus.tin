@@ -5,29 +5,29 @@
 #conf pack 1;
 #conf color on;
 
-#read chars/antiochus/vars.tin;
 
 /* Set player specific variables */
 #var guild sii;
 #var user antiochus;
-#var vaf_numbers 0;
+#read chars/$user/vars.tin;
 
 /* load common */
 #read common/index.tin;
 #read common/bot/bots.tin;
 
 /* load specific modules for this character */
-#read common/guilds/sii/index.tin;
 #read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
+#read common/guilds/eternal/eternal.tin;
 
 /* load character-specific */
 #read chars/$user/actions.tin;
 #read chars/$user/aliases.tin;
+#read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
-#read chars/$user/vars.tin;
+#read chars/$user/private.tin;
 
 /* create space for static hpbar at bottom and reset map position */
 #split 0 4;
@@ -36,7 +36,7 @@
 	mipon;
 	loadmap;
     postload;
-	#read common/draw.tin
+	#read common/draw.tin;
 }
 
 

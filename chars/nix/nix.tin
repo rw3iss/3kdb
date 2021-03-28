@@ -1,15 +1,14 @@
-#NOP - 3k Session
+#NOP - 3k Session;
 
-#SESSION {3k - Nix} {3k.org} {3000}
+#SESSION {3k - Nix} {3k.org} {3000};
 
 #conf pack 1;
 #conf color on;
 
-#read chars/nix/vars.tin;
-
 /* Set player specific variables */
 #var guild bard;
 #var user nix;
+#read chars/$user/vars.tin;
 #var vaf_numbers 1;
 #var scaler[tacos] 91;
 #var scaler[hotel] 150;
@@ -20,65 +19,29 @@
 #read common/bot/bots.tin;
 
 /* load specific modules for this character */
-#read modules/professions/reforger.tin;
+#read modules/reforger/reforger.tin;
 #read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;
+#read common/guilds/eternal/eternal.tin;
 
 /* load character-specific */
-#read chars/$user/$guild/actions.tin;
-#read chars/$user/$guild/aliases.tin;
-#read chars/$user/$guild/config.tin;
-#read chars/$user/$guild/heartbeat.tin;
-#read chars/$user/$guild/private.tin;
-#read chars/$user/vars.tin;
+#read chars/$user/actions.tin;
+#read chars/$user/aliases.tin;
+#read chars/$user/config.tin;
+#read chars/$user/heartbeat.tin;
+#read chars/$user/private.tin;
+#read chars/$user/styles.tin;
 
 /* create space for static hpbar at bottom and reset map position */
 #split 0 4;
 
 #alias {defaults_on} {
-	#read chars/$user/$guild/miphp.tin;
 	mipon;
 	loadmap;
     postload;
-	#read common/draw.tin
-	#var autodmg 1;
+	#read common/draw.tin;
 }
-
-/* Aliases to kill existing things and load other gobjs for gswap */
-#alias {gswap_mage} {
-	#showme {========= MAGE GOBJ LOADED =========};
-	#var guild mage;
-	#class {bard_actions} {kill};
-	#class {bard_aliases} {kill};
-	#class {bard_gags} {kill};
-	#class {bard_heartbeat} {kill};
-	#read common/guilds/$guild/index.tin;
-	
-	#read chars/$user/$guild/actions.tin;
-	#read chars/$user/$guild/aliases.tin;
-	#read chars/$user/$guild/config.tin;
-	#read chars/$user/$guild/heartbeat.tin;
-	#read chars/$user/$guild/miphp.tin;
-}
-
-#alias {gswap_bard} {
-	#showme {========= BARD GOBJ LOADED =========};
-	#var guild bard;
-	#class {mage_actions} {kill};
-	#class {mage_aliases} {kill};
-	#class {mage_gags} {kill};
-	#class {mage_heartbeat} {kill};
-	#read common/guilds/$guild/index.tin;
-	
-	#read chars/$user/$guild/actions.tin;
-	#read chars/$user/$guild/aliases.tin;
-	#read chars/$user/$guild/config.tin;
-	#read chars/$user/$guild/heartbeat.tin;
-	#read chars/$user/$guild/miphp.tin;
-	
-}
-
 
 #alias {reload} {#kill all;#show \n;#read chars/nix/nix.tin;};

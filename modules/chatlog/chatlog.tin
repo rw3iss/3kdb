@@ -1,119 +1,139 @@
 #class {chatlog} {kill}
 #class {chatlog} {open}
 
-#alias {-cl} {
-	#format {datestamp} {%t} {%Y-%m-%d.log};
-	#format {timestamp} {%t} {[%H:%M] };
-	#line log logs/$user/$datestamp {$timestamp\};
-	#line log logs/$user/$datestamp;
-	-xchatlog;
-	beep;
-};
+#VARIABLE {comm_window}
+{
+    {active} {tells}
+    {botcol} {80}
+    {botrow} {6}
+    {offset} {1}
+    {tab} 
+    {
+        {chats} {}
+        {tells} {}
+    }
+    {topcol} {1}
+    {toprow} {1}
+    {unread} 
+    {
+        {chats} {0}
+        {tells} {0}
+    }
+}
+#ACTION {~%1 tells you %2}
+{
+    comm_window_show tells %1 tells you %2
+}
 
-#alias {-clnobeep} {
-	#format {datestamp} {%t} {%Y-%m-%d.log};
-	#format {timestamp} {%t} {[%H:%M] };
-	#line log logs/$user/$datestamp {$timestamp\};
-	#line log logs/$user/$datestamp;
-	-xchatlog;
-};
+#ACTION {~%1 chats %2}
+{
+    comm_window_show chats %1 chats %2
+}
 
-#alias {-xchatlog} {
-	#class {xchatlog} {open};
-	#act {^{\S}} {#class {xchatlog} {kill}} {99};
-	#act {{^(\s)*$}} {#class {xchatlog} {kill}} {99};
-	#act {^{\s{1,40}\S}} {-cl};
-	#class {xchatlog} {close};
-};
+#ALIAS {comm_window_scroll_up}
+{
+    #if {$comm_window[offset] < &comm_window[tab][%0][]}
+    {
+        #math comm_window[offset] $comm_window[offset] + 1;
+        comm_window_draw_data $comm_window[active]
+    }
+}
 
-/* Regular shouts */
-#act {{^[A-z ] shouts:}} {-clnobeep};
+#ALIAS {comm_window_scroll_down}
+{
+    #if {$comm_window[offset] > 1}
+    {
+        #math comm_window[offset] $comm_window[offset] - 1;
+        comm_window_draw_data $comm_window[active]
+    }
+}
 
-/* TELLS LINKTELLS AUCTION HM SHOUTS GSHOUTS CLAN PROFESSIONS CRAFTING */
-#act {{^((A ghostly form of )?[A-z0-9@]+ (<HM-[A-z]+>:|-=\(OMP\)=-|LTs? \([\[\]0-9A-z\[\], ]+\)|tells?( you)? \(?[A-z0-9,@]+\)?:)|\[(Clan|Auction)\] [A-z\(\) ]+:)}} {-cl}
-#act {{^[A-z ]+(<Craft>|\{Professions\}):}} {-clnobeep}
-#act {{^[A-z ]+<C-Trade>:}} {-clnobeep}
-#act {{^[A-z ]+<cgame>:}} {-clnobeep}
+#BUTTON {$comm_window[toprow] $comm_window[topcol] $comm_window[botrow] $comm_window[botcol] SCROLLED MOUSE WHEEL UP}
+{
+    comm_window_scroll_up $comm_window[active]
+}
 
-/* cult game */
-#act {{^Gargoyle whispers:}} {-clnobeep}
+#BUTTON {$comm_window[toprow] $comm_window[topcol] $comm_window[botrow] $comm_window[botcol] SCROLLED MOUSE WHEEL DOWN}
+{
+    comm_window_scroll_down
+}
 
-#act {{^[A-z ] g?shouts:}} {-clnobeep}
-#act {{^[A-z ] says?:}} {-clnobeep}
-#act {{^[A-z ] says?:}} {-clnobeep}
+#FUNCTION {comm_window_square}
+{
+    #return $comm_window[toprow]+1 $comm_window[topcol]+1 $comm_window[botrow]-1 $comm_window[botcol]-1
+}
 
-/* souls */
-#act {{^-S-_(.*)}} {-clnobeep}
-#act {{^From afar, [A-z ]}} {-cl}
+#FUNCTION {comm_window_border}
+{
+    #return $comm_window[toprow] $comm_window[topcol] $comm_window[botrow] $comm_window[botcol]
+}
 
-/* PARTY (Until they add timestamps) */
-#act {{^(.*)?\[PARTY\] ([A-z]+):}} {-cl};
-#act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop;} {4}
-#alias {p -h} {
-    #unact {{^(.*)?\[PARTY\] ([A-z]+):}};
-    #send p -h;
-    #delay {1} {
-        #act {{^(.*)?\[PARTY\] ([A-z]+):}} {-cl};
+#ALIAS {comm_window_draw_data}
+{
+    #draw tile @comm_window_square{} $comm_window[tab][%1][-$comm_window[offset]-10..-$comm_window[offset]]
+}
+
+#ALIAS {comm_window_show %1 %2}
+{
+    #list comm_window[tab][%1] ins -1 {%2};
+    #if {{%1} === {$comm_window[active]}}
+    {
+        comm_window_draw_data %1
     };
-};
+    #elseif {$comm_window[unread][%1] == 0}
+    {
+        #variable comm_window[unread][%1] 1;
+        comm_window_draw_tabs
+    }
+}
 
-/* flap */
-#act {{^[A-z]+ flaps :}} {-clnobeep}
+#ALIAS {comm_window_draw_tabs}
+{
+    #draw green rounded box @comm_window_border{};
+    #local short {};
+    #local index {};
+    #loop {1} {&comm_window[tab][]} {index}
+    {
+        #local tab *comm_window[tab][+$index];
+        #if {{$comm_window[active]} === {$tab}}
+        {
+            #format short <138>%.6s $tab
+        };
+        #elseif {$comm_window[unread][$tab] == 1}
+        {
+            #format short <168>%.6s $tab
+        };
+        #else
+        {
+            #format short <268>%.6s $tab
+        };
+        #line ignore #showme {\e]68;2;TAB;comm_window_tab_click $tab\a\e[4;24m$short\e[24m} {$comm_window[toprow]} {$comm_window[topcol] - 5 + $index * 7}
+    }
+}
 
-/* GUILD SPECIFIC */
+#ALIAS {comm_window_tab_click}
+{
+    #variable comm_window[active] %0;
+    #variable comm_window[unread][%0] 0;
+    #variable comm_window[offset] 1;
+    comm_window_draw_tabs;
+    comm_window_draw_data %0
+}
 
-/* BARD */
-#act {{^[A-z]+ \[(HighBard|Fifty|Seventy|Gallant|[0-9]+)\]: }} {-cl}
-#act {{^(You send a message to \w+ on a whispering wind:|A slight breeze floats by and in it you hear (\w+)'s voice say:)$}} {-cl}
+#EVENT {PRESSED SECURE LINK TAB MOUSE BUTTON ONE}
+{
+    %4
+}
 
-/* BREED */
-#act {{^[A-z]+ projects? to [A-z]+:|^<(Breed( OOC)?|Watcher|Scholar|Announce|HighBreed)> [A-z]+:}} {-cl}
-
-/* KNIGHT */
-#act {{^\((Vassal|Retainer|Page|Squire|Knight|Cavalier|Companion|Paladin|Defender|Guardian|Vindicator|Champion+) ([0-9]+)\) ([A-z]+):}} {-cl}
-#act {{^[A-z]+ \(Strategy\):}} {-clnobeep};
-
-/* GENTECH */
-#act {{^(.*) ([A-z]+) \[Gen-(Alpha)\]:}} {-cl}
-#alias {com -h} {
-    #unact {{^(.*) ([A-z]+) \[Gen-(Alpha)\]:}};
-    #send comm -h;
-    #delay {1} {
-        #act {{^(.*) ([A-z]+) \[Gen-(Alpha)\]:}} {-cl}
-    };
-};
-
-/* NECRO */
-#act {{^[A-z] \[(.*)\]\:}} {-cl};
-
-
-/* -- PROFESSIONS -- */
-
-/* NEWBIE */
-#nop #act {{^newb [A-z]}} {-cl};
-#nop #act {{^[A-z] \[HELPER\]}} {-cl};
-
-#nop Ignore certain tells;
-#act {{^(Jim)( tells you:)?}} {#nop;} {5}
-
-/* Ignore auction and tells from Benny (3s) and Robert (3k) */
-#act {{^(\[Auction\] )?(Benny|Robert)( tells you:)?}} {#nop;} {5}
-#act {{^(\[Auction\] )?(Robert : Up for bids:)}} {-cl;} {4}
-#act {{^(\[Auction\] )?(Robert : Sold to)}} {-clnobeep;} {4}
-
-/* ignore capturing of mob says */
-#act {{(Mircarla|Sumaren|Alaren|Brainy|Smelly|Crafty|Tracker|Eater|Gargamel|Rex|Ayla|Guardswoman|Bess|Child|Bodyguard|Graktah|Candi|Bertolo|Netta|Waldo|Zachary)( says:)}} {#nop;} {-5}
-
-#act {Solaris tells} {#nop;} {1}
-
-
-
-@register_module{chatlog};
-@register_module_info{chatlog;{
-	#show Chatlog info.;
-}};
-
+#ALIAS {test}
+{
+    #split 6 1;
+    #config mouse on;
+    #screen clear top;
+    comm_window_draw_tabs;
+    #showme <138>Bubba tells you 'hello';
+    #showme <158>Pamela chats 'bye';
+    #showme <168>Bobbo tells you 'bli bla blo'
+}
 
 #class {chatlog} {close}
-
-

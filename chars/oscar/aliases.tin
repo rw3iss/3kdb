@@ -3,16 +3,29 @@
 
 #alias corpse_trig {
   cast spell tap on corpse;
-  cast corpse blast;
   slab;
   wrap;
+  cast corpse blast;
   get coins;
+  get fragment;
+  get essence;
+  get heart;
+  stash all;
+  fuse 50;
   #var mob_slow 0;
+  #var mob_drain 0;
+  #var mob_atrophy 0;
   study spellbook;
 };
 
+#alias summon_str {
+     #loop 1 13 i {c giant strength on $summon_string $i};
+     c giant strength golem;
+     c giant strength oscar;
+     c giant strength giant;
+};
+
 #alias summon_buff {
-     say all, you are now in group summons;
      cast haste on summons;
 }
 
@@ -21,14 +34,16 @@
 };
 
 #alias {setup_c} {
-     cast contingency as prismatic aura#cast prismatic aura;
-     cast contingency as shield#cast magnificent shield;
-     cast contingency as armor#cast armor;
+     cast contingency as prot_evil#cast protection from evil;
 }
 
 #alias {setup_gc} {
      cast greater contingency as stoneskin#cast stoneskin;
-     cast greater contingency as major globe#cast major globe;
+     cast greater contingency as major globe#cast major globe;     
+     cast greater contingency as shield#cast magnificent shield;
+     cast greater contingency as armor#cast armor;
+     cast greater contingency as mantle#200#cast mantle;
+     cast greater contingency as prismatic sphere#200#cast prismatic sphere;
 }
 
 #alias {clear_c} {
@@ -40,9 +55,9 @@
 }
 
 #alias ms7 {
-     cast monster summoning 7 as 10-headed Hydra;
-     #delay 2 {}
-}
+     #var summoner 1;
+     cast monster summoning 7 as $summon_string;
+};
 
 #alias {check_beads} {
      #math hp_overmax_max {$my[hp][max] * 5};
@@ -71,31 +86,6 @@
      #class global close;
      #class global write chars/$user/vars.tin;
      #delay 1 {#end}
-};
-
-
-#alias {go_glvl} {
-     #switch {"$area"} {
-          #case {"Westersea Sewer"} {
-               go mages_plat_star;
-               study;
-               go wsea;#delay 5 -wseasewer;#var gl_run 1;
-          };
-          #case {"Portal of Life"} {
-               go mages_plat_star;
-               study;
-               go pol;#delay 5 -polbot;#var gl_run 1;
-          };
-          #case {"Mahjong"} {
-               go mages_plat_star;
-               study;
-               go mahjong;#delay 5 -mahjong;#var gl_run 1;
-          };
-          #default {
-               go mages_plat_star;
-               study;
-          };
-     }
 };
 
 

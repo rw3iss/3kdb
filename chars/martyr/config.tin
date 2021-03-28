@@ -18,7 +18,11 @@
 };
 
 #alias {.pre_bot_check} {
-    #NOP;
+    #alias {.pre_fight_check} {
+        repair;
+        repair;
+        tactical;
+    
 }
 
 

@@ -4,8 +4,11 @@
 /* Collect HP Bar line */
 #ACTION {{^(\S:|)((HP|SP|NP|E|HSN|HSN%|Status|Cr|Corpses|Exp|TG|Moon|Planes|Reag|$|Memory)\[.*\].*$)}}
 {
+    #line gag;
     handler_necro_hpbar {%3};
 };
+
+
 
 /* Pass one HPBar section data at a time to the appropriate parser */
 #ALIAS {handler_necro_hpbar}
@@ -14,7 +17,13 @@
     #REGEXP {%1} {{\s*(\S+)\[([^\]]*)\]\s*(.*)$}}
     {   
         #IF {&_guild[minions][&2] > 0} {handler_necro_hpbar_Undead {&3};};
-        #ELSE {handler_necro_hpbar_&2 {&3};};
+        #ELSE {
+            #if {"&2" == "$"} {
+                handler_necro_hpbar_AU {&3};
+            } {
+                handler_necro_hpbar_&2 {&3};
+            };
+        };
 
         #IF {"&4" != ""}
         {
@@ -24,7 +33,7 @@
 };
 
 /* Coins */
-#ALIAS {handler_necro_hpbar_$}
+#ALIAS {handler_necro_hpbar_AU}
 {
     #NOP %1;
     #REGEXP {%1} {{(\d+)(\D)}}
@@ -78,9 +87,12 @@
 #ALIAS {handler_necro_hpbar_E}
 {
     #NOP %1;
-    #REGEXP {%1} {{.*:(.*)}}
+    #REGEXP {%1} {{(.*):(.*)}}
     {
-        #VAR {opponent[status]}                   {&2};
+        #VAR {opponent[name]}                     {&2};
+        #VAR {opponent[status]}                   {&3};
+		#format opponent[name-lower] {%l}         {$opponent[name]};
+
     };
 };
 

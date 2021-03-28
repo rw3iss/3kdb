@@ -11,31 +11,6 @@
 
 #alias {.pre_fight_check} {#nop};
 
-#if {{$guild} == {bard}} {
-	#nop - Turn on kill-em-all
-	#var kill_em_all 1
-
-	echo_divider1;
-	clear_prots;reflex_clear;
-	echo_divider2;
-	echo_reflex_header;
-	reflex_critic 200;reflex_ow 200;reflex_ma 400;
-	echo_divider2;
-
-	#alias {.pre_fight_check} {
-		#var defs[es] 1;
-		#var defs[blink] 1;
-	}	
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
-
 #var {botpath} {w;w;w;n;n;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;n;n;n;e;e;e}
 
 #act {^-M-_{Angry War Elephant|Angry Horse|A Refugee|A War Correspondent|Red Cross Medic|Red Charioteer|Red Counsellor|Red Foot Soldier|Red Horseman|Red King|Red Priest|White Charioteer|White Counsellor|White Foot Soldier|White Horseman|White King|White Priest}} {

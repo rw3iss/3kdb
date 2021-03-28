@@ -1,13 +1,24 @@
 #CLASS {global} OPEN;
 
 #NOP -- Mage settings;
-#VARIABLE         {saturation_max} {100};
-#VARIABLE         {sp_min}         {100};
+#VARIABLE         {sp_min}         {1000};
 
+#NOP -- General Player Settings;
+#VARIABLE         {bear}            {1};
+#VARIABLE         {beads}           {1};
+#VARIABLE         {summoner}        {0};
+#VARIABLE         {summons_desired} {13};
+
+#NOP -- Strategy Settings;
+#VARIABLE monitors[saturation-start]  30;
+#VARIABLE monitors[saturation-corpse]  60;
+#VARIABLE monitors[saturation-stop]  80;
+
+#NOP -- Map Drawing Settings;
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
 #VARIABLE         {curvnum}  {4119}
 #VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{5}{height}{5}{left}{0}{right}{204}{top}{30}}
+#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{6}{height}{6}{left}{0}{right}{204}{top}{30}}
 #VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}}
 #VARIABLE         {room}  {{bottom}{29}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{14}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{22}{width}{91}{widthperc}{.45}}
 #VARIABLE         {splitWidthPerc}  {.45}

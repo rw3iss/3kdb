@@ -14,11 +14,11 @@
 
 /* Pass 0-100 percentage number to split the current screen at. */
 #alias {setsplit} {
-    #math _perc {%1 / 100}; 
+    #math _perc {%1 * .01}; 
     #var splitWidthPerc $_perc;
     #var canvas[widthperc] $_perc;
     #var map[widthperc] $_perc;
-    #var room[widthperc] $_perc;
+    #var infoPane[widthperc] $_perc;
     #show \nSplit width percentage set to: %1\%;
     init_screen;
 };
@@ -30,12 +30,14 @@
 
     #format map[width] {%d} {$map[widthperc] * $screen[width]};
     #format map[height] {%d} {$map[heightperc] * $screen[height]};
+    #math map[left] {$screen[width] - $map[width]};
 
-    #format room[width] {%d} {$room[widthperc] * $screen[width]};
-    #format room[height] {%d} {$room[heightperc] * $screen[height]};
-    #math room[top] {$screen[height] - $room[height]};
-    #math room[bottom] {$screen[height] - $hpbar[height] - 1};
-        
+    #format infoPane[width] {%d} {$infoPane[widthperc] * $screen[width]};
+    #format infoPane[height] {%d} {$infoPane[heightperc] * $screen[height]};
+    #math infoPane[top] {$screen[height] - $infoPane[height]};
+    #math infoPane[bottom] {$screen[height] - $hpbar[height] - 1};
+    #math infoPane[left] {$screen[width] - $map[width]};
+
     #if {"$draw[canvas]" == "on"} {
         #format canvas[width] {%d} {$canvas[widthperc] * $screen[width] + 1};
     } {
@@ -88,8 +90,8 @@
 
 #alias draw_all {
     #if {"$draw[chat]" == "on"} { draw_chat };
-    #if {"$draw[map]" == "on"} { draw_map };
     #if {"$draw[room]" == "on"} { draw_room };
+    #if {"$draw[status]" == "on"} { draw_status };
     #if {"$draw[hpbar]" == "on"} { draw_hpbar };
     #if {"$draw[caption]" == "on"} { draw_caption };
 }
@@ -122,23 +124,19 @@
 /* -- MAP -- */
 #alias init_map {
     #if {"$draw[map]" == "on"} {
-        #draw line $map[height] -$map[width]-1 $map[height] -1;
+        #draw line $map[height] $map[left] $map[height] $screen[width];
         #map offset 1 -$map[width] $map[height]-1 -1;
         #map flag vtmap on;
-        draw_map;
     } {
         #map flag vtmap off
     };
 }
 
-#nop See mapupdate in mapper.tin for map draw code;
-#alias draw_map {
-    #nop draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-    #nop draw {tile} 1 -$map[width] 1 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
-}
-
 /* -- ROOM -- */
 #alias draw_room {
+    #nop -- Clear any old drawings;
+    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {};
+    
     #var _lbl <cba>;
 
     #var nounStr {};
@@ -147,12 +145,10 @@
         #var nounStr {$nounStr$noun };
     };
     
-    #var roomNameStr {<fff>${room[name]}<088>};
+    #var roomNameStr {<fff>${infoPane[name]}<088>};
     #var nounStr {<ade>${nounStr}<088>};
     
-    #draw {tile} $room[top] -$room[width]+1 $room[top]+1 -1 {<ffa>Room:<088>};
-
-    #nop NOTES from mapper:;
+    #nop NOTES from mapper;
     #map get roomname roomMapNameStr;
     #map get roomnote roomMapNoteStr;
     
@@ -164,42 +160,101 @@
         {${_lbl}Map name:<088> $roomMapNameStr} 
         {${_lbl}Map notes:<088> $roomMapNoteStr};
 
-    #draw {<dda>} {tile} $room[top]+1 -$room[width]+1 $room[bottom]-2 -1 {$roomStr};
+    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {<ffa>Room:<088>};
+    #draw {<dda>} {tile} $map[height]+2 $infoPane[left] $infoPane[bottom] $screen[width] {$roomStr};
 }
 
+/* -- Player Status -- */
+#alias draw_status {
 
-#NOP NOT USED???;
-#alias redraw {
-	#var redraw[args][1] valid;
-	#var redraw[args][2] val`id;
-	#if {"%1" != ""} {
-		#switch {"%1"} {
-			#case {"canvas"}	{#var redraw[option] %1};
-			#case {"caption"}	{#var redraw[option] %1};
-			#case {"chat"}		{#var redraw[option] %1};
-			#case {"gline"}		{#var redraw[option] %1};
-			#case {"hpbar"}		{#var redraw[option] %1};
-			#case {"map"}		{#var redraw[option] %1};
-			#default			{#var redraw[args][1] invalid;#showme REDRAW:  Invalid redraw option}
-		};
-		#if {"%2" != ""} {
-			#switch{"%2"} {
-				#case {"on"}	{#var redraw[flag] on};
-				#case {"off"}	{#var redraw[flag] off};
-				#default		{#var redraw[args][2] invalid;#showme REDRAW:  Invalid redraw parameter (on or off)}
-			}
-		} {
-			#if {"$draw[$redraw[option]]" == "on"} {
-				#var redraw[flag] off
-			} {
-				#var redraw[flag] on
-			}
-		};
-		#if {"$redraw[args][1]" == "valid" && "$redraw[args][2]" == "valid"} {
-			#var draw[$redraw[option]] $redraw[flag];
-		}
-	} {
-	}
+    #nop -- Clear any old drawings;
+    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {};
+    
+    #if $reforger {
+        #var prof_type Reforger:;
+        #var prof_charges $my[reforger];
+    };
+
+    #if $botting {
+        #var status_string_bot_rows 3;
+        #path get length bot_total_rooms;
+        #path get position bot_current_room;
+
+        #math bot_progress {100 * $bot_current_room / $bot_total_rooms};
+
+        #if $halt {
+            #var status_string_bot {<088>Bot Status  : <DAA><aaa>PAUSED<088>  $bot_current_room/$bot_total_rooms ($bot_progress%)};
+        } {
+            #var status_string_bot {<088>Bot Status  : <ACA><fff>ACTIVE<088>  $bot_current_room/$bot_total_rooms ($bot_progress%)};
+        };
+
+        #if $playercheck {
+            #cat status_string_bot {\nPlayercheck : <afa>ON<088>};
+        } {
+            #cat status_string_bot {\nPlayercheck : <daa>OFF<088>};
+        };
+        #cat status_string_bot {\nDeadman     : $deadManTimeLeft_cap};
+        #var status_string_bot_rows 4;
+    } {
+        #var status_string_bot <088>Bot: <fff>OFF<088>;
+        #var status_string_bot_rows 1;
+    };
+
+    #var status_string_strategy <bef>Strategy:<088>\n;
+
+    #loop 1 &strategy[] index {
+        #var strat *strategy[+$index];
+        #format strat_name {%-15s} {$strat};
+        #format strat_name {%n} {$strat_name};
+        #if {$strategy[$strat]} {
+            #cat status_string_strategy {$strat_name : <afa>ON<088>\n};
+        } {
+            #cat status_string_strategy {$strat_name : <daa>OFF<088>\n};
+        }
+
+        #NOP - get the number of rows the strategy takes and pad it by 2;
+        #var status_string_strategy_rows &strategy[];
+        #math status_string_strategy_rows {$status_string_strategy_rows + 2};
+    };
+
+    #draw {<dda>} {tile} $map[height]+2 $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_bot};
+
+    #draw {<dda>} {tile} $map[height]+2+$status_string_bot_rows $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_strategy};
+
+}
+
+#alias draw_mage_summons {
+
+    #format summonStrTitleName  {%-15s} {Name};
+    #format summonStrTitleCount {%+8s}  {Count};
+    #format summonStrTitleDmg   {%+10s}  {Avg. Dmg};
+    #format summonStrTitleAcc   {%+10s}  {Accuracy};
+
+    #var summonStr {};
+    #foreach {*active_summons[%*]} {idx} {
+        #format summonStrName  {%-15s} {$active_summons[$idx][name]};
+        #format summonStrCount {%+8s}  {$active_summons[$idx][count]};
+        #format summonStrDmg   {%+10s} {$active_summons[$idx][avg_dmg]};
+        #format summonStrAcc   {%+10s} {$active_summons[$idx][accuracy]};
+
+        #format summonDetails {%s%s%s%s\n} 
+            {$summonStrName}
+            {$summonStrCount}
+            {$summonStrDmg}
+            {$summonStrAcc};
+
+        #var summonStr {$summonStr$summonDetails};
+    };
+
+
+    #format summonTitle {%s%s%s%s\n}
+        {$summonStrTitleName}
+        {$summonStrTitleCount}
+        {$summonStrTitleDmg}
+        {$summonStrTitleAcc};
+
+    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {<ffa>$summonTitle<088>};
+    #draw {<dda>} {tile} $map[height]+2 $infoPane[left] $infoPane[bottom] $screen[width] {$summonStr};
 }
 
 #EVENT {SCREEN RESIZE}

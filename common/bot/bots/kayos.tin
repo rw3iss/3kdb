@@ -22,7 +22,7 @@
 	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
     #var mobname_long %1;
 
-	#regex {%1} {alien} {@botSetMobActions{alien;$foundtimes};};
+	#regex {%1} {alien} {@botSetMobActions{mob;$foundtimes};};
 	#regex {%1} {soldier} {@botSetMobActions{soldier;$foundtimes};};
 	#regex {%1} {pirate} {@botSetMobActions{pirate;$foundtimes};};
 	#regex {%1} {imp} {@botSetMobActions{imp;$foundtimes};};

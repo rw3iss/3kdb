@@ -3,3 +3,4 @@
 #read common/guilds/bard/eval.tin;
 #read common/guilds/bard/gags.tin;
 #read common/guilds/bard/heartbeat.tin;
+#read common/guilds/bard/vars.tin;

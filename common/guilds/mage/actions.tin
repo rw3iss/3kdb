@@ -6,12 +6,19 @@
 #ACTION {^You raise your arms and suddenly %* is moving much slower!$} {#var mob_slow 1};
 #ACTION {%w is already slowed.$} {#var mob_slow 1};
 #ACTION {^That creature cannot be affected} {#var mob_slow 2};
+#ACTION {^You reach out to touch %* with your glowing hand and miss!$} {#var mob_drain 0;};
+#ACTION {^You cannot drain that creature again.$} {#var mob_drain 1;};
+#ACTION {^This spell doesn't work on the undead.$} {#var mob_drain 2;};
 
-#NOP --- MAINTENCE ACTIONS;
+#ACTION {^You begin speaking in soft low tones, slowly uttering forth the syllables} {#var mob_atrophy 1};
+#ACTION {^A %* is immune to this spell.$} {#var mob_atrophy 2};
+
+#NOP --- MAINTENANCE ACTIONS;
 #ACTION {Your deeppocket begins to fade} {#var deeppocket 0};
 #ACTION {^You reinforce the magic within your deeppocket.$} {#var deeppocket 1};
 #ACTION {^You already have a deeppockets spell functioning.$} {#var deeppocket 1};
-#ACTION {^You feel slower as the haste wears off.$} {#var haste 0};
+#ACTION {^You feel slower as the haste wears off.$} {#var self_haste 0};
+#ACTION {^You raise your arms and suddenly %w is moving much faster!$} {#var summons_haste 1}
 
 #ACTION {----*> Your prismatic_aura greater contingency has dissipated!<*----} {
     cast greater contingency as prismatic_aura#cast prismatic aura
@@ -47,7 +54,7 @@
 #ACTION {^You will not cast spell tap every round in combat.$} {#var spelltap 0};
 
 #ACTION {^%* darts out of the room.$} {#var go_fetch 1};
-#ACTION {^%* darts into the room.$} {#var go_fetch 0};
+#ACTION {^%* darts into the room.$} {#var go_fetch 0;keep materials};
 
 #NOP --- SUMMONING ACTIONS;
 
@@ -60,16 +67,15 @@
     };
 };
 
-#ACTION {dealt the killing blow to %* golem.$} {
-    create_golem;
-}
+#ACTION {dealt the killing blow to %* golem.$} {#var golem_toggle 1};
+#ACTION {^The golem shudders for a moment, then falls to the ground in a heap.$} {#var golem_toggle 1};
 
 #ACTION {%w is already hasted.$} {
     #foreach $golemTypes {golem} {
         #if {"%1" == "$golem"} {
             #var golem_haste 1;
-        }
-    }    
+        };
+    };
 };
 
 #ACTION {^El Jefe %* seems to slow down...$} {
@@ -78,11 +84,10 @@
 
 #ACTION {^You don't have any basic construction materials for a crystal!} {
     ffetch materials;
-    #delay 5 {create_golem};
+    #delay 5 {keep materials;create_golem};
 };
 
-
 #ACTION {^You wave your hands calling forth summoning magics and draw} {say all, you are now in group summons/assist always};
-#ACTION {^A %* seems to slow down...$} {cast haste on summons};
+#ACTION {^A %* seems to slow down...$} {#var summons_haste 0};
 
 #class {mage_actions} {close}

@@ -6,8 +6,9 @@
     examine materials;
     #action {^There's bits of the following materials remaining:$} {
         #action {^  {\w+}} {#unaction {^  {\w+}};cast create golem %%%1;} {2};
+        #var golem_toggle 0;
     };
-    #delay 2 {say golem, you are now in group golem/assist always/ibc}
+    #delay 2 {say golem, you are now in group golem/assist always/stfu/ibc}
 }
 
 #NOP --- MAGE DEFENSE ALIASES;
@@ -22,6 +23,7 @@
 
 #alias {prots_mb} {check_extension;cast mindblank;#var defs[MB] 1;echo_prots_mb};
 #alias {prots_pa} {check_extension;cast prismatic aura;#var defs[PA] 1;echo_prots_pa};
+#alias {prots_ps} {check_extension;cast prismatic sphere;#var defs[PS] 1;echo_prots_ps};
 #alias {prots_MG} {check_extension;cast major globe;#var defs[MG] 1;echo_prots_MG};
 #alias {prots_mg} {check_extension;cast minor globe;#var defs[mg] 1;echo_prots_mg};
 #alias {prots_ms} {check_extension;cast magnificent shield;#var defs[ms] 1;echo_prots_ms};
@@ -40,6 +42,7 @@
 #alias {echo_prots_header} {#echo {+++++++++++++++  ACTIVE DEFENSES INCLUDE:  ++++++++++++++}};
 #alias {echo_prots_mb} {#echo {+++++++++++++++  MIND BLANK               ++++++++++++++}};
 #alias {echo_prots_pa} {#echo {+++++++++++++++  PRISMATIC AURA           ++++++++++++++}};
+#alias {echo_prots_ps} {#echo {+++++++++++++++  PRISMATIC SPHERE         ++++++++++++++}};
 #alias {echo_prots_MG} {#echo {+++++++++++++++  MAJOR GLOBE              ++++++++++++++}};
 #alias {echo_prots_mg} {#echo {+++++++++++++++  MINOR GLOBE              ++++++++++++++}};
 #alias {echo_prots_ms} {#echo {+++++++++++++++  MAGNIFICENT SHIELD       ++++++++++++++}};

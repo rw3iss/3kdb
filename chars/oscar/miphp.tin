@@ -26,11 +26,10 @@
 	#format {gp2_max}		{%+4s} {$my[gp2][max]};
 	#format {ehealth}		{%+7s} {$enemy[hp]%%};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler]};
-
 	#if $my[prots][S]  {#if $defs[shield] {#var shield_string <ACA><fff>*S*<088>} {#var shield_string *S*} } {#var shield_string {}};
 	#if $my[prots][B]  {#if $defs[blink] {#var blink_string <ACA><fff>*B*<088>} {#var blink_string *B*} } {#var blink_string {}};
 	#if $my[prots][PA] {#if $defs[PA] 	 {#var pa_string <ACA><fff>*PA*<088>} {#var pa_string *PA*} } {#var pa_string {}};
+	#if $my[prots][PS] {#if $defs[PS] 	 {#var ps_string <ACA><fff>*PS*<088>} {#var ps_string *PS*} } {#var ps_string {}};
 	#if $my[prots][A]  {#if $defs[A] {#var armor_string <ACA><fff>*A*<088>} {#var armor_string *A*} } {#var armor_string {}};
 	#if $my[prots][M]  {#if $defs[M] {#var m_string <ACA><fff>*M*<088>} {#var m_string *M*} } {#var m_string {}};
 	#if $my[prots][MB] {#if $defs[MB] {#var mb_string <ACA><fff>*MB*<088>} {#var mb_string *MB*} } {#var mb_string {}};
@@ -44,7 +43,7 @@
 	
 	#if {$my[immersion][rounds] > 0} {#var immersion_string $my[immersion][count]/$my[immersion][rounds]} {#var immersion_string $my[immersion][count]};
 
-	#var prots_string {$m_string $mb_string $pa_string $MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
+	#var prots_string {$ps_string $m_string $mb_string $pa_string $MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
 	#replace prots_string  { } {};
 	#replace prots_string  {*} { };
 
@@ -56,7 +55,8 @@
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {Prots: $prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $immersion_string  G2N: $my[g2n]%   };
 	#var prompt4 {$corpse_string Gem: $my[gem]% MC: $my[mental_cognition]% ASH: $ash_string Idle: $idle_cap};
-	#var prompt5 {Golem: $my[summon][golem]};
+	#var prompt5 {$eternal_string $bot_string Golem: $my[summon][golem]};
+	#var prompt6 {<fff>Gxp:  Round($gxp_gained) Total($total_gxp_gained)  Rounds($cmbt[rnd]) Avg ($average_gxp) Hits($cmbt[avg_hits])<088>};
 
 	_player_heartbeat;
     _guild_heartbeat;
@@ -92,7 +92,7 @@
 
 #alias {draw_hpbar} {
     #if {"$draw[hpbar]" == "on"} {
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3}\n${prompt4}\n${prompt5} };
+        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {$hpStr\n$prompt2\n$prompt3\n$prompt4\n$prompt5\n$prompt6 };
     }
 }
 

@@ -1,5 +1,0 @@
-#nop "Quick command", add things to a list to do all at once on 'qc';
-#var quickcommand;
-#alias {setq} {#var quickcommand %0;@show{Quick command set to: %0}};
-#alias {qc} {${quickcommand}};
-#alias {clearq} {#var quickcommand 0;@show{Quick command cleared.}};

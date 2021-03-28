@@ -30,6 +30,7 @@
 #read chars/$user/aliases.tin;
 #read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
+#read chars/$user/tickers.tin;
 #read chars/$user/vars.tin;
 
 /* create space for static hpbar at bottom and reset map position */
@@ -40,7 +41,6 @@
 	loadmap;
     postload;
 	#read common/draw.tin;
-	set_ticker;
 }
 
-#alias {reload} {#kill all;#show \n;#read chars/$user/$user.tin;};
+#alias {reload} {#kill all;#show \n;#read chars/toren/toren.tin;};

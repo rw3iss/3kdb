@@ -1,0 +1,125 @@
+#class {dmg_tracker_mage} kill
+#class {dmg_tracker_mage} open
+
+#alias sdmg_reset {#unvar summon_damage;};
+
+#unvar summon_types_list;
+#unvar summon_dmg_summary;
+#unvar summon_damage;
+
+#var summon_types {Night Hag;Neo-otyugh;Roper;Frost Giant;Fire Giant;Phoenix;Stone Giant;Hill Giant;Ettin;Xorn;Giant Slug;Mummy;10-headed Hydra;Umber Hulk;Spectre;Mind-flayer;Fire Lizard;8-headed Pyro-hydra;Gorgon;Chimera;Sword of Spirit {radiant} (enchanted);Enormous Cloud Giant;Enormous Storm Giant};
+
+#list summon_types_list add {Night Hag};
+#list summon_types_list add {Neo-otyugh};
+#list summon_types_list add {Roper};
+#list summon_types_list add {Frost Giant};
+#list summon_types_list add {Fire Giant};
+#list summon_types_list add {Phoenix};
+#list summon_types_list add {Stone Giant};
+#list summon_types_list add {Hill Giant};
+#list summon_types_list add {Ettin};
+#list summon_types_list add {Xorn};
+#list summon_types_list add {Giant Slug};
+#list summon_types_list add {Mummy};
+#list summon_types_list add {10-headed Hydra};
+#list summon_types_list add {Umber Hulk};
+#list summon_types_list add {Spectre};
+#list summon_types_list add {Mind-flayer};
+#list summon_types_list add {Fire Lizard};
+#list summon_types_list add {8-headed Pyro-hydra};
+#list summon_types_list add {Gorgon};
+#list summon_types_list add {Chimera};
+#list summon_types_list add {Sword of Spirit {radiant} (enchanted)};
+#list summon_types_list add {Enormous Cloud Giant};
+#list summon_types_list add {Enormous Storm Giant};
+
+#list summon_dmg add {Night Hag};
+#list summon_dmg add {Neo-otyugh};
+#list summon_dmg add {Roper};
+#list summon_dmg add {Frost Giant};
+#list summon_dmg add {Fire Giant};
+#list summon_dmg add {Phoenix};
+#list summon_dmg add {Stone Giant};
+#list summon_dmg add {Hill Giant};
+#list summon_dmg add {Ettin};
+#list summon_dmg add {Xorn};
+#list summon_dmg add {Giant Slug};
+#list summon_dmg add {Mummy};
+#list summon_dmg add {10-headed Hydra};
+#list summon_dmg add {Umber Hulk};
+#list summon_dmg add {Spectre};
+#list summon_dmg add {Mind-flayer};
+#list summon_dmg add {Fire Lizard};
+#list summon_dmg add {8-headed Pyro-hydra};
+#list summon_dmg add {Gorgon};
+#list summon_dmg add {Chimera};
+#list summon_dmg add {Sword of Spirit {radiant} (enchanted)};
+#list summon_dmg add {Enormous Cloud Giant}
+#list summon_dmg add {Enormous Storm Giant}
+
+#list summon_hits add {Night Hag};
+#list summon_hits add {Neo-otyugh};
+#list summon_hits add {Roper};
+#list summon_hits add {Frost Giant};
+#list summon_hits add {Fire Giant};
+#list summon_hits add {Phoenix};
+#list summon_hits add {Stone Giant};
+#list summon_hits add {Hill Giant};
+#list summon_hits add {Ettin};
+#list summon_hits add {Xorn};
+#list summon_hits add {Giant Slug};
+#list summon_hits add {Mummy};
+#list summon_hits add {10-headed Hydra};
+#list summon_hits add {Umber Hulk};
+#list summon_hits add {Spectre};
+#list summon_hits add {Mind-flayer};
+#list summon_hits add {Fire Lizard};
+#list summon_hits add {8-headed Pyro-hydra};
+#list summon_hits add {Gorgon};
+#list summon_hits add {Chimera};
+#list summon_hits add {Sword of Spirit {radiant} (enchanted)};
+#list summon_hits add {Enormous Cloud Giant};
+#list summon_hits add {Enormous Storm Giant};
+
+
+#act {^%1 hit for %2 damage.} {
+    #var round_hit $mip[round];
+    #foreach $summon_types summon_type {
+        #if {"%1" == "%*$summon_type%*"} {
+            #list summon_types_list find $summon_type summon_types_index;
+            
+            #NOP -- If the summon hits for 0 damage, put that in its own category so we can also review;
+            #NOP -- which summons hit the most times (and get most gxp!);
+            #math {summon_damage[$summon_type][attacks]} {$summon_damage[$summon_type][attacks] + 1};
+            #if {%2 > 0} {
+                #math {summon_damage[$summon_type][total_dmg]} {$summon_damage[$summon_type][total_dmg] + %2};
+                #math {summon_damage[$summon_type][hits]} {$summon_damage[$summon_type][hits] + 1};
+                #math {summon_damage[$summon_type][avg_dmg]} {$summon_damage[$summon_type][total_dmg] / $summon_damage[$summon_type][hits]};
+                #math {summon_damage[$summon_type][accuracy]} {$summon_damage[$summon_type][hits] * 100 / $summon_damage[$summon_type][attacks]};
+            } {
+                #math {summon_damage[$summon_type][misses]} {$summon_damage[$summon_type][misses] + 1};
+                #math {summon_damage[$summon_type][accuracy]} {$summon_damage[$summon_type][hits] * 100 / $summon_damage[$summon_type][attacks]};
+            }
+        };
+    };
+};
+
+#alias {formatDmgColumn %1} {
+    #var dmg_text %1;    
+    #format result {<acf>-----<fff> %+20s %+10s %+10s %+10s <acf>-----} {$dmg_text} {$summon_damage[$summon_type][hits]} {$summon_damage[$summon_type][avg_dmg]} {$summon_damage[$summon_type][accuracy]};
+    #showme $result;
+};
+
+
+#alias {sdmg} {
+    #format result {<acf>-----<fff> %+20s %+10s %+10s %+10s <acf>-----} {Summon} {# Hits} {Avg. Dmg} {Accuracy %};
+    #showme $result;
+    #foreach $summon_damage summon_type {
+        #list summon_types_list find $summon_type summon_types_index;
+        #if $summon_types_index {
+            formatDmgColumn $summon_type;
+        }
+    };
+};
+
+#class {dmg_tracker_mage} close

@@ -3,12 +3,12 @@
 
 
 #gag {You bow your head in solemn prayer, reciting a prayer to the divine:};
-#gag {Almighty Torickii, hear the plea %*};
+#gag {Almighty %*, hear the plea %*};
 #gag {the faltering spirit of this man!  A golden aura engulfs you as};
-#gag {Torickii answers your prayer!};
+#gag {%* answers your prayer!};
 #gag {^You do not need to be healed.$};
 #gag {^You do not have enough mana to cast this spell.$};
-#gag {^You cower and barely manage to whisper: Torickii.$};
+#gag {^You cower and barely manage to whisper: %*.$};
 #gag {^You beseech %*, asking to cure your wounds.$};
 #gag {^Your mental energies are fully healed.$};
 #gag {%* deftly dodges your magical attack!$};

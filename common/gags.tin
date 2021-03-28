@@ -36,3 +36,21 @@
 #gag {^The sword pulses in your grasp!$};
 #gag {%*Your body quakes violently as a sickly, mutated arm$};
 #gag {%*spears forth from your torso and smashes%*!$};
+
+
+#NOP -- POL Gags;
+#gag {^The faerie lizard dives forward, sinking its teeth into you.$};
+#gag {^The faerie lizard's claws lash forward, striking you across the face.$};
+#gag {^The wyvern's tail lashes forward, striking you across the face.$};
+#gag {^The wyvern dives forward, sinking its claws into you.$};
+#gag {^The wolf viciously rips at your throat.$};
+#gag {^The wolf drools in anticipation of feeding upon you.$};
+#gag {^The elf slices you with his sword!$};
+#gag {^The stag impales you with its sharp antlers!$};
+#gag {^The stag rears up on its hind feet, then charges forward!$};
+#gag {^The stag tosses its head back and lets out a challenging call.$};
+
+#NOP -- Sii Gags;
+#gag {^The brood's tiny wicked claws tear at %*!};
+#gag {^The brood's razor claws slash into %*!};
+#gag {^The brood claws viciously at %*!};

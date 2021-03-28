@@ -3,15 +3,36 @@
 
 #NOP ---THIS SECTION IS FOR SONG ALIASES;
 #alias {clear_prots} {#var defs 0};
-#alias {vamp} {remove shield;perform vampire};
-#alias {it %1} {remove shield;perform invigorating tune for %1};
-#alias {pd} {cease;remove shield;perform dirge;wear $shield};
-#alias {ag} {remove shield;perform amazing grace};
+#alias {vamp} {perform vampire};
+#alias {it %1} {perform invigorating tune for %1};
+#alias {pd} {cease;perform dirge};
+#alias {ag} {perform amazing grace};
 #alias {om} {perform o muse};
-#alias {rd} {remove shield;cast focus the rainbow;perform rainbow of death};
-#alias {lotb} {remove shield;perform leader of the band};
-#alias {itf} {remove shield;perform into the fire};
+#alias {rd} {cast focus the rainbow;perform rainbow of death};
+#alias {lotb} {perform leader of the band};
+#alias {itf} {perform into the fire};
 #alias {es} {empowered strikes;#var defs[es] 1};
+
+#alias {ham_bot} {
+	#if $ham_bot {
+		#SHOWME <FEB><daa>------------------- HAMMER NO LONGER SMASHING FACE -------------------<088>;
+		unwield hammer;
+		wield redaxe;
+		wear shield;
+		#var strategy[hammer] 0;
+		#var ham_bot 0;
+		#var defs[hr] 0;
+	} {
+		#SHOWME <FEB><daa>------------------- HAMMER WILL BEGIN SMASHING FACE -------------------<088>;
+		unwield redaxe;
+		remove shield;
+		wield hammer;
+		#var strategy[hammer] 1;
+		#var ham_bot 1;
+		#var defs[hr] 1;
+	};
+};
+
 
 #alias {blades} {reflex remove sp >$dmg_spell_sp;reflex add sp >$dmg_spell_sp cast blade dance};
 #alias {critic} {reflex remove sp >$dmg_spell_sp;reflex add sp >$dmg_spell_sp cast caustic critic};
@@ -26,8 +47,8 @@
 #alias {prots_hs} {cast hardened skin;#var defs[hs] 1;echo_prots_hs};
 #alias {prots_blink} {cast blink;#var defs[blink] 1;echo_prots_blink};
 #alias {prots_hr} {#var defs[hr] 1;echo_prots_hr};
-#alias {prots_grace} {remove shield;perform amazing grace;#var defs[ag] 1;echo_prots_grace};
-#alias {prots_muse} {perform o muse;#var defs[muse] 1;echo_prots_muse};
+#alias {prots_grace} {perform amazing grace;#var defs[ag] 1;echo_prots_grace};
+#alias {prots_muse} {perform o muse;#var defs[om] 1;echo_prots_muse};
 
 #alias {reflex_clear} {reflex clear;echo_reflex_clear};
 #alias {reflex_critic %1} {reflex add sp >%1 cast caustic critic;echo_reflex_critic %1};
@@ -68,12 +89,11 @@
 	#math buff_delay_3 {138*2};
 	#math buff_delay_4 {160*2};
 
-	remove shield;
 	perform son of man for %1;
-	#delay $buff_delay_1 {remove shield;perform memory for %1};
-	#delay $buff_delay_2 {remove shield;perform let it be for %1};
-	#delay $buff_delay_3 {remove shield;perform naked sunday for %1};
-	#delay $buff_delay_4 {remove shield;perform hero for %1};
+	#delay $buff_delay_1 {perform memory for %1};
+	#delay $buff_delay_2 {perform let it be for %1};
+	#delay $buff_delay_3 {perform naked sunday for %1};
+	#delay $buff_delay_4 {perform hero for %1};
 }
 
 #class {bard_aliases} {close}

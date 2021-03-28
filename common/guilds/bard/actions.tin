@@ -5,7 +5,7 @@
 
 #NOP --- BARD DEFENSIVE SONGS AND SPELLS;
 #ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[ag] && !$idle_flag} {ag}} {6};
-#ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[muse] && !$idle_flag} {perform o muse}} {6};
+#ACTION {^The magic of your song, 'O Muse', is fading.$} {#if {$defs[om] && !$idle_flag} {perform o muse}} {6};
 #ACTION {^Your hardened skin is beginning to relax.$} {#if {$defs[hs] && !$idle_flag} {cast hardened skin}} {6};
 #ACTION {^Your protection from evil is beginning to fade.$} {#if {$defs[pe] && !$idle_flag} {cast protection from evil}} {6};
 #ACTION {^Your protection from neutral is beginning to fade.$} {#if {$defs[pn] && !$idle_flag} {cast protection from neutral}} {6};
@@ -18,5 +18,6 @@
 #ACTION {^You cease your} {wear $shield} {6};
 #ACTION {^You finish your performance with a bow.$} {wear $shield} {6};
 #ACTION {^You have exceeded the usefulness of this song.$} {wear $shield} {6};
+#ACTION {Your ROD requires a partner.  (active combat.)} {#var rod_bot 0};
 
 #class {bard_actions} {close}

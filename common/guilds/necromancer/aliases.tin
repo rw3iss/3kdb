@@ -9,6 +9,7 @@
 };
 
 #alias {topup} {
+    go necro_reagents;
     #action {%sginseng:%d%sblack pearls:%d%sspider web:%d%sgoldenrod:%d} {
         #math ginseng {999 - %%2};
         #math black_pearls {999 - %%4};

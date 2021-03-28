@@ -8,7 +8,7 @@
      #map flag unicodegraphics on;
      #map flag terrain on;
      #map flag direction on;
-     #delay {1} {hp}
+     #delay {1} {hp;(powers;i;smuggle}
 };
 
 #NOP -- Bot Config;
@@ -16,17 +16,32 @@
 #alias {.pre_fight_check} {#nop};
 
 #alias {.pre_bot_check} {
-    #var golem_tank 1;
+    #if {"$area" == "Whorehouse" || "$area" == "Catacombs"} {
+         #var strategy[atrophy] 0;
+         #var strategy[edrain] 0;
+         #var strategy[slow] 0;
+    } else {
+         #var strategy[atrophy] 1;
+         #var strategy[edrain] 1;
+         #var strategy[slow] 1;
+    }
+
     #var defs[SS] 1;
     #var defs[MG] 1;
-    #var defs[PA] 1;
-    #var defs[blink] 1;
+    #var defs[A] 1;
+    #var defs[MB] 1;
+    #var defs[ms] 1;
+    #var defs[M] 1;
+    #var defs[PS] 1;
 }
 
 #alias {.mob_kill_action} {
      #if $golem_tank {
-          slice $mobname;
-          c slow $mobname;
+          #delay 1 {say golem, kill $mobname;c slow $mobname;};
+          #delay 2 {say golem, defend me};
+     } {
+          kill $mobname;
+          #if $strategy[slow] {cast slow $mobname};
      }
 }
 

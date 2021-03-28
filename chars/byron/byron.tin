@@ -43,8 +43,7 @@
 	loadmap;
     postload;
 	#read common/draw.tin;
-	#var autodmg 1;
-}
+};
 
 
 #alias {reload} {#kill all;#show \n;#read chars/byron/byron.tin;};

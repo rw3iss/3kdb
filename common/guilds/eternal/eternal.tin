@@ -1,13 +1,53 @@
+#class {eternal} {kill}
 #class {eternal} {open}
 
-#action {%d/%d energy well          :   55    %*    RDY} {#var ewell 1};
+#var eternal 1;
+
+#alias {update_eternal_status} {
+	#if {$my[eternal][heal]} {#format {heal_string} {<128>HEAL<088>}} {#format {heal_string} {<070>HEAL<088>}};
+	#if {$ewell} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
+	#var eternal_string {Eternal: $ewell_string $heal_string};
+}
+
+#action {  %d/5 heal                 :   25    30m    %*  4.9B} {
+	#if {"%2" == "RDY"} {
+		#var my[eternal][heal] 1;
+	} {
+		#var my[eternal][heal] 0;
+	};
+	update_eternal_status;
+};
+#NOP #action {  %d/7 energy well          :   55%s%S%s%S%s%S} {say 1 is %1;say 2 is %%2;say 3 is &3;say 4 is &&4;#if {"%2" == "RDY"} {#var ewell 1;} {#var ewell 0;};update_eternal_status;};
 
 #action {A shimmering ball of energy appears magically when you snap your fingers.} {
 	#var ewell 0;
 	#ticker {ewell} {tell $user ENERGY WELL RESET;#var ewell 1;#unticker ewell} {1700}
+	update_eternal_status;
 };
 
-#action {^You tear apart %d defenses!} {#var shred 0;#ticker {shred} {3648} {tell $user SHRED RESET;#unticker shred;#var shred 1}};
-#action {^You notice that %1 has come into view.} {#if {!$idle_flag} {tell $user %1 has reset;ctell %1 has reset.}};
+#action {^$user_cap bathes you in the healing powers of the outer planes.$} {
+	#var my[eternal][heal] 0;
+	#ticker {heal} {
+		#if !$idle_flag {tell $user HEAL RESET};
+		#var my[eternal][heal] 1;
+		#unticker heal
+	} {1800};
+	update_eternal_status;
+};
+
+#action {^You tear apart %d defenses!} {
+	#var shred 0;
+	#ticker {shred} {
+		#if !$idle_flag {tell $user SHRED RESET};
+		#unticker shred;
+		#var shred 1
+	} {};
+	update_eternal_status;
+};
+
+#action {^You notice that %1 has come into view.} {
+	#if {!$idle_flag} {tell $user %1 has reset;ctell %1 has reset.}
+	update_eternal_status;
+	};
 
 #class {eternal} {close}

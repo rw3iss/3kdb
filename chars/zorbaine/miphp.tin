@@ -28,8 +28,6 @@
 
 	#if {$ewell} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
 
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler]};
-
 	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 	#var eternal_string {Eternal: $ewell_string };
     

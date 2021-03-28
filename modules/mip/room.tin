@@ -23,22 +23,37 @@
 		}
 	}
 }
-#list {nouns} {create};
 
+#list {nouns} {create};
 
 #alias update_room {
     #if {"$draw[room]" == "on"} { draw_room };
 };
 
 
+#NOP List all Roomnotes for 'go' alias
+#alias {notelist} {
+	#map list {roomnote} {{\w+}} {variable} {noterooms};
+	#foreach {*noterooms[]} {room} {#map get {roomnote} {notes[$room]} {$room}};
+	#list notes sort;
+	#var notes
+}
+
+#NOP Search Room Nouns (built by MIP)
 #alias {sra} {
-    #ungag {^>$};
-    #foreach {*nouns[%*]} {idx} {
-        #var noun $nouns[$idx];
-        examine $noun in room;
-        search $nound in room;
-    };
-    #delay {1} { #gag {^>$} {1} };
-};
+	#ungag {^>$};
+	#var noun_cnt &{nouns[]};
+	#loop 1 &{nouns[]} cnt {
+		exa $nouns[$cnt];
+		search $nouns[$cnt]
+	};
+	#delay 0.5 {
+		#if {$noun_cnt < &{nouns[]}} {
+			#echo {<128>New items found!  Search again!<088>}
+		};
+		#gag {^>$} {1};
+	}
+}
+
 
 #class {miproom} {close};

@@ -3,23 +3,18 @@
 
 #NOP --- Oscar specific actions;
 #action {killing blow} {corpse_trig};
+#action {^Owie. That hurt!$} {#15 grasp beads};
 
 #NOP -- Summon specific actions;
-#action {That is not here or it is uninteresting. (materials?)} {ffetch materials};
+#action {That is not here or it is uninteresting. (materials?)} {ffetch materials;#delay 4 {#var golem_toggle 1};};
 
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
-#action {^With great magical precision you tap directly into the rivers of magical} {
-    #NOP -- Reset contingencies;
-    #if {$my[sp][current] > 2230} {
-        clear_gc;
-        clear_c;
-        setup_gc;
-        setup_c;
-    };
-    #NOP -- if you have beads, burn your sps down to about 20%, each grasp takes 100 sps and heals 33 hps;
-    #if $beads {check_beads};
-    repeat always/cast power word stun/0/1
+#action {^With great magical precision you tap directly into the rivers of magical} {    
+    #NOP;
+    
 };
-#action {^Your immersion has expired.$} {repeat always/off};
+
+#NOP -- General Misc;
+#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};cast giant strength $lower} {6};
 
 #class {player_actions} {close}
