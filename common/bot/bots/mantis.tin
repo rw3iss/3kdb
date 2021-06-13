@@ -2,7 +2,7 @@
 #class {bot} {open}
 
 #var {area} {Mantis Swamp};
-#var check_death 0;
+
 #var check_room 0;
 
 #var bot_message_1 '---- MANTIS    STEPPER ----';

@@ -82,6 +82,8 @@
     #var golem_haste 0;
 };
 
+
+#ACTION {^There is no reason to 'ffetch' here.$} {#if {$toggle_find_familiar} {#var toggle_find_familiar 0;#delay 4 {cast find familiar;#var toggle_find_familiar 1;};};};
 #ACTION {^You don't have any basic construction materials for a crystal!} {
     ffetch materials;
     #delay 5 {keep materials;create_golem};

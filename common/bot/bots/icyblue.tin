@@ -1,19 +1,16 @@
 #class {bot} {open}
 #var {areaname} {icyblue}
+
 #var {botpath} {s;s;s;s;s;s;s;w;w;n;e;n;w;n;w;w;e;s;w;s;e;s;w;e;n;w;n;e;n;e;e;n;w;n;e;n;w;n;s;e;n;n;w;w;s;w;n;s;e;s;w;s;e;s;w;e;n;w;n;e;n;n;e;e;s;s;s;w;s;e;s;w;s;e;s;w;s;e;e;e;e;n;w;e;n;e;e;s;w;s;e;w;n;e;n;w;w;n;w;n;e;n;e;s;e;s;w;e;n;w;n;e;n;w;n;e;n;w;w;w;s;e;s;w;s;n;e;n;w;n;e;e;e;s;w;s;e;s;w;w;s;w;s;e;s;s;s;w;w;n;n;n;n;n;n;n}
+#var bot[path] $botpath;
 
-#act {-M-_{Ice Man|Ice Woman|Ice Youth|Ice Child}%*} {
+#list botmobs clear;
+#list botmobs add {{{long} {Ice Man} {target} {ice}}};
+#list botmobs add {{{long} {Ice Woman} {target} {ice}}};
+#list botmobs add {{{long} {Ice Youth} {target} {ice}}};
+#list botmobs add {{{long} {Ice Child} {target} {ice}}};
 
-    #var foundtimes 1;
-	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
-
-	#if {"%1" == "Ice Man"} {@botSetMobActions{man;$foundtimes};};
-	#if {"%1" == "Ice Woman"} {@botSetMobActions{ice;$foundtimes};};
-	#if {"%1" == "Ice Youth"} {@botSetMobActions{ice;$foundtimes};};
-	#if {"%1" == "Ice Child"} {@botSetMobActions{ice;$foundtimes};};
-	.check_monster} {2};
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
-
 #read common/bot/generic.tin

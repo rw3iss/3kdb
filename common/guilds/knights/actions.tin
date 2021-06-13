@@ -22,7 +22,7 @@
 	rest;
 	#var incombat 0;
 	#var truced 0;
-	#if {$botting == 1} {..};
+	#if {$bot[active] == 1} {..};
 } {2};
 
 
@@ -48,7 +48,7 @@
 
 #action {It is too dark.} {
 	ss;
-	#if {$botting == 1} {.bot};
+	#if {$bot[active] == 1} {.bot};
 };
 
 #act {^You attack} {bcc};

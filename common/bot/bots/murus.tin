@@ -3,7 +3,7 @@
 
 #var {area} {Murus};
 #var check_room 0;
-#var check_death 0;
+
 
 #var bot_message_1 '---- Murus Farlain ----';
 #var bot_message_2 '---- ALL TARGETS ----';

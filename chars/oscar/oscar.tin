@@ -15,13 +15,9 @@
 
 /* load common */
 #read common/index.tin;
-#read common/bot/bots.tin;
-#read common/private.tin;
 
 /* load specific modules for this character */
 #read modules/corpsemanager/corpsemanager.tin;
-#read modules/dmgtracker/dmgtracker_old.tin;
-#read modules/dmgtracker/dmgtracker_mage.tin;
 #read modules/professions/transmuter.tin;
 
 /* load guild */
@@ -34,9 +30,6 @@
 #read chars/$user/heartbeat.tin;
 #read chars/$user/tickers.tin;
 #read chars/$user/config.tin;
-
-/* create space for static hpbar at bottom and reset map position */
-#split 0 5;
 
 #alias {defaults_on} {
 	mipon;

@@ -2,7 +2,7 @@
 #class {bot} {open}
 
 #var {area} {Dundee Swamp};
-#var check_death 0;
+
 #var check_room 0;
 
 #var bot_message_1 '---- DUNDEE STEPPER SWAMP 1 ----';

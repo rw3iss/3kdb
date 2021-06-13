@@ -52,7 +52,7 @@
 
 		#nop stop when strain is too high;
 		#if {$my[gp2][current] > 180} {
-			#if {$botting == 1} {
+			#if {$bot[active] == 1} {
 				.pause;tr;tr;tr;rest;
 				#delay {2} {tr;tr;tr;.pause;rest};
 				#delay {60} {..};
@@ -160,7 +160,7 @@
 		#if {"$my[prepared]" == "n"} {prepare on};
 
 		#if {$my[hp][current] < 500} {
-			#if {$botting == 1} {
+			#if {$bot[active] == 1} {
 				#show WARNING!!!!!!!\n\n;
 				.stop;
 				wimpystrat;

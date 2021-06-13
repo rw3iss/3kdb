@@ -1,18 +1,6 @@
 #CLASS draw {open}
 
-/* draw[] variables need to be set in player's vars.tin:
-#nop VARIABLE {draw} {
-    {canvas}{on}
-    {caption}{on}
-    {chat}{on}
-    {gline}{on}
-    {map}{on}
-	{hpbar}{on}
-    {room}{on}
-};
-*/
-
-/* Pass 0-100 percentage number to split the current screen at. */
+#NOP /* Pass 0-100 percentage number to split the current screen at. */
 #alias {setsplit} {
     #math _perc {%1 * .01}; 
     #var splitWidthPerc $_perc;
@@ -23,51 +11,57 @@
     init_screen;
 };
 
-/* Calculate various area dimensions, called on start and SCREEN RESIZE */
+#alias draw_tab_menu {
+    #draw {<dda>} {tile} $map[height]+2 $infoPane[left]+1 $infoPane[top] $screen[width] {TEST TEST EST EST};  
+};
+
+#event {SHORT-CLICKED MOUSE BUTTON ONE} {#showme %4}
+
+#NOP /* Calculate various area dimensions, called on start and SCREEN RESIZE */
 #alias init_screen {
     #screen get 	rows 	screen[height];
     #screen get 	cols 	screen[width];
 
     #format map[width] {%d} {$map[widthperc] * $screen[width]};
+    
     #format map[height] {%d} {$map[heightperc] * $screen[height]};
     #math map[left] {$screen[width] - $map[width]};
 
     #format infoPane[width] {%d} {$infoPane[widthperc] * $screen[width]};
-    #format infoPane[height] {%d} {$infoPane[heightperc] * $screen[height]};
-    #math infoPane[top] {$screen[height] - $infoPane[height]};
+
+    #if {"$draw[hpbar]" == "on"} {
+        #list {hpbar[prompt]} {size} {hpbar[height]};
+        
+        #NOP --- create space for static hpbar at bottom and reset map position;
+        #split 0 $hpbar[height];
+    } {
+        #var hpbar[height] 0
+    };
+
+    
+    #NOP -- Set the infoPane below the map;
+    #math infoPane[top] {$map[height] + 3};
     #math infoPane[bottom] {$screen[height] - $hpbar[height] - 1};
     #math infoPane[left] {$screen[width] - $map[width]};
+
+    #var infoMenu[height] 2;
+    #var infoMenu[bottom] $infoPane[top];
+
+    #math infoMenu[top] {$infoPane[top] - $infoMenu[height]};
+    #math infoMenu[left] {$screen[width] - $map[width]};
 
     #if {"$draw[canvas]" == "on"} {
         #format canvas[width] {%d} {$canvas[widthperc] * $screen[width] + 1};
     } {
         #var canvas[width] 0
-    }
+    };
 
     #if {"$draw[caption]" == "on"} {
-        #var caption[height] 2
+        #if {$eternal} {#var caption[height] 4;} {#var caption[height] 3];};
+        #math caption[top] {$infoPane[top] - $caption[height] + 2};
     } {
-        #var caption[height] 0
-    }
-
-    #if {"$draw[chat]" == "on"} {
-        #math chat[height] {$chat[rows] + 1};
-        #if {"$draw[map]" == "on"} {
-            #math {chat[right]} {-$map[width]-2}
-        } { 
-            #var chat[right] -1
-        }
-        
-        #draw {green} {line} $chat[height] 1 $chat[height] -1;
-    } {
-        #var chat[height] 0
-    }
-    
-    #if {"$draw[gline]" == "on"} {
-        #var gline[height] 2
-    } {
-        #var gline[height] 0
-    }
+        #var caption[height] 0;
+    };
 
     #nop Clear any previous drawings;
     #screen clear split;
@@ -76,55 +70,81 @@
     #math status[height] { $hpbar[height] + 1}; 
 
     #nop Split bottom area for hp+guild/stats bar;
-    #math 	split[top]		{$chat[height] + $caption[height]};
+    #var 	split[top]		0;
     #var 	split[bottom]	$status[height];
     #var    split[left]     0;
     #var 	split[right]	$canvas[width];
     #split 	$split[top] $split[bottom] $split[left] $split[right];
-    #nop show split: $split[top] $split[bottom] $split[left] $split[right];
 
     init_map;
     init_hpbar;
 }
 
-
 #alias draw_all {
-    #if {"$draw[chat]" == "on"} { draw_chat };
-    #if {"$draw[room]" == "on"} { draw_room };
-    #if {"$draw[status]" == "on"} { draw_status };
     #if {"$draw[hpbar]" == "on"} { draw_hpbar };
     #if {"$draw[caption]" == "on"} { draw_caption };
+    #if {"$draw[room]" == "on"} { draw_room };
+    #if {"$draw[status]" == "on"} { draw_status };
+};
+
+#alias draw_infoPane_Tabs {
+    #draw {line} $infoPane[top]-1 $infoPane[left]+1 $infoPane[top]-1 $screen[width];
+    #draw {<dda>} {tile} $infoPane[top] $infoPane[left]+1 $infoPane[bottom] $screen[width] {CLICK HERE FOR OPTIONS};
+};
+
+#NOP /* calculate hpbar size and draws initial line above hpbar area */
+#alias {init_hpbar} {
+    #if {"$draw[hpbar]" == "on"} {
+        #math hpbar[top] {$screen[height] - $hpbar[height]};
+        #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
+        #math hpbar[right] {$hpbar[left] + $screen[width]}; 
+    	#draw {line} -$hpbar[height]-2 1 -$hpbar[height]-2 -1;
+    } {
+        #var hpbar[height] 0;
+    };
+    tickhp;
+};
+
+#alias draw_hpbar {
+    #loop 1 $hpbar[height] index {
+        #var prompt $hpbar[prompt][+$index];
+        #math hpbar_line {$hpbar[top] + $index - 1};
+        #draw {<eeb>} {tile} $hpbar_line $hpbar[left] $hpbar_line -1 {$prompt};
+    };
+};
+
+#alias draw_bot {
+    #if $bot[active] {
+        #var status_string_bot {<088>Bot Status  : <DAA><aaa>PAUSED<088>  $bot_current_room/$bot_total_rooms ($bot_progress%)};
+    } {
+        #var status_string_bot {<088>Bot Status  : <ACA><fff>ACTIVE<088>  $bot_current_room/$bot_total_rooms ($bot_progress%)};
+    };
 }
 
-
-/* -- CAPTION (Idle timer, uptime, etc) -- */
+#NOP /* -- CAPTION (Idle timer, Corpses, etc) -- */
 #alias draw_caption {
-    #format {uptimeStr}	{%+8s}	{$session[uptime]};
-    #format {rebootStr}	{%+5s}	{$session[reboot]};
-    #format {lagStr}	{%+4s}	{$session[lag]};
-    #math	{idle_hr}	{$idle / 3600};
-    #math	{idle_min}	{$idle % 3600 / 60};
-    #math	{idle_sec}	{$idle % 60};
-    #if	{$idle_hr < 10}	{#var idle_hr  0$idle_hr};
-    #if	{$idle_min < 10} {#var idle_min 0$idle_min};
-    #if	{$idle_sec < 10} {#var idle_sec 0$idle_sec};
-    #format {idleStr}	{%+4s}	{<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-    
-    #var statStr {I:${idleStr}  R:[${rebootStr}]  U:[${uptimeStr}] };
+    #nop -- Clear any old drawings;
+    #draw {<dda>} {tile} $caption[top] $infoPane[left]+1 $caption[top]+1 $screen[width] {};
 
-    #draw {<dda>} {tile} 1 $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3} };
+    #var caption[idle_string] {Idle: $idle_cap  <daa>Deadmans: $deadManTimeLeft_cap};
+    #var caption[corpse_string] {$corpse_string};
+    #var caption[eternal_string]  {$eternal_string};
+    #draw {<dda>} {tile} $caption[top] $infoPane[left]+2 $caption[top] $screen[width] {$caption[idle_string]};
+    #draw {<dda>} {tile} $caption[top]+1 $infoPane[left]+2 $caption[top]+1 $screen[width] {$caption[corpse_string]};
+    #draw {<dda>} {tile} $caption[top]+2 $infoPane[left]+2 $caption[top]+2 $screen[width] {$caption[eternal_string]};
+    #draw line $caption[top]+3 $infoPane[left]+1 $caption[top]+3 $screen[width];
 }
 
-/* -- CHAT LOGS -- */
+#NOP /* -- CHAT LOGS -- */
 #alias draw_chat {
     #nop todo...;
     chatend;
 }
 
-/* -- MAP -- */
+#NOP /* -- MAP -- */
 #alias init_map {
     #if {"$draw[map]" == "on"} {
-        #draw line $map[height] $map[left] $map[height] $screen[width];
+        #draw line $map[height] $map[left]+1 $map[height] $screen[width];
         #map offset 1 -$map[width] $map[height]-1 -1;
         #map flag vtmap on;
     } {
@@ -132,10 +152,10 @@
     };
 }
 
-/* -- ROOM -- */
+#NOP /* -- ROOM -- */
 #alias draw_room {
     #nop -- Clear any old drawings;
-    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {};
+    #draw {<dda>} {tile} $infoPane[top]+1 $infoPane[left] $infoPane[bottom] $screen[width] {};
     
     #var _lbl <cba>;
 
@@ -160,41 +180,41 @@
         {${_lbl}Map name:<088> $roomMapNameStr} 
         {${_lbl}Map notes:<088> $roomMapNoteStr};
 
-    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {<ffa>Room:<088>};
-    #draw {<dda>} {tile} $map[height]+2 $infoPane[left] $infoPane[bottom] $screen[width] {$roomStr};
+    #draw {<dda>} {tile} $infoPane[top]+2 $infoPane[left] $infoPane[top]+2 $screen[width] {<ffa>Room:<088>};
+    #draw {<dda>} {tile} $infoPane[top]+3 $infoPane[left] $infoPane[top]+3 $screen[width] {$roomStr};
 }
 
-/* -- Player Status -- */
+#NOP /* -- Player Status -- */
 #alias draw_status {
 
     #nop -- Clear any old drawings;
-    #draw {<dda>} {tile} $map[height]+1 $infoPane[left] $infoPane[bottom] $screen[width] {};
+    #draw {<dda>} {tile} $infoPane[top] $infoPane[left]+2 $infoPane[bottom] $screen[width] {};
     
     #if $reforger {
         #var prof_type Reforger:;
         #var prof_charges $my[reforger];
     };
 
-    #if $botting {
+    #if $bot[active] {
         #var status_string_bot_rows 3;
         #path get length bot_total_rooms;
         #path get position bot_current_room;
 
+        #math bot_current_room {$bot_current_room - 1};
         #math bot_progress {100 * $bot_current_room / $bot_total_rooms};
 
-        #if $halt {
+        #if $bot[paused] {
             #var status_string_bot {<088>Bot Status  : <DAA><aaa>PAUSED<088>  $bot_current_room/$bot_total_rooms ($bot_progress%)};
         } {
             #var status_string_bot {<088>Bot Status  : <ACA><fff>ACTIVE<088>  $bot_current_room/$bot_total_rooms ($bot_progress%)};
         };
 
-        #if $playercheck {
+        #if $bot[playercheck] {
             #cat status_string_bot {\nPlayercheck : <afa>ON<088>};
         } {
             #cat status_string_bot {\nPlayercheck : <daa>OFF<088>};
         };
-        #cat status_string_bot {\nDeadman     : $deadManTimeLeft_cap};
-        #var status_string_bot_rows 4;
+        #var status_string_bot_rows 3;
     } {
         #var status_string_bot <088>Bot: <fff>OFF<088>;
         #var status_string_bot_rows 1;
@@ -202,24 +222,22 @@
 
     #var status_string_strategy <bef>Strategy:<088>\n;
 
-    #loop 1 &strategy[] index {
-        #var strat *strategy[+$index];
-        #format strat_name {%-15s} {$strat};
+    #foreach *strategy[] index {
+        #format strat_name {%-15s} {$index};
         #format strat_name {%n} {$strat_name};
-        #if {$strategy[$strat]} {
+        #if {$strategy[$index]} {
             #cat status_string_strategy {$strat_name : <afa>ON<088>\n};
         } {
             #cat status_string_strategy {$strat_name : <daa>OFF<088>\n};
-        }
+        };
 
         #NOP - get the number of rows the strategy takes and pad it by 2;
-        #var status_string_strategy_rows &strategy[];
+        #list {strategy} {size} status_string_strategy_rows;
         #math status_string_strategy_rows {$status_string_strategy_rows + 2};
     };
 
-    #draw {<dda>} {tile} $map[height]+2 $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_bot};
-
-    #draw {<dda>} {tile} $map[height]+2+$status_string_bot_rows $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_strategy};
+    #draw {<dda>} {tile} $infoPane[top]+2 $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_bot};
+    #draw {<dda>} {tile} $infoPane[top]+2+$status_string_bot_rows $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_strategy};
 
 }
 
@@ -263,7 +281,7 @@
     draw_all;
 }
 
-/* kick off */
+#NOP /* kick off */;
 init_screen;
 draw_all;
 

@@ -2,26 +2,21 @@
 
 #var {area} {Hotel Transylvania}
 #var check_room 0;
-#var check_death 0;
 
 #var bot_message_1 '---- HOTEL STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#alias .pre_fight_check {#nop;};
-
-.pre_bot_check;
-
 #var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s};
-#act {-M-_{A zombie bell hop waiting to carry your things|A zombie waiter offering drinks|A zombie cook looking for something to chop}%*} {
-    #var foundtimes 1;
-	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
-    #if {"%1" == "A zombie bell hop waiting to carry your things"} {@botSetMobActions{zombie;$foundtimes};};
-    #if {"%1" == "A zombie waiter offering drinks"} {@botSetMobActions{zombie;$foundtimes};};
-	#if {"%1" == "A zombie cook looking for something to chop"} {@botSetMobActions{zombie;$foundtimes};};	
-	.check_monster;
-} {2};
+#var bot[path] $botpath;
+
+#list botmobs clear;
+#list botmobs add {{{long} {A zombie bell hop waiting to carry your things} {target} {zombie}}};
+#list botmobs add {{{long} {A zombie waiter offering drinks} {target} {zombie}}};
+#list botmobs add {{{long} {A zombie cook looking for something to chop} {target} {zombie}}};
+
+#var bot[mobs] $botmobs
 
 #class {bot} {close}
 #read common/bot/generic.tin
+playercheck;

@@ -2,16 +2,20 @@
 #class {player_heartbeat} {open}
 
 #var corpse_delay 1;
-#var corpse_use 150;
+#var corpse_use 200;
 
 #alias {_player_heartbeat} {
     #if !$idle_flag {
         #if {$my[gp1][current] < $corpse_use && $corpses[total] > 0 && $corpse_delay} {
             #var corpse_delay 0;
             corpse_select;
-            #delay 4 {offer corpse;#var corpse_delay 1};
-            #delay 8 {offer corpse};
-        }
+            #act {eyes glow bright green upon the fallen} {offer corpse};
+            #delay 4 {offer corpse};
+            #delay 4 {#var corpse_delay 1;#unact {eyes glow bright green upon the fallen};};
+        };
+        #if {$my[gp1][current] < $corpse_use && $my[acolyte][mana] > 0} {
+            aretrieve;
+        };
     }
 };
 

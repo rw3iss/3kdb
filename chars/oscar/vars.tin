@@ -1,7 +1,9 @@
-#CLASS {global} OPEN;
+#CLASS {global} OPEN   
 
 #NOP -- Mage settings;
 #VARIABLE         {sp_min}         {1000};
+#VARIABLE         {mage[contingencies][mantle]} {1};
+#VARIABLE         {mage[contingencies][sphere]} {200};
 
 #NOP -- General Player Settings;
 #VARIABLE         {bear}            {1};
@@ -11,16 +13,35 @@
 
 #NOP -- Strategy Settings;
 #VARIABLE monitors[saturation-start]  30;
-#VARIABLE monitors[saturation-corpse]  60;
+#VARIABLE monitors[saturation-corpse]  70;
 #VARIABLE monitors[saturation-stop]  80;
 
-#NOP -- Map Drawing Settings;
-#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
-#VARIABLE         {curvnum}  {4119}
-#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{35}{enabledheight}{6}{height}{6}{left}{0}{right}{204}{top}{30}}
-#VARIABLE         {map}  {{height}{21}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {room}  {{bottom}{29}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{14}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{22}{width}{91}{widthperc}{.45}}
-#VARIABLE         {splitWidthPerc}  {.45}
+#NOP -- Drawing Settings;
+#VARIABLE {canvas} {{width} {82}{widthperc} {0.40}};
+#VARIABLE {draw}{ 
+    {canvas} {on}
+    {caption} {on}
+    {chat} {off}
+    {gline} {off}
+    {hpbar} {on}
+    {map} {on}
+    {room} {off}
+    {status} {on}
+};
+#VARIABLE {hpbar} {
+    {bottom} {36} {top} {32}
+    {left} {0} {right} {203}
+    {enabledheight} {5} {height} {5}
+    {prompt} {}
+};
+#VARIABLE {map} {{height} {14}{heightperc} {.4}{left} {122}{width} {81}{widthperc} {0.40}}
+#VARIABLE {room}{{exits} {e}}
+#VARIABLE {wielded} {dagger}
+#VARIABLE {splitWidthPerc} {0.40}
 
-#CLASS {global} CLOSE;
+#NOP -- Room Settings;
+#VARIABLE {curvnum} {85}
+#VARIABLE {bot[last-room]} {85}
+
+
+#CLASS {global} CLOSE

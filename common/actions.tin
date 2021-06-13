@@ -4,6 +4,9 @@
 #action {^You lift the drink to your mouth, but in your stomach} {#var my[drunk] 1};
 #action {^You drink the wine and feel healed.$} {#var my[drunk] 0};
 
+#act {The effects of the%*blue capsule fade away.}{#if !$idle_flag {eat blue};};
+#act {The effects of the%*orange capsule fade away.}{#if !$idle_flag {eat orange};};
+
 #action {^The daemon hisses: Dost thou choose to graft with me %w?} {#format {graft} {%l} {%1};#if {"$user" == "$graft"} {say yes}};
 #action {^%1 begins to follow %2\.$} {#format {follower} {%l} {%1};#if {"$user" == "$follower"} {#format {following} {%n} {%2}}};
 #action {^You stop following %1} {#unvar following};
@@ -57,27 +60,24 @@
 };
 
 #NOP -- 3kdb reporting stuff;
+#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot status} {
+    #if {!$idle_flag && $bot[active]} {#delay .2 {ptell Bot Status : $bot_current_room/$bot_total_rooms ($bot_progress%)};};
+} {1};
 
-#act {^[PARTY] %*: 3kdb bot status} {
-    #if {!$idle_flag && $botting} {
-        #delay .2 {ptell Bot Status : $bot_current_room/$bot_total_rooms ($bot_progress%)};
-    };
-};
-
-#act {^[PARTY] %*: 3kdb bot path-find} {
-    #if {!$idle_flag && $botting} {
+#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot path-find} {
+    #if {!$idle_flag && $bot[active]} {
         #unvar tempPath;
         #unvar 3kdbPath;
         #path get position position;
         #path save forward tempPath;
         #list tempPath create {$tempPath};
-        #foreach {$tempPath[+1..$position]} {dir} {#cat 3kdbPath {$dir;}}
-        #delay .2 {ptell Path to find me is : $3kdbPath};
+        #foreach {$tempPath[+1..$position]} {dir} {#cat 3kdbPath {$dir;}};
+        #delay .2 {ptell Path to find me is : ${3kdbPath}};
     };
-};
+} {1};
 
-#act {^[PARTY] %*: 3kdb bot help} {
-    #if {!$idle_flag && $botting} {
+#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot help} {
+    #if {!$idle_flag && $bot[active]} {
         #delay .2 {
             ptell ---------------------------------------------------;
             ptell -----            3kdb Bot Helpers             -----;
@@ -88,7 +88,7 @@
             ptell ---------------------------------------------------;
         };
     };
-};
+} {1};
 
 
 #class {default_actions} {close}

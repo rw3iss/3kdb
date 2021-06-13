@@ -2,51 +2,23 @@
 #class {bot} {open}
 
 #var {area} {Rimalkin Cave};
-#var check_death 0;
+
 #var check_room 0;
 
 #var bot_message_1 '---- RIMALKINS STEPPER ----';
 #var bot_message_2 '----    ALL TARGETS    ----';
 
-#alias .pre_fight_check {#nop;};
 
-#if {{$guild} == {bard}} {
-	.pre_bot_check;
-    
-	#alias .pre_fight_check {
-        #var defs[pn] 1;
-        #var defs[blink] 1;
-        #var defs[es] 1;
-    }
-};
+#var {botpath} {e;ne;se;w;s;w;s;e;ne;n;se;nw;n;nw;se;s;w;s;d;n;nw;ne;sw;se;s;u;n;w;w};
+#var bot[path] $botpath;
 
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
+#list botmobs clear;
+#list botmobs add {{{long} {A small Rimalkin} {target} {rimalkin}}};
+#list botmobs add {{{long} {A large Rimalkin} {target} {rimalkin}}};
+#list botmobs add {{{long} {A very large Rimalkin} {target} {rimalkin}}};
 
-
-#if {{$guild} == {knight}} {
-	#alias .pre_fight_check {
-        #if {$my[strain][current] > 100} {
-            #show STRAIN HIGH, RESTING.;
-            .pause;
-            rest;
-            #delay {30} {..};
-        }
-    }
-};
-
-#var {botpath} {e;ne;se;w;s;w;s;e;ne;n;se;nw;n;nw;se;s;w;s;d;n;nw;ne;sw;se;s;u;n;w;w}
-
-#act {-M-_A {small|large|very large} Rimalkin} {
-	@botSetMobActions{rimalkin};
-	.check_monster;
-} {2};
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
-
-#read common/bot/generic.tin
+#read common/bot/generic.tin;
+playercheck;

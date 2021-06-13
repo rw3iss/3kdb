@@ -83,7 +83,7 @@
   #var ksGxpRate %5;
   pstatsFormatNumber pstatsXpRate;
   pstatsFormatNumber pstatsGxpRate;
-  pstatsColPrint {XP Per Hour:} {$mobname $pstatsXpRate} {GXP Per Hour:} {$pstatsGxpRate};
+  pstatsColPrint {XP Per Hour:} {$mob[target] $pstatsXpRate} {GXP Per Hour:} {$pstatsGxpRate};
   #line gag;
 };
 

@@ -5,7 +5,6 @@
 #conf pack 1;
 #conf color on;
 
-
 /* Set player specific variables */
 #var guild priest;
 #var user boscar;
@@ -31,9 +30,6 @@
 #read chars/$user/private.tin;
 #read chars/$user/styles.tin;
 #read chars/$user/tickers.tin;
-
-/* create space for static hpbar at bottom and reset map position */
-#split 0 4;
 
 #alias {defaults_on} {
 	mipon;

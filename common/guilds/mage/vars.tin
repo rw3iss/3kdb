@@ -10,5 +10,10 @@
 #var strategy[edrain] 1;
 #var strategy[golem] 1;
 #var strategy[haste] 1;
+#var strategy[spelltap] 1;
+
+
+#var toggle_find_familiar 1;
+#var go_fetch 0;
 
 #class {guild_vars} close

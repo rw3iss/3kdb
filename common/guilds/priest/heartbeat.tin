@@ -6,7 +6,7 @@
 	#if !$idle_flag {
 		#if {"$my[effects][barkskin]" == "OFF"} {barkskin};
 		#if {"$my[effects][haste]" == "OFF"} {haste};
-#NOP	#if {"$my[effects][protection]" == "OFF"} {protection};
+		#if {"$my[effects][protection]" == "OFF"} {protection};
 		#if {"$my[effects][vestment]" == "OFF"} {vestment};
 		#if {"$my[effects][bene]" == "OFF"} {beneficence};
 		#if {"$my[effects][blade]" == "OFF"} {blade};

@@ -6,7 +6,31 @@
 #gag {^Your shield blocks %* attack!$};
 #gag {^***THAWHACK*** You critically hit %*!$};
 #gag {^**THWACK** You critically hit %*!$};
+#gag {^You drive your attack past %* resistances!$};
+#gag {^You nimbly dodge %* attack!$};
 
+#NOP -- Eternal Gags;
+#gag {^The assault glances harmlessly off your aura.$};
+#gag {^A bolt of pure energy flies out of the sky striking %*!$};
+#gag {^Your form shimmers and becomes impenetrable.$};
+#gag {^You have become grounded in this plane yet again.$};
+
+
+#NOP -- Rimalkin Gags;
+#gag {^The %* Rimalkin lunges at you with its needle-like fangs!$};
+#gag {^The %* Rimalkin slashes at you with its razor sharp claws!$};
+#gag {^The %* Rimalkin looks at you with little red eyes, scratching the ground nervously.$};
+
+#NOP -- Zelligar Gags;
+#gag {^The Golem Cackles madly like an insane man!$};
+#gag {^The Golem GLARES at you with his evil eyes and you freeze in panic!!!$};
+#gag {^The Golem slashes you with his sharp claws.$};
+#gag {^The Golem hurls a MASSIVE boulder at you!!$};
+#gag {^The Golem CRUSHES you with his giant fist!$};
+#gag {^The Golem SMASHES you so hard your whole family hurts!!$};
+#gag {^The Golem SLASHES you with a jagged edge!!$};
+#gag {^The Golem SLICES and DICES!!!!$};
+#gag {^The Golem hurls shards of glass at you!!$};
 
 #NOP -- Chessboard Gags;
 #gag {^The %* crushes you with a mighty swipe of his};
@@ -30,13 +54,33 @@
 
 #NOP -- Hotel Gags;
 #gag {^The cook grunts and glares, suddenly a sharp knife flies towards you!$};
-
+#gag {^The bell hop makes a gurgling noise, a blast shoots towards you!$};
 
 #NOP -- Item Gags;
 #gag {^The sword pulses in your grasp!$};
 #gag {%*Your body quakes violently as a sickly, mutated arm$};
 #gag {%*spears forth from your torso and smashes%*!$};
+#gag {%* quakes violently as a sickly, mutated arm spears};
+#gag {forth from his torso and viciously smashes %*!};
 
+
+
+#NOP -- Mahjong;
+#gag {^The tiger swipes at you with its giant paw!$};
+#gag {^The dolphin tries to swim away from your attack!$};
+#gag {^The dolphin lets loose an ear-splitting shriek!$};
+#gag {^The dolphin bops you in the nose with its tail!$};
+#gag {^The dragon whips its tail around, nearly knocking you off your feet!$};
+#gag {^The dragon belches fire all over you!$};
+#gag {^The dragon rakes you across the face with its claws!$};
+#gag {^The phoenix scorches you as it bursts into flames!$};
+#gag {^The phoenix digs its talons into your skin!$};
+#gag {^The phoenix pecks at your eyes!$};
+#gag {^The butterfly flutters its wings at you!$};
+#gag {^The butterfly tries desperately to get away!$};
+#gag {^The serpent slips past you and darts in for another bite!$};
+#gag {^The serpent digs its fangs into your flesh!$};
+#gag {^The serpent bites you, sending poison coursing through your veins!$};
 
 #NOP -- POL Gags;
 #gag {^The faerie lizard dives forward, sinking its teeth into you.$};
@@ -50,7 +94,35 @@
 #gag {^The stag rears up on its hind feet, then charges forward!$};
 #gag {^The stag tosses its head back and lets out a challenging call.$};
 
+#NOP -- Chicken Plant;
+#gag {^*BZZZTT*  You get stunned by the guard!$};
+#gag {^Guard steps back and lets loose an energy beam.$};
+#gag {^You are pummeled by punches from every direction.$};
+#gag {^The worker rages at you with blind fury.$};
+#gag {^The worker punches you viciously.$};
+#gag {^The worker throws a chicken in your face!$};
+#gag {^The worker throws guts in your face!$};
+#gag {^The foreman steps back and blasts you with a beam out of his eye!$};
+#gag {^Your hair stands on end as the foreman lashes you with the whip!$};
+#gag {^The foreman docks your pay!$};
+
 #NOP -- Sii Gags;
 #gag {^The brood's tiny wicked claws tear at %*!};
 #gag {^The brood's razor claws slash into %*!};
 #gag {^The brood claws viciously at %*!};
+
+
+#NOP -- Section Z Gags;
+#gag {^The Ripper body slams %*!$};
+#gag {^A wailing cry emits from the Soldier as it charges %* with full force!$};
+#gag {^A well placed blast from the Soldier's cannon pounds into %* chest!$};
+#gag {^The Groma's entire body impacts %* with a stunning force!$};
+#gag {^The Groma falls into a dive and pierces %* with pointed wing tips!$};
+#gag {^The Leago spins and drills into %*, leaving a large crater!$};
+#gag {^The Leago slams down into %*, clobbering you senseless!$};
+#gag {^The Leeva makes an unexpected lunge and plows into %*!$};
+#gag {^The Leeva flits around aimlessly bouncing off nearby walls.$};
+#gag {^The Leeva darts left, right, then straight into %*!$};
+#gag {^In a massive somersault, the Gun launches from the wall, striking};
+#gag {%* with massive force in the chest!$};
+#gag {^The Spiral Gun fires a swirling ball of energy directly at %*!$};

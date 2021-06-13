@@ -3,39 +3,11 @@
 
 #var {area} {Aegis Global};
 #var check_room 0;
-#var check_death 0;
+
 
 #var bot_message_1 '---- AEGIS LVL 2 STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
-
-#alias {.pre_fight_check} {#nop};
-
-#if {{$guild} == {bard}} {
-	#nop - Turn on kill-em-all
-	#var kill_em_all 1
-
-	echo_divider1;
-	clear_prots;reflex_clear;
-	echo_divider2;
-	echo_reflex_header;
-	reflex_critic 200;reflex_ow 200;reflex_ma 400;
-	echo_divider2;
-
-	#alias {.pre_fight_check} {
-		#var defs[es] 1;
-		#var defs[blink] 1;
-	}	
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
-
 
 #var {botpath} {w;n;e;w;w;s;w;w;n;w;s;w;n;w;e;s;s;w;s;e;s;s;e;e;s;n;e;e;s;e;n;n;w;w;e;e;e;n;e;n;w;n}
 

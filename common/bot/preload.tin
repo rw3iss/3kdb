@@ -1,4 +1,4 @@
 #alias {setMobName} {
-	#var prevMobName {$mobname};
+	#var prevMobName {$mob[target]};
 	#var mobname %0;
 };

@@ -48,7 +48,7 @@
         bury corpse;
         get coins;
     }
-    #if {$botting == 1} {.bot};
+    #if {$bot[active] == 1} {.bot};
 
 };
 
@@ -61,7 +61,7 @@
 	#if {$my[settings][killfollow] == 1} { follow $killing; };
 	#if {"$my[battlecry]" == "n"} {bcc};
 	#act {There is no $killing here} {
-		#if {$botting} {.bot};
+		#if {$bot[active]} {.bot};
 	};
 	kill $killing;
 	#delay {.25} {#unact {There is no $killing here}}

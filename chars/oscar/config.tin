@@ -24,7 +24,7 @@
          #var strategy[atrophy] 1;
          #var strategy[edrain] 1;
          #var strategy[slow] 1;
-    }
+    };
 
     #var defs[SS] 1;
     #var defs[MG] 1;
@@ -33,17 +33,20 @@
     #var defs[ms] 1;
     #var defs[M] 1;
     #var defs[PS] 1;
-}
+};
 
 #alias {.mob_kill_action} {
+     #var mob_slow 0;
+     #var mob_atrophy 0;
+     #var mob_drain 0;
      #if $golem_tank {
-          #delay 1 {say golem, kill $mobname;c slow $mobname;};
+          #delay 1 {say golem, kill $mob[target];cast slow $mob[target];};
           #delay 2 {say golem, defend me};
      } {
-          kill $mobname;
-          #if $strategy[slow] {cast slow $mobname};
+          kill $mob[target];
+          #if $strategy[slow] {cast slow $mob[target]};
      }
-}
+};
 
 
 #class {player_config} {close}

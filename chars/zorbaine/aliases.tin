@@ -20,7 +20,7 @@
 #alias dbg {
     #show VARS:
     #show incombat: $incombat;
-    #show botting: $botting;
+    #show botting: $bot[active];
     #show killing: $killing;
 }
 

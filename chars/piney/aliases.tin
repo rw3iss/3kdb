@@ -2,7 +2,7 @@
 #class {player_aliases} {open}
 
 #alias .mob_kill_action {
-    kill $mobname;
+    kill $mob[target];
 }
 
 #alias {_player_deadmanActions} {

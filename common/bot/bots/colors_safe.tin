@@ -7,65 +7,59 @@
 #var bot_message_1 '---- NIGHT OF COLORS STEPPER ----';
 #var bot_message_2 '----  SAFE MODE: NO PEACE    ----';
 
-
-.pre_bot_check;
-
-#var {botpath} {n;n;w;n;n;n;s;s;s;s;s;s;sw;s;n;n;n;n;n;n;n;n;n;n;ne;climb;u;u;d;d;d;sw;s;s;s;s;s;w;n;s;s;s;s;s;sw;s;s;n;n;n;n;n;n;n;n;n;nw;s;s
+#var {bot[path]} {n;n;w;n;n;n;s;s;s;s;s;s;sw;s;n;n;n;n;n;n;n;n;n;n;ne;climb;u;u;d;d;d;sw;s;s;s;s;s;w;n;s;s;s;s;s;sw;s;s;n;n;n;n;n;n;n;n;n;nw;s;s
 ;s;s;s;s;s;s;s;n;nw;n;n;n;n;n;n;sw;s;s;s;s;nw;n;n;sw;e;e;e;e;e;e;e;e;e;s;n;n;e;s;s;s;se;n;n;n;n;n;w;n;e;n;ne;s;s;s;s;s;s;s;s;s;se;n;n;n;n;n;n;n;n;n;n;n;s;e;n;n;s;s;s;s;s;s;s;s;s;s;s;ne;n;n;n;n;n;
 n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;se;sw;s;w;n;w;w;w;w;w;w;w;w;w;n;w;s}
 
-#act {^-M-_{Impediment|Paragon|Timorous|Radiance|Dusky Glimmer|Furtive|Dancing Glimmer|Smoking Glimmer|
-            Darting Glimmer|Russet Glimmer|Mud|Snare|Yellowish Glimmer|Hostile|Swoop|Dismal|Hostile|Gloom|Rapid|Furtive|Bulwark}%*} {
-    #var foundtimes 1;
-	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
-    
-    #if {"%1" == "Furtive"} {@botSetMobActions{furtive;$foundtimes};};
-    #if {"%1" == "Bulwark"} {@botSetMobActions{bulwark;$foundtimes};};
-    #if {"%1" == "Rapid"} {@botSetMobActions{rapid;$foundtimes};};
-    #if {"%1" == "Gloom"} {@botSetMobActions{gloom;$foundtimes};};
-    #if {"%1" == "Hostile"} {@botSetMobActions{hostile;$foundtimes};};
-    #if {"%1" == "Dismal"} {@botSetMobActions{dismal;$foundtimes};};
-    #if {"%1" == "Swoop"} {@botSetMobActions{swoop;$foundtimes};};
-    #if {"%1" == "Paragon"} {@botSetMobActions{paragon;$foundtimes};};
-    #if {"%1" == "Impediment"} {@botSetMobActions{impediment;$foundtimes};};
-    #if {"%1" == "Timorous"} {@botSetMobActions{timorous;$foundtimes};};
-    #if {"%1" == "Radiance"} {@botSetMobActions{radiance;$foundtimes};};
-    #if {"%1" == "Dusky Glimmer"} {@botSetMobActions{glimmer;$foundtimes};};
-    #if {"%1" == "Darting Glimmer"} {@botSetMobActions{glimmer;$foundtimes};};
-    #if {"%1" == "Russet Glimmer"} {@botSetMobActions{glimmer;$foundtimes};};
-    #if {"%1" == "Yellowish Glimmer"} {@botSetMobActions{glimmer;$foundtimes};};
-    #if {"%1" == "Dancing Glimmer"} {@botSetMobActions{glimmer;$foundtimes};};
-    #if {"%1" == "Smoking Glimmer"} {@botSetMobActions{glimmer;$foundtimes};};
-    #if {"%1" == "Mud"} {@botSetMobActions{mud;$foundtimes};};
-    #if {"%1" == "Snare"} {@botSetMobActions{snare;$foundtimes};};
-    
-    .check_monster;
-} {2}
+#list botmobs clear;
+#list botmobs add {{{long} {Furtive} {target} {furtive}}};
+#list botmobs add {{{long} {Bulwark} {target} {bulwark}}};
+#list botmobs add {{{long} {Rapid} {target} {rapid}}};
+#list botmobs add {{{long} {Gloom} {target} {gloom}}};
+#list botmobs add {{{long} {Hostile} {target} {hostile}}};
+#list botmobs add {{{long} {Dismal} {target} {dismal}}};
+#list botmobs add {{{long} {Swoop} {target} {swoop}}};
+#list botmobs add {{{long} {Paragon} {target} {paragon}}};
+#list botmobs add {{{long} {Impediment} {target} {impediment}}};
+#list botmobs add {{{long} {Timorous} {target} {timorous}}};
+#list botmobs add {{{long} {Radiance} {target} {radiance}}};
+#list botmobs add {{{long} {Dusky Glimmer} {target} {glimmer}}};
+#list botmobs add {{{long} {Darting Glimmer} {target} {glimmer}}};
+#list botmobs add {{{long} {Russet Glimmer} {target} {glimmer}}};
+#list botmobs add {{{long} {Yellowish Glimmer} {target} {glimmer}}};
+#list botmobs add {{{long} {Dancing Glimmer} {target} {glimmer}}};
+#list botmobs add {{{long} {Smoking Glimmer} {target} {glimmer}}};
+#list botmobs add {{{long} {Mud} {target} {mud}}};
+#list botmobs add {{{long} {Snare} {target} {snare}}};
 
+#var bot[mobs] $botmobs;
+    
 #alias {.check_room} {
     consider shadow;
 	#var foundshadow 0;
     #act {^Monster class: Really Big (18).$} {
-        @botSetMobActions{shadow;1};
-        #var mobname_long Shadow;
+        #var bot[walk] 0;
+        #var bot[foundmob] 1;
+        #var bot[loop] 1;
+        #var mob[target] shadow;
+        #var mob[foundtimes] 1;
         .stop_prompt;
-        kill $mobname;
+        kill $mob[target];
         #unaction {^Monster class: Really Big (18).$}
     };
-	#delay {.4} {#if {!$foundshadow && !$foundmob} {#path walk;#var bot_walking 1;};}
+	#delay {.4} {#if {!$foundshadow && !$bot[foundmob]} {#path walk;#var bot[walk] 1;};}
 }
 
 #act {^-i-{White web}} {
 	#if {"%1" == "White web" && $corpses[total] > 10} {
-        #var foundobject 1;#var object_action {shake web}
+        #var bot[foundobject] 1;#var object_action {shake web}
     } {
         #path walk;.bot
     };
 } {3}
 
 #act {^Vibrations shake the web, and fade to stillness.} {
-    #if {$foundmob} {
+    #if {$bot[foundmob]} {
         #nop
     } {
         #path walk;
@@ -73,15 +67,15 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
     }} {1};
 
 #act {^Vibrations shake the web, the owner pounces!} {
-	@botSetMobActions{furtive;1};
-	#var mobname_long Furtive;
+    #var bot[walk] 0;
+    #var bot[foundmob] 1;
+    #var bot[loop] 1;
+    #var mob[target] furtive;
+    #var mob[foundtimes] 1;
+	#var mob[long] Furtive;
 	kill furtive;
 	ewell;
 } {1}
-
-#alias {.check_death} {
-    wrap;get all;put all in disc
-}
 
 #class {bot} {close}
 

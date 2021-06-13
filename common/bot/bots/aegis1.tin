@@ -3,54 +3,22 @@
 
 #var {area} {Aegis Global};
 #var check_room 0;
-#var check_death 0;
+
 
 #var bot_message_1 '---- AEGIS LVL 1 STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#alias {.pre_fight_check} {#nop};
-
-#if {{$guild} == {bard}} {
-	#nop - Turn on kill-em-all
-	#var kill_em_all 1
-
-	echo_divider1;
-	clear_prots;reflex_clear;
-	echo_divider2;
-	echo_reflex_header;
-	reflex_critic 200;reflex_ow 200;reflex_ma 400;
-	echo_divider2;
-
-	#alias {.pre_fight_check} {
-		#var defs[es] 1;
-		#var defs[blink] 1;
-	}	
-};
-
-#if {{$guild} == {gentech}} {
-	#alias .pre_fight_check {
-        repair;
-		repair;
-		tactical;
-    }
-};
-
 #var {botpath} {e;e;s;e;e;s;w;s;w;n;w;s;e;s;e;s;e;n;e;s;e;e;n;w;s;w;n;n;e;e;n;w;n;w;n;e;e;w;w;s;e;s;e;s;w;w;s;s;e;e;n;w;s;w;n;w;s;w;n;w;n;w;n;e;s;e;n;e;n;w;w;n;w;w}
+#var bot[path] $botpath;
 
-#act {^-M-_{One-armed zombie|Putrid zombie|Shambling zombie|Aegis Sentry Model 60-FT}} {
-    #var foundtimes 1;
-    #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
-    
-	#if {"Putrid zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Shambling zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"One-armed zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Aegis Sentry Model 60-FT"=="%1"} {@botSetMobActions{sentry};};
+#list botmobs clear;
+#list botmobs add {{long} {Putrid zombie} {target} {zombie}};
+#list botmobs add {{long} {Shambling zombie} {target} {zombie}};
+#list botmobs add {{long} {One-armed zombie} {target} {zombie}};
+#list botmobs add {{long} {Aegis Sentry Model 60-FT} {target} {sentry}};
 
-	.check_monster
-	} {2};
-#act {You've killed} {#nop} {2};
+#var bot[mobs] #botmobs;
 
 #class {bot} {close}
 #read common/bot/generic.tin

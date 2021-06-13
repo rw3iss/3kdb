@@ -33,10 +33,6 @@
 #read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
 #read chars/$user/private.tin;
-#read chars/$user/styles.tin;
-
-/* create space for static hpbar at bottom and reset map position */
-#split 0 4;
 
 #alias {defaults_on} {
 	mipon;

@@ -13,6 +13,8 @@
 	};
 } {5};
 
+#action {Out of nowhere a crazed hockey fan leaps towards the Cup.} {perform dirge};
+
 #ACTION {^Owie. That hurt!} {
 	#if !$corpse_delay {
 		#var corpse_delay 1;

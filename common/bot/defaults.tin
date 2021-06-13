@@ -10,23 +10,20 @@
 	#send {aset look_player -P-_};
 	#send {aset room_short_pref -R-_};
 	#send {aset room_short_suff -R-_};
+	#send {aset room_exits_pref -X-_};
+	#send {aset room_exits_suff -X-_};
 	#send {aset room_long_pref <ESC>[33m-D-_};
 	#send {aset look_weapon -w-};
 	#send {aset look_object -o-};
 	#send {aset look_armor -a-};
 	#send {aset look_other -i-};
+
+	#substitute {^-R-_} {}
+	#substitute {^-D-_} {}
+	#substitute {^-X-_} {}
 	
 	prompt >$nl$;
-	#sub {^-M-_} {};#sub {^-P-_} {};#sub {^-R-_} {};#prompt {^>$} {>} {1};
-	#showme {-------------------------------------------------------};
-	#showme {Place these in your character files:			};
-	#showme { (You can insert color codes or leave empty -- Color	};
-	#showme {   codes are found in "#help colors".			};
-	#showme {#substitute {^-M-_} {}					};
-	#showme {#substitute {^-P-_} {}					};
-	#showme {#substitute {^-R-_} {}					};
-	#showme {#prompt {^>$} {>} {0}					};
-	#showme {-------------------------------------------------------};
+	
 	#showme {Setup successful!};
 	#class {defaultsetup} {kill}
 	}

@@ -1,14 +1,39 @@
 #CLASS {global} {open};
 
-#VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}}
-#VARIABLE         {curvnum}  {4119}
-#VARIABLE         {draw}  {{canvas}{on}{caption}{off}{chat}{off}{gline}{off}{hpbar}{on}{map}{on}{room}{on}}
-#VARIABLE         {hpbar}  {{bottom}{32}{enabledheight}{4}{height}{4}{left}{0}{right}{204}{top}{29}}
-#VARIABLE         {map}  {{height}{19}{heightperc}{.6}{width}{91}{widthperc}{.45}}
-#VARIABLE         {mask}  {1}
-#VARIABLE         {pu_recharge_at}  {1500}
+#NOP -- Gentech settings;
+#VARIABLE         {pu_reclaim} {3000};
 #VARIABLE         {pu_recharger}  {1}
-#VARIABLE         {room}  {{bottom}{28}{exits}{u~n~w~chaos~guild~science~shop~magic~morgue~bank~smithy~resid~kennel~closet}{height}{13}{heightperc}{.4}{name}{Ryan Sucks Donkey Dick (u,n,w,chaos,guild,science,shop,magic,morgue,bank,smithy,resid,kennel,closet)}{top}{20}{width}{91}{widthperc}{.45}}
-#VARIABLE         {splitWidthPerc}  {.45}
+
+#NOP -- General Player Settings;
+#VARIABLE         {mask}            {1};
+
+#NOP -- Strategy Settings;
+
+#NOP -- Drawing Settings;
+#VARIABLE {canvas} {{width} {82}{widthperc} {0.40}};
+#VARIABLE {draw}{ 
+    {canvas} {on}
+    {caption} {on}
+    {chat} {off}
+    {gline} {off}
+    {hpbar} {on}
+    {map} {on}
+    {room} {off}
+    {status} {on}
+};
+#VARIABLE {hpbar} {
+    {bottom} {36} {top} {32}
+    {left} {0} {right} {203}
+    {enabledheight} {4} {height} {4}
+    {prompt} {}
+};
+#VARIABLE {map} {{height} {14}{heightperc} {.4}{left} {122}{width} {81}{widthperc} {0.40}}
+#VARIABLE {room}{{exits} {e}}
+#VARIABLE {wielded} {dagger}
+#VARIABLE {splitWidthPerc} {0.40}
+
+#NOP -- Room Settings;
+#VARIABLE {curvnum} {85}
+#VARIABLE {bot[last-room]} {85}
 
 #CLASS {global} {close}

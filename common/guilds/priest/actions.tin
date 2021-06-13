@@ -1,6 +1,10 @@
 #class {priest_actions} {kill}
 #class {priest_actions} {open}
 
+#act {^Acolyte has no mana stored.$} {
+    #var my[acolyte][mana] 0;
+}
+
 #act {^The blades stop swirling and shimmer into nothingness.$} {
     #var my[effects][blade] OFF;
 }
@@ -21,7 +25,7 @@
     #var my[effects][bene] ON;
 };
 
-#act {^The divinely bright aura settles around you. You feel faster, wiser, smarter and bolder.$} {
+#act {^The divinely bright aura settles around you. You feel} {
     #var my[effects][bless] ON;
 };
 

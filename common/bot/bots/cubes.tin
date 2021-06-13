@@ -1,8 +1,8 @@
 #class {bot} {kill}
 #class {bot} {open}
 
-#var {area} {Dundee Swamp};
-#var check_death 0;
+#var {area} {Westersea Sewer};
+
 #var check_room 0;
 
 #var bot_message_1 '----  WSEA CUBES    ----';
@@ -11,19 +11,14 @@
 #showme $bot_message_1;
 #showme $bot_message_2;
 
-#alias .pre_fight_check {#nop;};
-
-.pre_bot_check;
-
 #var {botpath} {e;e;w;n;s;w;w;w;n;s;w;n;w;e;s;w;w;n;s;s;n;e;e;s;w;e;n;e;s;d;s;s;n;se;nw;ne;sw;e;e;e;w;w;w;n;u;n;e;e};
+#var bot[path] $botpath;
 
-#act {^-M-_{A small gelatinous cube|A massive ochre jelly|A gigantic gelatinous cube}%*.$} {
-	#if {"%1" == "A gigantic gelatinous cube"} {@botSetMobActions{cube};};
-	#if {"%1" == "A small gelatinous cube"} {@botSetMobActions{cube};};
-	#if {"%1" == "A massive ochre jelly"} {@botSetMobActions{jelly};};
-	.check_monster;
-} {2};
+#list botmobs clear;
+#list botmobs add {{{long} {A small gelatinous cube} {target} {cube}}};
+#list botmobs add {{{long} {A gigantic gelatinous cube} {target} {cube}}};
+#list botmobs add {{{long} {A massive ochre jelly} {target} {jelly}}};
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
-
-#read common/bot/generic.tin
+#read common/bot/generic.tin;

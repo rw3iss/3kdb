@@ -8,6 +8,8 @@
 #var ms7_toggle 0;
 #var corpse_toggle 0;
 
+#var toggle_spelltap 1;
+
 #alias {_player_heartbeat} {
     #var mc_threshold 90;
     #var mc_danger 60;
@@ -16,34 +18,22 @@
     #math hp_percent {$my[hp][current] * 100 / $my[hp][max]};
     #math summon_sp_minimum {$my[sp][max] * .4};
 
-    #if $botting {
-        #if $halt {
-            #var bot_string Bot: <DAA><aaa>PAUSED<088>;
-        } {
-            #var bot_string Bot: <ACA><fff>ACTIVE<088>;
-        };
-    } {
-        #var bot_string Bot: <fff>OFF<088>;
-    };
-
     #if !$idle_flag {
-        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $monitors[saturation-stop] || $hpbar_mc < $mc_danger) && $corpses[total] < 5 && !$bot_toggle && $botting} {
+        #if {$hpbar_mc < $mc_danger && !$bot_toggle && $bot[active]} {
+            ptell Pausing to study spellbook.;
+            #var bot_toggle 1;
+            .pause;
+        };
+        #if {($my[sp][current] < $sp_min || $my[gp1][current] > $monitors[saturation-stop]) && $corpses[total] < 5 && !$bot_toggle && $bot[active]} {
             ptell {Stopping:  SP: $my[sp][current] Saturation: $my[gp1][current] Conc: $hpbar_mc};
             #var bot_toggle 1;
             .pause;
-            study spellbook;
         };
-        #if {($my[sp][current] > $sp_threshold && $my[gp1][current] < $monitors[saturation-start] && $hpbar_mc > $mc_threshold) && $bot_toggle && $botting} {
-            ptell {Resuming:  SP: $my[sp][current] Saturation: $my[gp1][current] Conc: $hpbar_mc};
+        #if {($my[sp][current] > $sp_threshold && $my[gp1][current] < $monitors[saturation-start] && $hpbar_mc > $mc_threshold) && $bot_toggle && $bot[active]} {
+            ptell Resuming:  SP: $my[sp][current] Saturation: $my[gp1][current] Conc: $hpbar_mc;
             #var bot_toggle 0;
-            #var halt 0;
             ..;
         };
-    };
-
-    #NOP -- Wake the bot up if it stopped for whatever reason;
-    #if {!$bot_walking && $botting && !$idle_flag && !$mip[round] && !$bot_toggle} {
-         #delay 5 {#if {!$mip[round] && !$bot_walking} {..}};
     };
 
     #NOP -- Heartbeat actions that should only be attempted once per round;
@@ -52,6 +42,8 @@
 
         #if {$my[immersion][count] && !$my[immersion][rounds] && ($my[golem][reset] > 80 || $my[sp][current] < $sp_min)} {
             cast mystic immersion;
+            cast giant strength oscar;
+            cast giant strength golem;
             #if $summoner {summon_str;cast haste on summons;};
         };
         
@@ -67,7 +59,7 @@
                 #NOP --     #delay {$summon_delay} {ms7};
                 #NOP -- };
             };
-        }
+        };
 		
 
         #if {$my[gp1][current] > $monitors[saturation-corpse] && $corpses[total] > 0 && !$my[super][current] && !$corpse_toggle} {#var corpse_toggle 1;corpse_select;#delay 4 {cast spell tap on corpse;cast corpse blast;cast spell tap on corpse;cast corpse blast;#var corpse_toggle 0}};
@@ -75,7 +67,7 @@
         
         #if {$my[gp1][current] < 30 && !$ash_toggle} {ash on;ash;#var ash_toggle 1;};
         #if {!$my[super][current] && $my[gp1][current] > $monitors[saturation-stop] && $ash_toggle} {ash off;#var ash_toggle 0;};
-        #if {$my[super][current] && $my[gp1][current] > 75} {cast explosive release};
+        #if {$my[super][current] && $my[gp1][current] > $monitors[saturation-corpse]} {cast explosive release};
         #if {$my[gem] < 80 && !$go_fetch} {#var go_fetch 1;ffetch gem};
 
         #if {$strategy[slow] && $mob_slow < 1} {
@@ -88,6 +80,16 @@
 
         #if {$strategy[atrophy] && $mob_atrophy < 1} {
             cast mystic atrophy;
+        };
+
+        #if {$toggle_spelltap && $strategy[spelltap] && $sp_percent > 70} {
+            #var toggle_spelltap 0;
+            cast spell tap never;
+        };
+
+        #if {!$toggle_spelltap && $strategy[spelltap] && $sp_percent < 30} {
+            #var toggle_spelltap 1;
+            cast spell tap always;
         };
 
         #if {$summoner && !$summons_haste && $sp_percent > 30} {

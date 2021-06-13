@@ -1,9 +1,15 @@
 #class {player_actions} {kill}
 #class {player_actions} {open}
 
+#ACTION {dealt the killing blow to} {
+    #if !$bot[active] {
+        corpse_trig;
+    };
+};
+
 #NOP --- Oscar specific actions;
-#action {killing blow} {corpse_trig};
 #action {^Owie. That hurt!$} {#15 grasp beads};
+#action {Out of nowhere a crazed hockey fan leaps towards the Cup.} {cast corpse blast};
 
 #NOP -- Summon specific actions;
 #action {That is not here or it is uninteresting. (materials?)} {ffetch materials;#delay 4 {#var golem_toggle 1};};

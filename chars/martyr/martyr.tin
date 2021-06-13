@@ -32,24 +32,12 @@
 #read chars/$user/heartbeat.tin;
 #read chars/$user/vars.tin;
 
-/* create space for static hpbar at bottom and reset map position */
-#split 0 4;
 
 #alias {defaults_on} {
 	mipon;
 	loadmap;
     postload;
 	#read common/draw.tin;
-	
-	#ECHO {+++++++ DEFAULTS SET: Auto Ibeam / PU Recharging ++++++};
-	#ECHO {+++++++ DEFAULTS SET: Corpse Counting Reset      ++++++};
-	#ECHO {+++++++ MASK ON FUCK IT MASK ON ++++++};
-	#var mask 1;
-	#var auto_ibeam 1;
-	#var pu_recharger 1;
-	#var corpses[coffin] 0;
-	#var corpses[inventory] 0;
-	#var corpses[smuggle] 0;
 	(csclear;
 	cs clear;
 	#delay 1 {i;smuggle};

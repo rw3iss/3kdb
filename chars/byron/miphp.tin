@@ -1,39 +1,7 @@
 #class {miphp} {kill}
 #class {miphp} {open}
 
-#alias {update_status} {
-
-	#math   {idle_hr}       {$idle / 3600};
-	#math   {idle_min}      {$idle % 3600 / 60};
-	#math   {idle_sec}      {$idle % 60};
-	#if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
-	#if     {$idle_min < 10}{#var idle_min 0$idle_min};
-	#if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
-	#format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-
-	#math   {deadManTimeLeft_hr}       {$deadManTimeLeft / 3600};
-	#math   {deadManTimeLeft_min}      {$deadManTimeLeft % 3600 / 60};
-	#math   {deadManTimeLeft_sec}      {$deadManTimeLeft % 60};
-	#if     {$deadManTimeLeft_hr < 10} {#var deadManTimeLeft_hr  0$deadManTimeLeft_hr};
-	#if     {$deadManTimeLeft_min < 10}{#var deadManTimeLeft_min 0$deadManTimeLeft_min};
-	#if     {$deadManTimeLeft_sec < 10}{#var deadManTimeLeft_sec 0$deadManTimeLeft_sec};
-	#format {deadManTimeLeft_cap}      {%+4s}  {<268>[<128>$deadManTimeLeft_hr<268>:<128>$deadManTimeLeft_min<268>:<128>$deadManTimeLeft_sec<268>]<088>};
-
-	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
-	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
-	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
-	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
-	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
-	#format {hp}			{%+4s} {$my[hp][current]};
-	#format {hp_max}		{%+4s} {$my[hp][max]};
-	#format {sp}			{%+4s} {$my[sp][current]};
-	#format {sp_max}		{%+4s} {$my[sp][max]};
-	#format {gp1}			{%+4s} {$my[gp1][current]};
-	#format {gp1_max}		{%+4s} {$my[gp1][max]};
-	#format {gp2}			{%+4s} {$my[gp2][current]};
-	#format {gp2_max}		{%+4s} {$my[gp2][max]};
-	#format {ehealth}		{%+7s} {$enemy[hp]%%};
-
+#alias {_player_miphp} {
 	#if {$my[defs][ab] == 1}						{#var ab_string <ACA><fff>AB*<088>} 				{#var ab_string {}};
 	#if {$my[defs][blink] == 1}	{#if $defs[blink]	{#var blink_string <ACA><fff>B*<088>} 				{#var blink_string B*}} 			 {#var blink_string {}};
 	#if {$my[defs][mb] == 1}	{#if $defs[mb]		{#var mb_string <ACA><fff>MB*<088>}   				{#var mb_string MB*}}   			 {#var mb_string {}};
@@ -54,58 +22,20 @@
 	#var prot_string {$rf_string $hr_string $fr_string $v_string $ag_string $o_string $ab_string $blink_string $pe_string $pg_string $pn_string $pf_string $ph_string $mb_string $hs_string $es_string};
 	#replace prot_string  { } {};
 	#replace prot_string  {*} { };
+
 	
-	#if {$my[song][rounds] > 0} {#var song_string Singing: $my[song][title] - $my[song][rounds];} {#var song_string {}};
+	#if {$my[song][rounds] > 0} {#var song_string <FFF><bbb>Singing: $my[song][title] - $my[song][rounds]<088>;} {#var song_string {           }};
 
-	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth};
-	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {Prots: $prot_string $song_string $eternal_string};
-	#var prompt4 {$corpse_string Idle: $idle_cap};
+	#list temp clear;
 
-	_player_heartbeat;
-    _guild_heartbeat;
-	draw_hpbar;
-}
-    
+	#list temp add {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth};
+	#list temp add {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]};
+	#list temp add {<fff>Prots: $prot_string};
+	#list temp add {$eternal_string};
+	#list temp add {$song_string};
 
-#if {"$draw[hpbar]" == "on"} {
-	#var hpbar[enabledheight] $hpbar[height];
-} {
-	#var hpbar[enabledheight] 0;
-}
-    
-/* calculate hpbar size and draws initial line above hpbar area */
-#alias {init_hpbar} {
-    
-    #if {"$draw[hpbar]" == "on"} {
-        #var hpbar[enabledheight] $hpbar[height];
-    } {
-        #var hpbar[enabledheight] 0;
-    }
-
-    #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
-    #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
-    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
-
-    #if {"$draw[hpbar]" == "on"} {
-    	#draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
-    };
-
-    tickhp;
-};
-
-#alias {draw_hpbar} {
-    #if {"$draw[hpbar]" == "on"} {
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3}\n${prompt4} };
-    }
+	#var hpbar[prompt] $temp;
 }
 
-#alias {tickhp} {
-    #TICKER {update_status} {
-            #math {idle} {$idle + 1};
-			#math {deadManTimeLeft} {$deadManTimeLeft - 1};
-			#if {"$draw[status]" == "on"} {draw_status;};
-    } {1}
-}
 
 #class {miphp} {close}

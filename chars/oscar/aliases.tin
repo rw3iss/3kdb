@@ -1,20 +1,21 @@
 #class {player_aliases} {kill}
 #class {player_aliases} {open}
 
+#list {temp} create {};
+
+#ACTION {^%d:You will cast %w should your %w ever} {
+     #list temp set %1 {%2};
+};
+
 #alias corpse_trig {
   cast spell tap on corpse;
   slab;
   wrap;
   cast corpse blast;
-  get coins;
-  get fragment;
-  get essence;
-  get heart;
+  share gold;
+  get all;
   stash all;
   fuse 50;
-  #var mob_slow 0;
-  #var mob_drain 0;
-  #var mob_atrophy 0;
   study spellbook;
 };
 
@@ -33,6 +34,20 @@
     .pause;
 };
 
+#alias {setup_defense} {
+     clear_c;
+     clear_gc;
+     setup_c;
+     setup_gc;
+     #delay 2 {prots_ss};
+     #delay 4 {prots_MG};
+     #delay 6 {prots_ms};
+     #delay 8 {prots_armor};
+     #delay 10 {prots_ps};
+     #delay 12 {cast mantle};
+     #delay 14 {prots_pfe};
+}
+
 #alias {setup_c} {
      cast contingency as prot_evil#cast protection from evil;
 }
@@ -42,16 +57,16 @@
      cast greater contingency as major globe#cast major globe;     
      cast greater contingency as shield#cast magnificent shield;
      cast greater contingency as armor#cast armor;
-     cast greater contingency as mantle#200#cast mantle;
-     cast greater contingency as prismatic sphere#200#cast prismatic sphere;
+     cast greater contingency as mantle#$mage[contingencies][mantle]#cast mantle;
+     cast greater contingency as prismatic sphere#$mage[contingencies][sphere]#cast prismatic sphere;
 }
 
 #alias {clear_c} {
-     #6 {cast remove contingency as 1};
+     #10 {cast remove contingency as 1};
 }
 
 #alias {clear_gc} {
-     #7 {cast remove greater contingency as 1};
+     #10 {cast remove greater contingency as 1};
 }
 
 #alias ms7 {
@@ -76,18 +91,6 @@
 
      #$grasp_beads {grasp beads};
 }
-
-#ALIAS {ld}
-{
-     #class global open;
-     #map get roomvnum curvnum;
-     #variable shield $shield;
-     #variable wielded $wielded;
-     #class global close;
-     #class global write chars/$user/vars.tin;
-     #delay 1 {#end}
-};
-
 
 #NOP ---MISC
 #alias {bag_all %1} {#loop 1 %1 i {put all in bag $i}};

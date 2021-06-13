@@ -86,7 +86,7 @@
 		#if $defs[shield] {#if !$my[prots][S] {cast shield} {#nop}};
 		#if $defs[blink] {#if !$my[prots][B] {cast blink} {#nop}};
 
-		#if !$deeppocket {#if {$my[sp][current] > 150} {cast deeppockets}};
+		#if !$deeppocket {#if {$my[sp][current] > 500} {cast extension 3;cast deeppockets}};
 	} {#NOP;};
 };
 

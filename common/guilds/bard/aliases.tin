@@ -1,6 +1,17 @@
 #class {bard_aliases} {kill}
 #class {bard_aliases} {open}
 
+#NOP ---THIS SECTION IS FOR STRATEGY SETTINGS;
+#alias {strategy_assault} {
+	#if $strategy[assault] {
+
+	} {
+
+	};
+};
+#alias {strategy_vortex} {};
+#alias {strategy_cloud} {};
+
 #NOP ---THIS SECTION IS FOR SONG ALIASES;
 #alias {clear_prots} {#var defs 0};
 #alias {vamp} {perform vampire};
@@ -30,6 +41,22 @@
 		#var strategy[hammer] 1;
 		#var ham_bot 1;
 		#var defs[hr] 1;
+	};
+};
+
+#alias {rod_bot} {
+	#if $rod_bot {
+		#SHOWME <FEB><daa>------------------- RAINBOW OF DEATH DISABLED -------------------<088>;
+		#var strategy[rainbow] 0;
+		#var rod_bot 0;
+		#var defs[hr] 0;
+		#var defs[fr] 0;
+	} {
+		#SHOWME <FEB><daa>------------------- RAINBOW OF DEATH ACTIVATED  -------------------<088>;
+		#var strategy[rainbow] 1;
+		#var rod_bot 1;
+		#var defs[hr] 1;
+		#var defs[fr] 1;
 	};
 };
 

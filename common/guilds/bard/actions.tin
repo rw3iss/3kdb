@@ -15,9 +15,4 @@
 #ACTION {^Your empowered strikes have faded.} {#if {$defs[es] && !$idle_flag && $my[karma][current] > 300} {empowered strikes}} {6};
 #ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {cast blink}} {6}
 
-#ACTION {^You cease your} {wear $shield} {6};
-#ACTION {^You finish your performance with a bow.$} {wear $shield} {6};
-#ACTION {^You have exceeded the usefulness of this song.$} {wear $shield} {6};
-#ACTION {Your ROD requires a partner.  (active combat.)} {#var rod_bot 0};
-
 #class {bard_actions} {close}

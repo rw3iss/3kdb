@@ -3,7 +3,7 @@
 #ticker wine {
     #if !$idle_flag {
         #if {$my[gp1][current] > 200} {
-            drink eggnog;
+            drink wine;
             #delay 4 {
                 #if !$my[drunk] {
                     createbw wine

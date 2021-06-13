@@ -1,81 +1,20 @@
 #class {miphp} {kill}
 #class {miphp} {open}
 
-#alias {update_status} {
-
-	#math   {idle_hr}       {$idle / 3600};
-	#math   {idle_min}      {$idle % 3600 / 60};
-	#math   {idle_sec}      {$idle % 60};
-	#if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
-	#if     {$idle_min < 10}{#var idle_min 0$idle_min};
-	#if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
-	#format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-
-	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
-	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
-	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
-	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
-	#var	{my[cpc][graph]}	{@graph{$my[cpc][current];$my[cpc][max]}};
-	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
-	#format {hp}			{%+5s} {$my[hp][current]};
-	#format {hp_max}		{%+5s} {$my[hp][max]};
-	#format {sp}			{%+5s} {$my[sp][current]};
-	#format {sp_max}		{%+5s} {$my[sp][max]};
-	#format {gp1}			{%+5s} {$my[gp1][current]};
-	#format {gp1_max}		{%+5s} {$my[gp1][max]};
-	#format {gp2}			{%+5s} {$my[gp2][current]};
-	#format {gp2_max}		{%+5s} {$my[gp2][max]};
-	#format {ehealth}		{%+7s} {$enemy[hp]%%};
+#alias {_player_miphp} {
 
 	#format {attack_ionbeam}	{%p}	{$my[attacks][ionbeam]};
 	#format {attack_ddb}		{%p}	{$my[attacks][ddb]};
 	#format {attack_synthorg}	{%p}	{$my[attacks][synthorg]};
 
-	#var hpStr {HP: $my[hp][graph] SP: $my[sp][graph] PU: $my[gp1][graph] SPU: $my[gp2][graph] CPC:$my[cpc][graph]  E:$enemy[graph]};
-	#var prompt2 {HP:$hp/$hp_max SP:$sp/$sp_max PU:$gp1/$gp1_max SPU:$gp2/$gp2_max CPC:$my[cpc][current]/$my[cpc][max]  E:$ehealth};
-	#var prompt3 {TS: $my[timeslide][personal]/$my[timeslide][emergency] ($my[timeslide][reset]%) I-Beam .: $attack_ionbeam :. DDB .: $attack_ddb :.  Synth .: $attack_synthorg :.};
-	#var prompt4 {$corpse_string $eternal_string Idle: $idle_cap};
-	_heartbeat;
-	draw_hpbar;
+	#list temp clear;
+	#list temp add {HP: $my[hp][graph] SP: $my[sp][graph] PU: $my[gp1][graph] SPU: $my[gp2][graph] CPC:$my[cpc][graph]  E:$enemy[graph]};
+	#list temp add {HP:$hp/$hp_max SP:$sp/$sp_max PU:$gp1/$gp1_max SPU:$gp2/$gp2_max CPC:$my[cpc][current]/$my[cpc][max]  E:$ehealth};
+	#list temp add {I-Beam .: $attack_ionbeam :. DDB .: $attack_ddb :.  Synth .: $attack_synthorg :.};
+	#list temp add {TS: $my[timeslide][personal]/$my[timeslide][emergency] ($my[timeslide][reset]%)};
+
+	#var hpbar[prompt] $temp;
 }
 
-#if {"$draw[hpbar]" == "on"} {
-	#var hpbar[enabledheight] $hpbar[height];
-} {
-	#var hpbar[enabledheight] 0;
-}
-    
-/* calculate hpbar size and draws initial line above hpbar area */
-#alias {init_hpbar} {
-    
-    #if {"$draw[hpbar]" == "on"} {
-        #var hpbar[enabledheight] $hpbar[height];
-    } {
-        #var hpbar[enabledheight] 0;
-    }
-
-    #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
-    #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
-    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
-
-    #if {"$draw[hpbar]" == "on"} {
-    	#draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
-    };
-
-    tickhp;
-};
-
-#alias {draw_hpbar} {
-    #if {"$draw[hpbar]" == "on"} {
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {${hpStr}\n${prompt2}\n${prompt3}\n${prompt4} };
-    }
-}
-
-#alias {tickhp} {
-    #TICKER {update_status} {
-            #math {idle} {$idle + 1};
-            update_status;
-    } {1}
-}
 
 #class {miphp} {close}

@@ -2,30 +2,25 @@
 
 #var {area} {Hotel Transylvania}
 #var check_room 0;
-#var check_death 0;
 
 #var bot_message_1 '---- HOTEL VAMPIRE STEPPER ----';
 #var bot_message_2 '----     ALL TARGETS       ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#alias .pre_fight_check {#nop;};
-
-.pre_bot_check;
-
 #VAR {botpath} {e;e;e;e;e;e;e;w;se;w;w;se;e;e;se;sw;e;s;ne;e;s;w;s;w;w;se;e;e;e;e;w;w;w;w;w;w;w;w;sw;e;e;e;e;w;sw;w;w;w;w;w;nw;e;e;e;ne;n;n;e;ne;w;n;n;nw;s;w;n;w;s;s;se;n;e;s;sw;s;s;w;w;ne;w;ne;w;ne;w;n;n;n;w;s;s;s;n;n;n;n};
 
-#act {-M-_{An ugly vampire|A buff vampire|A chubby vampire|A zombie bell hop waiting to carry your things|A zombie waiter offering drinks|A zombie cook looking for something to chop}%*} {
-    #var foundtimes 1;
-	#regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
-	#if {"%1" == "An ugly vampire"} {@botSetMobActions{vampire;$foundtimes};};
-	#if {"%1" == "A buff vampire"} {@botSetMobActions{vampire;$foundtimes};};
-	#if {"%1" == "A chubby vampire"} {@botSetMobActions{vampire;$foundtimes};};
-    #if {"%1" == "A zombie bell hop waiting to carry your things"} {@botSetMobActions{zombie;$foundtimes};};
-    #if {"%1" == "A zombie waiter offering drinks"} {@botSetMobActions{zombie;$foundtimes};};
-	#if {"%1" == "A zombie cook looking for something to chop"} {@botSetMobActions{zombie;$foundtimes};};	
-	.check_monster;
-} {2};
+#var bot[path] $botpath;
+
+#list botmobs clear;
+#list botmobs add {{{long} {An ugly vampire} {target} {vampire}}};
+#list botmobs add {{{long} {A buff vampire} {target} {vampire}}};
+#list botmobs add {{{long} {A chubby vampire} {target} {vampire}}};
+#list botmobs add {{{long} {A zombie bell hop waiting to carry your things} {target} {zombie}}};
+#list botmobs add {{{long} {A zombie waiter offering drinks} {target} {zombie}}};
+#list botmobs add {{{long} {A zombie cook looking for something to chop} {target} {zombie}}};
+
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
 #read common/bot/generic.tin
+playercheck;

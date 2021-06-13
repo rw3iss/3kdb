@@ -5,17 +5,6 @@
     .stop;
 };
 
-#ALIAS {ld}
-{
-     #class global open;
-     #map get roomvnum curvnum;
-     #variable shield $shield;
-     #variable wielded $wielded;
-     #class global close;
-     #class global write chars/$user/vars.tin;
-     #delay 1 {#end}
-};
-
 #ALIAS {postload}
 {
      #map flag static on;

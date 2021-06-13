@@ -2,7 +2,7 @@
 
 #var {area} {Ant Caves}
 #var check_room 0;
-#var check_death 0;
+
 
 #var bot_message_1 '---- ANT CAVES STEPPER ----';
 #var bot_message_2 '----     ALL TARGETS       ----';

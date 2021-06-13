@@ -7,7 +7,13 @@
 #alias {_player_heartbeat} {
 	#if {!$idle_flag} {
 		#if {$make_con && $my[necromancer][worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}};
-		#if {$party_actions && $mip[round] == 2} {fury;rabies;call;};
+		#if {$party_actions && $mip[round] == 2} {fury;rabies;call;maim;=kill $enemy[target]};
+		#if {$my[gp1][current] < $np_min} {
+			#showme GP1 are $my[gp1][current];
+			#showme NPS ARE LOW SELECTING CORPSE;
+			corpse_select;
+			absorb
+		}
 	};
 };
 

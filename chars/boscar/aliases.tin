@@ -1,12 +1,6 @@
 #class {player_aliases} {kill}
 #class {player_aliases} {open}
 
-#alias .mob_kill_action {
-    kill $mobname;
-    #delay 3 curse;
-    #delay 6 ffire;
-}
-
 #alias {_player_deadmanActions} {
     .pause;
 };

@@ -1,31 +1,8 @@
 #class {miphp} {kill}
 #class {miphp} {open}
 
-#alias {update_status} {
-
-	#math   {idle_hr}       {$idle / 3600};
-	#math   {idle_min}      {$idle % 3600 / 60};
-	#math   {idle_sec}      {$idle % 60};
-	#if     {$idle_hr < 10} {#var idle_hr  0$idle_hr};
-	#if     {$idle_min < 10}{#var idle_min 0$idle_min};
-	#if     {$idle_sec < 10}{#var idle_sec 0$idle_sec};
-	#format {idle_cap}      {%+4s}  {<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-
-	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
-	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
-	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
-	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
-	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
-	#format {hp}			{%+4s} {$my[hp][current]};
-	#format {hp_max}		{%+4s} {$my[hp][max]};
-	#format {sp}			{%+4s} {$my[sp][current]};
-	#format {sp_max}		{%+4s} {$my[sp][max]};
-	#format {gp1}			{%+4s} {$my[gp1][current]};
-	#format {gp1_max}		{%+4s} {$my[gp1][max]};
-	#format {gp2}			{%+4s} {$my[gp2][current]};
-	#format {gp2_max}		{%+4s} {$my[gp2][max]};
-	#format {ehealth}		{%+7s} {$enemy[hp]%%};
-
+#alias {_player_miphp} {
+	
 	#if $my[prots][S]  {#if $defs[shield] {#var shield_string <ACA><fff>*S*<088>} {#var shield_string *S*} } {#var shield_string {}};
 	#if $my[prots][B]  {#if $defs[blink] {#var blink_string <ACA><fff>*B*<088>} {#var blink_string *B*} } {#var blink_string {}};
 	#if $my[prots][PA] {#if $defs[PA] 	 {#var pa_string <ACA><fff>*PA*<088>} {#var pa_string *PA*} } {#var pa_string {}};
@@ -43,7 +20,7 @@
 	
 	#if {$my[immersion][rounds] > 0} {#var immersion_string $my[immersion][count]/$my[immersion][rounds]} {#var immersion_string $my[immersion][count]};
 
-	#var prots_string {$ps_string $m_string $mb_string $pa_string $MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string<088>};
+	#var prots_string {$ps_string $m_string $mb_string $pa_string $MG_string $ss_string $armor_string $mag_string $rs_string $mg_string $pg_string $pe_string $blink_string $shield_string};
 	#replace prots_string  { } {};
 	#replace prots_string  {*} { };
 
@@ -51,55 +28,16 @@
 	#if {$ash == 1} {#var ash_string <ACA><fff>PLYRS<088>};
 	#if {$ash == 2} {#var ash_string <ACA><fff>ALL<088>};
 
-	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Sat:$gp1/$gp1_max  C:$gp2/$gp2_max  E:$ehealth};
-	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]};
-	#var prompt3 {Prots: $prots_string Golem: $my[golem][current]/$my[golem][reset]%  Super: $my[super][current]/$my[super][reset]%  I : $immersion_string  G2N: $my[g2n]%   };
-	#var prompt4 {$corpse_string Gem: $my[gem]% MC: $my[mental_cognition]% ASH: $ash_string Idle: $idle_cap};
-	#var prompt5 {$eternal_string $bot_string Golem: $my[summon][golem]};
-	#var prompt6 {<fff>Gxp:  Round($gxp_gained) Total($total_gxp_gained)  Rounds($cmbt[rnd]) Avg ($average_gxp) Hits($cmbt[avg_hits])<088>};
+	#list temp clear;
+	#list temp add {<eeb>HP:<ffe>$hp/$hp_max <eeb>SP:<ffe>$sp/$sp_max <eeb>Sat:<ffe>$gp1/$gp1_max  <eeb>C:<ffe>$gp2/$gp2_max  <eeb>E:<ffe>$ehealth<088>};
+	#list temp add {H:$my[hp][graph] S:$my[sp][graph] Sat:$my[gp1][graph] C:$my[gp2][graph] E:$enemy[graph]<088>};
+	#list temp add {<eeb>Prots: <ffe>$prots_string <eeb>Gem: <ffe>$my[gem]%  <eeb>MC: <ffe>$my[mental_cognition]% ASH: $ash_string<088>};
+	#list temp add {<eeb>Golem: <ffe>$my[summon][golem] ($my[golem][current]/$my[golem][reset]%)  <eeb>Super: <ffe>$my[super][current]/$my[super][reset]%  <eeb>I: <ffe>$immersion_string<088>  <eeb>G2N: <ffe>$my[g2n]%<088>};
+	#list temp add {<eeb>Gxp: <ffe>$gxp_gained <ffe>($average_gxp/rnd over $total_rounds rounds)<088>};
 
-	_player_heartbeat;
-    _guild_heartbeat;
-	draw_hpbar;
+	#var hpbar[prompt] $temp;
 }
     
 
-#if {"$draw[hpbar]" == "on"} {
-	#var hpbar[enabledheight] $hpbar[height];
-} {
-	#var hpbar[enabledheight] 0;
-}
-    
-/* calculate hpbar size and draws initial line above hpbar area */
-#alias {init_hpbar} {
-    
-    #if {"$draw[hpbar]" == "on"} {
-        #var hpbar[enabledheight] $hpbar[height];
-    } {
-        #var hpbar[enabledheight] 0;
-    }
-
-    #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
-    #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
-    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
-
-    #if {"$draw[hpbar]" == "on"} {
-    	#draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
-    };
-
-    tickhp;
-};
-
-#alias {draw_hpbar} {
-    #if {"$draw[hpbar]" == "on"} {
-        #draw {<dda>} {tile} $hpbar[top] $hpbar[left] $hpbar[bottom] -1 {$hpStr\n$prompt2\n$prompt3\n$prompt4\n$prompt5\n$prompt6 };
-    }
-}
-
-#alias {tickhp} {
-    #TICKER {update_status} {
-            #math {idle} {$idle + 1};
-    } {1}
-}
 
 #class {miphp} {close}

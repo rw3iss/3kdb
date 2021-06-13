@@ -27,7 +27,7 @@
 		.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]}
 	}
 
-    update_status;
+    _update_status;
 }
 
 #NOP ***** Separated Stats Data *****
@@ -55,11 +55,21 @@
 #ALIAS {.mipProcessFFFK} {
 	#IF {"%1" != ""} {
 		#VAR {enemy} {};
-		#VAR {enemy[name]} {%1};
+		#var enemy[name] %1;
+
+		#nop -- Try to lowercase the name and replace the articles with blanks to get a "target";
+		#format enemy[target] {%l} {%1};
+		#replace enemy[target] {\ba\b} {};
+		#replace enemy[target] {\ban\b} {};
+		#replace enemy[target] {\bthe\b} {};
+		#format enemy[target] {%p} {$enemy[target]};
 	} {
+		#VAR {enemy[name]} {};
+		#VAR {enemy[target]} {};
+		#VAR {enemy[graph]} {};
 		#VAR {enemy[hp]} {}
-	}
-}
+	};
+};
 
 #NOP ***** Guild Stats Line 1/2 *****
 #ALIAS {.mipProcessGline} {
@@ -150,7 +160,7 @@
 		};
 		#REGEX {$mip[gline][2]} {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
 	}; #ELSE {
-		#ECHO {<171> Invalid Gline Number <088>}
+		#ECHO {<171> Invalid Gline Number <088>};
 	}
 };
 
@@ -170,7 +180,7 @@
 		#REGEX {$mip[gline][2]}	{Edna\(\<%?%d%w\>\)} {#VAR {my[edna]} {&2}};
 		#REGEX {$mip[gline][2]}	{Illum\(\<%?%w\>\)} {#VAR {my[illum]} {&2}};
 	}; #ELSE {
-		#ECHO {<171> Invalid Gline Number <088>}
+		#ECHO {<171> Invalid Gline Number <088>};
 	}
 };
 
@@ -194,7 +204,7 @@
 			#VAR {reset}		{&3};
 		}
 	}; #ELSE {
-		#ECHO {<171> Invalid Gline Number <088>}
+		#ECHO {<171> Invalid Gline Number <088>};
 	}
 }
 
@@ -204,7 +214,7 @@
 		#REGEX {$mip[gline][1]} {Worth:%d}	{#VAR {my[necromancer][worth]}		{&1}};
 		#REGEX {$mip[gline][1]} {Tport:%d/%d}	{
 			#VAR {my[necromancer][teleports][current]}	{&1};
-			#VAR {my[necromancer][teleports][max]}		{&2}
+			#VAR {my[necromancer][teleports][max]}		{&2};
 		};
 		#REGEX {$mip[gline][1]} {Fury:%d/%d}	{
 			#VAR {my[necromancer][glamors][current]}	{&1};
@@ -220,14 +230,14 @@
 		#REGEX {$mip[gline][2]}	{Undead:%w}	{#VAR {my[undead]}		{&1}};
 		#REGEX {$mip[gline][2]}	{HPf:%d/%d}	{
 			#VAR {my[hp][fuse][current]}	{&1};
-			#VAR {my[hp][fuse][max]}	{&2}
+			#VAR {my[hp][fuse][max]}	{&2};
 		}
 		#REGEX {$mip[gline][2]}	{SPf:%d/%d}	{
 			#VAR {my[sp][fuse][current]}	{&1};
-			#VAR {my[sp][fuse][max]}	{&2}
+			#VAR {my[sp][fuse][max]}	{&2};
 		}
 	}; #ELSE {
-		#ECHO {<171> Invalid Gline Number <088>}
+		#ECHO {<171> Invalid Gline Number <088>};
 	}
 }
 
@@ -257,11 +267,11 @@
 		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
 		#REGEX {$mip[gline][2]} { %*: %d} {
 			#var song_match 0;
-			#foreach {$bardSongs} {song} {
-				#if {"$song" == "&1"} {
+			#foreach $bardSongs[%*] {song} {
+				#regexp {"$song[name]"} {"&1"} {
 					#var song_match 1;
 					#var my[song][title] &1;
-					#var my[song][rounds] &2
+					#var my[song][rounds] &2;
 				};
 			};
 			#if !$song_match {#unvar my[song]};
@@ -277,20 +287,7 @@
 		#REGEX {$mip[gline][1]} {CL:%d.%d}			{#VAR {my[gxp][g2n]}		{&1.&2}};
 		#REGEX {$mip[gline][1]} {Regen:%w}			{#VAR {my[regen]}			{&1}};
 	}; #ELSEIF {%1 == 2} {
-		#nop Smile, GXP, Song Performing, Rounds left;
-		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
-		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
-		#REGEX {$mip[gline][2]} { %*: %d} {
-			#var song_match 0;
-			#foreach {$bardSongs} {song} {
-				#if {"$song" == "&1"} {
-					#var song_match 1;
-					#var my[song][title] &1;
-					#var my[song][rounds] &2
-				};
-			};
-			#if !$song_match {#unvar my[song]};
-		};
+		#NOP
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>};
 	};

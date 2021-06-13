@@ -17,17 +17,22 @@
 		#if {$my[defs][blink] > 0} {#NOP} {#if {$defs[blink]} {cast blink} {#nop}};
 		#if {$my[defs][ag] > 0} {#NOP} {#if {$defs[ag]} {perform amazing grace} {#nop}};
 		#if {$my[defs][o] > 0}  {#NOP} {#if {$defs[om]}  {perform o muse} {#nop}};
-		#if {$my[defs][hr] > 0} {#NOP} {#if {$defs[hr]} {cast harmonic regeneration} {#nop}};
+		#if {$my[defs][hr] > 0} {#NOP} {#if {$defs[hr] && $my[sp][current] > $protCosts[harmonic regeneration][sp]} {cast harmonic regeneration} {#nop}};
 
 		#NOP -- actions that should only be attempted once per round;
-		#if {$action_round < $mip[round]} {
-			#if {$strategy[rainbow] && $rod_bot} {
-				#if !$my[song][rounds] {perform rainbow of death};
-				#if !$my[defs][fr] {cast focus the rainbow};
-			};
+		#if {$action_round < $mip[round] && $mip[round] > 0} {
+			#NOP --- The song bots shouldn't attempt to keep rolling if we're near using a corpse;
+			#if {$my[gp1][current] > $karma_heal} {
+				#if {$strategy[rainbow] && $rod_bot} {
+					#if {$my[song][rounds] > 1} {#NOP} {perform rainbow of death};
+					#if !$my[defs][fr] {cast focus the rainbow};
+				};
 
-			#if {$strategy[hammer] && $ham_bot && $my[gp2][current] > 20} {
-				#if {!$my[song][rounds] && $mip[round] > 10} {perform hammer smashed face};
+				#if {$strategy[hammer] && $ham_bot && $my[gp2][current] > 20} {
+					#if {$my[song][rounds] > 1} {#NOP} {
+						#if {$mip[round] > 10} {perform hammer smashed face};
+					};
+				};
 			};
 		};
 	};	

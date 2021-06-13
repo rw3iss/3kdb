@@ -56,11 +56,4 @@
     #show Map and room details on.;
 }
 
-/*
-@register_module{mip};
-@register_module_info{logger;{
-	#show Mip info todo;
-}};
-*/
-
 #CLASS {mip} {close}

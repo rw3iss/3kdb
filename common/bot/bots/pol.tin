@@ -3,30 +3,26 @@
 
 #var {area} {Portal of Life};
 #var check_room 0;
-#var check_death 0;
+
 
 #var bot_message_1 '---- PORTAL OF LIFE STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#alias {.pre_fight_check} {#nop};
-
 #var {botpath} {n;n;n;nw;nw;n;se;se;n;nw;nw;ne;n;se;ne;s;sw;se;ne;s;sw;s;s;ne;n;se;ne;ne;ne;nw;nw;nw;n;nw;ne;se;s;se;se;n;nw;n;se;se;s;s;se;n;n;n;n;n;n;n;n;nw;s;s;s;sw;n;n;n;sw;s;s;sw;sw;nw;n;se;ne;nw;ne;nw;ne;ne;ne;nw;nw;nw;nw;nw;s;se;sw;se;sw;se;sw;s;s;nw;sw;n;ne;nw;nw;n;se;se;n;nw;ne;n;n;sw;s;sw;n;sw;sw;sw;sw;sw;sw;s;ne;s;se;n;n;ne;s;s;s;ne;n;n;se;s;se;sw;se;sw;nw;sw;nw;nw;nw;s;s;s;s;s;s;ne;se;n;nw;n;ne;ne;se;ne;se;sw;sw;nw;sw;se;se;sw;s;se;se;se;se;se;s;s}
 
-#act {^-M-_{Wild Stag|Faerie Lizard|Baby Dragon|Rabid Wolf|Ragged Peasant|Sylvan Elf|Wyvern}} {
-	#var foundtimes 1;
-    #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
+#var bot[path] $botpath;
 
-	#if {"Wild Stag"=="%1"} {@botSetMobActions{stag};};
-	#if {"Faerie Lizard"=="%1"} {@botSetMobActions{lizard};};
-	#if {"Baby Dragon"=="%1"} {@botSetMobActions{dragon};};
-	#if {"Rabid Wolf"=="%1"} {@botSetMobActions{wolf};};
-	#if {"Ragged Peasant"=="%1"} {@botSetMobActions{peasant};};
-	#if {"Sylvan Elf"=="%1"} {@botSetMobActions{elf};};
-	#if {"Wyvern"=="%1"} {@botSetMobActions{wyvern};};
-	.check_monster
- } {2}
+#list botmobs clear;
+#list botmobs add {{{long} {Wild Stag} {target} {stag}}};
+#list botmobs add {{{long} {Faerie Lizard} {target} {lizard}}};
+#list botmobs add {{{long} {Baby Dragon} {target} {dragon}}};
+#list botmobs add {{{long} {Rabid Wolf} {target} {wolf}}};
+#list botmobs add {{{long} {Ragged Peasant} {target} {peasant}}};
+#list botmobs add {{{long} {Sylvan Elf} {target} {elf}}};
+#list botmobs add {{{long} {Wyvern} {target} {wyvern}}};
+
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
 #read common/bot/generic.tin

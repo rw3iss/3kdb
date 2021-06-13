@@ -16,7 +16,7 @@
 	#if {$my[hp][current] > 300} {#var timeslide_able 1} {#var timeslide_able 0};
 	#if {$my[sp][current] > 200} {#var timeslide_able 1} {#var timeslide_able 0};
 	#if {$my[cpc][current] > 1000} {#var timeslide_able 1} {#var timeslide_able 0};
-	#if {$my[pu][current] > 1600} {#var timeslide_able 1} {#var timeslide_able 0};
+	#if {$my[gp1][current] > 1600} {#var timeslide_able 1} {#var timeslide_able 0};
 }
 
 #ACTION {[[ Timeslide circuits overpowered.  Recovery time needed. ]]} {say timeslide (personal) on cooldown.} {6}

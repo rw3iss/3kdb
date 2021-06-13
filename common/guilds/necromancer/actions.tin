@@ -7,7 +7,7 @@
 
 #NOP --------------------------------------- MOB STATUS TRACKING ACTIONS  ------------------------------------------;
 #act {^You charge forward and close your jaws on %*} {#var opponent[effects][rabies] 1};
-#act {%* has overcome the effects of your rabies.$} {#var opponent[effects][rabies] 0};
+#act {%* has overcome the effects of your rabies.$} {#var opponent[effects][rabies] 0;rabies;};
 #act {^Your blood boils and you call together all of the fleas that reside} {#var opponent[effects][infest] 1};
 
 #NOP --------------------------------------- NECROMANCER STATUS TRACKING  ------------------------------------------;

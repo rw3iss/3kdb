@@ -6,8 +6,31 @@
     clear_prots;
 };
 
+#alias k {
+    #if $strategy[backstab] {
+        cast mystic venom on redaxe;
+        hide in shadows;
+        backstab %1;
+    };
+    kill %1;
+    #if $strategy[cloud] {#delay 2 {cast noxious cloud}};
+    #if $strategy[vortex] {#delay 5 {cast lightning vortex}};
+}
+
+#alias {.mob_kill_action} {
+    #if $strategy[backstab] {
+        cast mystic venom on redaxe;
+        hide in shadows;
+        backstab $mob[target];
+    };
+    #if $defs[hr] {cast harmonic regeneration};
+    kill $mob[target];
+    #if $strategy[cloud] {#delay 2 {cast noxious cloud}};
+    #if $strategy[vortex] {#delay 5 {cast lightning vortex}};
+}
+
+
 #alias {_login} {watch mywho;playcult;cult join;first impression;c floating disc};
-#alias {kill_em_all} {#var kill_em_all 1;#ECHO {+++++++++++ KILL EM ALL MODE ACTIVATED +++++++++}};
 
 #NOP ---MISC;
 #alias {unbag_all} {#loop 1 %1 i {get all from bag $i;put all in box};get all from disc;put all in box;get all from buckler;put all in box;golem give all to byron;put all in box};
