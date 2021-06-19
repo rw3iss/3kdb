@@ -111,14 +111,14 @@
     #var my[sp][max] %4;
     #var my[gp1][current] %5;
     #var my[gp1][max] %6;
-	  #var my[gp2][current] %7;
+    #var my[gp2][current] %7;
     #var my[gp2][max] %8;
     
-  	#if {$_DEBUG_HB} { 
-  		#SHOW [debug_heartbeat] HP: $my[hp][current]/$my[hp][max];
-  		#SHOW [debug_heartbeat] SP: $my[sp][current]/$my[sp][max];
-  		#SHOW [debug_heartbeat] GP1: $my[gp1][current]/$my[gp1][max];
-  		#SHOW [debug_heartbeat] GP2: $my[gp2][current]/$my[gp2][max];
+    #if {$_DEBUG_HB} { 
+      #SHOW [debug_heartbeat] HP: $my[hp][current]/$my[hp][max];
+      #SHOW [debug_heartbeat] SP: $my[sp][current]/$my[sp][max];
+      #SHOW [debug_heartbeat] GP1: $my[gp1][current]/$my[gp1][max];
+      #SHOW [debug_heartbeat] GP2: $my[gp2][current]/$my[gp2][max];
     };
 
     #delay {0.1} {
@@ -168,7 +168,7 @@
 };
 
 #alias {_guild_heartbeat} {
-	#var hbp 0;
+  #var hbp 0;
 
   #if {"$power_override" != "none"} {
     @use_power{$power_override};
@@ -195,19 +195,19 @@
 
   #nop -- Defense;
 
-	@check_power{AA;animal affinity bull};
+  @check_power{AA;animal affinity bull};
   @check_adapt_body{};
   @check_power{Bf;biofeedback};
   @check_power{Cp;combat precognition};
   @check_power{D;dodge};
   @check_power{Eb;energy barrier};
   @check_power{Ib;inertial barrier};
-	@check_power{IB;improved biofeedback};
+  @check_power{IB;improved biofeedback};
   @check_power{Iv;improved verve};
   @check_power{IV;improved valor};
   @check_power{Vg;vigor};
-	@check_power{Vr;valor};
-	@check_power{Vv;verve};
+  @check_power{Vr;valor};
+  @check_power{Vv;verve};
 
   #nop -- Offense;
   
@@ -222,7 +222,7 @@
   @check_power{Ac3;astral construct 3};
   @check_power{Ac4;astral construct 4};
   @check_power{Ac5;astral construct 5};
-	@check_power{bc;biocurrent};
+  @check_power{bc;biocurrent};
   @check_power{CG;conductive grasp};
 
   #nop --- Recall pain;
