@@ -1,0 +1,39 @@
+#class {psicorps_actions} {kill}
+#class {psicorps_actions} {open}
+
+#NOP --- PSICORPS ACTIONS;
+
+/* See power stats */
+#substitute {Psychometabolism} {Psychometabolism [Str]};
+#substitute {Psychoportation} {Psychoportation [Dex]};
+#substitute {Psychokinesis} {Psychokinesis [Con]};
+#substitute {Metacreativity} {Metacreativity [Int]};
+#substitute {Clairsentience} {Clairsentience [Wis]};
+#substitute {Telepathy} {Telepathy [Cha]};
+
+#NOP ---- Healing;
+
+#sub {^{A blue light engulfs your body as you use psionic energy to repair damage|to your cells.}$} {
+	<159>%0<900>
+};
+
+#NOP ---- Implants;
+
+#act {^Implant: Shutdown complete.} {#var my[powers] = []};
+
+#NOP ---- Damage types for adapt body
+
+#act {^%1 melee attacks do %2 damage.$} {
+	#regex {%2} {{(mostly )?slashing}} {#var _adapt_body edged};
+	#regex {%2} {{(mostly )?crushing}} {#var _adapt_body blunt};
+	#regex {%2} {{(mostly )?fire}} {#var _adapt_body fire};
+	#regex {%2} {{(mostly )?ice}} {#var _adapt_body ice};
+	#regex {%2} {{(mostly )?acid}} {#var _adapt_body acid};
+	#regex {%2} {{(mostly )?electric}}	{#var _adapt_body electric};
+	#regex {%2} {{(mostly )?mental}} {#var _adapt_body mind};
+	#regex {%2} {{(mostly )?energy}} {#var _adapt_body energy};
+	#regex {%2} {{(mostly )?poison}} {#var _adapt_body poison};
+	#regex {%2} {{(mostly )?radiation}}	{#var _adapt_body radiation}; 
+};
+
+#class {psicorps_actions} {close}

@@ -1,0 +1,42 @@
+#NOP - 3k Session
+
+#SESSION {3k - Droptable} {3k.org} {3000}
+
+#conf color on;
+#conf {repeat enter} on;
+
+/* 1 row bottom input bar */
+#split 0 1;
+
+/* Set player specific variables */
+#var guild psicorps;
+#var user droptable;
+#var mob_kill_actions 1;
+
+/* load character specific */
+#read chars/$user/actions.tin;
+#read chars/$user/aliases.tin;
+
+/* load common */
+#read common/index.tin;
+#read common/bot/bots.tin;
+#read modules/chatlog/chatlog.tin;
+
+/* load gags */
+#if {1} {
+	#read common/gags/index.tin;
+	#read common/guilds/$guild/gags.tin;
+	#read chars/$user/szgags.tin;
+};
+
+/* load guild */
+#read common/guilds/$guild/index.tin;
+
+/* custom setup */
+#substitute {^-M-_} {};
+#substitute {^-P-_} {};
+#substitute {-R-_} {};
+#prompt {^>$} {>} {0};
+
+base;
+defense;
