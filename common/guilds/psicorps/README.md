@@ -4,7 +4,7 @@
 
 Features a built in power management system that lets you configure a set of powers to always be on. All powers are referred to by their in game power abbreviation. Adding a power to the configuration will attempt to always keep it on. 
 
-- If a power is not on, it will be turned off.
+- If a power is not on, it will be turned on.
 - If a power is about to expire, it will be refreshed.
 
 Features smart power management so it removes powers you have not included.
