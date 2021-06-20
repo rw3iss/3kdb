@@ -59,14 +59,12 @@
       };
       #elseif {$my[powers_time][ab] < 10} {
         #if {$_DEBUG_HB} {#show [debug_heartbeat] refreshing adapt body};
-        @use_power{adapt body $_adapt_body};
-        #var {current_adapt_body} {$_adapt_body};
+        @use_adapt_body{};
         #return #nop;
       };
       #elseif {"$current_adapt_body" != "$_adapt_body"} {
         #if {$_DEBUG_HB} {#show [debug_heartbeat] changing adapt body dmg type to $_adapt_body};
-        @use_power{adapt body $_adapt_body};
-        #var {current_adapt_body} {$_adapt_body};
+        @use_adapt_body{};
         #return #nop;
       }
       #else {
@@ -75,8 +73,7 @@
     } {
       #if {$combat[ab]} {
         #if {$_DEBUG_HB} {#show [debug_heartbeat] turning on adapt body};
-        @use_power{adapt body $_adapt_body};
-        #var {current_adapt_body} {$_adapt_body};
+        @use_adapt_body{};
         #return #nop;
       };
       #else {
@@ -90,6 +87,13 @@
   #return #nop;
 };
 
+#function {use_adapt_body} {
+  @use_power{adapt body $_adapt_body};
+  #act {confident that your body has adapted to be resistant} {
+    #var {current_adapt_body} {$_adapt_body};
+    #unact {confident that your body has adapted to be resistant};
+  };
+};
 
 #function {use_power} {
   #var tmp_last_power_used %0;
