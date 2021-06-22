@@ -1,0 +1,3 @@
+#read common/guilds/psicorps/actions.tin;
+#read common/guilds/psicorps/aliases.tin;
+#read common/guilds/psicorps/heartbeat.tin;
