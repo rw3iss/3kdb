@@ -99,10 +99,9 @@ These are used once per fight at the start. For brilliant blast, it'll only do i
 
 If you have both demoralize and brilliant blast, it'll try to chain them in one round.
 
-Make sure to add them to your power configuration: `addp dm]` and `addp bb`
+Make sure to add them to your power configuration: `addp dm` and `addp bb`
 Or better yet add them to your power aliases with `#var combat[dm] 1` and `#var combat[bb] 1`.
 
 ### Greater mindlink
 
 Add your greater mind link target to the heartbeat file `greater_mind_link_target` and `addp ML`
-
