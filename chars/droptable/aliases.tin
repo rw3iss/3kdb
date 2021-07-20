@@ -90,7 +90,9 @@
 
   #nop -- Combat powers;
 
+  #var combat[bb] 0;
   #var combat[bc] 1;
+  #var combat[dm] 1;
   #var combat[rpain] 1;
 };
 
@@ -111,6 +113,8 @@
 
   #nop -- Combat powers;
   
+  #var combat[bb] 0;
   #var combat[bc] 1;
+  #var combat[dm] 1;
   #var combat[rpain] 1;
 };
