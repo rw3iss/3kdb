@@ -1,9 +1,13 @@
 #class {psicorps_heartbeat} {kill}
 #class {psicorps_heartbeat} {open}
 
+#var greater_mind_link_target none;
 #var use_body_fuel 1;
 #var use_chain 1;
+#var use_convert 1;
 #var _adapt_body edged;
+#var _bb 0;
+#var _dm 0;
 #var current_adapt_body none;
 #var hbp 0; /* has a heartbeat power been used this heartbeat */
 #var power_override none; /* if not equal to "none", uses this power immediately once */
@@ -66,7 +70,7 @@
         #if {$_DEBUG_HB} {#show [debug_heartbeat] changing adapt body dmg type to $_adapt_body};
         @use_adapt_body{};
         #return #nop;
-      }
+      };
       #else {
         #return #nop
       };
@@ -124,14 +128,9 @@
       #SHOW [debug_heartbeat] GP1: $my[gp1][current]/$my[gp1][max];
       #SHOW [debug_heartbeat] GP2: $my[gp2][current]/$my[gp2][max];
     };
-
-    #delay {0.1} {
-      _guild_heartbeat;
-      _player_heartbeat;
-    };
 };
 
-#act {^[[%*]]} {
+#act {^[[ %* ]]} {
     #var powers %1;
     #replace powers {:}{};
     #replace powers { }{;};
@@ -169,6 +168,11 @@
         #var my[powers_time][$power] $time;
         #math {i} {$i + 2};
     };
+
+    #delay {0.1} {
+      _guild_heartbeat;
+      _player_heartbeat;
+    };
 };
 
 #alias {_guild_heartbeat} {
@@ -197,6 +201,10 @@
     @use_power{body adjustment};
   };
 
+  #nop -- Group powers;
+
+  @check_power{ML;greater mindlink $greater_mind_link_target};
+
   #nop -- Defense;
 
   @check_power{AA;animal affinity bull};
@@ -204,6 +212,7 @@
   @check_power{Bf;biofeedback};
   @check_power{Cp;combat precognition};
   @check_power{D;dodge};
+  @check_power{Di;displacement};
   @check_power{Eb;energy barrier};
   @check_power{Ib;inertial barrier};
   @check_power{IB;improved biofeedback};
@@ -217,6 +226,7 @@
   
   @check_power{Bo;bolt};
   @check_power{CP;combat prescience};
+  @check_power{Cg;conductive grasp};
   @check_power{E;expertise};
   @check_power{Ij;iron jaw};
   @check_power{Sj;steel jaw};
@@ -227,14 +237,34 @@
   @check_power{Ac4;astral construct 4};
   @check_power{Ac5;astral construct 5};
   @check_power{bc;biocurrent};
+  @check_power{BC;greater biocurrent};
   @check_power{CG;conductive grasp};
+
+  #nop --- One offs;
+
+  #if {!$hbp} {
+    #var safe_aoe 0;
+    #if {"$area" == "Chessboard"} {
+      #var safe_aoe 1;
+    };
+
+    #if {$combat[bb] && $combat[dm] && !$_bb && $safe_aoe} {
+      @use_power{chain brilliant blast, demoralize};
+    };
+    #elseif {$combat[bb] && !$_bb && $safe_aoe} {
+      @use_power{brilliant blast};
+    };
+    #elseif {$combat[dm] && !$_dm} {
+      @use_power{demoralize};
+    };
+  };
 
   #nop --- Recall pain;
 
   #if {$combat[rpain]} {
     #if {!$hbp} {
       #math {gp1_percent} {$my[gp1][current] / $my[gp1][max] * 100.0};
-      #if {$gp1_percent > 80.0} {
+      #if {$gp1_percent > 20.0} {
         #if {$rpain_cnt == 0} {
           @use_power{recall pain};
           #math {rpain_cnt} {$rpain_cnt + 1};
@@ -249,10 +279,10 @@
   #if {$combat[ragony]} {
     #if {!$hbp} {
       #math {gp1_percent} {$my[gp1][current] / $my[gp1][max] * 100.0};
-      #if {$gp1_percent > 80.0} {
+      #if {$gp1_percent > 20.0} {
         #if {$ragony_cnt == 0} {
           @use_power{recall agony};
-          #math {ragony_cnt} {$ragony_cnt + 5};
+          #math {ragony_cnt} {$ragony_cnt + 4};
         };
         #else {
           #math {ragony_cnt} {$ragony_cnt - 1};
@@ -285,7 +315,7 @@
 
     #nop -- Pick GP1 heal power;
 
-    #if {$my[sp][current] / $my[sp][max] > 0.99 && $psi_missing >= $my[sp][max] * $sp_to_psi_ratio} {
+    #if {$my[sp][current] / $my[sp][max] > 0.99 && $psi_missing >= $my[sp][max] * $sp_to_psi_ratio && $use_convert} {
       @use_power{convert};
     };
     #elseif {$can_safely_use_body_fuel && $use_body_fuel} {
