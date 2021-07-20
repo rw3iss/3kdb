@@ -102,6 +102,8 @@ If you have both demoralize and brilliant blast, it'll try to chain them in one 
 Make sure to add them to your power configuration: `addp dm]` and `addp bb`
 Or better yet add them to your power aliases with `#var combat[dm] 1` and `#var combat[bb] 1`.
 
+Also make sure to reset the `_dm` and `_bb` variables to 0 before starting a fight so that the script knows to try to use them. A good place to do that is in the `.pre_fight_check` alias.
+
 ### Greater mindlink
 
 Add your greater mind link target to the heartbeat file `greater_mind_link_target` and `addp ML`

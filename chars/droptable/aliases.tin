@@ -36,6 +36,18 @@
   fold reality;
 };
 
+#NOP --- Botting configurations;
+
+#alias {.pre_fight_check} {
+  #var _bb 0;
+  #var _dm 0;
+};
+
+#alias .mob_kill_action {
+  exa $mobname;
+  kill $mobname;
+};
+
 #NOP --- Psicorps power configurations;
 
 #alias {defense} {
