@@ -38,34 +38,49 @@
 
 #NOP --- Psicorps power configurations;
 
-#alias {base} {
-  #var psiwield 0;
-  #var psiwield_1 hammer;
+#alias {defense} {
+  #var psiwield 1;
+  #var psiwield_1 shard;
+  #var psiwield_2 shard 2;
+  #var use_expertise 0;
   #var combat {};
 
   #nop -- Defense buffs;
 
-  #var combat[Iv] 1;
-  #var combat[Vr] 1;
+  #var combat[ab] 1;
+  #var combat[Cp] 0;
+  #var combat[Eb] 0;
+  #var combat[IB] 1;
+  #var combat[IV] 1;
+  #var combat[Ib] 1;
+  #var combat[Iv] 0;
   #var combat[Vg] 1;
+  #var combat[Vr] 0;
+  #var combat[Vv] 0;
 
   #nop -- Combat buffs;
-  
+
+  #var combat[AA] 1;  
   #var combat[Bo] 1;
-  #var combat[Sj] 1;
-  #var combat[pf] 1;
   #var combat[CP] 1;
-  #var combat[pf] 1;
+  #var combat[pf] 0;
+  #var combat[Sj] 1;
 
   #nop -- Combat powers;
 
+  #var combat[bb] 0;
   #var combat[bc] 1;
-  #var combat[rpain] 1;
+  #var combat[BC] 0;
+  #var combat[dm] 1;
+  #var combat[ragony] 1;
+  #var combat[rpain] 0;
 };
 
-#alias {defense} {
-  #var psiwield 0;
-  #var psiwield_1 hammer;
+#alias {attack} {
+  #var psiwield 1;
+  #var psiwield_1 shard;
+  #var psiwield_2 shard 2;
+  #var use_expertise 0;
   #var combat {};
 
   #nop -- Defense buffs;
@@ -73,48 +88,29 @@
   #var combat[Vr] 0;
   #var combat[Eb] 0;
   #var combat[Cp] 0;
-  #var combat[Iv] 1;
-  #var combat[IV] 1;
-  #var combat[Ib] 1;
-  #var combat[IB] 1;
+  #var combat[Iv] 0;
+  #var combat[IV] 0;
+  #var combat[Ib] 0;
+  #var combat[IB] 0;
   #var combat[Vg] 1;
   #var combat[Vv] 0;
-  #var combat[ab] 1;
+  #var combat[ab] 0;
 
   #nop -- Combat buffs;
 
+  #var combat[AA] 1;
+  #var combat[Ac4] 0;
+  #var combat[Bo] 1;
+  #var combat[Cg] 0;
+  #var combat[CP] 1;
   #var combat[Sj] 1;
-  #var combat[Bo] 1;
-  #var combat[CP] 1;
-  #var combat[pf] 0;
-
-  #nop -- Combat powers;
-
-  #var combat[bb] 0;
-  #var combat[bc] 1;
-  #var combat[dm] 1;
-  #var combat[rpain] 1;
-};
-
-#alias {attack} {
-  #var psiwield 0;
-  #var combat {};
-
-  #nop -- Defense buffs;
-
-  #var combat[Vv] 1;
-
-  #nop -- Combat buffs;
-  
-  #var combat[Bo] 1;
-  #var combat[CP] 1;
-  #var combat[Ij] 1;
   #var combat[pf] 1;
 
   #nop -- Combat powers;
-  
-  #var combat[bb] 0;
-  #var combat[bc] 1;
-  #var combat[dm] 1;
-  #var combat[rpain] 1;
+
+  #var combat[bc] 0;
+  #var combat[BC] 1;
+  #var combat[E] 1;
+  #var combat[ragony] 1;
+  #var combat[rpain] 0;
 };
