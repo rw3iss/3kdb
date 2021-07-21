@@ -38,5 +38,4 @@
 #substitute {-R-_} {};
 #prompt {^>$} {>} {0};
 
-base;
 defense;
