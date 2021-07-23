@@ -262,30 +262,26 @@
   #nop --- Recall pain;
 
   #if {$combat[rpain]} {
+    #math {rpain_cnt} {$rpain_cnt - 1};
     #if {!$hbp} {
       #math {gp1_percent} {$my[gp1][current] / $my[gp1][max] * 100.0};
       #if {$gp1_percent > 20.0} {
-        #if {$rpain_cnt == 0} {
+        #if {$rpain_cnt <= 0} {
           @use_power{recall pain};
-          #math {rpain_cnt} {$rpain_cnt + 1};
-        };
-        #else {
-          #math {rpain_cnt} {$rpain_cnt - 1};
+          #math {rpain_cnt} {2};
         };
       };
     };
   };
 
   #if {$combat[ragony]} {
+    #math {ragony_cnt} {$ragony_cnt - 1};
     #if {!$hbp} {
       #math {gp1_percent} {$my[gp1][current] / $my[gp1][max] * 100.0};
       #if {$gp1_percent > 20.0} {
-        #if {$ragony_cnt == 0} {
+        #if {$ragony_cnt <= 0} {
           @use_power{recall agony};
-          #math {ragony_cnt} {$ragony_cnt + 4};
-        };
-        #else {
-          #math {ragony_cnt} {$ragony_cnt - 1};
+          #math {ragony_cnt} {5};
         };
       };
     };
