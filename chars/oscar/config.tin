@@ -12,7 +12,7 @@
 };
 
 #NOP -- Bot Config;
-#var mob_kill_actions 1;
+#var mob_kill_action 1;
 #alias {.pre_fight_check} {#nop};
 
 #alias {.pre_bot_check} {
@@ -36,9 +36,9 @@
 };
 
 #alias {.mob_kill_action} {
-     #var mob_slow 0;
-     #var mob_atrophy 0;
-     #var mob_drain 0;
+     #var mob[slow] 0;
+     #var mob[atrophy] 0;
+     #var mob[edrain] 0;
      #if $golem_tank {
           #delay 1 {say golem, kill $mob[target];cast slow $mob[target];};
           #delay 2 {say golem, defend me};
@@ -46,6 +46,15 @@
           kill $mob[target];
           #if $strategy[slow] {cast slow $mob[target]};
      }
+};
+
+#alias {.check_death} {
+     #var bot[paused] 1;
+     corpse_trig;
+     #delay 2 {
+          #var bot[paused] 0;
+          .bot;
+     };
 };
 
 

@@ -9,6 +9,7 @@
 #read common/helpers.tin;
 #read common/miphp.tin;
 #read common/private.tin;
+#read common/subs.tin;
 #read common/map/speedruns.tin;
 
 

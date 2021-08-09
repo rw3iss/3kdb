@@ -17,13 +17,7 @@
     tactical;
 };
 
-#alias {.pre_bot_check} {
-    #alias {.pre_fight_check} {
-        repair;
-        repair;
-        tactical;
-    
-}
+#alias {.pre_bot_check} {#NOP};
 
 
 #class {player_config} {close}

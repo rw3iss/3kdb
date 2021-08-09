@@ -1,31 +1,6 @@
 #class {gentech_heartbeat} {kill}
 #class {gentech_heartbeat} {open}
 
-#var pu_recharger 1;
-#var auto_ibeam 1;
-
-#alias {_guild_heartbeat} {
-	#if !$idle_flag {
-		#if {($my[cpc][current] < 3000 || $my[gp1][current] < 200) && $auto_ibeam} {autoguild ionbeam;#var auto_ibeam 0};
-		#if {($my[cpc][current] > 3000 && $my[gp1][current] > 200) && !$auto_ibeam} {autoguild ionbeam;#var auto_ibeam 1};
-		#if {($my[gp1][current] < $pu_reclaim && $corpses[total] > 0 && $pu_recharger)} {
-			#var pu_recharger 0;
-			#delay {pu_charge_toggle} {#var pu_recharger 1} {6};
-			corpse_select;
-			#if $mask {
-				#delay {mask_no_dupe} {reclaim} {6};
-
-				#action {eyes glow bright green upon the} {
-					recharge;reclaim;recharge;reclaim;recharge;
-					#unaction {^eyes glow bright green upon the};
-					#undelay $mask_no_dupe
-				}
-			} {recharge;reclaim;recharge};
-		};
-		#if {$my[gp1][current] > $pu_reclaim && $corpses[total] > 5 && $my[cpc][current] <4000} {
-			conduit 2000;
-		};
-	} {#NOP}
-};
+#alias {_guild_heartbeat} {#NOP};
 
 #class {gentech_heartbeat} {close}

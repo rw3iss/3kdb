@@ -18,9 +18,9 @@
 	#send {aset look_armor -a-};
 	#send {aset look_other -i-};
 
-	#substitute {^-R-_} {}
-	#substitute {^-D-_} {}
-	#substitute {^-X-_} {}
+	#substitute {^-R-_} {};
+	#substitute {^-D-_} {};
+	#substitute {^-X-_} {};
 	
 	prompt >$nl$;
 	

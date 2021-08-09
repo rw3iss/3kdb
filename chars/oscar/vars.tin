@@ -1,7 +1,7 @@
 #CLASS {global} OPEN   
 
 #NOP -- Mage settings;
-#VARIABLE         {sp_min}         {1000};
+#VARIABLE         {sp_min}         {2000};
 #VARIABLE         {mage[contingencies][mantle]} {1};
 #VARIABLE         {mage[contingencies][sphere]} {200};
 

@@ -22,6 +22,7 @@
 /* load specific modules for this character */
 #read modules/professions/golem_master.tin;
 #read modules/corpsemanager/corpsemanager.tin;
+#read modules/helpers/helpers.tin;
 
 /* load guild */
 #read common/guilds/$guild/index.tin;

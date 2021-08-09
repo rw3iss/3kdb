@@ -1,0 +1,10 @@
+#SUBSTITUTE {-R-_} {};
+#SUBSTITUTE {-X-_} {};
+#SUBSTITUTE {-D-_} {};
+
+#SUBSTITUTE {-(Advanced)-} {-(Advanced - Day 2)-};
+#SUBSTITUTE {-(Specialized)-} {-(Specialized - Day 3)-};
+#SUBSTITUTE {-(Absurd)-} {-(Absurd - Day 4)-};
+#SUBSTITUTE {-(God-Like)-} {-(God-Like - Day 5)-};
+#SUBSTITUTE {-(Metaphysically Unstable)-} {-(Metaphysically Unstable - Day 6)-};
+#SUBSTITUTE {-(Physically Impossible)-} {-(Physically Impossible - Day 7)-};

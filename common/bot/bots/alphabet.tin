@@ -11,7 +11,7 @@
 
 #list botmobs clear;
 #list botmobs add {{{long} {Letter %D} {target} {letter}}};
-#list bot[mobs] $botmobs;
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
 

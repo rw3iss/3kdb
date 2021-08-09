@@ -5,10 +5,10 @@
 #VARIABLE         {np_min}         {10000};
 #VARIABLE my[necromancer][powerdefaults] {
     {alarm} {1}
-    {alter} {400}
+    {alter} {600}
     {maim}  {40}
     {protection} {5}
-    {rabies} {200}
+    {rabies} {100}
 };
 
 #NOP -- General Player Settings;
@@ -21,6 +21,8 @@
 #VARIABLE strategy[frenzy]  0;
 #VARIABLE strategy[call]  1;
 #VARIABLE strategy[undead]  1;
+#VARIABLE strategy[maim]  1;
+#VARIABLE strategy[fury]  1;
 
 #NOP -- Drawing Settings;
 #VARIABLE {canvas} {{width} {82}{widthperc} {0.40}};

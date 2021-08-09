@@ -4,11 +4,21 @@
 #var perform_dirge 1;
 
 #alias {_player_heartbeat} {
-    #if {$my[gp1][current] < $karma_heal && $perform_dirge} {
-        #var perform_dirge 0;
-        corpse_select;
-        #delay 4 {cease;perform dirge;perform dirge;#var perform_dirge 1};
-    }
+    #NOP -- These actions will only be attemped once per round;
+    #if {!$idle_flag && $action_round < $mip[round]} {
+        #if $strategy[epowers] {
+            #if {$mip[round] > 2 && $mip[round] < 6} {
+                #if $my[eternal][fry] {(fry;};
+                #if ${my[eternal][energy well]} {(energy well;} {#if ${my[eternal][shred]} {(shred;};};
+            };
+        };
+
+        #if {$my[gp1][current] < $karma_heal && $perform_dirge} {
+            #var perform_dirge 0;
+            corpse_select;
+            #delay 4 {cease;perform dirge;perform dirge;#var perform_dirge 1};
+        };
+    };
 };
 
 #class {player_heartbeat} {close}

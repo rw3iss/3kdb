@@ -1,8 +1,22 @@
 #class {player_heartbeat} {kill}
 #class {player_heartbeat} {open}
 
+#var toggle_weave 1;
+
 #alias {_player_heartbeat} {
-    #if {$corpses[coffin] < 15 && $dmg_on} {reflex remove gp1 >250;#var dmg_on 0};
+    #if {!$idle_flag && $action_round < $mip[round]} {
+        #if {$corpses[coffin] < 15 && $dmg_on} {reflex remove gp1 >250;#var dmg_on 0};
+
+        #if $strategy[epowers] {
+            #if {$mip[round] > 2 && $mip[round] < 6} {
+                #if $my[eternal][fry] {(fry;};
+                #if ${my[eternal][energy well]} {(energy well;#var mob[ewell] 1;#delay 180 {#var mob[ewell] 0};} {#if {${my[eternal][shred]} && !$mob[ewell]} {(shred;};};
+                #if $strategy[cloud] {#delay 2 {cast noxious cloud}};
+                #if $strategy[vortex] {#delay 5 {cast lightning vortex}};
+                #if $strategy[enrage] {enrage};
+            };
+        };
+    };
 };
 
 #class {player_heartbeat} {close}

@@ -1,10 +1,22 @@
 #class {player_actions} {kill}
 #class {player_actions} {open}
 
-#act {Too heavy.} {#var inventory_full 1};
+#var corpse_delay 0;
+
+#ACTION {^Owie. That hurt!} {
+	#if !$corpse_delay {
+		#var corpse_delay 1;
+		corpse_select;
+		#delay {2} {qtrance preserve remains/preserve remains/absorb/absorb;#var corpse_delay 0};
+	};
+} {1};
+
 
 #NOP -- NECRO POWERS;
 #act {You must assume your beast form to do that master.} {alter beast};
+
+#NOP -- TRACKING STUFF;
+#act {^Duncan says: Thank you for donating %d corpses.$} {#system {echo Donated %1 corpses >> chars/toren/donates.log}};
 
 #NOP -------------------------------- ACTIONS TO SUPPORT OTHER PLAYERS ---------------------------------------		
 #ACTION {%w gives you a low-five!} {#50 preserve remains} {6};

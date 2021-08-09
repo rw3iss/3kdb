@@ -12,7 +12,7 @@
 };
 
 #NOP -- Bot Config;
-#var mob_kill_actions 1;
+#var mob_kill_action 1;
 #alias {.pre_fight_check} {#nop};
 
 #alias {.pre_bot_check} {

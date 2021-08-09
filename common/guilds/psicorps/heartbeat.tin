@@ -66,7 +66,7 @@
         #if {$_DEBUG_HB} {#show [debug_heartbeat] changing adapt body dmg type to $_adapt_body};
         @use_adapt_body{};
         #return #nop;
-      }
+      };
       #else {
         #return #nop
       };
@@ -109,6 +109,7 @@
 #NOP -- Heartbeat;
 
 #act {^HP: %d/%d  SP: %d/%d  PE: %d/%d  ST: %d/%d} {
+    #line gag;
     #var my[hp][current] %1;
     #var my[hp][max] %2;
     #var my[sp][current] %3;
@@ -132,6 +133,7 @@
 };
 
 #act {^[[%*]]} {
+    #line gag;
     #var powers %1;
     #replace powers {:}{};
     #replace powers { }{;};

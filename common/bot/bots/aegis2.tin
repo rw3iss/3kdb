@@ -1,29 +1,23 @@
 #class {bot} {kill}
 #class {bot} {open}
 
-#var {area} {Aegis Global};
 #var check_room 0;
-
 
 #var bot_message_1 '---- AEGIS LVL 2 STEPPER ----';
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#var {botpath} {w;n;e;w;w;s;w;w;n;w;s;w;n;w;e;s;s;w;s;e;s;s;e;e;s;n;e;e;s;e;n;n;w;w;e;e;e;n;e;n;w;n}
+#var {botpath} {w;n;e;w;w;s;w;w;n;w;s;w;n;w;e;s;s;w;s;e;s;s;e;e;s;n;e;e;s;e;n;n;w;w;e;e;e;n;e;n;w;n};
+#var bot[path] $botpath;
 
-#act {^-M-_{Aegis Sentry Model 62-CC|Wounded zombie|Rotting zombie|Bloody zombie|Faceless zombie|Vomit-splattered zombie}} {
-  	#var foundtimes 1;
-    #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;};
-    #var mobname_long %1;
-	
-	#if {"Wounded zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Rotting zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Bloody zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Faceless zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Vomit-splattered zombie"=="%1"} {@botSetMobActions{zombie};};
-	#if {"Aegis Sentry Model 62-CC"=="%1"} {@botSetMobActions{sentry};};
-	.check_monster
- } {2}
+#list botmobs clear;	
+#list botmobs add {{{long} {Wounded zombie} {target} {zombie}}};
+#list botmobs add {{{long} {Rotting zombie} {target} {zombie}}};
+#list botmobs add {{{long} {Bloody zombie} {target} {zombie}}};
+#list botmobs add {{{long} {Faceless zombie} {target} {zombie}}};
+#list botmobs add {{{long} {Vomit-splattered zombie} {target} {zombie}}};
+#list botmobs add {{{long} {Aegis Sentry Model 62-CC} {target} {sentry}}};
+#list bot[mobs] $botmobs;
 
 #class {bot} {close}
 #read common/bot/generic.tin

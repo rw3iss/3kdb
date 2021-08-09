@@ -4,13 +4,13 @@
 #var eternal 1;
 
 #alias {_update_eternal_status} {
-	#if {$my[eternal][heal]} {#format {heal_string} {<128>HEAL<088>}} {#format {heal_string} {<070>HEAL<088>}};
-	#if {$my[eternal][energy well]} {#format {ewell_string} {<128>EWELL<088>}} {#format {ewell_string} {<070>EWELL<088>}};
-	#if {$my[eternal][shred]} {#format {shred_string} {<128>SHRED<088>}} {#format {shred_string} {<070>SHRED<088>}};
-	#if {$my[eternal][duplicate creature]} {#format {dupec_string} {<128>DUPE-C<088>}} {#format {dupec_string} {<070>DUPE-C<088>}};
-	#if {$my[eternal][enlarge]} {#format {enlarge_string} {<128>ENLARGE<088>}} {#format {enlarge_string} {<070>ENLARGE<088>}};
-	#if {$my[eternal][fry]} {#format {fry_string} {<128>FRY<088>}} {#format {fry_string} {<070>FRY<088>}};
-	#if {$my[eternal][protection]} {#format {protection_string} {<128>PROT<088>}} {#format {protection_string} {<070>PROT<088>}};
+	#if {$my[eternal][heal]} {#format {heal_string} {<bfa>HEAL<088>}} {#format {heal_string} {<faa>HEAL<088>}};
+	#if {$my[eternal][energy well]} {#format {ewell_string} {<bfa>EWELL<088>}} {#format {ewell_string} {<faa>EWELL<088>}};
+	#if {$my[eternal][shred]} {#format {shred_string} {<bfa>SHRED<088>}} {#format {shred_string} {<faa>SHRED<088>}};
+	#if {$my[eternal][duplicate creature]} {#format {dupec_string} {<bfa>DUPE-C<088>}} {#format {dupec_string} {<faa>DUPE-C<088>}};
+	#if {$my[eternal][enlarge]} {#format {enlarge_string} {<bfa>ENLARGE<088>}} {#format {enlarge_string} {<faa>ENLARGE<088>}};
+	#if {$my[eternal][fry]} {#format {fry_string} {<bfa>FRY<088>}} {#format {fry_string} {<faa>FRY<088>}};
+	#if {$my[eternal][protection]} {#format {protection_string} {<bfa>PROT<088>}} {#format {protection_string} {<faa>PROT<088>}};
 	#var eternal_string {<fff>Eternal: $ewell_string $heal_string $shred_string $dupec_string $enlarge_string $fry_string $protection_string<088>};
 };
 
@@ -76,7 +76,7 @@
 	#delay 2 {(powers};
 };
 
-#action {^You tear apart %d defenses!$} {
+#action {^You tear apart %* defenses!$} {
 	#var my[eternal][shred] 0;
 	#delay 2 {(powers};
 };

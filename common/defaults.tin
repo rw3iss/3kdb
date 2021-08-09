@@ -3,4 +3,4 @@
 /* tell tintin to repeat last command on enter */
 #config {repeat enter} on;
 
-#config {packet patch} {0.1};
+#config {packet patch} {0.25};

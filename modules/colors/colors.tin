@@ -15,7 +15,7 @@
 			};
 			#showme $result;
 		}
-	}
+	};
 
     #nop grayscale;
     #showme \nGrayscale:;
@@ -24,7 +24,7 @@
 	{
             #variable result $result <$cnt1$cnt1$cnt1> <<888>$cnt1$cnt1$cnt1><088>;
 			
-    }
+    };
     #showme $result;
     
 

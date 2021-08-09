@@ -17,6 +17,7 @@
 #read common/bot/bots.tin;
 
 /* load specific modules for this character */
+#read modules/helpers/helpers.tin;
 #read modules/corpsemanager/corpsemanager.tin;
 
 /* load guild */

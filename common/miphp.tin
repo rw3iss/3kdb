@@ -16,10 +16,12 @@
         _player_heartbeat;
         _guild_heartbeat;
 		_update_corpse_string;
+		#var action_round $mip[round];
 		#if {$eternal} {_update_eternal_status};
 		#if {"$draw[status]" == "on"} {draw_status;};
 		#if {"$draw[hpbar]" == "on"} {draw_hpbar;};
 		#if {"$draw[caption]" == "on"} {draw_caption;};
+		#if {$guild_miphp} {_guild_miphp};
     } {2};
 };
 

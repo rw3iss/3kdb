@@ -11,7 +11,7 @@
 /* Set player specific variables */
 #var guild psicorps;
 #var user droptable;
-#var mob_kill_actions 1;
+#var mob_kill_action 1;
 
 /* load character specific */
 #read chars/$user/actions.tin;

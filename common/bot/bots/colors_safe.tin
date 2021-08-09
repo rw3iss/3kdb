@@ -38,9 +38,9 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
     consider shadow;
 	#var foundshadow 0;
     #act {^Monster class: Really Big (18).$} {
+        #undelay bot_kick;
         #var bot[walk] 0;
         #var bot[foundmob] 1;
-        #var bot[loop] 1;
         #var mob[target] shadow;
         #var mob[foundtimes] 1;
         .stop_prompt;
@@ -67,9 +67,9 @@ n;n;n;n;se;s;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;n;se;s;s;s;s;s;se;sw;ne;nw;ne;n;n;n;s
     }} {1};
 
 #act {^Vibrations shake the web, the owner pounces!} {
+    #undelay bot_kick;
     #var bot[walk] 0;
     #var bot[foundmob] 1;
-    #var bot[loop] 1;
     #var mob[target] furtive;
     #var mob[foundtimes] 1;
 	#var mob[long] Furtive;

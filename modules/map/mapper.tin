@@ -65,7 +65,7 @@
 		#return 1
 	} {
 		#return 0
-	}
+	};
 };
 
 #NOP Room Short with Exits;
@@ -81,17 +81,17 @@
 				#map at {$eachexit} {
 					#map get {roomarea} {eacharea};
 					#if {"$eacharea" == ""} {
-						#NOP #map set {roomcolor} {<118>}
-					}
-				}
-			}
+						#NOP #map set {roomcolor} {<118>};
+					};
+				};
+			};
 		};
 		#if {$roomname_len == 0} {
-			#map set roomname {%2 (%3)}
+			#map set roomname {%2 (%3)};
 		};
 		#if {$roomarea_len == 0} {
 			#map set roomarea {$area};
-			#map set roomcolor
+			#map set roomcolor;
 		};
 		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
@@ -105,29 +105,29 @@
 				#NOP }
 			} {2}
 		};
-		#delay 0 mapupdate
-	}
-}
+		#delay 0 mapupdate;
+	};
+};
 
 #NOP Room Short with No Exits, Lowered Priority;
 #act {\-R\-_%1%s\-R\-_} {
 	#var room %1;
 	#if {"$mapping" == "on"} {
 		#if {$roomname_len == 0} {
-			#map set roomname {%1}
+			#map set roomname {%1};
 		};
 		#if {$roomarea_len == 0} {
 			#map set roomarea {$area};
-			#map set roomcolor
+			#map set roomcolor;
 		};
 		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
 			#unvar long;
 			#act {%%1} {
 				#if {@cartcheck{%%1}} {
-						#nop
+						#nop;
 					} {
-						#var long {${long}%%1 }
+						#var long {${long}%%1 };
 				}
 			} {2}
 		};
@@ -211,8 +211,8 @@
 	#unvar mapstatic;
 	#unvar mapping;
 }
-#map flag static on
-#unvar mapstatic
+#map flag static on;
+#unvar mapstatic;
 
 #NOP Link rooms with a void insert
 #alias voidlink {
@@ -229,7 +229,7 @@
 	#map at 148 {#map exitflag {portal wforest} avoid on};
 	#map at 148 {#map exitflag {efor} avoid on};
 	#map at 148 {#map exitflag {portal desert} avoid on};
-	#map at 148 {#map exitflag {portal ice} avoid on}
+	#map at 148 {#map exitflag {portal ice} avoid on};
 }
 
 #alias hmfollow {
@@ -238,7 +238,7 @@
 	#map at 148 {#map exitflag {portal wforest} avoid off};
 	#map at 148 {#map exitflag {efor} avoid off};
 	#map at 148 {#map exitflag {portal desert} avoid off};
-	#map at 148 {#map exitflag {portal ice} avoid off}
+	#map at 148 {#map exitflag {portal ice} avoid off};
 }
 
 

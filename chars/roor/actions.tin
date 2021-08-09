@@ -1,0 +1,8 @@
+#class {player_actions} {kill}
+#class {player_actions} {open}
+
+#NOP -------------------------------- ACTIONS TO SUPPORT OTHER PLAYERS ---------------------------------------		
+#ACTION {^Byron pokes you with a cattle prod.} {timeslide emergency} {6}
+#ACTION {^Byron gives you a low-five!} {timeslide} {6}
+
+#class {player_actions} {close}

@@ -3,13 +3,20 @@
 #var bot[active] 1;
 #var bot[paused] 0;
 #var bot[walk] 1;
-#var bot[loop] 1;
 
 #var bot[foundmob] 0;
 #var bot[foundobject] 0;
 #var bot[foundplayer] 0;
 #var bot[playercheck] 1;
 
+#var bot[stats][mobs] 0;
+#var bot[stats][xp] 0;
+#var bot[stats][gxp] 0;
+#var bot[stats][loop][mobs] 0;
+#var bot[stats][loop][xp] 0;
+#var bot[stats][loop][gxp] 0;
+
+#format {bot[start-time]} {%T} {};
 
 #NOP -- Read in the whitelist of players or followers to ignore;
 #read common/bot/whitelist.tin;
@@ -24,6 +31,46 @@
         #showme {<BAF><ffe>------ CHECKDEATH IS NOT ACTIVE --------<088>};
 };
 
+#alias bot_report {
+    #var bot_loop_xp $bot[stats][loop][xp];
+    #var bot_xp $bot[stats][xp];
+
+    thousandsFormatNumber bot_loop_xp;
+    thousandsFormatNumber bot_xp;
+    
+    #format loop1 {%+20s %-20s} {<DDD><aad>          Mobs Killed: $bot[stats][loop][mobs]};
+    #format loop2 {%+20s %-20s} {<DDD><aad>            XP Gained: $bot_loop_xp};
+    
+    #format total1 {%+20s %-20s} {<DDD><aad>          Mobs Killed: $bot[stats][mobs]};
+    #format total2 {%+20s %-20s} {<DDD><aad>            XP Gained: $bot_xp};
+    
+    #showme <DDD><aad>---------------------------------------------------<088>;
+    #showme <DDD><aad>--------------     Current Loop     ---------------<088>;
+    #showme $loop1;
+    #showme $loop2;
+    #showme <DDD><aad>---------------------------------------------------<088>;
+    #showme <DDD><aad>--------------     Total Run        ---------------<088>;
+    #showme $total1;
+    #showme $total2;
+    #showme <DDD><aad>---------------------------------------------------<088>;
+    #showme <DDD><aad>---------------------------------------------------<088>;
+};
+
+#alias bot_xp {
+    #action {^You have %* total xp.$} {
+        #format temp_xp {%d} {%%1};
+        #if {$my[xp] > 0 && "$temp_exp" != "$my[xp]"} {
+            #math fight_xp {$temp_xp - $my[xp]};
+            #math bot[stats][xp] {$bot[stats][xp] + $fight_xp};
+            #math bot[stats][loop][xp] {$bot[stats][loop][xp] + $fight_xp};
+            #format my[xp] {%d} {%%1};
+        } {
+            #format my[xp] {%d} {%%1};
+        };
+        #unaction {^You have %* total xp.$};
+    };
+    xp;
+};
 
 #alias playercheck {
     #if $bot[playercheck] {
@@ -37,7 +84,7 @@
 
 /* kill the bot */
 #alias {.stop} {
-    #var bot[path] {};
+    #unvar bot;
     #unalias {..};
     #unalias {.onPrompt};
     #unact {^>$};
@@ -50,7 +97,7 @@
     #var bot[paused] 1;
 };
 
-#act {{^-M-_(.*)( \[(.*)\])*( \[[0-9]*%\])?( (.*)attacking(.*))?([\r\n\t ]*?)?( \{([0-9]+)\})?}} {
+#act {{^-M-_(.*)( \[(.*)\])*( \[[0-9]*%\])?( (.*)attacking(.*))?([\r\n\t ]*?)?( \{([0-9]+)\})?( \{([A-Za-z]+)\})?}} {
     #var foundtimes 1;
     #var mob[long] %1;
 
@@ -62,13 +109,14 @@
     #replace mob[long] { attacking} {};
 
     #regex {%2} {7B{[0-9]+}} {#var foundtimes &1;#replace mob[long] { \\x7B%*} {};};
+    #regex {%2} {7B{[A-Za-z]+}} {#replace mob[long] { \\x7B%*} {};};
 
     #format {mob[long]} {%p} {$mob[long]};
 
     #foreach $botmobs[%*] botmob {
         #regexp {"$mob[long]"} {"$botmob[long]"} {
+            #undelay bot_kick;
             #var bot[foundmob] 1;
-            #var bot[loop] 1;
             #var mob[target] $botmob[target];
             #var mob[foundtimes] $foundtimes;
         };
@@ -98,34 +146,39 @@
     };
 
 	#alias {.onPrompt} {
-
         #if {$bot[foundplayer]} {
             .stop_prompt;
             #var bot[walk] 1;
             #path walk;
         } {
-            #if {$item_collector} {
+            #if {$collector[items]} {
                 get all;
             };
             #if {$bot[foundmob]} {
-                .stop_prompt;   
+                .stop_prompt;
                 .pre_fight_check;
+                
+                #math bot[stats][loop][mobs] {$bot[stats][loop][mobs] + 1};
+                #math bot[stats][mobs] {$bot[stats][mobs] + 1};
+
                 #unact {{^-R-_(.*)-R-_}};
-                #if {$mob_kill_actions} {
+                #if {$mob_kill_action} {
                     .mob_kill_action;
                 } {
                     kill $mob[target];
                 };
             } {
-                #if {$bot[foundobject]} {#send $object_action;#var bot[foundobject] 0} {
-                    #if {$check_room} {
-                        .stop_prompt;
-                        .check_room;
-                    } {
-                        .stop_prompt;
-                        #var bot[walk] 1;
-                        #path walk;
-                    };
+                #if {$bot[foundobject]} {
+                    #send $object_action;
+                    #var bot[foundobject] 0;
+                } {
+                    .stop_prompt;
+                        #if {$check_room} {
+                            .check_room;
+                        } {
+                            #var bot[walk] 1;
+                            #path walk;
+                        };
                 };
             };
         };
@@ -140,14 +193,17 @@
 
 #alias {.bot} {#if {$bot[paused] == 0} {..}};
 
-#action {{ (screeches in agony and falls to the ground, dead|gasps for breath, then slumps into death|gurgles in his own blood as he dies|gurgles in her own blood as she dies|gurgles in its own blood as it dies)?\.$}} {
+#action {{ (screeches in agony and falls to the ground, dead|gasps for breath, then slumps into death|gurgles in his own blood as he dies|gurgles in her own blood as she dies|gurgles in its own blood as it dies){1}\.$}} {
     #echo {----- BOT REGISTERED KILL -----};
+    bot_xp;
     #var bot[foundmob] 0;
-    #if $check_death {
-        .check_death;
-    } {
-        corpse_trig;
-        .bot;
+    #if !$idle_flag {
+        #if $check_death {
+            .check_death;
+        } {
+            corpse_trig;
+            .bot;
+        };
     };
 } {1};
 
@@ -168,14 +224,23 @@
 
 /* Bot end actions... */
 #act {#END OF PATH} {
+    bot_report;
     #if {!$bot[loop]} {
         #show \nBot finished.;
+        bot_report;
         .stop;
     } {
-        #show \nLooping bot...;
-        #path load $bot[path];
-        #var bot[loop] 0;
-        .bot;
+        #if $bot[stats][loop][mobs] {
+            #var bot[stats][loop][mobs] 0;
+            #var bot[stats][loop][xp] 0;
+            #show \nLooping bot...;
+            #path load $bot[path];
+            .bot;
+        } {
+            #show \nBot finished.;
+            bot_report;
+            .stop;
+        }
     };
 };
 

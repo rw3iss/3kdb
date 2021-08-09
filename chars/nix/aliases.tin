@@ -25,6 +25,19 @@
 
 #NOP -- THIS SECTION IS FOR OTHER ALIASES
 
+#alias {map} {
+	#var roomfound 0;
+	#foreach $speedruns[%*] index {
+        #regexp {"%1"} {"$index[name]"} {
+			#var roomfound 1;
+            #showme {Found room %1 - teleporting map there!};
+			#map go $index[vnum];
+        };
+    };
+	#if !$roomfound {#showme {Unable to find %1}};
+};
+
+
 #alias {k} {
         #var killing 1;
         kill %1;

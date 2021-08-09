@@ -4,33 +4,9 @@
 #echo {-------- CORPSE RUNNER LOADED --------};
 #echo {--------                      --------};
 #echo {--------  Select Your Option  --------};
-#echo {--------  1)  Aegis Lvl 2     --------};
-#echo {--------  2)  Aegis Lvl 3     --------};
-#echo {--------  3)  Aegis Lvl 4     --------};
-#echo {--------  4)  Land2 Animals   --------};
+#echo {--------  1)  Land2 Animals   --------};
 
 #macro {1} {
-    #echo {--------  Aegis Lvl 2 Selected --------};
-    go aegis2;
-    #delay 2 {w;n;e;w;w;s;w;w;n;w;w;w;e;s;e;w;s;w;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;e;s;e;e;e;e;e;e;s;w;s;w;n;w;w;s;w;n;w};
-    #class {corpse_run} {kill};
-};
-
-#macro {2} {
-    #echo {--------  Aegis Lvl 3 Selected --------};
-    go aegis3;
-    #delay 3 {w;s;e;w;n;w;s;n;n;n;w;s;s;n;w;w;e;e;n;w;w;e;e;n;w;w;e;e;e;s;n;n;w;w;e;e;e;e;w;w;n;w;w;e;e;e;e;w;w;s;s;e;s;s;n;n;e;s;s;n;n;e;s;s;n;n;e;s;s;n;n;e;e;e;w;w;s;e;e;w;w;s;e;e;w;w;s;e;e;w;w;s;w;e;n;w;w;e;e;n;n;n;w;n;w;n;s;e;n;e;w;s;e;e;e};
-    #class {corpse_run} {kill};
-};
-
-#macro {3} {
-    #echo {--------  Aegis Lvl 4 Selected --------};
-    go aegis4;
-    #delay 3 {e;e;n;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e};
-    #class {corpse_run} {kill};
-};
-
-#macro {4} {
     #echo {--------  Land2 Selected       --------};
     go land2_animals;
     #delay 2 {e;kill animal};

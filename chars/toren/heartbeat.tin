@@ -7,13 +7,39 @@
 #alias {_player_heartbeat} {
 	#if {!$idle_flag} {
 		#if {$make_con && $my[necromancer][worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}};
-		#if {$party_actions && $mip[round] == 2} {fury;rabies;call;maim;=kill $enemy[target]};
-		#if {$my[gp1][current] < $np_min} {
-			#showme GP1 are $my[gp1][current];
-			#showme NPS ARE LOW SELECTING CORPSE;
-			corpse_select;
-			absorb
-		}
+		#if {$party_actions && $mip[round] == 2} {
+			#if $strategy[fury] {fury};
+			#if $strategy[rabies] {alter beast;rabies};
+			#if $strategy[call] {call};
+			#if $strategy[maim] {alter beast;maim};
+			#if $strategy[undead] {=kill $enemy[target]};
+		};
+		#NOP -- Conditions to pause the bot;
+		#if {$bot[active] && !$bot[paused]} {
+			#if {$my[necromancer][power][alter] < 50} {
+				.pause;
+				#if {"$area" == "Banshee's Lair"} {
+					#var actions_stacked 1;
+					add_action {{{name} {study-alter} {action} {teleport;form;path;sw;sw;w;#delay 2 {.study};#delay 4 {e;ne;ne;path;portal;teleport 1};#delay 6 {..};}}};
+				} {
+					#var actions_stacked 1;
+					add_action {{{name} {study-alter} {action} {go necro_were;#delay 2 {.study};#delay 4 {#map run $go_back};#delay 6 {..};}}};
+				};
+			};
+			#if {!$corpse_check && $corpses[total] < 10} {
+				#NOP -- If in an area I don't corpse up in, stop the bot;
+				#if {"$area" != "Whorehouse" && "$area" != "Catacombs"} {
+					#SHOWME STOPPING BECAUSE OF CORPSES;
+					.pause
+				};
+			};
+			#if {$inventory[encumberance] > 90 || "$inventory[encumberance]" == "XX"} {
+				.pause;
+				#var actions_stacked 1;
+				add_action {{{name} {go-donate} {action} {go_donate}}};
+			}
+		};
+		
 	};
 };
 

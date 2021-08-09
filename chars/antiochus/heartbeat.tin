@@ -3,8 +3,15 @@
 
 #alias {_player_heartbeat} {
     #if !$idle_flag {
-        #if {$my[perceptions][current] > 0 && !$my[perceptions][active]} {perceive};
-        #if {$my[roots][current] > 0 && !$my[roots][active] && $my[brood] > 0} {root broodlings};
+        #if {$my[perceptions][current] > 0} {
+            #if !$my[perceptions][active] {perceive};
+            #if {"$my[perceptions][active]" == ""} {perceive};
+        };
+        #if {$my[bloodrush]} {bloodrush};
+        #if {$my[roots][current] > 0 && $my[brood] > 0} {
+            #if !$my[roots][active] {root broodlings};
+            #if {"$my[roots][active]" == ""} {root broodlings};
+        };
     };
 };
 

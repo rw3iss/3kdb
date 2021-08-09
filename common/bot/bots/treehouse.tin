@@ -21,7 +21,7 @@
 #list botmobs add {{{long} {Earth Elemental Lord} {target} {elemental}}};
 #list botmobs add {{{long} {Minor Earth Elemental} {target} {elemental}}};
 #list botmobs add {{{long} {Terra, Knight of Earth} {target} {terra}}};
-#list bot[mobs] $botmobs;
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
 #read common/bot/generic.tin;

@@ -70,14 +70,13 @@
     #if $check_death {
         #NOP -- do nothing
     } {
-        #if {$my[hp][current] < 600} {
-            absorb remains;
-            get all;
-        } {
-            preserve remains;
-            get preservation;
+        #if {$inventory[freezer] && $corpses[freezer] < 50} {
             slab remains;
             wrap remains;
+        } {
+            wrap remains;
+            preserve remains;
+            get preservation;
             get all;
         };
     };
@@ -93,40 +92,13 @@
 };
 
 #alias .check_death {
-    #if {$auto_donate && $inventory_full} {
-        go_donate
-    };
-    #if {$inventory_full} {
-        #delay 3 {absorb;absorb;get all;.bot};
+    #if $actions_stacked {
+        do_action;
     } {
-        #delay 3 {preserve remains;preserve remains;gather;get all;put all in buckler;.bot};
-    };
-    #if {$auto_pilot} {
-        #if {$bot[active] && $my[gp1][current] < $np_min} {
-            #var bot[paused] 1;
-            #path save forward path;
-            #path get position pos;
-            go sol_crypt2;
-            #30 {get corpse from box;absorb corpse};
-            #map run $go_back;
-            #path load $path;
-            #path goto $pos;
-            #var bot[paused] 0;
-            .bot
-        };
-        #if {$bot[active] && $my[necromancer][power][alter] < 50} {
-            #var bot[paused] 1;
-            #path save forward path;
-            #path get position pos;
-            go necro_were;
-            #delay 2 {.study};
-            #delay 4 {
-                #map run $go_back;
-                #path load $path;
-                #path goto $pos;
-                #var bot[paused] 0;
-                .bot
-            };
+        #if {$inventory[encumberance] > 95} {
+            #delay 3 {slab all;absorb;absorb;get all;.bot};
+        } {
+            #delay 3 {slab all;preserve remains;preserve remains;gather;get all;put all in buckler;.bot};
         };
     };
 }
@@ -137,7 +109,11 @@
 
 #alias {.mob_kill_action} {
     #var stats[starting-gp] $my[gp1][current];
-    kill $mob[target];rabies;maim;call;=kill $mob[target];
+    kill $mob[target];
+    #if $strategy[rabies] {rabies};
+    #if $strategy[maim] {maim};
+    #if $strategy[call] {call};
+    #if $strategy[undead] {=kill $mob[target]};
 };
 
 #NOP ---THIS SECTION IS FOR NECRO SPECIFIC ALIASES
@@ -165,7 +141,6 @@
     #path load $path;
     #path goto $pos;
     #var bot[paused] 0;
-    #var inventory_full 0;
 };
 #alias {gxp_tracker} {#act { |  Next Circle:[%*]%*]}  {#line log comms.txt %1}};
 

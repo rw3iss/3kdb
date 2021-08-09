@@ -16,7 +16,7 @@
 #list botmobs add {{{long} {Mud Golem}   {target} {golem}}};
 #list botmobs add {{{long} {Stone Golem} {target} {golem}}};
 #list botmobs add {{{long} {Steel Golem} {target} {golem}}};
-#list bot[mobs] $botmobs;
+#var bot[mobs] $botmobs;
 
 #class {bot} {close}
 #read common/bot/generic.tin;

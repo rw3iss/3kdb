@@ -126,7 +126,7 @@
     #nop -- Clear any old drawings;
     #draw {<dda>} {tile} $caption[top] $infoPane[left]+1 $caption[top]+1 $screen[width] {};
 
-    #var caption[idle_string] {Idle: $idle_cap  <daa>Deadmans: $deadManTimeLeft_cap};
+    #var caption[idle_string] {Idle: $idle_cap  <eaa>Deadmans: $deadManTimeLeft_cap};
     #var caption[corpse_string] {$corpse_string};
     #var caption[eternal_string]  {$eternal_string};
     #draw {<dda>} {tile} $caption[top] $infoPane[left]+2 $caption[top] $screen[width] {$caption[idle_string]};
@@ -228,7 +228,7 @@
         #if {$strategy[$index]} {
             #cat status_string_strategy {$strat_name : <afa>ON<088>\n};
         } {
-            #cat status_string_strategy {$strat_name : <daa>OFF<088>\n};
+            #cat status_string_strategy {$strat_name : <eaa>OFF<088>\n};
         };
 
         #NOP - get the number of rows the strategy takes and pad it by 2;

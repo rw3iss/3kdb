@@ -93,6 +93,8 @@
 #gag {^The stag impales you with its sharp antlers!$};
 #gag {^The stag rears up on its hind feet, then charges forward!$};
 #gag {^The stag tosses its head back and lets out a challenging call.$};
+#gag {^The baby dragon dives forward, slashing into you with its claws.$};
+#gag {^The baby dragon's tail lashes forward, striking you across the face.$};
 
 #NOP -- Chicken Plant;
 #gag {^*BZZZTT*  You get stunned by the guard!$};
@@ -110,6 +112,10 @@
 #gag {^The brood's tiny wicked claws tear at %*!};
 #gag {^The brood's razor claws slash into %*!};
 #gag {^The brood claws viciously at %*!};
+#gag {^Mental plan (%d): %*};
+#gag {^You are already focusing your malice on %*};
+#gag {^You focus your malice at %*, intent on destruction!};
+#gag {^Your malicious attacks fade.};
 
 
 #NOP -- Section Z Gags;

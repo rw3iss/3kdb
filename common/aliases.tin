@@ -5,13 +5,45 @@
 #alias {debugoff} {#debug all off};
 
 #alias strategy {
-    #if $strategy[%1] {
-        #showme <caa>----   %1 HAS BEEN TOGGLED OFF   ----<088>;
-        #var strategy[%1] 0;
-    } {
-        #showme <caa>----   %1 HAS BEEN TOGGLED ON    ----<088>;
-        #var strategy[%1] 1;
-    }
+    #format temp {%u} {%1};
+    #switch {"$strategy[%1]"} {
+        #case {"0"} {
+            #showme <caa>----  <fff> $temp HAS BEEN TOGGLED ON  <caa>  ----<088>;
+            #var strategy[%1] 1;
+        };
+        #case {"1"} {
+            #showme <caa>----  <fff> $temp HAS BEEN TOGGLED OFF  <caa> ----<088>;
+            #var strategy[%1] 0;
+        };
+        #default {
+            #showme <caa>----  <fff> STRATEGY NOT FOUND, CHECK SPELLING  <caa> ----<088>;
+        };
+    };
+};
+
+#var actions_stacked 0;
+
+#alias do_action {
+    #foreach $actionStack[%*] action {
+        $action[action];
+    };
+    #list actionStack clear;
+    #var actions_stacked 0;
+};
+
+#alias add_action {
+    #var tmp %1;
+    #var action_found 0;
+    #foreach $actionStack[%*] action {
+        #regexp {"$tmp[name]"} {"$action[name]"} {
+            #var action_found 1;
+        };
+    };
+    #delay 0.2 {
+        #if !$action_found {
+            #list actionStack add {%1};
+        }
+    };
 };
 
 #var beepon 1;

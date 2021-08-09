@@ -15,6 +15,7 @@
     kill %1;
     #if $strategy[cloud] {#delay 2 {cast noxious cloud}};
     #if $strategy[vortex] {#delay 5 {cast lightning vortex}};
+    #if $strategy[weave] {#var toggle_weave 1;critic};
 }
 
 #alias {.mob_kill_action} {
@@ -27,6 +28,12 @@
     kill $mob[target];
     #if $strategy[cloud] {#delay 2 {cast noxious cloud}};
     #if $strategy[vortex] {#delay 5 {cast lightning vortex}};
+    #if $strategy[enrage] {enrage};
+    #if $strategy[epowers] {
+        #if $my[eternal][fry] {(fry;};
+        #if ${my[eternal][energy well]} {(energy well;} {#if ${my[eternal][shred]} {(shred;};};
+    };
+    #if $strategy[weave] {#var toggle_weave 1;critic;#delay 30 {blades};};
 }
 
 

@@ -9,7 +9,7 @@
 
 #NOP --- Oscar specific actions;
 #action {^Owie. That hurt!$} {#15 grasp beads};
-#action {Out of nowhere a crazed hockey fan leaps towards the Cup.} {cast corpse blast};
+#action {Out of nowhere a crazed hockey fan leaps towards the Cup.} {cast spell tap on corpse;cast corpse blast};
 
 #NOP -- Summon specific actions;
 #action {That is not here or it is uninteresting. (materials?)} {ffetch materials;#delay 4 {#var golem_toggle 1};};

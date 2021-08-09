@@ -1,25 +1,58 @@
+#class {botlist} {kill}
 #class {botlist} {open}
 
-#alias {-%1} {#read common/bot/bots/%1.tin;.pre_bot_check;..};
-#alias {.-%1} {#read common/bot/bots/%1.tin};
+#ALIAS {-%1} {
+    #read common/bot/bots/%1.tin;
+    
+    #NOP -- Set the beginning xp value;
+    bot_xp;
+    #var bot[alias] %1;
+    #foreach $botlist[%*] index {
+        #if {"${bot[alias]}" == "$index[alias]"} {
+            #var bot[loop] $index[loop];
+        };
+    };
+    .pre_bot_check;
+    ..;
+};
 
-#nop Shortercuts: ---------------- ;
+#alias format_botlist {
+    #format {bot_name} {%-25s} {%1};
+    #format {bot_desc} {%-30s} {%2};
+    #showme $bot_name $bot_desc;
+};
 
-#alias {-ft} {go chaos;map chaos;-findtruck};
-#alias {-ftv} {go chaos;map chaos;-findtv};
-#alias {-tb} {-truckbot;..};
+#alias botlist {
+    #var tempflag 0;
+    #var number &botlist[];
+    #showme {<ccf>  -------     CURRENT BOTS ($number)    -------    <088>  };
+    #showme {<ccf>  ---------------------------------------    <088>  };
+    #showme {<ccf>  -------   <faa>-alias <fff>to load a bot<ccf>  -------    <088>  };
+    #showme {<ccf>  ---------------------------------------    <088>  };
+    #list speedruns index desc;
+    #list speedruns sort;
+    #showme {<ccf>     Alias                Description        <088>  };
+    #foreach $botlist[%*] index {
+        format_botlist {     $index[alias]} {$index[desc]};
+    };
+};
 
-#alias {-hb} {-hotelbot;scaler 150;..};
-#alias {-rb} {-rimalkinbot;scaler 150;..};
-#alias {-kb} {-kayosbot;scaler 150;..}
-#alias {-cb} {-chessbot;..}
-#alias {-knb} {-knivurbot}
-#alias {-mb} {-mahjbot}
-#alias {-pb} {map pol3;-polbot;..};
-#alias {-ibb} {-icybluebot;ak {get ring;..};..}
-#alias {-scb} {-smurfcastlebot}
-
-#alias {-hr} {out;out;w;s;e;e;n;w;w;n;n;w;w;w;mch};
-#alias {-cr} {#8 w;#8 n;#4 s;#3 e;climb pipe;w;mch};
+#list botlist clear;
+#list botlist add {{{alias} {sectionz} {desc} {Section Z Long Path} {start_vnum} {24787} {loop} {0}}};
+#list botlist add {{{alias} {sectionz-40} {desc} {Section Z Sec 40 Start} {start_vnum} {} {loop} {0}}};
+#list botlist add {{{alias} {mahjong} {desc} {Mahjong} {start_vnum} {1944} {loop} {1}}};
+#list botlist add {{{alias} {treehouse} {desc} {Treehouse - All Mobs} {start_vnum} {25462} {loop} {0}}};
+#list botlist add {{{alias} {treehouse-easy} {desc} {Treehouse - Only Smaller Mobs} {start_vnum} {25462} {loop} {0}}};
+#list botlist add {{{alias} {whores} {desc} {Whorehouse} {start_vnum} {2084} {loop} {1}}};
+#list botlist add {{{alias} {catacombs} {desc} {Catacombs} {start_vnum} {7996} {loop} {1}}};
+#list botlist add {{{alias} {catacombs2} {desc} {Catacombs v2.0} {start_vnum} {20967} {loop} {1}}};
+#list botlist add {{{alias} {pol} {desc} {Portal of Life} {start_vnum} {6746} {loop} {1}}};
+#list botlist add {{{alias} {pol2} {desc} {Portal of Life v2.0} {start_vnum} {6747} {loop} {1}}};
+#list botlist add {{{alias} {pol3} {desc} {Portal of Life v3.0} {start_vnum} {6748} {loop} {1}}};
+#list botlist add {{{alias} {rimalkins} {desc} {Rimalkins} {start_vnum} {1601} {loop} {0}}};
+#list botlist add {{{alias} {hoteltrans} {desc} {Hotel Transylvania} {start_vnum} {1850} {loop} {0}}};
+#list botlist add {{{alias} {hoteltrans2} {desc} {Hotel Transylvania - Basement} {start_vnum} {26417} {loop} {0}}};
+#list botlist add {{{alias} {angels} {desc} {Tree of Life} {start_vnum} {24584} {loop} {1}}};
+#list botlist add {{{alias} {angels2} {desc} {Tree of Life v2.0} {start_vnum} {24606} {loop} {1}}};
 
 #class {botlist} {close}

@@ -1,23 +1,22 @@
 #class {bot} {open}
 
-#var {areaname} {Smurfs}
 #var {botpath} {s;s;s;w;e;e;w;s;w;e;e;e;w;sw;se;w;e;s;w;w;n;s;e;e;n;e;s;s;s;s;e;w;w;w;w;e;e;e;s;s;enter;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;s;w;e;e;w;n;e;out}
-#act {-M-_%*{Smurf-Eater|Smurf|rat|spider|Azreal|Gargamel|squirrel}%*} {
-	#if {"%2" == "Smurf"} {@botSetMobActions{smurf};};
-	#if {"%2" == "rat"} {@botSetMobActions{rat};};
-	#if {"%2" == "spider"} {@botSetMobActions{spider};};
-	#if {"%2" == "Azreal"} {@botSetMobActions{azreal};};
-	#if {"%2" == "Gargamel"} {@botSetMobActions{gargamel};};
-	#if {"%2" == "squirrel"} {@botSetMobActions{squirrel};};
-	#if {"%2" == "Smurf-Eater"} {@botSetMobActions{eater};};
-	.check_monster
- } {2};
+#var bot[path] $botpath;
+
+#list botmobs clear;
+#list botmobs add {{{long} {%* Smurf} {target} {smurf}}};
+#list botmobs add {{{long} {A very large rat} {target} {rat}}};
+#list botmobs add {{{long} {A large furry spider} {target} {spider}}};
+#list botmobs add {{{long} {Azreal} {target} {azreal}}};
+#list botmobs add {{{long} {Gargamel} {target} {gargamel}}};
+#list botmobs add {{{long} {A cute and fuzzy Squirrel.} {target} {squirrel}}};
+#list botmobs add {{{long} {An ugly and disgusting Smurf-Eater} {target} {eater}}};
+#var bot[mobs] $botmobs;
 
 #act {-M-_Papa Smurf <?>} {mission ask};
 #act {-M-_Papa Smurf <!>} {mission return};
 #act {-M-_Papa Smurf <.>} {#nop};
 
-
 #class {bot} {close}
-
-#read common/bot/generic.tin
+#read common/bot/generic.tin;
+playercheck;

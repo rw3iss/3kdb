@@ -115,7 +115,7 @@
 #ALIAS {.mipProcessGlineMage} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]}	{Gem:%d\%}  		{#VAR {my[gem]}				   {&1}	}	{#VAR {my[gem]}					{0}	};
-		#REGEX {$mip[gline][1]}	{MC:%d}				{#VAR {my[mental_cognition]}   {&1}	}	{#VAR {my[mental_cognition]}	{0}	};
+		#REGEX {$mip[gline][1]}	{MC:%d}				{#VAR {my[mental_cognition]}   {&1}	}	{#NOP};
 		#REGEX {$mip[gline][1]}	{SS>}				{#VAR {my[prots][SS]}		   {1}	}	{#VAR {my[prots][SS]}			{0}	};
 		#REGEX {$mip[gline][1]}	{PA}				{#VAR {my[prots][PA]}		   {1}	}	{#VAR {my[prots][PA]}			{0}	};
 		#REGEX {$mip[gline][1]}	{{PS|PS!}}			{#VAR {my[prots][PS]}		   {1}	}	{#VAR {my[prots][PS]}			{0}	};
@@ -231,14 +231,14 @@
 		#REGEX {$mip[gline][2]}	{HPf:%d/%d}	{
 			#VAR {my[hp][fuse][current]}	{&1};
 			#VAR {my[hp][fuse][max]}	{&2};
-		}
+		};
 		#REGEX {$mip[gline][2]}	{SPf:%d/%d}	{
 			#VAR {my[sp][fuse][current]}	{&1};
 			#VAR {my[sp][fuse][max]}	{&2};
-		}
+		};
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>};
-	}
+	};
 }
 
 #ALIAS {.mipProcessGlineBard} {
@@ -253,6 +253,7 @@
 		#REGEX {$mip[gline][1]} { HS:%d}	{#VAR {my[defs][hs]}		{&1}}   {#var {my[defs][hs]}    {0}};
 		#REGEX {$mip[gline][1]} { O:%d}		{#VAR {my[defs][o]}			{&1}}	{#var {my[defs][o]}     {0}};
 		#REGEX {$mip[gline][1]} { V:%d}		{#VAR {my[defs][v]}			{&1}}	{#var {my[defs][v]}		{0}};
+		#REGEX {$mip[gline][1]} { R:%d}		{#VAR {my[defs][r]}			{&1}}	{#var {my[defs][r]}		{0}};
 		#REGEX {$mip[gline][1]} { AG:%d}	{#VAR {my[defs][ag]}		{&1}}	{#var {my[defs][ag]}	{0}};
 		#REGEX {$mip[gline][1]} { ES:%d}	{#VAR {my[defs][es]}		{&1}}	{#var {my[defs][es]}	{0}};
 		#REGEX {$mip[gline][1]} { HR}		{#VAR {my[defs][hr]}		{1}}   {#var {my[defs][hr]}    {0}};
@@ -260,6 +261,8 @@
 		#REGEX {$mip[gline][1]} { MB}		{#VAR {my[defs][mb]}		 {1}}	{#var {my[defs][mb]}    {0}};
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
 		#REGEX {$mip[gline][1]} { RF}		{#VAR {my[defs][rf]}		 {1}}	{#var {my[defs][rf]}    {0}};
+		#REGEX {$mip[gline][1]} { CS}		{#VAR {my[defs][cs]}		 {1}}	{#var {my[defs][cs]}    {0}};
+		#REGEX {$mip[gline][1]} { *M*}		{#VAR {my[defs][m]}		     {1}}	{#var {my[defs][m]}    {0}};
 
 	}; #ELSEIF {%1 == 2} {
 		#nop Smile, GXP, Song Performing, Rounds left;
