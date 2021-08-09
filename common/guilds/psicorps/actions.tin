@@ -21,7 +21,7 @@
 
 #act {^Implant: Shutdown complete.} {#var my[powers] = []};
 
-#NOP ---- Damage types for adapt body
+#NOP ---- Damage type
 
 #act {^%1 melee attacks do %2 damage.$} {
 	#regex {%2} {{(mostly )?slashing}} {#var _adapt_body edged};
@@ -35,5 +35,11 @@
 	#regex {%2} {{(mostly )?poison}} {#var _adapt_body poison};
 	#regex {%2} {{(mostly )?radiation}}	{#var _adapt_body radiation}; 
 };
+
+#NOP ---- Offense
+
+#act {^You agitate the molecules in the air into a blast of brilliant light} {#var _bb 1};
+#act {^You demoralize} {#var _dm 1};
+#act {^That target cannot be re-demoralized.} {#var _dm 1};
 
 #class {psicorps_actions} {close}
