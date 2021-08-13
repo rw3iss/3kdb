@@ -101,6 +101,8 @@
     #var foundtimes 1;
     #var mob[long] %1;
 
+    #regex {$mob[long]} {%*attacking%*} {#var bot[aggro-mob] 1;};
+
     #replace mob[long] {.} {};
     #replace mob[long] {-M-_} {};
     #replace mob[long] { \[%*\]} {};
@@ -138,6 +140,7 @@
         #var bot[foundmob] 0;
         #var bot[foundobject] 0;
         #var bot[foundplayer] 0;
+        #var bot[aggro-mob] 0;
         .prompt;
 	};
 
@@ -162,10 +165,12 @@
                 #math bot[stats][mobs] {$bot[stats][mobs] + 1};
 
                 #unact {{^-R-_(.*)-R-_}};
-                #if {$mob_kill_action} {
-                    .mob_kill_action;
-                } {
-                    kill $mob[target];
+                #if {!$bot[aggro-mob]} {
+                    #if {$mob_kill_action} {
+                        .mob_kill_action;
+                    } {
+                        kill $mob[target];
+                    };
                 };
             } {
                 #if {$bot[foundobject]} {
@@ -197,6 +202,7 @@
     #echo {----- BOT REGISTERED KILL -----};
     bot_xp;
     #var bot[foundmob] 0;
+    #var bot[aggro-mob] 0;
     #if !$idle_flag {
         #if $check_death {
             .check_death;
