@@ -14,7 +14,6 @@
 #VARIABLE         {strategy[assault]}  {0};
 #VARIABLE         {strategy[enrage]}  {1};
 #VARIABLE         {strategy[epowers]}  {1};
-#VARIABLE         {strategy[weave]}  {1};
 
 #VARIABLE         {canvas}  {{width}{92}{widthperc}{.45}};
 #VARIABLE         {curvnum}  {4119};
