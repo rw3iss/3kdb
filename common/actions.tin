@@ -60,7 +60,7 @@
 };
 
 #NOP -- 3kdb reporting stuff;
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w corpses$} {
+#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w corpses} {
     #if {"%2" == "bot"} {
         #if {!$idle_flag && $bot[active]} {#delay .2 {ptell $corpse_string};};
     };
@@ -88,7 +88,7 @@
         #var xp_rate_str $bot[delta-rate] ($bot[delta-time] Hrs);
     } {
         #math bot[delta-time] {$bot[delta-time] / 60 * 1.00};
-        #math bot[delta-rate] {$bot[stats][xp] / $bot[delta-time]};
+        #math bot[delta-rate] {$bot[stats][xp] * 60 / $bot[delta-time]};
         thousandsFormatNumber bot[delta-rate];
         #var xp_rate_str $bot[delta-rate] ($bot[delta-time] mins);
     };
@@ -101,24 +101,24 @@
 
 #NOP -- CORPSE SHARING AND REPORTING;
 #var gimme_corpses 1;
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w corpses gimme-%w} {
+#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w corpses %w} {
     #if {"%2" == "$user"} {
         #if {!$idle_flag && $gimme_corpses} { 
-            #if {"%3" == "coffin"} {
+            #if {"%3" == "gimme-coffin"} {
                 #var gimme_corpses 0;
                 ptell Attempting to unwrap 10 corpses;
                 #10 unwrap;
                 #delay .1 {i};
                 #delay 4 {#var gimme_corpses 1};
             };
-            #if {"%3" == "freezer"} {
+            #if {"%3" == "gimme-freezer"} {
                 #var gimme_corpses 0;
                 ptell Attempting to deslab 10 corpses;
                 #10 deslab;
                 #delay .1 {i};
                 #delay 4 {#var gimme_corpses 1};
             };
-            #if {"%3" == "cooler"} {
+            #if {"%3" == "gimme-cooler"} {
                 #var gimme_corpses 0;
                 ptell Attempting to uncooler 10 corpses;
                 #10 uncooler corpse;
@@ -129,21 +129,21 @@
     };
     #if {"%2" == "bot"} {
         #if {!$idle_flag && $bot[active] && $gimme_corpses} {
-            #if {"%3" == "coffin"} {
+            #if {"%3" == "gimme-coffin"} {
                 #var gimme_corpses 0;
                 ptell Attempting to unwrap 10 corpses;
                 #10 unwrap;
                 #delay .1 {i};
                 #delay 4 {#var gimme_corpses 1};
             };
-            #if {"%3" == "freezer"} {
+            #if {"%3" == "gimme-freezer"} {
                 #var gimme_corpses 0;
                 ptell Attempting to deslab 10 corpses;
                 #10 deslab;
                 #delay .1 {i};
                 #delay 4 {#var gimme_corpses 1};
             };
-            #if {"%3" == "cooler"} {
+            #if {"%3" == "gimme-cooler"} {
                 #var gimme_corpses 0;
                 ptell Attempting to uncooler 10 corpses;
                 #10 uncooler corpse;
@@ -196,5 +196,12 @@
 #NOP -- Skill Training;
 #act {^To do so, type: tskill %1$} {tskill %1};
 
+
+#NOP -- Mob Life Counting;
+#act {^Beloch falters slightly but shakes off the assault.} {
+    #showme -------------------------------------------------;
+    #showme ---------        BELOCH LIFE DOWN         -------;
+    #showme -------------------------------------------------;
+};
 
 #class {default_actions} {close}

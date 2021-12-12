@@ -15,6 +15,7 @@
     repair;
     repair;
     tactical;
+    stabilize;
 };
 
 #alias {.pre_bot_check} {#NOP};

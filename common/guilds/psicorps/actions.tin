@@ -3,7 +3,26 @@
 
 #NOP --- PSICORPS ACTIONS;
 
-/* See power stats */
+#NOP -- GXP Tracking;
+#var gxp[total-kills] 0;
+#var gxp[total-rounds] 0;
+#var gxp[total-gxp] 0;
+
+#act {^GXP Awarded from %*: %d} {
+	#var gxp[last-fight-mob] %1;
+	#var gxp[last-fight] %2;
+	#var gxp[last-fight-rounds] $last_fight_rounds;
+	#math gxp[total-kills] {$gxp[total-kills] + 1};
+	#math gxp[total-gxp] {$gxp[total-gxp] + %2};
+	#math gxp[total-rounds] {$gxp[total-rounds] + $last_fight_rounds};
+	#math gxp[avg-gxp-per-round] {$gxp[total-gxp] / $gxp[total-rounds]};
+	
+	#math gxp[last-fight-per-round] {$gxp[last-fight] / $gxp[last-fight-rounds]};
+	#showme LAST FIGHT GXP: $gxp[last-fight-per-round] per rnd from $gxp[last-fight-mob];
+	#showme TOTAL GXP: $gxp[total-gxp] ($gxp[avg-gxp-per-round] per round);
+} {1};
+
+#NOP --- See power stats;
 #substitute {Psychometabolism} {Psychometabolism [Str]};
 #substitute {Psychoportation} {Psychoportation [Dex]};
 #substitute {Psychokinesis} {Psychokinesis [Con]};

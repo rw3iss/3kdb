@@ -72,6 +72,16 @@
 #act {{\-R\-_(.*) \((.*)\)\s*\-R\-_}} {
 	#var room %2;
 	#var exits %3;
+
+	#NOP -- I can't figure out where the room variable is being overwritten...so making a new variable in addition for finder;
+	#var roomFinder[short] %2;
+	#var roomFinder[exits] %3;
+	#if {"$finding_here" == "on"} {
+		#replace roomFinder[exits] {,} {;};
+		#map list {roomarea} {$area} {roomname} {$room[short]%*} {roomexits} {$room[exits]} {roomdesc} {$long};
+		#map list {roomarea} {$area} {roomname} {$room[short]%*} {roomexits} {$room[exits]} {roomdesc} {$long} {variable} {findroom};
+	};
+
 	#if {"$mapping" == "on"} {
 		#if {"$finding_here" == "off"} {
 			#replace exits {,} {;};
@@ -81,53 +91,54 @@
 				#map at {$eachexit} {
 					#map get {roomarea} {eacharea};
 					#if {"$eacharea" == ""} {
-						#NOP #map set {roomcolor} {<118>};
-					};
-				};
-			};
+						#map set {roomcolor} {<118>}
+					}
+				}
+			}
 		};
 		#if {$roomname_len == 0} {
-			#map set roomname {%2 (%3)};
+			#map set roomname {%2 (%3)}
 		};
 		#if {$roomarea_len == 0} {
 			#map set roomarea {$area};
-			#map set roomcolor;
+			#map set roomcolor
 		};
 		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
-			#unvar long;
+			#var long {};
 			#act {%%1} {
-				#var long {${long}%%1 };
-				#NOP #if {@cartcheck{%%1}} {
-				#NOP 		#nop
-				#NOP 	} {
-				#NOP 		#var long {${long}%%1 }
-				#NOP }
+				#if {@cartcheck{%%1}} {
+						#nop
+					} {
+						#var long {${long}%%1 }
+				}
 			} {2}
 		};
-		#delay 0 mapupdate;
-	};
-};
+		#delay 0 mapupdate
+	}
+
+
+} {2};
 
 #NOP Room Short with No Exits, Lowered Priority;
 #act {\-R\-_%1%s\-R\-_} {
 	#var room %1;
 	#if {"$mapping" == "on"} {
 		#if {$roomname_len == 0} {
-			#map set roomname {%1};
+			#map set roomname {%1}
 		};
 		#if {$roomarea_len == 0} {
 			#map set roomarea {$area};
-			#map set roomcolor;
+			#map set roomcolor
 		};
 		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
 			#unvar long;
 			#act {%%1} {
 				#if {@cartcheck{%%1}} {
-						#nop;
+						#nop
 					} {
-						#var long {${long}%%1 };
+						#var long {${long}%%1 }
 				}
 			} {2}
 		};
@@ -144,11 +155,11 @@
 			#map set roomdesc {$long}
 		}
 	}
-} {1}
+} {1};
 
 #act {AREA NAME: %1 [%2]} {
 	#var area %1
-}
+} {1};
 
 
 /* Aliases */
@@ -170,6 +181,17 @@
 	#map get {roomvnum} {gonum};
 	#map goto $gonum;
 }
+
+#alias findhere1 {
+	#var finding_here on;
+	rating;
+	#send !brief on no;
+	#delay 1 glance;
+};
+
+#alias finderhere2 {
+
+};
 
 #alias {findhere} {
 	#var finding_here on;

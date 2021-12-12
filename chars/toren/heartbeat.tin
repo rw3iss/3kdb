@@ -7,7 +7,7 @@
 #alias {_player_heartbeat} {
 	#if {!$idle_flag} {
 		#if {$make_con && $my[necromancer][worth] < 125} {con 100;#var make_con 0;#delay 4 {#var make_con 1}};
-		#if {$party_actions && $mip[round] == 2} {
+		#if {$party_actions && $mip[round] == 1} {
 			#if $strategy[fury] {fury};
 			#if $strategy[rabies] {alter beast;rabies};
 			#if $strategy[call] {call};
@@ -26,7 +26,7 @@
 					add_action {{{name} {study-alter} {action} {go necro_were;#delay 2 {.study};#delay 4 {#map run $go_back};#delay 6 {..};}}};
 				};
 			};
-			#if {!$corpse_check && $corpses[total] < 10} {
+			#if {$auto_pilot && !$corpse_check && $corpses[total] < 10} {
 				#NOP -- If in an area I don't corpse up in, stop the bot;
 				#if {"$area" != "Whorehouse" && "$area" != "Catacombs"} {
 					#SHOWME STOPPING BECAUSE OF CORPSES;
@@ -34,9 +34,11 @@
 				};
 			};
 			#if {$inventory[encumberance] > 90 || "$inventory[encumberance]" == "XX"} {
-				.pause;
-				#var actions_stacked 1;
-				add_action {{{name} {go-donate} {action} {go_donate}}};
+				#if $auto_donate {
+					.pause;
+					#var actions_stacked 1;
+					add_action {{{name} {go-donate} {action} {go_donate}}};
+				};
 			}
 		};
 		

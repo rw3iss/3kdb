@@ -8,4 +8,6 @@
 #act {^You demonstrate to your brood how to retain their control.} {#var my[roots][active] 1;}
 #act {^Your broodlings become more chaotic in their behaviour.} {#var my[roots][active] 0;}
 
+#act {^You lack the mental focus to help your brood at this time.$} {#var my[roots][current] 0};
+
 #class {sii_actions} {close}

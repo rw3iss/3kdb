@@ -1,8 +1,8 @@
 #class {psicorps_heartbeat} {kill}
 #class {psicorps_heartbeat} {open}
 
-#var use_body_fuel 1;
-#var use_chain 1;
+#var use_body_fuel 0;
+#var use_chain 0;
 #var _adapt_body edged;
 #var current_adapt_body none;
 #var hbp 0; /* has a heartbeat power been used this heartbeat */
@@ -100,9 +100,28 @@
   #act {{You must wait %d round%w before you can use this power again.|You may only use one power per round.}} {
     #show <069>==> Failed to use $tmp_last_power_used<900>;
   } {5};
-  %0;
-  #var hbp 1;
-  #show <069>==> %0<900>;
+  #NOP -- Check if you have enough PSI / Stamina to use the power;
+  #NOP -- Check if you are in combat for powers that should only be used in combat;
+  #foreach $psi_powers[%*] power {
+    #if {"%0" == "$power[power]"} {
+      #if {$power[combat]} {
+        #if {$mip[round] > 0 && !$hbp} {
+          #if {$my[gp1][current] >= $power[psi]} {
+            #if {$my[gp2][current] >= $power[stam]} {
+              #var hbp 1;
+              %0;
+              #show <069>==> %0<900>;
+              #return #nop;
+            } {
+              #if {$_DEBUG_HB} {#show [debug_heartbeat] <069>==> Not enough Stam to use %0<900>};
+            };
+          } {
+            #if {$_DEBUG_HB} {#show [debug_heartbeat] <069>==> Not enough Psi to use %0<900>};
+          };
+        };
+      };
+    };
+  };
   #return #nop;
 };
 
@@ -125,51 +144,44 @@
       #SHOW [debug_heartbeat] GP1: $my[gp1][current]/$my[gp1][max];
       #SHOW [debug_heartbeat] GP2: $my[gp2][current]/$my[gp2][max];
     };
-
-    #delay {0.1} {
-      _guild_heartbeat;
-      _player_heartbeat;
-    };
 };
 
 #act {^[[%*]]} {
     #line gag;
     #var powers %1;
+    #NOP -- String for HPBAR;
+    #var powers_string %1;
     #replace powers {:}{};
     #replace powers { }{;};
     #list powers create $powers;
-
-    #NOP -- Hack for powers without a time (dodge, expertise, etc.);
-
-    #list {powers} {find} {D} {D_index};
-
-    #if {$D_index > 0} {
-      #math insert_index {$D_index + 1};
-      #list {powers} {insert} {$insert_index} {1000};
-    };
-
-    #list {powers} {find} {E} {E_index};
-
-    #if {$E_index > 0} {
-      #math insert_index {$E_index + 1};
-      #list {powers} {insert} {$insert_index} {1000};
-    };
-
-    #NOP -- End hack;
 
     #var i 1;
     #list {powers} {size} {size};    
 
     #var my[powers] [];
     #var my[powers_time] [];
-    #while {$i < $size} {
+    #while {$i <= $size} {
         #math {time_index} {$i + 1};
         #list {powers} {get} {$i} {power};
         #list {powers} {get} {$time_index} {time};
-        #regex {$time} {%d} {#var time &0};
+
+        #NOP -- If the regex finds a number, the power has a duration.  If it doesn't, it's the next power in the list;
+        #NOP -- Powers with a timer we use the timer, if not we make it an 11;
+
+        #regex {$time} {%+d} {
+            #var time &0;
+            #if {$time > 0} {
+                #math {i} {$i + 2};
+            } {
+                #var time 11;
+                #math {i} {$i + 1};
+            };
+        } {
+            #var time 11;
+            #math {i} {$i + 1};
+        };
         #var my[powers][$power] 1;
         #var my[powers_time][$power] $time;
-        #math {i} {$i + 2};
     };
 };
 
@@ -218,6 +230,7 @@
   #nop -- Offense;
   
   @check_power{Bo;bolt};
+  @check_power{Tl;talons};
   @check_power{CP;combat prescience};
   @check_power{E;expertise};
   @check_power{Ij;iron jaw};
@@ -266,6 +279,7 @@
   #nop -- GP1 healing;
 
   #if {!$hbp} {
+    #if {$combat[Bfuel]} {
     #nop -- Convert calcs;
 
     #var {sp_to_psi_ratio} {0.2};
@@ -292,6 +306,7 @@
     };
     #elseif {$can_safely_use_body_fuel && $use_body_fuel} {
       @use_power{body fuel $hp_to_spend};
+    };
     };
   };
 };

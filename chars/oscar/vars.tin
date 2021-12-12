@@ -13,8 +13,8 @@
 
 #NOP -- Strategy Settings;
 #VARIABLE monitors[saturation-start]  30;
-#VARIABLE monitors[saturation-corpse]  70;
-#VARIABLE monitors[saturation-stop]  80;
+#VARIABLE monitors[saturation-corpse]  85;
+#VARIABLE monitors[saturation-stop]  95;
 
 #NOP -- Drawing Settings;
 #VARIABLE {canvas} {{width} {82}{widthperc} {0.40}};

@@ -1,13 +1,13 @@
 #class {miproom} {open};
 
 #ALIAS {.mipProcessBAD} {
-    #VAR {room[name]} {%1};
+    #VAR {mip[room][name]} {%1};
 };
 
 #ALIAS {.mipProcessDDD} {
     #var exitStr %1;
     #replace exitStr {~} { };
-    #var {room[exits]} {%1};
+    #var {mip[room][exits]} {%1};
 };
 
 #NOP ***** Room Nouns Handling *****;

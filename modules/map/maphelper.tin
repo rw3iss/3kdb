@@ -118,8 +118,8 @@
 }
 
 /* Transports */
-#NOP Abyss
-#act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
+#NOP Abyss;
+#act {Abyssmal Portal (s,portal)} {#map goto 5159} {3}
 
 #NOP Android
 #act {BING! The button light goes off and the elevator doors open.} {enter elevator}
@@ -234,7 +234,7 @@
 	#if {"$area" == "Night of Colour"} {
 		#map goto 16359
 	} {
-		#map goto  16530
+		#map goto 16530
 	}
 }
 #act {^You step out of the basket, into chaos.} {

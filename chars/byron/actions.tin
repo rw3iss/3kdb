@@ -3,16 +3,6 @@
 
 #var corpse_delay 0;
 
-#NOP --- Byron specific actions;
-#ACTION {^You are no longer blinking.$} {#if {$defs[blink] && !$idle_flag} {setpanic clear;cast blink}} {5};
-#ACTION {^As you complete the spell you begin phasing in and out of view!$} {
-	#var blink_count 0;
-	setpanic cast cure at 67%;
-	#if {!$strategy[rainbow] && !$strategy[hammer]} {
-		setpanic cease;
-	};
-} {5};
-
 #action {Out of nowhere a crazed hockey fan leaps towards the Cup.} {perform dirge};
 
 #ACTION {^Owie. That hurt!} {
@@ -27,11 +17,5 @@
 
 #NOP --- GENERAL MISC;
 #action {Gargoyle <cgame>: The remaining roles were:} {#if {$cultjoin && !$idle_flag} {#delay 6 {cult join}}};
-
-#NOP --- BARD MISC;
-#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};it $lower} {6};
-#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {6};
-
-
 
 #class {player_actions} {close}

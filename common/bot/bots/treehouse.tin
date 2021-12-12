@@ -25,4 +25,3 @@
 
 #class {bot} {close}
 #read common/bot/generic.tin;
-playercheck;

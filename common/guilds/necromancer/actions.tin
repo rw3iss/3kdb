@@ -19,6 +19,7 @@
 #act {^You currently have %d/%d open memory globes,} {#var powers[globes][open] %1;}
 
 #NOP --------------------------------------- NECROMANCER SUPPORT ACTIONS  ------------------------------------------;
-#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};daemon graft $lower} {6};
+#ACTION {%w gives you a low-five!} {#if !$idle_flag {#format {lower} {%l} {%1};daemon graft $lower}} {6};
+#ACTION {%w goes 'Breakin the law! Breakin the law!' at you.} {#if !$idle_flag {#50 preserve remains}} {6};
 
 #class {guild_actions} {close}

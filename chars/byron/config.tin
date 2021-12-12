@@ -188,6 +188,30 @@
                     #var defs[pe] 1;
                };
           };
+          
+          #case {"Mahjong"} {
+               echo_divider1;
+               clear_prots;reflex_clear;
+               echo_divider2;
+               #var kill_em_all 0;
+               echo_prots_header;
+               prots_pfe;prots_pfg;prots_pfn;prots_blink;prots_hs;prots_pfc;prots_pfh;prots_mb;
+               echo_reflex_header;
+               reflex_critic $dmg_spell_sp;reflex_ow 300;
+               reflex combat;
+
+               #NOP -- Update what happens before every fight and will be re-activated post deadmans;
+               #alias {.pre_fight_check} {
+                    #var defs[blink] 1;
+                    #var defs[hs] 1;
+                    #var defs[pf] 1;
+                    #var defs[ph] 1;
+                    #var defs[mb] 1;
+                    #var defs[pe] 1;
+                    #var defs[pg] 1;
+                    #var defs[pn] 1;
+               };
+          };
 
           #default {
                echo_divider1;

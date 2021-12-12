@@ -1,3 +1,4 @@
+#read common/guilds/necromancer/3kdb.tin;
 #read common/guilds/necromancer/actions.tin;
 #read common/guilds/necromancer/aliases.tin;
 #read common/guilds/necromancer/gags.tin;

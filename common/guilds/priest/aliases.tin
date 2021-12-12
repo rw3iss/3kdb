@@ -9,4 +9,27 @@
     #var total_rounds 0;
 }
 
+#alias {fftouch} {
+    #unvar ftouches;
+    #list ftouches add %1;
+    #list ftouches add %2;
+    #list ftouches add %3;
+    #list ftouches add %4;
+    #list ftouches add %5;
+    ftouch %1;
+};
+
+#act {^You make %* light as a feather!$} {
+    #list ftouches get 5 ftouchItem;
+    ftouch $ftouchItem;
+    #list ftouches delete 1;
+};
+
+#act {%* cannot be lightened any more.$} {
+    #list ftouches get 1 ftouchItem;
+    ftouch $ftouchItem;
+    #list ftouches delete 1;
+};
+
+
 #class {priest_aliases} {close}

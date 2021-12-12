@@ -95,6 +95,11 @@
             (heal oscar;
         };
 
+        # turn ash off if using MI
+        #if {$my[immersion][rounds] > 0 && $ash > 0} {
+            ash;
+        }
+
         #if {$summoner} {
             #if {!$summons_haste && $sp_percent > 30} {
                 cast haste on summons;

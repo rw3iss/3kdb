@@ -11,9 +11,8 @@
         #send {repeat combat/off};
         #var tracking_gxp 0;
         #unact { |  Next Circle:[%*]};
-        #unact {\(=>-=-=-=-=-=-=-=-=-=-<*> Toren, Servant of the Bear <*>=-=-=-=-=-=-=-=-=-=-<<\)};
-        #unact {\(|>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-<|\)};
-        #ungag { |%*|};
+        #unact {%*>-=-=-=-=-=-=-=-=-=-<*> Toren, Servant of the Bear <*>=-=-=-=-=-=-=-=-=-=-<%*};
+        #unact {%*>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-<%*};
     } {
         #showme ----- NOW TRACKING GXP -----;
         #send {repeat combat/gs};
@@ -95,6 +94,14 @@
     #if $actions_stacked {
         do_action;
     } {
+        #if {$inventory[freezer] && $corpses[freezer] < 50} {
+            slab remains;
+            slab remains;
+        };
+        #if {$inventory[coffin] && $corpses[coffin] < 28} {
+            wrap remains;
+            wrap remains;
+        };
         #if {$inventory[encumberance] > 95} {
             #delay 3 {slab all;absorb;absorb;get all;.bot};
         } {

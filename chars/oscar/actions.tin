@@ -5,7 +5,7 @@
     #if !$bot[active] {
         corpse_trig;
     };
-};
+} {2};
 
 #NOP --- Oscar specific actions;
 #action {^Owie. That hurt!$} {#15 grasp beads};

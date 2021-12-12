@@ -6,6 +6,10 @@
 
 logs/
 
+wip/
+tmp/
+temp/
+common/bot/bots/old/
 
 # don't commit the map
 **3k_shared.map

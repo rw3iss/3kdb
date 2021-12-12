@@ -3,6 +3,8 @@
 
 #NOP -- Aliases and triggers to build golems;
 
+#var golem_master 1;
+
 #alias {build_golem %1} {#var golem %1;#var golem-head 0;#var golem-limbs 0;#var golem-torso 0;ktrig golemize corpse head/wrap/get all};
 #action {^You quickly set to work and deftly remove the head from corpse.$} {
 	#var golem-head 1;ktrig golemize corpse torso/wrap/get all} {6};

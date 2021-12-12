@@ -7,6 +7,7 @@
 #var corpses[coffin] 0;
 #var corpses[inventory] 0;
 #var corpses[smuggle] 0;
+#var corpses[golem] 0;
 
 #NOP -- Override the alias for inventory to reset the variables and set alias to pick which corpse to use;
 #alias {i} {
@@ -38,7 +39,7 @@
 
 #NOP -- $corpse_string is a generic string to be inserted in your hpbar - added to the ticker for the tickhp;
 #alias {_update_corpse_string} {
-	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler] + $corpses[servant]};
+	#math corpses[total] {$corpses[coffin] + $corpses[inventory] + $corpses[smuggle] + $corpses[freezer] + $corpses[cooler] + $corpses[servant] + $corpses[golem]};
 	#delay 0.1 {
 		#var corpse_string Corpses: $corpses[total] (C: $corpses[coffin];
 		#if {$corpses[inventory] > 0} {#var corpse_string $corpse_string I: $corpses[inventory];};
@@ -46,13 +47,14 @@
 		#if {$corpses[freezer] > 0} {#var corpse_string $corpse_string F: $corpses[freezer];};
 		#if {$corpses[cooler] > 0} {#var corpse_string $corpse_string Clr: $corpses[cooler];};
 		#if {$corpses[servant] > 0} {#var corpse_string $corpse_string Srv: $corpses[servant];};
+		#if {$corpses[golem] > 0} {#var corpse_string $corpse_string Glm: $corpses[golem];};
 		#var corpse_string {$corpse_string )};
 	};
 };
 
-#NOP -- Corpse use order is:  Coffin -> Freezer -> Cooler -> Inventory -> Smuggle;
+#NOP -- Corpse use order is:  Coffin -> Freezer -> Cooler -> Golem -> Inventory -> Smuggle;
 #alias corpse_select {
-	#if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer]} {
+	#if {$corpses[smuggle] && !$corpses[inventory] && !$corpses[coffin] && !$corpses[freezer] && !$corpses[golem]} {
 		smuggle remove corpse;drop corpse;
 	};
 	#if $corpses[coffin] {
@@ -64,7 +66,11 @@
 			#if $corpses[cooler] {
 				uncooler corpse;
 			} {
-				unkeep corpse;drop corpse;
+				#if $corpses[golem] {
+					golem drop corpse;
+				} {
+					unkeep corpse;drop corpse;
+				};
 			};
 		};
 	};
@@ -142,7 +148,7 @@
 	#action {{^(.*)(corpse|remains)(.*)}} {
 		#math corpses[cooler] {$corpses[cooler] + 1};
 	};
-	#delay 2 {
+	#delay 1 {
 		#unaction {{^(.*)(corpse|remains)(.*)}};
 	};
 	
@@ -169,7 +175,7 @@
 	#action {{^>(.*)(corpse|remains)(.*)}} {
 		#math corpses[smuggle] {$corpses[smuggle] + 1};
 	};
-	#delay 4 {
+	#delay 1 {
 		#unaction {{^>(.*)(The|a preserved|an embalmed)(.*)(corpse|remains)(.*)}}
 	};
 	
@@ -182,12 +188,26 @@
 	};
 };
 
+#NOP -- Corpse Management GOLEM;
+#act {Packy shows you what it is carrying:} {
+	#var corpses[golem] 0;
+	#act {{^(.*)corpse(.*) (\{[0-9]+\})?}} {
+		#var foundtimes 1;
+		#regex {%%4} {7B{[0-9]+}} {#var foundtimes &1};
+		#math {corpses[golem]} {$corpses[golem] + $foundtimes};
+	};
+	#delay 1 {#unact {{^(.*)corpse(.*) (\{[0-9]+\})?}}};	
+};
+#act {^The packmule drops %* corpse%*.$} {#math {corpses[golem]} {$corpses[golem] - 1};};
+#act {^The packmule picks up %* corpse%*.$} {#math {corpses[golem]} {$corpses[golem] + 1};};
+
+
 #NOP -- Corpse Management PRIEST SERVANT;
 #var corpses[servant] 0;
 #act {%* swirls slowly and reveals that it is carrying:$} {
 	#var corpses[servant] 0;
 	#act {^%s%d\)%* corpse%*.$} {#math {corpses[servant]} {$corpses[servant] + 1};};
-	#delay 4 {#unact {^%s%d\)%* corpse%*.$}};
+	#delay 1 {#unact {^%s%d\)%* corpse%*.$}};
 	
 }
 #act {^You take %* corpse %* from ElBefe.$} {#math {corpses[servant]} {$corpses[servant] - 1};};

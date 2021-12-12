@@ -10,6 +10,7 @@
     #foreach $botlist[%*] index {
         #if {"${bot[alias]}" == "$index[alias]"} {
             #var bot[loop] $index[loop];
+            #var bot[playercheck] $index[playercheck];
         };
     };
     .pre_bot_check;
@@ -29,8 +30,8 @@
     #showme {<ccf>  ---------------------------------------    <088>  };
     #showme {<ccf>  -------   <faa>-alias <fff>to load a bot<ccf>  -------    <088>  };
     #showme {<ccf>  ---------------------------------------    <088>  };
-    #list speedruns index desc;
-    #list speedruns sort;
+    #list botlist index desc;
+    #list botlist sort;
     #showme {<ccf>     Alias                Description        <088>  };
     #foreach $botlist[%*] index {
         format_botlist {     $index[alias]} {$index[desc]};
@@ -38,21 +39,34 @@
 };
 
 #list botlist clear;
-#list botlist add {{{alias} {sectionz} {desc} {Section Z Long Path} {start_vnum} {24787} {loop} {0}}};
-#list botlist add {{{alias} {sectionz-40} {desc} {Section Z Sec 40 Start} {start_vnum} {} {loop} {0}}};
-#list botlist add {{{alias} {mahjong} {desc} {Mahjong} {start_vnum} {1944} {loop} {1}}};
-#list botlist add {{{alias} {treehouse} {desc} {Treehouse - All Mobs} {start_vnum} {25462} {loop} {0}}};
-#list botlist add {{{alias} {treehouse-easy} {desc} {Treehouse - Only Smaller Mobs} {start_vnum} {25462} {loop} {0}}};
-#list botlist add {{{alias} {whores} {desc} {Whorehouse} {start_vnum} {2084} {loop} {1}}};
-#list botlist add {{{alias} {catacombs} {desc} {Catacombs} {start_vnum} {7996} {loop} {1}}};
-#list botlist add {{{alias} {catacombs2} {desc} {Catacombs v2.0} {start_vnum} {20967} {loop} {1}}};
-#list botlist add {{{alias} {pol} {desc} {Portal of Life} {start_vnum} {6746} {loop} {1}}};
-#list botlist add {{{alias} {pol2} {desc} {Portal of Life v2.0} {start_vnum} {6747} {loop} {1}}};
-#list botlist add {{{alias} {pol3} {desc} {Portal of Life v3.0} {start_vnum} {6748} {loop} {1}}};
-#list botlist add {{{alias} {rimalkins} {desc} {Rimalkins} {start_vnum} {1601} {loop} {0}}};
-#list botlist add {{{alias} {hoteltrans} {desc} {Hotel Transylvania} {start_vnum} {1850} {loop} {0}}};
-#list botlist add {{{alias} {hoteltrans2} {desc} {Hotel Transylvania - Basement} {start_vnum} {26417} {loop} {0}}};
-#list botlist add {{{alias} {angels} {desc} {Tree of Life} {start_vnum} {24584} {loop} {1}}};
-#list botlist add {{{alias} {angels2} {desc} {Tree of Life v2.0} {start_vnum} {24606} {loop} {1}}};
+#list botlist add {{{alias} {aegis} {desc} {Aegis Global: Lvls 1-6} {start_vnum} {} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {aegis1} {desc} {Aegis Global: Lvl 1} {start_vnum} {} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {aegis2} {desc} {Aegis Global: Lvl 2} {start_vnum} {} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {sectionz} {desc} {Section Z Long Path} {start_vnum} {24787} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {sectionz-fast} {desc} {Section Z Fast Path} {start_vnum} {24787} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {sectionz-20} {desc} {Section Z Sec 20 Start} {start_vnum} {} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {sectionz-40} {desc} {Section Z Sec 40 Start} {start_vnum} {} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {mahjong} {desc} {Mahjong} {start_vnum} {1944} {loop} {1} {playercheck} {0}}};
+#list botlist add {{{alias} {treehouse} {desc} {Treehouse - All Mobs} {start_vnum} {25462} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {treehouse-easy} {desc} {Treehouse - Only Smaller Mobs} {start_vnum} {25462} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {whores} {desc} {Whorehouse} {start_vnum} {2084} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {catacombs} {desc} {Catacombs} {start_vnum} {7996} {loop} {1} {area} {playercheck} {1}}};
+#list botlist add {{{alias} {catacombs2} {desc} {Catacombs v2.0} {start_vnum} {20967} {loop} {1} {area} {playercheck} {1}}};
+#list botlist add {{{alias} {chessboard} {desc} {Chessboard} {start_vnum} {} {loop} {1} {playercheck} {0}}};
+#list botlist add {{{alias} {pol} {desc} {Portal of Life} {start_vnum} {6746} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {pol2} {desc} {Portal of Life v2.0} {start_vnum} {6747} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {pol3} {desc} {Portal of Life v3.0} {start_vnum} {6748} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {rimalkins} {desc} {Rimalkins} {start_vnum} {1601} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {hoteltrans} {desc} {Hotel Transylvania} {start_vnum} {1850} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {hoteltrans2} {desc} {Hotel Transylvania - Basement} {start_vnum} {26417} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {angels} {desc} {Tree of Life} {start_vnum} {24584} {loop} {1} {playercheck} {0}}};
+#list botlist add {{{alias} {angels2} {desc} {Tree of Life v2.0} {start_vnum} {24606} {loop} {1} {playercheck} {0}}};
+#list botlist add {{{alias} {dundee64} {desc} {Dundee Swamps: 6 -> 4} {start_vnum} {3486} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {dundee87} {desc} {Dundee Swamps: 8 -> 7} {start_vnum} {10446} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {kayos} {desc} {Kayos Wars} {start_vnum} {} {loop} {1} {playercheck} {0}}};
+#list botlist add {{{alias} {findtv} {desc} {Chaos TV Finder} {start_vnum} {196} {loop} {0} {playercheck} {0}}};
+#list botlist add {{{alias} {colors} {desc} {NOC 2.0 - Normal} {start_vnum} {16530} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {colors-high} {desc} {NOC 2.0 - High Value Targets} {start_vnum} {16530} {loop} {1} {playercheck} {1}}};
+#list botlist add {{{alias} {colors-safe} {desc} {NOC 2.0 - Safe Mode / No hitarounds} {start_vnum} {16530} {loop} {1} {playercheck} {1}}};
 
 #class {botlist} {close}

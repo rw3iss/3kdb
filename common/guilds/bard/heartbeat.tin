@@ -21,6 +21,10 @@
 
 		#NOP -- actions that should only be attempted once per round;
 		#if {$action_round < $mip[round] && $mip[round] > 0} {
+			#if {$blink_count > 20} {
+				#if {$blink_count > 30} {cease;cast blink};
+				cast blink;
+			};
 			#if {$my[defs][hr] > 0} {#NOP} {#if {$defs[hr] && $my[sp][current] > $protCosts[harmonic regeneration][sp]} {cast harmonic regeneration} {#nop}};
 			#NOP --- The song bots shouldn't attempt to keep rolling if we're near using a corpse;
 			#if {$my[gp1][current] > $karma_heal} {
@@ -32,12 +36,21 @@
 				#if {$strategy[hammer] && $ham_bot} {
 					#if {$my[song][rounds] > 1} {#NOP} {
 						#if {$my[gp2][current] > 20} {
-							#if {$mip[round] > 10} {perform hammer smashed face} {
+							#if {$mip[round] > 10} {
+								perform hammer smashed face;
+								unwield redaxe;
+								remove shield;
+								wield hammer;
+							} {
 								#if !$my[defs][fr] {cast focus the rainbow};
+								unwield hammer;
+								wield redaxe;
 								perform rainbow of death;
 							};
 						} {
 							#if !$my[defs][fr] {cast focus the rainbow};
+							unwield hammer;
+							wield redaxe;
 							perform rainbow of death;
 						};
 					};

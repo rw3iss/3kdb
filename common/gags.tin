@@ -10,10 +10,19 @@
 #gag {^You nimbly dodge %* attack!$};
 
 #NOP -- Eternal Gags;
+#var ewell_gag 1;
 #gag {^The assault glances harmlessly off your aura.$};
 #gag {^A bolt of pure energy flies out of the sky striking %*!$};
 #gag {^Your form shimmers and becomes impenetrable.$};
 #gag {^You have become grounded in this plane yet again.$};
+#gag {^The brilliant sphere flashes brightly.$}
+#act {^The brilliant sphere flashes brightly.$} {
+    #if $ewell_gag {
+        #showme ---------- EWELL IS ACTIVE -----------;
+        #var ewell_gag 0;
+        #delay 4 #var ewell_gag 1;
+    };
+};
 
 
 #NOP -- Rimalkin Gags;

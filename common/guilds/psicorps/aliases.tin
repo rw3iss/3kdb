@@ -44,12 +44,14 @@
   @show_power{Vr;valor};
   @show_power{Vv;verve};
   @show_power{Iv;Improved verve};
+  @show_power{BFuel;Body Fuel};
 
   #showme ----------------;
   #showme --- Offense ----;
   #showme ----------------;
   
   @show_power{Bo;bolt};
+  @show_power{Tl;talons};
   @show_power{CP;combat prescience};
   @show_power{Cg;conductive grasp};
   @show_power{E;expertise};

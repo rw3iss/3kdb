@@ -10,9 +10,9 @@
     #if $strategy[backstab] {
         cast mystic venom on redaxe;
         hide in shadows;
-        backstab %1;
+        backstab %1 %2;
     };
-    kill %1;
+    kill %1 %2;
     #if $strategy[cloud] {#delay 2 {cast noxious cloud}};
     #if $strategy[vortex] {#delay 5 {cast lightning vortex}};
 }

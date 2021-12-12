@@ -15,6 +15,7 @@
 
 /* load common */
 #read common/index.tin;
+#read modules/helpers/helpers.tin;
 
 /* load specific modules for this character */
 #read modules/corpsemanager/corpsemanager.tin;

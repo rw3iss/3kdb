@@ -7,7 +7,6 @@
 #var bot[foundmob] 0;
 #var bot[foundobject] 0;
 #var bot[foundplayer] 0;
-#var bot[playercheck] 1;
 
 #var bot[stats][mobs] 0;
 #var bot[stats][xp] 0;
@@ -29,6 +28,16 @@
         #showme {<BAF><ffe>------ CHECKDEATH IS ACTIVE --------<088>};
     } {
         #showme {<BAF><ffe>------ CHECKDEATH IS NOT ACTIVE --------<088>};
+};
+
+#alias {autocollect} {
+    #if $collector[items] {
+        #showme {<BAF><ffe>------ ITEM COLLECTOR OFF --------<088>};
+        #var collector[items] 0;
+    } {
+        #showme {<BAF><ffe>------ ITEM COLLECTOR ON --------<088>};
+        #var collector[items] 1;
+    };
 };
 
 #alias bot_report {
@@ -57,6 +66,8 @@
 };
 
 #alias bot_xp {
+    #math bot[stats][loop][mobs] {$bot[stats][loop][mobs] + 1};
+    #math bot[stats][mobs] {$bot[stats][mobs] + 1};
     #action {^You have %* total xp.$} {
         #format temp_xp {%d} {%%1};
         #if {$my[xp] > 0 && "$temp_exp" != "$my[xp]"} {
@@ -101,7 +112,7 @@
     #var foundtimes 1;
     #var mob[long] %1;
 
-    #regex {$mob[long]} {%*attacking%*} {#var bot[aggro-mob] 1;};
+    #regex {$mob[long]} {attacking you} {#var bot[aggro-mob] 1;};
 
     #replace mob[long] {.} {};
     #replace mob[long] {-M-_} {};
@@ -160,9 +171,6 @@
             #if {$bot[foundmob]} {
                 .stop_prompt;
                 .pre_fight_check;
-                
-                #math bot[stats][loop][mobs] {$bot[stats][loop][mobs] + 1};
-                #math bot[stats][mobs] {$bot[stats][mobs] + 1};
 
                 #unact {{^-R-_(.*)-R-_}};
                 #if {!$bot[aggro-mob]} {

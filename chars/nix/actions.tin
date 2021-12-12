@@ -24,9 +24,4 @@
 #act {You are already attacking} {#delay {2} cast noxious cloud};
 
 
-
-#NOP --- BARD MISC;
-#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};remove shield;it $lower} {6};
-#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {6};
-
 #class {player_actions} {close}

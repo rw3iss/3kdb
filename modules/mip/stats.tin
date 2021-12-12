@@ -46,8 +46,17 @@
 		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
 		#CASE {"L"} {#NOP Mob Health;#VAR {enemy[hp]} {%2}};
 		#CASE {"M"} {#NOP Mob Image File};
-		#CASE {"N"} {#NOP Combat Round Counter;#VAR {mip[round]} {%2};#if !$total_rounds {#var total_rounds 1} {#MATH total_rounds {$total_rounds + 1}}};
-		#DEFAULT {#NOP Every other non-handled flag}
+		#CASE {"N"} {
+			#NOP Combat Round Counter;
+			#if {"%2" == "0"} {
+				#VAR {mip[round]} {%2};
+				#if !$total_rounds {#var total_rounds 1} {#MATH total_rounds {$total_rounds + 1}};
+			} {
+				#var last_fight_rounds %2;
+				#VAR {mip[round]} {%2};#if !$total_rounds {#var total_rounds 1} {#MATH total_rounds {$total_rounds + 1}};
+			};
+		};
+		#DEFAULT {#NOP Every other non-handled flag};
 	}
 }
 
@@ -255,8 +264,10 @@
 		#REGEX {$mip[gline][1]} { V:%d}		{#VAR {my[defs][v]}			{&1}}	{#var {my[defs][v]}		{0}};
 		#REGEX {$mip[gline][1]} { R:%d}		{#VAR {my[defs][r]}			{&1}}	{#var {my[defs][r]}		{0}};
 		#REGEX {$mip[gline][1]} { AG:%d}	{#VAR {my[defs][ag]}		{&1}}	{#var {my[defs][ag]}	{0}};
+		#REGEX {$mip[gline][1]} { D:%d}		{#VAR {my[defs][d]}			{&1}}	{#var {my[defs][d]}		{0}};
 		#REGEX {$mip[gline][1]} { ES:%d}	{#VAR {my[defs][es]}		{&1}}	{#var {my[defs][es]}	{0}};
-		#REGEX {$mip[gline][1]} { HR}		{#VAR {my[defs][hr]}		{1}}   {#var {my[defs][hr]}    {0}};
+		#REGEX {$mip[gline][1]} { RA%d}		{#VAR {my[defs][ra]}		{&1}}	{#var {my[defs][ra]}    {0}};
+		#REGEX {$mip[gline][1]} { HR}		{#VAR {my[defs][hr]}		 {1}}   {#var {my[defs][hr]}    {0}};
 		#REGEX {$mip[gline][1]} { B}		{#VAR {my[defs][blink]}		 {1}}	{#var {my[defs][blink]} {0}};
 		#REGEX {$mip[gline][1]} { MB}		{#VAR {my[defs][mb]}		 {1}}	{#var {my[defs][mb]}    {0}};
 		#REGEX {$mip[gline][1]} { AB}		{#VAR {my[defs][ab]}		 {1}}	{#var {my[defs][ab]}    {0}};
@@ -269,6 +280,17 @@
 		#REGEX {$mip[gline][2]} { S:%d}		{#VAR {my[smile]}		{&1}};
 		#REGEX {$mip[gline][2]} { NGL: %d%}	{#VAR {my[g2nl]}		{&1}};
 		#REGEX {$mip[gline][2]} { %*: %d} {
+			#var song_match 0;
+			#foreach $bardSongs[%*] {song} {
+				#regexp {"$song[name]"} {"&1"} {
+					#var song_match 1;
+					#var my[song][title] &1;
+					#var my[song][rounds] &2;
+				};
+			};
+			#if !$song_match {#unvar my[song]};
+		};
+		#REGEX {$mip[gline][2]} { %*: \*} {
 			#var song_match 0;
 			#foreach $bardSongs[%*] {song} {
 				#regexp {"$song[name]"} {"&1"} {

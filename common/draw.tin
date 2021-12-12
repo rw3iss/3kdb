@@ -57,7 +57,7 @@
     };
 
     #if {"$draw[caption]" == "on"} {
-        #if {$eternal} {#var caption[height] 4;} {#var caption[height] 3];};
+        #if {$eternal} {#var caption[height] 4;} {#var caption[height] 3;};
         #math caption[top] {$infoPane[top] - $caption[height] + 2};
     } {
         #var caption[height] 0;
@@ -238,7 +238,6 @@
 
     #draw {<dda>} {tile} $infoPane[top]+2 $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_bot};
     #draw {<dda>} {tile} $infoPane[top]+2+$status_string_bot_rows $infoPane[left]+2 $infoPane[bottom] $screen[width] {$status_string_strategy};
-
 }
 
 #alias draw_mage_summons {

@@ -2,6 +2,13 @@
 #class {bard_actions} {open}
 
 #NOP --------------------------------------- BARD SPECIFIC ACTIONS ------------------------------------------;
+#ACTION {%w gives you a low-five!} {#format {lower} {%l} {%1};it $lower} {6};
+#ACTION {%w eeps at you.} {#format {lower} {%l} {%1};defend $lower} {6};
+
+#NOP -- Count the number of blinks so we can recast before it's going to drop;
+#ACTION {You blink out just as the attack strikes!} {#math blink_count {$blink_count + 1};} {1};
+#ACTION {^As you complete the spell you begin phasing in and out of view!$} {#var blink_count 0} {1};
+
 
 #NOP --- BARD DEFENSIVE SONGS AND SPELLS;
 #ACTION {^The magic of your song, 'Amazing Grace', is fading.$} {#if {$defs[ag] && !$idle_flag} {ag}} {6};

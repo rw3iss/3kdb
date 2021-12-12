@@ -1,17 +1,13 @@
-#CLASS {global} {open};
+#CLASS {global} OPEN
 
-#NOP -- Gentech settings;
-#VARIABLE         {pu_reclaim} {3000};
-#VARIABLE         {pu_recharger}  {1}
-
-#NOP -- General Player Settings;
-#VARIABLE         {mask}            {1};
-
-#NOP -- Strategy Settings;
-
-#NOP -- Drawing Settings;
-#VARIABLE {canvas} {{width} {82}{widthperc} {0.40}};
-#VARIABLE {draw}{ 
+#VARIABLE {canvas}
+{
+    {width} {47}
+    {widthperc} {0.40}
+}
+#VARIABLE {curvnum} {375}
+#VARIABLE {draw}
+{
     {canvas} {on}
     {caption} {on}
     {chat} {off}
@@ -20,20 +16,35 @@
     {map} {on}
     {room} {off}
     {status} {on}
-};
-#VARIABLE {hpbar} {
-    {bottom} {36} {top} {32}
-    {left} {0} {right} {203}
-    {enabledheight} {4} {height} {4}
-    {prompt} {}
-};
-#VARIABLE {map} {{height} {14}{heightperc} {.4}{left} {122}{width} {81}{widthperc} {0.40}}
-#VARIABLE {room}{{exits} {e}}
-#VARIABLE {wielded} {dagger}
+}
+#VARIABLE {hpbar}
+{
+    {bottom} {36}
+    {enabledheight} {4}
+    {height} {4}
+    {left} {0}
+    {prompt} 
+    {
+        {1} {HP: <006>   104%   <088> SP: <008><AEA>    95%  <088>  PU: <008><BDA>    74%<070>   <088> SPU: <070>     2%   <088> CPC:  E:          }
+        {2} {HP:2621/2514 SP:1282/1341 PU:6449/8700 SPU:  95/4350 CPC:9991/10000  E:      %}
+        {3} {I-Beam .: roasts :. DDB .: invers'n :.  Synth .: sonar :.}
+        {4} {TS: 2/1 (25%)}
+    }
+    {right} {115}
+    {top} {33}
+}
+#VARIABLE {map}
+{
+    {height} {14}
+    {heightperc} {.4}
+    {left} {69}
+    {width} {46}
+    {widthperc} {0.40}
+}
+#VARIABLE {mask} {1}
+#VARIABLE {pu_reclaim} {3000}
+#VARIABLE {room} {The Arcade}
 #VARIABLE {splitWidthPerc} {0.40}
+#VARIABLE {wielded} {dagger}
 
-#NOP -- Room Settings;
-#VARIABLE {curvnum} {85}
-#VARIABLE {bot[last-room]} {85}
-
-#CLASS {global} {close}
+#CLASS {global} CLOSE

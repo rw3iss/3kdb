@@ -13,7 +13,7 @@
 #list botmobs add {{{long} {A Ghoul Militia} {target} {ghoul}}};
 #list botmobs add {{{long} {A ghoul} {target} {ghoul}}};
 #list botmobs add {{{long} {A statue of a dwarf} {target} {statue}}};
-#list botmobs add {{{long} {A vampire solider} {target} {vampire}}};
+#list botmobs add {{{long} {A vampire soldier} {target} {vampire}}};
 #list botmobs add {{{long} {A Vampire} {target} {vampire}}};
 #list botmobs add {{{long} {Duke of Vampires} {target} {vampire}}};
 #list botmobs add {{{long} {A wandering vampire} {target} {vampire}}};
