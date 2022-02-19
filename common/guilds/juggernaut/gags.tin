@@ -1,0 +1,4 @@
+#class {jugger_gags} {kill}
+#class {jugger_gags} {open}
+
+#class {jugger_gags} {close}

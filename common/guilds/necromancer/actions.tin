@@ -17,6 +17,7 @@
 #act {You alter back to your normal, human form.}{#var my[necromancer][altered] 0};
 #act {You can only alter your form into beast form master.}{#var my[necromancer][altered] 0};
 #act {^You currently have %d/%d open memory globes,} {#var powers[globes][open] %1;}
+#act {Before the repowering, you attempt a last minute scribe2 of:} {#var my[necromancer][invoke-prime] 2};
 
 #NOP --------------------------------------- NECROMANCER SUPPORT ACTIONS  ------------------------------------------;
 #ACTION {%w gives you a low-five!} {#if !$idle_flag {#format {lower} {%l} {%1};daemon graft $lower}} {6};

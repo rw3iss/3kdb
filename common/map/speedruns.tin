@@ -113,6 +113,7 @@
 #list speedruns add {{{name} {rloft_lantern}  {type} {misc} {vnum} {4392}  {desc} {Ravenloft: Sylth (Lantern)}}};
 #list speedruns add {{{name} {sii_box}        {type} {misc} {vnum} {27415} {desc} {Sii Guild: EQ Box}}};
 #list speedruns add {{{name} {sii_merge}      {type} {misc} {vnum} {27436} {desc} {Sii Guild: Merging Room}}};
+#list speedruns add {{{name} {juggs}          {type} {misc} {vnum} {27933} {desc} {Juggernaut Guild}}};
 #list speedruns add {{{name} {heaven}         {type} {area} {vnum} {21184} {desc} {Heaven: Portal}}};
 #list speedruns add {{{name} {water1}         {type} {misc} {vnum} {4093}  {desc} {Water: Angels Garden}}};
 #list speedruns add {{{name} {chicken}        {type} {area} {vnum} {14125} {desc} {Chicken Plant}}};
@@ -122,10 +123,8 @@
 #list speedruns add {{{name} {reforge}        {type} {misc} {vnum} {5814}  {desc} {Westersea: Bern/Reforge}}};
 #list speedruns add {{{name} {nice_pool}      {type} {misc} {vnum} {19688} {desc} {Nice Align Pool (Chaos)}}};
 #list speedruns add {{{name} {ferry}          {type} {misc} {vnum} {7354}  {desc} {Wayhaven Ferry}}};
-#list speedruns add {{{name} {sopem}          {type} {misc} {vnum} {26523} {desc} {Serinth: Sopem (PB Gear)}}};
 #list speedruns add {{{name} {taslen}         {type} {area} {vnum} {26740} {desc} {Taslen}}};
 #list speedruns add {{{name} {xeno}           {type} {mob}  {vnum} {7318}  {desc} {Xenolocles (Mortiis Mask)}}};
-#list speedruns add {{{name} {serinth}        {type} {area} {vnum} {16722} {desc} {Serinth}}};
 #list speedruns add {{{name} {colors}         {type} {area} {vnum} {16530} {desc} {Night of Colour: Balloon Dock}}};
 #list speedruns add {{{name} {banshee}        {type} {area} {vnum} {27708} {desc} {Erah: Banshee's Lair Entrance}}};
 #list speedruns add {{{name} {banshee1}       {type} {area} {vnum} {27718} {desc} {Erah: Banshee's Lair - Lvl 1}}};
@@ -134,13 +133,27 @@
 #list speedruns add {{{name} {banshee4}       {type} {area} {vnum} {27801} {desc} {Erah: Banshee's Lair - Lvl 4}}};
 #list speedruns add {{{name} {banshee5}       {type} {area} {vnum} {27809} {desc} {Erah: Banshee's Lair - Lvl 5 Phylactery}}};
 #list speedruns add {{{name} {banshee5}       {type} {mob} {vnum} {27810} {desc} {Erah: Banshee's Lair - Lvl 5 Guyahi}}};
-#list speedruns add {{{name} {salinsha}       {type} {mob} {vnum} {27818} {desc} {Serinth: Salnisha}}};
-#list speedruns add {{{name} {byrontic}       {type} {mob} {vnum} {27882} {desc} {Serinth: Byrontic}}};
-#list speedruns add {{{name} {durantalist}    {type} {mob} {vnum} {27894} {desc} {Serinth: Durantalist}}};
-#list speedruns add {{{name} {sabrena}        {type} {mob} {vnum} {27909} {desc} {Serinth: Sabrena}}};
+#list speedruns add {{{name} {erah_knight}    {type} {area}{vnum} {27758} {desc} {Erah: Knight's Training)}}};
+#list speedruns add {{{name} {serinth}        {type} {area} {vnum} {16722} {desc} {Serinth}}};
+#list speedruns add {{{name} {sopem}          {type} {misc} {vnum} {26523} {desc} {Serinth: Sopem (Greaves, Boots, Breastplate of Lucanus)}}};
+#list speedruns add {{{name} {salinsha}       {type} {mob} {vnum} {27818} {desc} {Serinth: Salinsha (Gloves of Lucanus)}}};
+#list speedruns add {{{name} {byrontic}       {type} {mob} {vnum} {27882} {desc} {Serinth: Byrontic (Amulet of Lucanus)}}};
+#list speedruns add {{{name} {durantalist}    {type} {mob} {vnum} {27894} {desc} {Serinth: Durantalist (Cloak of Lucanus)}}};
+#list speedruns add {{{name} {sabrena}        {type} {mob} {vnum} {27909} {desc} {Serinth: Sabrena (Sword of Fate)}}};
 #list speedruns add {{{name} {koricu}         {type} {mob} {vnum} {27921} {desc} {Serinth: Koricu (sword runes)}}};
 #list speedruns add {{{name} {brytex}         {type} {mob} {vnum} {27929} {desc} {Serinth: Brytex, Hill Giant King (Sword + sword runes)}}};
-#list speedruns add {{{name} {dorth}          {type} {mob} {vnum} {27932} {desc} {Serinth: Dorthinick)}}};
-#list speedruns add {{{name} {erah_knight}    {type} {area}{vnum} {27758} {desc} {Erah: Knight's Training)}}};
+#list speedruns add {{{name} {dorth}          {type} {mob} {vnum} {27932} {desc} {Serinth: Dorthinick (Boots of Lucanus)}}};
+#list speedruns add {{{name} {satarus}        {type} {mob} {vnum} {17200} {desc} {Serinth: Satarus, Lizardman King (Ring of Lucanus)}}};
+#list speedruns add {{{name} {}               {type} {mob} {vnum} {} {desc} {Serinth: Poritha (Shield of Lucanus)}}};
+#list speedruns add {{{name} {}               {type} {mob} {vnum} {} {desc} {Serinth: Sholitia (Runesword)}}};
+#list speedruns add {{{name} {tanary}         {type} {mob} {vnum} {27938} {desc} {Serinth: Tanary (Helmet of Lucanus)}}};
+#list speedruns add {{{name} {}               {type} {mob} {vnum} {} {desc} {Serinth: Umber Hulks (Upgraded Oils)}}};
+#list speedruns add {{{name} {huri}           {type} {mob} {vnum} {17047} {desc} {Serinth: Hurinteon (Reset Scroll/Book)}}};
+#list speedruns add {{{name} {syrena}         {type} {mob} {vnum} {17114} {desc} {Serinth: Syrena }}};
+#list speedruns add {{{name} {hopoate}        {type} {mob} {vnum} {6448}  {desc} {Dragon Realms: Hopoate (Famaerian Hammer)}}};
+#list speedruns add {{{name} {byrontic1}      {type} {mob} {vnum} {27861}  {desc} {Serinth: Dragon Isle Village Center}}};
+#list speedruns add {{{name} {dragon_isle}    {type} {mob} {vnum} {27822}  {desc} {Serinth: Dragon Isle Traveler/Entrance}}};
+
+
 
 #class map_speedruns {close}

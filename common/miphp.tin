@@ -15,6 +15,7 @@
         _player_miphp;
         _player_heartbeat;
         _guild_heartbeat;
+		_common_heartbeat;
 		_update_corpse_string;
 		#var action_round $mip[round];
 		#if {$eternal} {_update_eternal_status};

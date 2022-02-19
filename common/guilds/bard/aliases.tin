@@ -1,16 +1,21 @@
 #class {bard_aliases} {kill}
 #class {bard_aliases} {open}
 
-#NOP ---THIS SECTION IS FOR STRATEGY SETTINGS;
-#alias {strategy_assault} {
-	#if $strategy[assault] {
 
-	} {
+#NOP -- General Bard helper aliases;
 
+#NOP -- This alias is meant for the Angel's Fountain in wayhaven;
+#alias {fillwater} {
+	go water1;
+	#delay 2 {
+		#loop 1 20 i {give glass $i to $user;
+			give pitcher $i to $user;
+			fill glass;
+			fill pitcher;
+		};
+		#5 {drink fountain};
 	};
 };
-#alias {strategy_vortex} {};
-#alias {strategy_cloud} {};
 
 #NOP ---THIS SECTION IS FOR SONG ALIASES;
 #alias {clear_prots} {#var defs 0};
@@ -25,37 +30,33 @@
 #alias {es} {empowered strikes;#var defs[es] 1};
 
 #alias {ham_bot} {
-	#if $ham_bot {
-		#SHOWME <FEB><daa>------------------- HAMMER NO LONGER SMASHING FACE -------------------<088>;
+	#if $strategy[hammer] {
+		#SHOWME <efa>------------------- HAMMER NO LONGER SMASHING FACE -------------------<088>;
 		unwield hammer;
 		wield redaxe;
 		wear shield;
 		#var strategy[hammer] 0;
-		#var ham_bot 0;
 		#var defs[hr] 0;
 	} {
-		#SHOWME <FEB><daa>------------------- HAMMER WILL BEGIN SMASHING FACE -------------------<088>;
+		#SHOWME <efa>------------------- HAMMER WILL BEGIN SMASHING FACE -------------------<088>;
 		unwield redaxe;
 		remove shield;
 		wield rod;
 		wield hammer;
 		#var strategy[hammer] 1;
-		#var ham_bot 1;
 		#var defs[hr] 1;
 	};
 };
 
 #alias {rod_bot} {
-	#if $rod_bot {
-		#SHOWME <FEB><daa>------------------- RAINBOW OF DEATH DISABLED -------------------<088>;
+	#if $strategy[rainbow] {
+		#SHOWME <efa>------------------- RAINBOW OF DEATH DISABLED -------------------<088>;
 		#var strategy[rainbow] 0;
-		#var rod_bot 0;
 		#var defs[hr] 0;
 		#var defs[fr] 0;
 	} {
-		#SHOWME <FEB><daa>------------------- RAINBOW OF DEATH ACTIVATED  -------------------<088>;
+		#SHOWME <efa>------------------- RAINBOW OF DEATH ACTIVATED  -------------------<088>;
 		#var strategy[rainbow] 1;
-		#var rod_bot 1;
 		#var defs[hr] 1;
 		#var defs[fr] 1;
 	};
@@ -65,6 +66,11 @@
 #alias {blades} {reflex remove sp >$dmg_spell_sp;reflex add sp >$dmg_spell_sp cast blade dance};
 #alias {critic} {reflex remove sp >$dmg_spell_sp;reflex add sp >$dmg_spell_sp cast caustic critic};
 #alias {ebolt} {reflex remove sp >$dmg_spell_sp;reflex add sp >$dmg_spell_sp cast energy bolt};
+#alias {rod} {perform rainbow of death;cast focus the rainbow};
+
+#NOP -- QUICK ALIASES FOR SETTING UP DEFENSES;
+#alias {prots_spells} {prots_blink;prots_pfe;prots_pfg;prots_pfn;prots_pfc;prots_pfh;prots_mb;prots_hs;};
+#alias {prots_songs} {prots_grace;prots_muse;};
 
 #alias {prots_pfe} {cast protection from evil;#var defs[pe] 1;echo_prots_pfe};
 #alias {prots_pfg} {cast protection from good;#var defs[pg] 1;echo_prots_pfg};

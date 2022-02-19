@@ -247,66 +247,75 @@
   #nop --- Recall pain;
 
   #if {$combat[rpain]} {
+    #math {rpain_cnt} {$rpain_cnt - 1};
     #if {!$hbp} {
       #math {gp1_percent} {$my[gp1][current] / $my[gp1][max] * 100.0};
       #if {$gp1_percent > 80.0} {
-        #if {$rpain_cnt == 0} {
+        #if {$rpain_cnt <= 0} {
           @use_power{recall pain};
-          #math {rpain_cnt} {$rpain_cnt + 1};
-        };
-        #else {
-          #math {rpain_cnt} {$rpain_cnt - 1};
+          #math {rpain_cnt} {2};
         };
       };
     };
   };
 
   #if {$combat[ragony]} {
+    #math {ragony_cnt} {$ragony_cnt - 1};
     #if {!$hbp} {
       #math {gp1_percent} {$my[gp1][current] / $my[gp1][max] * 100.0};
       #if {$gp1_percent > 80.0} {
-        #if {$ragony_cnt == 0} {
+        #if {$ragony_cnt <= 0} {
           @use_power{recall agony};
-          #math {ragony_cnt} {$ragony_cnt + 5};
-        };
-        #else {
-          #math {ragony_cnt} {$ragony_cnt - 1};
+          #math {ragony_cnt} {5};
         };
       };
+    };
+  };
+
+  #nop -- Demoralize;
+  #if {!$hbp} {
+    #list gs_powers FIND {Demoralize} {found_dm};
+    #if {$found_dm && !$mob[demoralize]} {
+      demoralize;
     };
   };
 
   #nop -- GP1 healing;
 
   #if {!$hbp} {
-    #if {$combat[Bfuel]} {
-    #nop -- Convert calcs;
-
+    #nop -- If you dont have biofuel, only convert is available;
     #var {sp_to_psi_ratio} {0.2};
-    #math {psi_missing} {$my[gp1][max] - $my[gp1][current]};
-    
-    #nop -- Body fuel calcs;
-
     #var {hp_to_psi_ratio} {0.36};
     #var {max_hp_to_spend_ratio} {0.15};
+    #if {$combat[Bfuel]} {
+      #nop -- Convert calcs;
+      #math {psi_missing} {$my[gp1][max] - $my[gp1][current]};
+      
+      #nop -- Body fuel calcs;
+      #math {max_hp_to_spend} {$my[hp][max] * $max_hp_to_spend_ratio};
+      #math {hp_to_spend} {$psi_missing / $hp_to_psi_ratio};
+      #if {$hp_to_spend > $max_hp_to_spend} {
+        #var {hp_to_spend} {$max_hp_to_spend};
+      };
 
-    #math {max_hp_to_spend} {$my[hp][max] * $max_hp_to_spend_ratio};
-    #math {hp_to_spend} {$psi_missing / $hp_to_psi_ratio};
-    #if {$hp_to_spend > $max_hp_to_spend} {
-      #var {hp_to_spend} {$max_hp_to_spend};
-    };
+      #math {safe_hp_threshold} {1 - $max_hp_to_spend_ratio};
+      #math {can_safely_use_body_fuel} {$my[hp][current] / $my[hp][max] >= $safe_hp_threshold};
 
-    #math {safe_hp_threshold} {1 - $max_hp_to_spend_ratio};
-    #math {can_safely_use_body_fuel} {$my[hp][current] / $my[hp][max] >= $safe_hp_threshold};
+      #nop -- Pick GP1 heal power;
 
-    #nop -- Pick GP1 heal power;
+      #if {$my[sp][current] / $my[sp][max] > 0.99 && $psi_missing >= $my[sp][max] * $sp_to_psi_ratio} {
+        @use_power{convert};
+      };
+      #elseif {$can_safely_use_body_fuel && $use_body_fuel} {
+        @use_power{body fuel $hp_to_spend};
+      };
+    } {
+      #nop -- Convert calcs;
+      #math {psi_missing} {$my[gp1][max] - $my[gp1][current]};
 
-    #if {$my[sp][current] / $my[sp][max] > 0.99 && $psi_missing >= $my[sp][max] * $sp_to_psi_ratio} {
-      @use_power{convert};
-    };
-    #elseif {$can_safely_use_body_fuel && $use_body_fuel} {
-      @use_power{body fuel $hp_to_spend};
-    };
+      #if {$my[sp][current] / $my[sp][max] > 0.99 && $psi_missing >= $my[sp][max] * $sp_to_psi_ratio} {
+        @use_power{convert};
+      };
     };
   };
 };

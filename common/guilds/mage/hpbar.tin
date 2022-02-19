@@ -13,8 +13,8 @@
 }
 
 
-#gag {^-hp-%*};
-#act {^-hp-HP: %d\/%d SP: %d\/%d/%d\%\/%d\% Sat: %d\% Cnc: %d\% G:%d\/%d\% S:%d\/%d\% G2N:%d Prots: %* MI: %d ST: %* Cof: %d\/%d} {
+#act {^-hp-HP: %d\/%d SP: %d\/%d/%d\%\/%d\% Sat: %d\% Cnc: %d\% G:%d\/%d\% S:%d\/%d\% G2N:%d Prots: %* MI: %d ST: %* Cof: {%d\/%d|None}} {
+    #line gag;
     #var hpbar_mc %5;
     #var hpbar_gem %6;
     #var hpbar_prots %14;

@@ -7,7 +7,7 @@
 #showme ----  POWER PLANT     ----';
 
 
-#var botpath {w;s;s;w;w;enter;n;w;w;s;s;u;n;n;vine;s;s;{search bookcase;u};push button;move grate;e;e;s;n;n;n;e};
+#var botpath {w;s;s;w;w;enter;n;w;w;s;s;u;n;n;vine;s;s;{search bookcase;u};push button;{#delay 2 {get all;move grate}};e;e;s;n;n;n;e};
 #var bot[path] $botpath;
 
 #list botmobs clear;
@@ -22,7 +22,7 @@
 #list botmobs add {{{long} {Radioactive Man \(superhero\)} {target} {man}}};
 #list botmobs add {{{long} {Fallout Boy} {target} {boy}}};
 #list botmobs add {{{long} {Waylon Smithers} {target} {smithers}}};
-#list botmobs add {{{long} {Mr. Burns} {target} {burns}}};
+#list botmobs add {{{long} {Mr Burns} {target} {burns}}};
 #list botmobs add {{{long} {The Reactor Core} {target} {core}}};
 
 #var bot[mobs] $botmobs;

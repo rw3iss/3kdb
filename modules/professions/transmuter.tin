@@ -44,16 +44,16 @@
                 transmute 2 $item quality to average;
             };
             #if {"$item_quality" == "average"} {
-                #2 {unstash $item_quality $item};
-                transmute 2 $item quality to good;
+                #3 {unstash $item_quality $item};
+                transmute 3 $item quality to good;
             };
             #if {"$item_quality" == "good"} {
-                #3 {unstash $item_quality $item};
-                transmute 3 $item quality to superior;
+                #4 {unstash $item_quality $item};
+                transmute 4 $item quality to superior;
             };
             #if {"$item_quality" == "superior"} {
-                #4 {unstash $item_quality $item};
-                transmute 4 $item quality to legendary;
+                #5 {unstash $item_quality $item};
+                transmute 5 $item quality to legendary;
             };
         };
     };
@@ -64,7 +64,7 @@
     #var transmute_count 0;
     #action {Pfffzzzt!  You transmute:} {#math transmute_count {$transmute_count + 1}};
 
-    #delay 1 {
+    #delay 2 {
         #if {"%1" == ""} {
             #showme {<ddd>    No parameters were provided, please provide a valid parameter such as:  <088>};
             #showme {<ddd>     transmute_burn consolidate  <088>};
@@ -81,11 +81,11 @@
             #showme {<ccf>  -------    TRANSMUTING MATERIALS    -------    <088>  };
             #showme {<ccf>  -------------------------------------------    <088>  };
             update_satchel;
-            #delay 2 {
+            #delay 4 {
                 #switch {"%1"} {
                     #case {"consolidate"} {
                         #foreach $satchel[data][%*] index {
-                            #if {$transmuter[level] >= $index[min-level]} {
+                            #if {$satchel[level] >= $index[min-level]} {
                                 #foreach $craft[satchel][%*] satchel_item {
                                     #if {"$satchel_item[name]" == "$index[component]" && $satchel_item[total] > 0} {
                                         #if {$satchel_item[worthless] >= 2} {satchel_retrieve_xmute 2 worthless {$satchel_item[name]} $satchel_item[worthless];};
@@ -97,7 +97,7 @@
                                 };
                             };
                         };
-                        #delay 6 {
+                        #delay 4 {
                             #showme {<ccf>  -------    YOU TRANSMUTED <faa>$transmute_count MATERIALS    <ccf>-------    <088>  };
                             #unaction {Pfffzzzt!  You transmute:};
                         };
@@ -117,7 +117,7 @@
                                 };
                             };
                         };
-                        #delay 6 {
+                        #delay 4 {
                             #showme {<ccf>  -------    YOU TRANSMUTED <faa>$transmute_count MATERIALS    <ccf>-------    <088>  };
                             #unaction {Pfffzzzt!  You transmute:};
                         };
@@ -130,13 +130,13 @@
                                         #if {$satchel_item[worthless] >= 2} {satchel_retrieve_xmute 2 worthless {$satchel_item[name]} $satchel_item[worthless];};
                                         #if {$satchel_item[crude] >= 2} {satchel_retrieve_xmute 2 crude {$satchel_item[name]} $satchel_item[crude];};
                                         #if {$satchel_item[poor] >= 2} {satchel_retrieve_xmute 2 poor {$satchel_item[name]} $satchel_item[poor];};
-                                        #if {$satchel_item[average] >= 2} {satchel_retrieve_xmute 2 average {$satchel_item[name]} $satchel_item[average];};
-                                        #if {$satchel_item[good] >= 3} {satchel_retrieve_xmute 3 good {$satchel_item[name]} $satchel_item[good];};
+                                        #if {$satchel_item[average] >= 3} {satchel_retrieve_xmute 3 average {$satchel_item[name]} $satchel_item[average];};
+                                        #if {$satchel_item[good] >= 4} {satchel_retrieve_xmute 4 good {$satchel_item[name]} $satchel_item[good];};
                                     };
                                 };
                             };
                         };
-                        #delay 6 {
+                        #delay 4 {
                             #showme {<ccf>  -------    YOU TRANSMUTED <faa>$transmute_count MATERIALS  <ccf>  -------    <088>  };
                             #unaction {Pfffzzzt!  You transmute:};
                         };
@@ -156,7 +156,7 @@
                                 };
                             };
                         };
-                        #delay 6 {
+                        #delay 4 {
                             #showme {<ccf>  -------    YOU TRANSMUTED <faa>$transmute_count MATERIALS <ccf>   -------    <088>  };
                             #unaction {Pfffzzzt!  You transmute:};
                         };

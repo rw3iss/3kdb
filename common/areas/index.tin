@@ -2,3 +2,4 @@
 #read common/areas/dungeon_notes.tin;
 #read common/areas/private.tin;
 #read common/areas/serinth.tin;
+#read common/areas/hockey.tin;

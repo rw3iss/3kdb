@@ -1,12 +1,21 @@
 #class {default_actions} {kill}
 #class {default_actions} {open}
 
+#var my[hmheal][self] 1;
+#var my[hmheal][others] 1;
+
+
+#NOP -- This is to ignore necromancers killing their undead horde of summons;
+#action {Undead{ (screeches in agony and falls to the ground, dead|gasps for breath, then slumps into death|gurgles in his own blood as he dies|gurgles in her own blood as she dies|gurgles in its own blood as it dies){1}\.$}} {#NOP} {1};
+
+
 #action {^You lift the drink to your mouth, but in your stomach} {#var my[drunk] 1};
 #action {^You drink the wine and feel healed.$} {#var my[drunk] 0};
 
-#act {The effects of the%*blue capsule fade away.}{#if !$idle_flag {eat blue};};
-#act {The effects of the%*orange capsule fade away.}{#if !$idle_flag {eat orange};};
+#action {The effects of the%*blue capsule fade away.}{#if !$idle_flag {eat blue};};
+#action {The effects of the%*orange capsule fade away.}{#if !$idle_flag {eat orange};};
 
+#action {%w begs you.} {#if !$idle_flag {#format {lower} {%l} {%1};unkeep blue;give blue to $lower;unkeep orange;give orange to $lower};} {6};
 #action {^The daemon hisses: Dost thou choose to graft with me %w?} {#format {graft} {%l} {%1};#if {"$user" == "$graft"} {say yes}};
 #action {^%1 begins to follow %2\.$} {#format {follower} {%l} {%1};#if {"$user" == "$follower"} {#format {following} {%n} {%2}}};
 #action {^You stop following %1} {#unvar following};
@@ -53,145 +62,17 @@
     };
 };
 
+#act {You call forth high mortal energies to heal yourself!} {
+    #var my[hmheal][self] 0;
+    #delay hmheal-self {#var my[hmheal][self] 1} {3600};
+};
+
 #act {{(\w+) says, 'Greetings, Comrade!' to you.$}} { 
     #if !$idle_flag {
         #10 corpse_select
     };
 };
 
-#NOP -- 3kdb reporting stuff;
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w corpses} {
-    #if {"%2" == "bot"} {
-        #if {!$idle_flag && $bot[active]} {#delay .2 {ptell $corpse_string};};
-    };
-    #if {"%2" == "$user"} {
-        #if {!$idle_flag} {#delay .2 {ptell $corpse_string};};
-    };
-} {1};
-
-#NOP -- ROOM VNUM REPORTING;
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w vnum} {
-    #if {"%2" == "$user" && !$idle_flag} {
-        #map get roomvnum temp_vnum;
-        ptell My current vnum is $temp_vnum;
-    };
-};
-
-#NOP -- Bot XP Reporting;
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot xp} {
-    #format {bot[report-time]} {%T} {};
-    #math bot[delta-time] {$bot[report-time] - $bot[start-time]};
-    #if {$bot[delta-time] > 3600} {
-        #math bot[delta-time] {$bot[delta-time] / 3600 * 1.00};
-        #math bot[delta-rate] {$bot[stats][xp] / $bot[delta-time]};
-        thousandsFormatNumber bot[delta-rate];
-        #var xp_rate_str $bot[delta-rate] ($bot[delta-time] Hrs);
-    } {
-        #math bot[delta-time] {$bot[delta-time] / 60 * 1.00};
-        #math bot[delta-rate] {$bot[stats][xp] * 60 / $bot[delta-time]};
-        thousandsFormatNumber bot[delta-rate];
-        #var xp_rate_str $bot[delta-rate] ($bot[delta-time] mins);
-    };
-    #if {!$idle_flag && $bot[active]} {
-        #var temp_xp $bot[stats][xp];
-        thousandsFormatNumber temp_xp;
-        ptell Mobs Killed: $bot[stats][mobs]  XP Gained: $temp_xp  XP Rate/Hr: $xp_rate_str;
-    };
-};
-
-#NOP -- CORPSE SHARING AND REPORTING;
-#var gimme_corpses 1;
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb %w corpses %w} {
-    #if {"%2" == "$user"} {
-        #if {!$idle_flag && $gimme_corpses} { 
-            #if {"%3" == "gimme-coffin"} {
-                #var gimme_corpses 0;
-                ptell Attempting to unwrap 10 corpses;
-                #10 unwrap;
-                #delay .1 {i};
-                #delay 4 {#var gimme_corpses 1};
-            };
-            #if {"%3" == "gimme-freezer"} {
-                #var gimme_corpses 0;
-                ptell Attempting to deslab 10 corpses;
-                #10 deslab;
-                #delay .1 {i};
-                #delay 4 {#var gimme_corpses 1};
-            };
-            #if {"%3" == "gimme-cooler"} {
-                #var gimme_corpses 0;
-                ptell Attempting to uncooler 10 corpses;
-                #10 uncooler corpse;
-                #delay .1 {examine cooler};
-                #delay 4 {#var gimme_corpses 1};
-            };
-        };
-    };
-    #if {"%2" == "bot"} {
-        #if {!$idle_flag && $bot[active] && $gimme_corpses} {
-            #if {"%3" == "gimme-coffin"} {
-                #var gimme_corpses 0;
-                ptell Attempting to unwrap 10 corpses;
-                #10 unwrap;
-                #delay .1 {i};
-                #delay 4 {#var gimme_corpses 1};
-            };
-            #if {"%3" == "gimme-freezer"} {
-                #var gimme_corpses 0;
-                ptell Attempting to deslab 10 corpses;
-                #10 deslab;
-                #delay .1 {i};
-                #delay 4 {#var gimme_corpses 1};
-            };
-            #if {"%3" == "gimme-cooler"} {
-                #var gimme_corpses 0;
-                ptell Attempting to uncooler 10 corpses;
-                #10 uncooler corpse;
-                #delay .1 {examine cooler};
-                #delay 4 {#var gimme_corpses 1};
-            };
-        };
-    };
-} {1};
-
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot status} {
-    #if {!$idle_flag && $bot[active]} {#delay .2 {ptell Bot Status : $bot_current_room/$bot_total_rooms ($bot_progress%)};};
-} {1};
-
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot path-find} {
-    #if {!$idle_flag && $bot[active]} {
-        #unvar tempPath;
-        #unvar botPath;
-        #path get position position;
-        #math position {$position - 1};
-        #path save forward tempPath;
-        #list tempPath create {$tempPath};
-        #var botPath {Path to find me is: };
-        #foreach {$tempPath[+1..$position]} {dir} {#cat botPath {$dir;}};
-        #delay .2 {ptell ${botPath}};
-    };
-} {1};
-
-#act {~\e[33;1m[PARTY]\e[0m %w: 3kdb bot help} {
-    #if {!$idle_flag && $bot[active]} {
-        #delay .2 {
-            ptell ---------------------------------------------------;
-            ptell -----            3kdb Bot Helpers             -----;
-            ptell -----                                         -----;
-            ptell -----         xp: XP Report (Are we winning?) -----;
-            ptell -----     status: Current Room & Progress     -----;
-            ptell -----  path-find: Directions to find leader   -----;
-            ptell -----  corpses: Report corpse count           -----;
-            ptell -----     Add "gimme-x" to attempt to         -----;
-            ptell -----     deliver 10 corpses, such as:        -----;
-            ptell -----     corpses gimme-coffin                -----;
-            ptell -----     corpses gimme-freezer               -----;
-            ptell -----     corpses gimme-cooler                -----;
-            ptell -----                                         -----;
-            ptell ---------------------------------------------------;
-        };
-    };
-} {1};
 
 #NOP -- Skill Training;
 #act {^To do so, type: tskill %1$} {tskill %1};

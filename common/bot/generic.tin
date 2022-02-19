@@ -25,17 +25,17 @@
 #path load $bot[path];
 
 #if $check_death {
-        #showme {<BAF><ffe>------ CHECKDEATH IS ACTIVE --------<088>};
+        #showme {<ffe>------ CHECKDEATH IS ACTIVE --------<088>};
     } {
-        #showme {<BAF><ffe>------ CHECKDEATH IS NOT ACTIVE --------<088>};
+        #showme {<ffe>------ CHECKDEATH IS NOT ACTIVE --------<088>};
 };
 
 #alias {autocollect} {
     #if $collector[items] {
-        #showme {<BAF><ffe>------ ITEM COLLECTOR OFF --------<088>};
+        #showme {<ffe>------ ITEM COLLECTOR OFF --------<088>};
         #var collector[items] 0;
     } {
-        #showme {<BAF><ffe>------ ITEM COLLECTOR ON --------<088>};
+        #showme {<ffe>------ ITEM COLLECTOR ON --------<088>};
         #var collector[items] 1;
     };
 };
@@ -137,13 +137,32 @@
 } {2};
 
 
-/* starts / continues the bot after it's loaded */
+
+#act {^{-i-|-w-|-a-|-o-}%*.$} {
+    #var item_number 1;
+    #var item_long %2;
+
+    #replace item_long {.} {};
+    #replace item_long { \[%*\]} {};
+
+    #regex {%2} {7B{[0-9]+}} {#var item_number &1;#replace item_long { \\x7B%*} {};};
+    #regex {%2} {7B{[A-Za-z]+}} {#replace item_long { \\x7B%*} {};};
+
+    #foreach $item_grab_list[%*] item {
+        #if {"$item[long]" == "$item_long"} {
+           #$item_number get $item[target];
+        };
+    };
+};
+
+#NOP -- starts or continues the bot after it's loaded;
 #alias {..} {
     #class {xbot} {open};
 	#var bot[paused] 0;
 
     #act {{^-R-_(.*)-R-_}} { 
         #var room_short %%1;
+        #var room_item 0;
         .onRoom;
     } {1};
 
@@ -206,17 +225,33 @@
 
 #alias {.bot} {#if {$bot[paused] == 0} {..}};
 
+#action {%w dealt the killing blow to %*.} {
+    #math party[member][%1][kills] {$party[member][%1][kills] + 1};
+};
+
 #action {{ (screeches in agony and falls to the ground, dead|gasps for breath, then slumps into death|gurgles in his own blood as he dies|gurgles in her own blood as she dies|gurgles in its own blood as it dies){1}\.$}} {
     #echo {----- BOT REGISTERED KILL -----};
     bot_xp;
     #var bot[foundmob] 0;
     #var bot[aggro-mob] 0;
     #if !$idle_flag {
-        #if $check_death {
-            .check_death;
+        #if $actions_stacked {
+            do_action;
+            #delay 2 {
+                #if $check_death {
+                    .check_death;
+                } {
+                    corpse_trig;
+                    .bot;
+                };
+            };
         } {
-            corpse_trig;
-            .bot;
+            #if $check_death {
+                .check_death;
+            } {
+                corpse_trig;
+                .bot;
+            };
         };
     };
 } {1};
@@ -238,23 +273,54 @@
 
 /* Bot end actions... */
 #act {#END OF PATH} {
-    bot_report;
-    #if {!$bot[loop]} {
-        #show \nBot finished.;
-        bot_report;
-        .stop;
-    } {
-        #if $bot[stats][loop][mobs] {
-            #var bot[stats][loop][mobs] 0;
-            #var bot[stats][loop][xp] 0;
-            #show \nLooping bot...;
-            #path load $bot[path];
-            .bot;
-        } {
+    #if !$bot[paused] {
+        #if {!$bot[loop]} {
             #show \nBot finished.;
-            bot_report;
+            #format {bot[report-time]} {%T} {};
+            #math bot[delta-time] {$bot[report-time] - $bot[start-time]};
+            #if {$bot[delta-time] > 3600} {
+                #math bot[delta-time] {$bot[delta-time] / 3600 * 1.00};
+                #math bot[delta-rate] {$bot[stats][xp] / $bot[delta-time]};
+                thousandsFormatNumber bot[delta-rate];
+                #var xp_rate_str $bot[delta-rate] ($bot[delta-time] Hrs);
+            } {
+                #math bot[delta-time] {$bot[delta-time] / 60 * 1.00};
+                #math bot[delta-rate] {$bot[stats][xp] * 60 / $bot[delta-time]};
+                thousandsFormatNumber bot[delta-rate];
+                #var xp_rate_str $bot[delta-rate] ($bot[delta-time] mins);
+            };
+            #var temp_xp $bot[stats][xp];
+            thousandsFormatNumber temp_xp;
+            ptell Bot Complete. Mobs Killed: $bot[stats][mobs] XP Gained: $temp_xp ($xp_rate_str);
             .stop;
-        }
+        } {
+            #if $bot[stats][loop][mobs] {
+                #var bot[stats][loop][mobs] 0;
+                #var bot[stats][loop][xp] 0;
+                #show \nLooping bot...;
+                #path load $bot[path];
+                .bot;
+            } {
+                #show \nBot finished.;
+                #format {bot[report-time]} {%T} {};
+                #math bot[delta-time] {$bot[report-time] - $bot[start-time]};
+                #if {$bot[delta-time] > 3600} {
+                    #math bot[delta-time] {$bot[delta-time] / 3600 * 1.00};
+                    #math bot[delta-rate] {$bot[stats][xp] / $bot[delta-time]};
+                    thousandsFormatNumber bot[delta-rate];
+                    #var xp_rate_str $bot[delta-rate] ($bot[delta-time] Hrs);
+                } {
+                    #math bot[delta-time] {$bot[delta-time] / 60 * 1.00};
+                    #math bot[delta-rate] {$bot[stats][xp] * 60 / $bot[delta-time]};
+                    thousandsFormatNumber bot[delta-rate];
+                    #var xp_rate_str $bot[delta-rate] ($bot[delta-time] mins);
+                };
+                #var temp_xp $bot[stats][xp];
+                thousandsFormatNumber temp_xp;
+                ptell Bot Complete. Mobs Killed: $bot[stats][mobs] XP Gained: $temp_xp ($xp_rate_str);
+                .stop;
+            }
+        };
     };
 };
 

@@ -9,7 +9,7 @@
 #var bot_message_2 '---- ALL TARGETS ----';
 #show $bot_message_1;#show $bot_message_2;
 
-#var {botpath} {w;w;w;w;n;e;e;e;e;e;e;e;e;e;n;e;w;w;w;w;w;w;w;w;w;w;w;n;e;e;e;nw;w;w;nw;e;e;nw;n;s;se;se;se;e;n;se;ne;nw;s;n;n;w;ne;se;w;s;se;s;e;e;e;e;e;n;w;w;ne;e;e;nw;n;s;s;s;s;s;sw;s;w;w;w;w;w};
+#var {botpath} {n;portal;w;w;w;w;n;e;e;e;e;e;e;e;e;e;n;e;w;w;w;w;w;w;w;w;w;w;w;n;e;e;e;nw;w;w;nw;e;e;nw;n;s;se;se;se;e;n;se;ne;nw;s;n;n;w;ne;se;w;s;se;s;e;e;e;e;e;n;w;w;ne;e;e;nw;n;s;s;s;s;s;sw;s;w;w;w;w;w;portal;s};
 #var bot[path] $botpath;
 
 

@@ -2,13 +2,18 @@
 
 #read common/bot/bots.tin;
 #read common/areas/index.tin;
+#read common/eq/index.tin;
 #read common/actions.tin;
 #read common/aliases.tin;
+#read common/config.tin;
 #read common/defaults.tin;
 #read common/gags.tin;
+#read common/heartbeat.tin;
 #read common/helpers.tin;
+#READ common/itemlist.tin;
 #read common/macros.tin;
 #read common/miphp.tin;
+#read common/party.tin;
 #read common/private.tin;
 #read common/subs.tin;
 #read common/map/speedruns.tin;

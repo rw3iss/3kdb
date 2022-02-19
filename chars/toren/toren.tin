@@ -1,6 +1,6 @@
 #NOP - 3k Session
 
-#SESSION {3k - Toren} {3k.org} {3000}
+#NOP #SESSION {3k - Toren} {3k.org} {3000};
 
 #conf pack 1;
 #conf color on;
@@ -30,6 +30,7 @@
 #read chars/$user/aliases.tin;
 #read chars/$user/config.tin;
 #read chars/$user/heartbeat.tin;
+#read chars/$user/private.tin;
 #read chars/$user/tickers.tin;
 #read chars/$user/vars.tin;
 

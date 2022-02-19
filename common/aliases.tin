@@ -4,6 +4,8 @@
 #alias {debug} {#debug all on};
 #alias {debugoff} {#debug all off};
 
+
+
 #alias strategy {
     #format temp {%u} {%1};
     #switch {"$strategy[%1]"} {
@@ -46,6 +48,10 @@
     };
 };
 
+#alias remove_action {
+
+}
+
 #var beepon 1;
 #alias {beep} {#if {$beepon == 1} { #bell; }};
 #alias {beepon} {#var beepon 1;#show Beep on.;};
@@ -56,18 +62,10 @@
 #ALIAS {ld} {
     #class global open;
     #map get roomvnum curvnum;
+    #var strategy $strategy;
     #class global close;
     #class global write chars/$user/vars.tin;
     #delay 1 {#end};
-};
-
-#ALIAS {postload} {
-     #map flag static on;
-     #map flag vtmap on;
-     #map flag unicodegraphics on;
-     #map flag terrain on;
-     #map flag direction on;
-     #delay {1} {hp}
 };
 
 #class {default_aliases} {close}

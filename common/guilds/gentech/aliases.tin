@@ -12,6 +12,19 @@
 
 #action {[[ Timeslide circuits overpowered.  Recovery time needed. ]]} {say timeslide (personal) on cooldown.} {6};
 
+#alias timescan {
+	#send {timescan clear};
+	#send {timescan set};
+	#send {timescan query};
+	#line oneshot #action {Timescan %* [Likelihood of Flux: %d.%d%]} {
+		#var temp %%2.%%3;
+		#showme temp is $temp;
+		#format reset_progress {%f} {40 * $temp / 100};
+		#math time_to_reset {40 - $reset_progress * 1.00};
+		#format time_to_reset {%.5s} {$time_to_reset};
+		say $time_to_reset minutes until reset (assuming a 40 minute timer);
+	};
+};
 
 #NOP ---  Alias to check if you can timeslide
 #alias check_slide {

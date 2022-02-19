@@ -1,0 +1,50 @@
+#CLASS {global} OPEN
+
+#VARIABLE {canvas}
+{
+    {width} {29}
+    {widthperc} {.45}
+}
+#VARIABLE {curvnum} {1}
+#VARIABLE {draw}
+{
+    {canvas} {on}
+    {caption} {on}
+    {chat} {off}
+    {gline} {off}
+    {hpbar} {on}
+    {map} {on}
+    {room} {off}
+    {status} {on}
+}
+#VARIABLE {hpbar}
+{
+    {bottom} {23}
+    {enabledheight} {4}
+    {height} {4}
+    {left} {0}
+    {prompt} 
+    {
+        {1} {HP:1068/ 966 SP: 114/ 942 Psi:  83/1585  Stam: 588/ 654  E:    64%}
+        {2} {H:<006>   110%   <088> S:<008><FAA> <070>   12%   <088> Psi:<070>     5%   <088> Stam:<008><BEA>    89% <070>  <088> E:<008><CDA>    64<070>%   <088>}
+        {3} {<fff>Powers: Vr Bo Bf Sj }
+        {4} {<fff>Total GXP: 52,033 (28/rnd | Tour Max: 25/rnd)  Last Fight: Wild Stag (25/rnd)}
+    }
+    {right} {63}
+    {top} {20}
+}
+#VARIABLE {map}
+{
+    {height} {9}
+    {heightperc} {.4}
+    {left} {35}
+    {width} {28}
+    {widthperc} {.45}
+}
+#VARIABLE {room} {The Center of Town}
+#VARIABLE {shield} {aurothon shield}
+#VARIABLE {splitWidthPerc} {.45}
+#VARIABLE {strategy} {$strategy}
+#VARIABLE {wielded} {redaxe}
+
+#CLASS {global} CLOSE

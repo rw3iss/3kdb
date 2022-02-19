@@ -1,0 +1,23 @@
+#class {guild_heartbeat} {kill}
+#class {guild_heartbeat} {open}
+
+#alias {_guild_heartbeat} {
+	#if {$mip[round] == 1} {
+		#var mob[palm] 0;
+		#var mob[pressure] 0;
+	};
+	#if {!$idle_flag && $action_round < $mip[round]} {
+
+        #if {$mip[round] > 2 && $mip[round] < 6} {
+            #if $strategy[epowers] {
+                #if $my[eternal][fry] {(fry;};
+                #if ${my[eternal][energy well]} {(energy well;#var mob[ewell] 1;#delay 180 {#var mob[ewell] 0};} {#if {${my[eternal][shred]} && !$mob[ewell]} {(shred;};};
+            };
+        };
+
+		#if {$strategy[palm] && !$mob[palm] && $my[monk][ae][current] > 0} {palm};
+		#if {$strategy[pressure] && !$mob[pressure]} {pressure};
+    };
+};
+
+#class {guild_heartbeat} {close}
