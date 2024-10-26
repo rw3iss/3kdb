@@ -1,7 +1,7 @@
 #class {miphp} {kill}
 #class {miphp} {open}
 
-#nop #alias {update_status} {;
+/* #nop #alias {update_status} { */
 
 #alias {_player_miphp} {
 	#math   {idle_hr}       {$idle / 3600};
