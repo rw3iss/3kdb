@@ -15,7 +15,7 @@
 			#delay {.5} { @checkring{}; };
 		} {
 			#var $ringchecks 0;
-		}
+		};
 		#return;
 	};
 

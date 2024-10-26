@@ -32,11 +32,11 @@
 /* personal modules */
 #read modules/professions/reforger.tin;
 #read modules/dmgtracker/dmgtracker.tin;
-#read modules/corpsemanager/corpsemanager_old.tin;
+#read modules/corpsemanager/corpsemanager.tin;
 #read modules/cursecheck/cursecheck.tin;
 #read modules/playcult/playcult.tin;
 
-#read modules/settings/settings.tin;
+#nop #read modules/settings/settings.tin;
 #read modules/afterkill/afterkill.tin;
 
 #alias {reload} {#kill all;#show \n;#read chars/zorbaine/zorbaine.tin;load};
