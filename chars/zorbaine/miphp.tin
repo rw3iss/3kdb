@@ -1,8 +1,9 @@
 #class {miphp} {kill}
 #class {miphp} {open}
 
-#alias {update_status} {
+#nop #alias {update_status} {;
 
+#alias {_player_miphp} {
 	#math   {idle_hr}       {$idle / 3600};
 	#math   {idle_min}      {$idle % 3600 / 60};
 	#math   {idle_sec}      {$idle % 60};
@@ -30,7 +31,7 @@
 
 	#var etc_string {Corpses: $corpses[total] (C: $corpses[coffin] I: $corpses[inventory] S: $corpses[smuggle] F: $corpses[freezer])};
 	#var eternal_string {Eternal: $ewell_string };
-    
+
 	#var hpStr {HP:$hp/$hp_max SP:$sp/$sp_max Karma:$gp1/$gp1_max  Voice:$gp2/$gp2_max  E:$ehealth};
 	#var prompt2 {H:$my[hp][graph] S:$my[sp][graph] Karma:$my[gp1][graph] Voice:$my[gp2][graph] E:$enemy[graph]};
 	#var prompt3 {Prots: $prot_string $song_string $eternal_string};
@@ -40,17 +41,17 @@
     _guild_heartbeat;
 	draw_hpbar;
 }
-    
+
 
 #if {"$draw[hpbar]" == "on"} {
 	#var hpbar[enabledheight] $hpbar[height];
 } {
 	#var hpbar[enabledheight] 0;
 }
-    
+
 /* calculate hpbar size and draws initial line above hpbar area */
 #alias {init_hpbar} {
-    
+
     #if {"$draw[hpbar]" == "on"} {
         #var hpbar[enabledheight] $hpbar[height];
     } {
@@ -59,7 +60,7 @@
 
     #math hpbar[top] {$screen[height] - $hpbar[enabledheight]};
     #math hpbar[bottom] {$hpbar[top] + $hpbar[height] - 1};
-    #math hpbar[right] {$hpbar[left] + $screen[width]}; 
+    #math hpbar[right] {$hpbar[left] + $screen[width]};
 
     #if {"$draw[hpbar]" == "on"} {
     	#draw {line} -$hpbar[enabledheight]-2 1 -$hpbar[enabledheight]-2 -1;
