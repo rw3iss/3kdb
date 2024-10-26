@@ -98,7 +98,7 @@
 			#unvar long;
 			#act {%%1} {
 				#var long {${long}%%1 };
-			} {2}
+			} {2};
 		};
 		#delay 0 mapupdate;
 	};
@@ -107,7 +107,7 @@
 		#unvar long;
 		#act {%%1} {
 			#var long {${long}%%1 };
-		} {2}
+		} {2};
 	};
 };
 
@@ -131,7 +131,7 @@
 					} {
 						#var long {${long}%%1 };
 				}
-			} {2}
+			} {2};
 		};
 		#map get {roomvnum} {gonum};
 		#map goto $gonum;
@@ -145,7 +145,7 @@
 				} {
 					#var long {${long}%%1 };
 			}
-		} {2}
+		} {2};
 	};
 } {6}
 
@@ -157,11 +157,11 @@
 			#map set roomdesc {$long}
 		}
 	}
-} {1}
+} {1};
 
 #act {AREA NAME: %1 [%2]} {
 	#var area %1
-}
+};
 
 
 /* Aliases */
@@ -182,7 +182,7 @@
 	};
 	#map get {roomvnum} {gonum};
 	#map goto $gonum;
-}
+};
 
 
 #alias {findhere} {
@@ -282,20 +282,22 @@
 	#show \n;
 	#show <129>Note matches:<088>;
 	#map list {} {} {} {} {%i%*%0%*};
-}
+};
 
 #alias {mapon} {
 	#send !brief off yes;
 	#map flag static off;
 	#var mapstatic 1;
 	#var mapping on;
-}
+};
+
 #alias {mapoff}{
 	#send !brief on yes;
 	#map flag static on;
 	#unvar mapstatic;
 	#unvar mapping;
-}
+};
+
 #map flag static on;
 #unvar mapstatic;
 
@@ -305,7 +307,7 @@
 	#var dest_num %2;
 	#map link $dir $dest_num both;
 	#map insert $dir void
-}
+};
 
 /* Highmortal Portals Toggles */
 #alias hmavoid {
@@ -315,7 +317,7 @@
 	#map at 148 {#map exitflag {efor} avoid on};
 	#map at 148 {#map exitflag {portal desert} avoid on};
 	#map at 148 {#map exitflag {portal ice} avoid on};
-}
+};
 
 #alias hmfollow {
 	#map at 148 {#map exitflag {portal road} avoid off};
@@ -324,8 +326,7 @@
 	#map at 148 {#map exitflag {efor} avoid off};
 	#map at 148 {#map exitflag {portal desert} avoid off};
 	#map at 148 {#map exitflag {portal ice} avoid off};
-}
-
+};
 
 
 
@@ -334,12 +335,13 @@
 	#if {$mapstatic} {
 		#map undo
 	}
-}
+};
+
 #act {^You cannot get it up.} {
 	#if {$mapstatic} {
 		#map undo
 	}
-}
+};
 
 
 #class {mapper} {close}
