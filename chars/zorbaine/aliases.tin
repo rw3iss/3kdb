@@ -15,20 +15,20 @@
 
 #alias .x {
     #var incombat 0;
-}
+};
 
 #alias dbg {
     #show VARS:
     #show incombat: $incombat;
     #show botting: $bot[active];
     #show killing: $killing;
-}
+};
 
 
 #NOP bot shortcuts;
 #alias {.rb} {-rimalkins;scaler 150};
 #alias {.hb} {-hotelbot;scaler 130};
-    
+
 
 #ALIAS {brun}
 {
@@ -154,7 +154,7 @@
 
 #var delayRepeat 0;
 #var delayRepeatDelay 0;
-#alias {dr} { 
+#alias {dr} {
     #if {"%0" != ""} {
         #show Repeating '%2' with a delay of %1;
         #var delayRepeat %2;
@@ -442,7 +442,7 @@
 
 
 
-#alias {c} {ctell %0};	
+#alias {c} {ctell %0};
 #alias {cw} {cwho -O};
 #alias {cwo} {cwho -o};
 

@@ -91,7 +91,7 @@
 	#show zombie hotel - 115;
 	#show smurfs - 111;
 	#show carnegie hall - 120 (class 1-4mil lower levels, 9-10mil upper);
-	#show zelligars castle - 120 (130 is max headband)
+	#show zelligars castle - 120 (130 is max headband);
 	#show halo - ?;
 	#show alphabet letters - max;
 	#show anchorman - max;
@@ -134,7 +134,7 @@
 
 	#show <169>[SHIELDS] ---------<169>;
 	#show chicken, mithril, armband of ancients;
-	
+
 	#show <169>[UNKOWN] ---------<169>;
 	#show highc;
     #show \n;
@@ -148,15 +148,15 @@
 	#show winds2, tarn, cryohydra, spirit, crimson, blood;
 	#show arovia, gareth/polished mithril;
 	#show serinth (salinsha, byrontic/byronvillage, sopem, durantalist(devil\'s isle), hurinteon, umber hulk?);
-	
+
 	#show <169>[STATS / ENHANCES] ----<169>;
 	#show +str: cae;
     #show +wis: veggie taco;
     #show Eq: CMC;
 	#show Misc: taco food, letters, arcanarton, bracelet of ulmedea;
-    #show +WC: taco buffs, Kayos Wars events rep items, 
+    #show +WC: taco buffs, Kayos Wars events rep items;
 	#show AC buffs: taco smears, reforge, breed enhance, crafting;
-	#show \n;   
+	#show \n;
     #show ============================================\n;
 };
 
@@ -203,7 +203,7 @@
 	#show cryohydra / cryohide;
 	#show eremon;
 	#show cyberpope;
-	#show serinth / salinsha / sopem / byrontic
+	#show serinth / salinsha / sopem / byrontic;
 	#show dbs;
 	#show xaxis;
 	#show ghoti / cae / shans;

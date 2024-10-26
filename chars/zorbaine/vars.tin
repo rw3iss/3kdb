@@ -1,6 +1,7 @@
 #CLASS {vars} OPEN
 
 #VARIABLE         {canvas}  {{width}{0}{widthperc}{.4}}
+#VARIABLE         {username}  {zorbaine}
 #VARIABLE         {character}  {zorbaine}
 #VARIABLE         {characterName}  {Zorbaine}
 #VARIABLE         {curvnum}  {4119}
@@ -10,7 +11,6 @@
 #VARIABLE         {room}  {{bottom}{57}{exits}{n~s~w~e}{height}{24}{heightperc}{.4}{name}{A dungeon (n,s,w,e)}{top}{37}{width}{40}{widthperc}{.4}}
 #VARIABLE         {shield}  {aurothon shield}
 #VARIABLE         {splitWidthPerc}  {.45}
-#VARIABLE         {username}  {zorbaine}
 #VARIABLE         {wielded}  {lance}
 
 #CLASS {vars} CLOSE

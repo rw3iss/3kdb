@@ -47,7 +47,7 @@
         immolate corpse;
         bury corpse;
         get coins;
-    }
+    };
     #if {$bot[active] == 1} {.bot};
 
 };
@@ -75,7 +75,7 @@
 	#if {$party == 1} {
 		#if {"$partyLeader" == "zorbaine"} {
 			#show ----------- LOW, NEED TO TRUCE!!! =============;
-			ptell Need to truce, please wimpy/leave!
+			ptell Need to truce, please wimpy/leave!;
 			#delay {2} {truce;truce}
 		} {
 			cassist +clear;
@@ -179,7 +179,7 @@
 			#act {$static[ewatch][trig]} {#bell;#bell;#bell;} {2};
 			#delay {ewatch} {_checkitem} {60};
 		} {2};
-	} {2}; 
+	} {2};
 }
 
 #alias {_checkwait} {
